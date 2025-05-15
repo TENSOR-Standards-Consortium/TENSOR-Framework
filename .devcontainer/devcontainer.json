@@ -1,0 +1,21 @@
+{
+  "name": "TENSOR Framework Development Container",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:22",
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installScript": "npm install -g --loglevel=error ajv-cli@^5 ajv-formats"
+    }
+  },
+  "postCreateCommand": "",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint",
+        "redhat.vscode-yaml",
+        "ms-vscode.vscode-json-languageservice"
+      ]
+    }
+  },
+  "remoteUser": "vscode"
+}

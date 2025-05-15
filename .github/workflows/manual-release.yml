@@ -1,0 +1,65 @@
+name: Manual Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to release (defaults to latest)'
+        required: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Determine version
+        id: get_version
+        run: |
+          if [[ -n "${{ github.event.inputs.version }}" ]]; then
+            echo "version=${{ github.event.inputs.version }}" >> "$GITHUB_OUTPUT"
+          else
+            v=$(grep '^latest:' _data/version.yml | awk -F '"' '{print $2}')
+            echo "version=$v" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Validate files
+        run: |
+          v=${{ steps.get_version.outputs.version }}
+          [[ -f "schemas/core/core.schema.$v.json" ]] || { echo "Missing schema"; exit 1; }
+          [[ -f "graphs/core/tensor-core.graph.$v.json" ]] || { echo "Missing graph"; exit 1; }
+
+      - name: Promote to root
+        run: |
+          v=${{ steps.get_version.outputs.version }}
+          cp "schemas/core/core.schema.$v.json" core.schema.json
+          cp "graphs/core/tensor-core.graph.$v.json" tensor-core.json
+
+      - name: Commit promoted files
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          git add core.schema.json tensor-core.json
+          git commit -m "chore: promote v$v to root"
+          git push origin main
+
+      - name: Tag release
+        run: |
+          v=${{ steps.get_version.outputs.version }}
+          git tag -a v$v -m "TENSOR Framework v$v"
+          git push origin v$v
+
+      - name: Update released
+        run: |
+          v=${{ steps.get_version.outputs.version }}
+          sed -i "s/^released:.*/released: \"$v\"/" _data/version.yml
+          git add _data/version.yml
+          git commit -m "chore: released version updated to $v"
+          git push origin main
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ steps.get_version.outputs.version }}
+          name: "TENSOR Framework v${{ steps.get_version.outputs.version }}"
+          body_path: CHANGELOG.md

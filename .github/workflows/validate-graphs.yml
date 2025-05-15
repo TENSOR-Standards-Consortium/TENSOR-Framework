@@ -1,0 +1,14 @@
+name: Validate Graphs
+
+on: [pull_request, push]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: npm install -g ajv-cli
+      - run: |
+          for g in graphs/**/*.graph.*.json; do
+            ajv validate -s schemas/core/core.schema.json -d "$g" --strict=false || exit 1
+          done

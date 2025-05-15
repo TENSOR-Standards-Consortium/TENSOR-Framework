@@ -1,0 +1,49 @@
+name: Update Latest Version
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'schemas/core/core.schema.*.json'
+      - 'graphs/core/tensor-core.graph.*.json'
+
+jobs:
+  update-latest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Find newest schema version
+        id: find_schema
+        run: |
+          versions=( $(ls schemas/core/core.schema.*.json 2>/dev/null \
+            | sed -E 's|.*/core\.schema\.([0-9.]+)\.json|\1|' \
+            | sort -V) )
+          [[ ${{#versions[@]}} -gt 0 ]] || { echo "No core.schema files"; exit 1; }
+          echo "schema_latest=${versions[-1]}" >> "$GITHUB_OUTPUT"
+
+      - name: Find newest graph version
+        id: find_graph
+        run: |
+          versions=( $(ls graphs/core/tensor-core.graph.*.json 2>/dev/null \
+            | sed -E 's|.*/tensor-core\.graph\.([0-9.]+)\.json|\1|' \
+            | sort -V) )
+          [[ ${{#versions[@]}} -gt 0 ]] || { echo "No tensor-core.graph files"; exit 1; }
+          echo "graph_latest=${versions[-1]}" >> "$GITHUB_OUTPUT"
+
+      - name: Compare and update latest
+        run: |
+          if [[ "${{ steps.find_schema.outputs.schema_latest }}" != "${{ steps.find_graph.outputs.graph_latest }}" ]]; then
+            echo "Schema and graph version mismatch"; exit 1
+          fi
+          latest="${{ steps.find_schema.outputs.schema_latest }}"
+          # update version.yml
+          sed -i "s/^latest:.*/latest: \"$latest\"/" _data/version.yml
+
+      - name: Commit change
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          git add _data/version.yml
+          git diff --quiet || git commit -m "chore: update latest version to $latest"
+          git push origin main

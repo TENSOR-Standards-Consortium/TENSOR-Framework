@@ -1,0 +1,167 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://raw.githubusercontent.com/TENSOR-Standards-Consortium/TENSOR-Framework/main/tensor.core.schema.json",
+    "title": "TENSOR Framework Core Schema",
+    "description": "Core schema for TENSOR Framework graphs.",
+    "type": "object",
+    "required": [
+        "namespace",
+        "product",
+        "version",
+        "generatedAt",
+        "nodes",
+        "edges"
+    ],
+    "properties": {
+        "namespace": {
+            "type": "string",
+            "const": "tensor",
+            "description": "Namespace owning this schema."
+        },
+        "product": {
+            "type": "string",
+            "const": "core",
+            "description": "Product or module name."
+        },
+        "version": {
+            "type": "string",
+            "pattern": "^\\d+\\.\\d{8}[a-z]?$",
+            "description": "Release version: <MAJOR>.<YYYYMMDD>[<REV>]."
+        },
+        "generatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "RFC-3339 timestamp when this file was generated."
+        },
+        "nodes": {
+            "type": "array",
+            "description": "Investigative questions (graph nodes).",
+            "items": {
+                "$ref": "#/$defs/node"
+            }
+        },
+        "edges": {
+            "type": "array",
+            "description": "Branches between questions (graph edges).",
+            "items": {
+                "$ref": "#/$defs/edge"
+            }
+        },
+        "extensions": {
+            "type": "object",
+            "description": "Graph-level add-ons (case metadata, vendor modules, etc.).",
+            "additionalProperties": true
+        }
+    },
+    "unevaluatedProperties": false,
+    "$defs": {
+        "node": {
+            "type": "object",
+            "required": [
+                "data"
+            ],
+            "properties": {
+                "data": {
+                    "type": "object",
+                    "required": [
+                        "id",
+                        "text",
+                        "category",
+                        "weight"
+                    ],
+                    "properties": {
+                        "id": {
+                            "type": "string",
+                            "description": "Unique node identifier (e.g., \"Q1\")."
+                        },
+                        "text": {
+                            "type": "string",
+                            "description": "Full investigative question."
+                        },
+                        "category": {
+                            "type": "string",
+                            "enum": [
+                                "Application",
+                                "Cloud",
+                                "Email",
+                                "File",
+                                "Host",
+                                "Identity",
+                                "Network"
+                            ],
+                            "description": "One of the seven investigation domains."
+                        },
+                        "weight": {
+                            "type": "integer",
+                            "minimum": 1,
+                            "maximum": 5,
+                            "description": "Relative priority, 1 (low)–5 (high)."
+                        },
+                        "label": {
+                            "type": "string",
+                            "description": "(Optional) short label for graph visuals."
+                        },
+                        "extensions": {
+                            "type": "object",
+                            "description": "Per-node add-ons (MITRE mapping, vendor hints, etc.).",
+                            "additionalProperties": true
+                        }
+                    },
+                    "additionalProperties": false
+                }
+            },
+            "additionalProperties": false
+        },
+        "edge": {
+            "type": "object",
+            "required": [
+                "data"
+            ],
+            "properties": {
+                "data": {
+                    "type": "object",
+                    "required": [
+                        "id",
+                        "source",
+                        "target",
+                        "decision"
+                    ],
+                    "properties": {
+                        "id": {
+                            "type": "string",
+                            "description": "Unique edge identifier (e.g., \"Q1-yes-Q2\")."
+                        },
+                        "source": {
+                            "type": "string",
+                            "description": "ID of the source node."
+                        },
+                        "target": {
+                            "type": "string",
+                            "description": "ID of the target node."
+                        },
+                        "decision": {
+                            "type": [
+                                "string",
+                                "null"
+                            ],
+                            "enum": [
+                                "yes",
+                                "no",
+                                "unknown",
+                                null
+                            ],
+                            "description": "Branch decision: yes | no | unknown | null."
+                        },
+                        "extensions": {
+                            "type": "object",
+                            "description": "Per-edge add-ons (e.g., confidence, automation hints).",
+                            "additionalProperties": true
+                        }
+                    },
+                    "additionalProperties": false
+                }
+            },
+            "additionalProperties": false
+        }
+    }
+}
