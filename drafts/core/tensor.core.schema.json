@@ -1,21 +1,13 @@
 {
   /* ----------------------------------------------------------
-     TENSOR Framework — Core Graph Schema  (v 1.20250418 B-rev)
+     TENSOR Framework — Core Graph Schema  (v0.20250519)
      ----------------------------------------------------------
-     • Restores “decision” (yes | no | unknown) as a required
-       edge property, so the reason for the link is explicit.
-     • Keeps the ID pattern Q<source>-<decision>-Q<target>.
-     • Weight-scale semantics live only in comments.
-  ---------------------------------------------------------------- */
+     Major remains 0 until 1.0 GA.
+  ---------------------------------------------------------- */
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://tensor-standards-consortium.github.io/TENSOR-Framework/releases/core/1.20250418/tensor.core.schema.json",
+  "$id": "https://tensor-standards-consortium.github.io/TENSOR-Framework/releases/core/0.20250519/tensor.core.schema.json",
   "title": "TENSOR Framework Core Schema",
   "description": "Canonical schema for TENSOR investigative graphs (Core product).",
-
-  /* Weight scale — informational only (tools remain free to
-     interpret 1–5 however they wish):
-        1 Context • 2 Low • 3 Moderate • 4 High • 5 Critical */
-  "$comment": "Weight scale — 1:Context • 2:Low • 3:Moderate • 4:High • 5:Critical",
 
   "type": "object",
   "required": [
@@ -23,25 +15,32 @@
     "product",
     "version",
     "generatedAt",
+    "schemaVersion",
     "nodes",
     "edges"
   ],
 
   "properties": {
+    /* ---------- Meta ---------- */
+    "schemaVersion": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d{8}[a-z]?$",
+      "description": "Schema release identifier <MAJOR>.<YYYYMMDD>[REV] (e.g. \"0.20250519\")."
+    },
     "namespace": {
       "type": "string",
       "const": "tensor",
-      "description": "Owning namespace (always “tensor” for Core)."
+      "description": "Owning namespace (always ‘tensor’ for Core)."
     },
     "product": {
       "type": "string",
       "const": "core",
-      "description": "Product / module name."
+      "description": "Product / module identifier."
     },
     "version": {
       "type": "string",
       "pattern": "^\\d+\\.\\d{8}[a-z]?$",
-      "description": "Release: <MAJOR>.<YYYYMMDD>[<REV>]."
+      "description": "Graph release identifier <MAJOR>.<YYYYMMDD>[REV]."
     },
     "generatedAt": {
       "type": "string",
@@ -49,7 +48,14 @@
       "description": "RFC 3339 timestamp this file was generated."
     },
 
-    /* ---------- Nodes & Edges ---------- */
+    /* ---------- Optional localisation ---------- */
+    "locale": {
+      "type": "string",
+      "description": "Locale for human‑readable strings (BCP‑47, e.g. ‘en-US’).",
+      "default": "en-US"
+    },
+
+    /* ---------- Graph payload ---------- */
     "nodes": {
       "type": "array",
       "description": "Investigative questions (graph nodes).",
@@ -61,10 +67,10 @@
       "items": { "$ref": "#/$defs/edge" }
     },
 
-    /* Graph-level vendor or case add-ons */
+    /* Graph‑level vendor / case extensions */
     "extensions": {
       "type": "object",
-      "description": "Graph-level extensions (case metadata, vendor data, etc.).",
+      "description": "Graph‑level extensions (case metadata, vendor data, etc.).",
       "additionalProperties": true
     }
   },
@@ -77,12 +83,12 @@
     "nodeId": {
       "type": "string",
       "pattern": "^Q[1-9]\\d*$",
-      "description": "Node ID — Q-number, no leading zeros (e.g., “Q17”)."
+      "description": "Node ID — Q‑number, no leading zeros (e.g. ‘Q17’)."
     },
     "edgeId": {
       "type": "string",
       "pattern": "^Q\\d+-(yes|no|unknown)-Q\\d+$",
-      "description": "Edge ID encodes source-decision-target (e.g., “Q17-yes-Q21”)."
+      "description": "Edge ID encodes source‑decision‑target (e.g. ‘Q17-yes-Q21’)."
     },
 
     /* ---------- Node object ---------- */
@@ -116,15 +122,31 @@
               "type": "integer",
               "minimum": 1,
               "maximum": 5,
-              "description": "Relative priority (see weight-scale comment)."
+              "description": "Priority of answering this question — 1 (context) to 5 (critical)."
             },
             "label": {
               "type": "string",
-              "description": "(Optional) short label for graph visuals."
+              "description": "(Optional) Short label for graph visuals."
+            },
+            "translations": {
+              "type": "object",
+              "description": "Optional alternate‑language text/label pairs keyed by locale.",
+              "patternProperties": {
+                "^[a-z]{2}(?:-[A-Z]{2})?$": {
+                  "type": "object",
+                  "properties": {
+                    "text":  { "type": "string" },
+                    "label": { "type": "string" }
+                  },
+                  "required": [ "text" ],
+                  "additionalProperties": false
+                }
+              },
+              "additionalProperties": false
             },
             "extensions": {
               "type": "object",
-              "description": "Per-node extensions (e.g., MITRE links).",
+              "description": "Per‑node extensions (e.g. MITRE links).",
               "additionalProperties": true
             }
           },
@@ -141,7 +163,7 @@
       "properties": {
         "data": {
           "type": "object",
-          "required": [ "id", "source", "target", "decision" ],
+          "required": [ "id", "source", "target", "decision", "weight" ],
           "properties": {
             "id":     { "$ref": "#/$defs/edgeId" },
             "source": {
@@ -157,9 +179,15 @@
               "enum": [ "yes", "no", "unknown" ],
               "description": "Branch condition connecting source to target."
             },
+            "weight": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 5,
+              "description": "Impact of following this branch — 1 (low) to 5 (critical)."
+            },
             "extensions": {
               "type": "object",
-              "description": "Per-edge extensions (confidence scores, etc.).",
+              "description": "Per‑edge extensions (confidence scores, etc.).",
               "additionalProperties": true
             }
           },
