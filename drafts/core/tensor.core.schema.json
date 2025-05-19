@@ -1,0 +1,172 @@
+{
+  /* ----------------------------------------------------------
+     TENSOR Framework — Core Graph Schema  (v 1.20250418 B-rev)
+     ----------------------------------------------------------
+     • Restores “decision” (yes | no | unknown) as a required
+       edge property, so the reason for the link is explicit.
+     • Keeps the ID pattern Q<source>-<decision>-Q<target>.
+     • Weight-scale semantics live only in comments.
+  ---------------------------------------------------------------- */
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tensor-standards-consortium.github.io/TENSOR-Framework/releases/core/1.20250418/tensor.core.schema.json",
+  "title": "TENSOR Framework Core Schema",
+  "description": "Canonical schema for TENSOR investigative graphs (Core product).",
+
+  /* Weight scale — informational only (tools remain free to
+     interpret 1–5 however they wish):
+        1 Context • 2 Low • 3 Moderate • 4 High • 5 Critical */
+  "$comment": "Weight scale — 1:Context • 2:Low • 3:Moderate • 4:High • 5:Critical",
+
+  "type": "object",
+  "required": [
+    "namespace",
+    "product",
+    "version",
+    "generatedAt",
+    "nodes",
+    "edges"
+  ],
+
+  "properties": {
+    "namespace": {
+      "type": "string",
+      "const": "tensor",
+      "description": "Owning namespace (always “tensor” for Core)."
+    },
+    "product": {
+      "type": "string",
+      "const": "core",
+      "description": "Product / module name."
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d{8}[a-z]?$",
+      "description": "Release: <MAJOR>.<YYYYMMDD>[<REV>]."
+    },
+    "generatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "RFC 3339 timestamp this file was generated."
+    },
+
+    /* ---------- Nodes & Edges ---------- */
+    "nodes": {
+      "type": "array",
+      "description": "Investigative questions (graph nodes).",
+      "items": { "$ref": "#/$defs/node" }
+    },
+    "edges": {
+      "type": "array",
+      "description": "Branches between questions (graph edges).",
+      "items": { "$ref": "#/$defs/edge" }
+    },
+
+    /* Graph-level vendor or case add-ons */
+    "extensions": {
+      "type": "object",
+      "description": "Graph-level extensions (case metadata, vendor data, etc.).",
+      "additionalProperties": true
+    }
+  },
+
+  "unevaluatedProperties": false,
+
+  /* =================  $defs  ================= */
+  "$defs": {
+    /* ----- Reusable ID patterns ----- */
+    "nodeId": {
+      "type": "string",
+      "pattern": "^Q[1-9]\\d*$",
+      "description": "Node ID — Q-number, no leading zeros (e.g., “Q17”)."
+    },
+    "edgeId": {
+      "type": "string",
+      "pattern": "^Q\\d+-(yes|no|unknown)-Q\\d+$",
+      "description": "Edge ID encodes source-decision-target (e.g., “Q17-yes-Q21”)."
+    },
+
+    /* ---------- Node object ---------- */
+    "node": {
+      "type": "object",
+      "required": [ "data" ],
+      "properties": {
+        "data": {
+          "type": "object",
+          "required": [ "id", "text", "category", "weight" ],
+          "properties": {
+            "id":   { "$ref": "#/$defs/nodeId" },
+            "text": {
+              "type": "string",
+              "description": "Full investigative question."
+            },
+            "category": {
+              "type": "string",
+              "enum": [
+                "Application",
+                "Cloud",
+                "Email",
+                "File",
+                "Host",
+                "Identity",
+                "Network"
+              ],
+              "description": "One of the seven investigation domains."
+            },
+            "weight": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 5,
+              "description": "Relative priority (see weight-scale comment)."
+            },
+            "label": {
+              "type": "string",
+              "description": "(Optional) short label for graph visuals."
+            },
+            "extensions": {
+              "type": "object",
+              "description": "Per-node extensions (e.g., MITRE links).",
+              "additionalProperties": true
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+
+    /* ---------- Edge object ---------- */
+    "edge": {
+      "type": "object",
+      "required": [ "data" ],
+      "properties": {
+        "data": {
+          "type": "object",
+          "required": [ "id", "source", "target", "decision" ],
+          "properties": {
+            "id":     { "$ref": "#/$defs/edgeId" },
+            "source": {
+              "type": "string",
+              "description": "ID of the source node."
+            },
+            "target": {
+              "type": "string",
+              "description": "ID of the target node."
+            },
+            "decision": {
+              "type": "string",
+              "enum": [ "yes", "no", "unknown" ],
+              "description": "Branch condition connecting source to target."
+            },
+            "extensions": {
+              "type": "object",
+              "description": "Per-edge extensions (confidence scores, etc.).",
+              "additionalProperties": true
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}
