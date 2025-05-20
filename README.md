@@ -18,11 +18,19 @@ TENSOR-Framework/
 │   └── orgs/<org>/<module>/
 │       └── tensor.<...>.(schema|graph).json
 └── releases/               # immutable snapshots (add manually for now)
-    ├── core/v<VER>/
-    ├── extensions/<ext>/v<VER>/
-    ├── vendors/<vendor>/<pack>/v<VER>/
-    └── orgs/<org>/<module>/v<VER>/
-        └── tensor.<...>.(schema|graph).json
+    ├── core/
+    │   ├── schemas/v<VER>/
+    │   └── graphs/v<VER>/
+    ├── extensions/<ext>/
+    │   ├── schemas/v<VER>/
+    │   └── graphs/v<VER>/
+    ├── vendors/<vendor>/<pack>/
+    │   ├── schemas/v<VER>/
+    │   └── graphs/v<VER>/
+    └── orgs/<org>/<module>/
+        ├── schemas/v<VER>/
+        └── graphs/v<VER>/
+            └── tensor.<...>.(schema|graph).json
 ```
 
 ### Version string
@@ -36,7 +44,7 @@ TENSOR-Framework/
 | `tensor.<namespace>.<package>.schema.json` | JSON Schema that extends Core.                   |
 | `tensor.<namespace>.<package>.graph.json`  | Graph‑ontology file connecting the new concepts. |
 
-| Release snapshots *(inside `releases/…/v<VER>/`)* | Purpose                              |
+| Release snapshots *(inside `releases/…/(schemas|graphs)/v<VER>/`)* | Purpose                              |
 | ------------------------------------------------- | ------------------------------------ |
 | `tensor.<namespace>.<package>.schema.json`        | Immutable schema for version `<VER>` |
 | `tensor.<namespace>.<package>.graph.json`         | Immutable graph for version `<VER>`  |
@@ -51,7 +59,7 @@ TENSOR-Framework/
 
 1. Make changes only inside `drafts/`.
 2. Update `"version"` in both the schema and graph when you make a release breaking change (increment `MAJOR`) or a non‑breaking improvement (same `MAJOR`, new date).
-3. When you create a release, copy the entire draft folder into `releases/<…>/v<VER>/` and tag the commit manually. (Automation will be added later.)
+3. When you create a release, copy the entire draft folder into `releases/<…>/(schemas|graphs)/v<VER>/` and tag the commit manually. (Automation will be added later.)
 
 ### Contributing extensions
 
