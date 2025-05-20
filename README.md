@@ -27,7 +27,7 @@ TENSOR-Framework/
 
 ### Version string
 
-`<VER>` follows `MAJOR.YYYYMMDD[letter]` (example: `1.20250910`). The same string appears inside each JSON as `"tensorVersion"` and in the Git tag `core-v1.20250910` or `cloud-v1.20250712`.
+`<VER>` follows `MAJOR.YYYYMMDD[letter]` (example: `1.20250910`). The same string appears inside each JSON as `"version"` and in the Git tag `core-v1.20250910` or `cloud-v1.20250712`.
 
 ### File‑name conventions
 
@@ -45,12 +45,12 @@ TENSOR-Framework/
 * **`<package>`**   = specific pack or module (`xdr`, `fraud`, etc.).
 * File names never contain the version string — versioning is conveyed by the enclosing `v<VER>` folder or by adding `. <VER>.json` if you prefer flat snapshots later.
 
-`<VER>` follows `MAJOR.YYYYMMDD[letter]` (example: `1.20250910`). The same string appears inside each JSON as `"tensorVersion"` and in the Git tag `core-v1.20250910` or `cloud-v1.20250712`.
+`<VER>` follows `MAJOR.YYYYMMDD[letter]` (example: `1.20250910`). The same string appears inside each JSON as `"version"` and in the Git tag `core-v1.20250910` or `cloud-v1.20250712`.
 
 ### Editing basics
 
 1. Make changes only inside `drafts/`.
-2. Update `"tensorVersion"` in both the schema and graph when you make a release breaking change (increment `MAJOR`) or a non‑breaking improvement (same `MAJOR`, new date).
+2. Update `"version"` in both the schema and graph when you make a release breaking change (increment `MAJOR`) or a non‑breaking improvement (same `MAJOR`, new date).
 3. When you create a release, copy the entire draft folder into `releases/<…>/v<VER>/` and tag the commit manually. (Automation will be added later.)
 
 ### Contributing extensions
