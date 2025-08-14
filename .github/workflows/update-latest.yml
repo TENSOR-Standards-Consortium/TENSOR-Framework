@@ -1,0 +1,45 @@
+name: Update Latest Release Files
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'releases/core/graphs/**'
+      - 'releases/core/schemas/**'
+
+jobs:
+  update-latest:
+    runs-on: ubuntu-latest
+    if: ${{ github.actor != 'github-actions' }}   # prevent recursive triggers
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Find latest release version
+        id: find_latest
+        run: |
+          # List release directories and sort by version (date); pick the last (newest)
+          latest_graph_dir=$(ls -d releases/core/graphs/v* | sort -V | tail -n 1)
+          latest_schema_dir=$(ls -d releases/core/schemas/v* | sort -V | tail -n 1)
+          echo "latest_graph=${latest_graph_dir##*/}" >> $GITHUB_OUTPUT
+          echo "latest_schema=${latest_schema_dir##*/}" >> $GITHUB_OUTPUT
+
+      - name: Update 'latest' files
+        run: |
+          mkdir -p releases/core/graphs/latest
+          mkdir -p releases/core/schemas/latest
+          cp -f "releases/core/graphs/${{ steps.find_latest.outputs.latest_graph }}/tensor.core.graph.json" releases/core/graphs/latest/tensor.core.graph.json
+          cp -f "releases/core/schemas/${{ steps.find_latest.outputs.latest_schema }}/tensor.core.schema.json" releases/core/schemas/latest/tensor.core.schema.json
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "GitHub Action"
+          git config user.email "actions@github.com"
+          git add releases/core/graphs/latest/tensor.core.graph.json releases/core/schemas/latest/tensor.core.schema.json
+          if [ -n "$(git status --porcelain)" ]; then
+            git commit -m "Update latest core graph and schema to ${{ steps.find_latest.outputs.latest_graph }}"
+            git push
+          fi
+        env:
+          # Use the provided GitHub token with write permissions
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
