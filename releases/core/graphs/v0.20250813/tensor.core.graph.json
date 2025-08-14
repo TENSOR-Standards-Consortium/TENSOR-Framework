@@ -1,0 +1,2820 @@
+{
+  "generatedAt": "2025-08-13T12:00:00Z",
+  "namespace": "tensor",
+  "product": "core",
+  "version": "0.20250813",
+  "schemaVersion": "0.20250813",
+  "locale": "en-US",
+  "nodes": [
+    {
+      "data": {
+        "id": "Q1",
+        "text": "Is the file malicious (e.g., malware)?",
+        "label": "File malicious?",
+        "category": "File"
+      }
+    },
+    {
+      "data": {
+        "id": "Q2",
+        "text": "Was the malicious file delivered via a phishing email?",
+        "label": "Delivered via email?",
+        "category": "Email"
+      }
+    },
+    {
+      "data": {
+        "id": "Q3",
+        "text": "Did the user open the email attachment?",
+        "label": "Open attachment?",
+        "category": "Email"
+      }
+    },
+    {
+      "data": {
+        "id": "Q4",
+        "text": "Did the malicious file execute on the host system?",
+        "label": "File executed on host?",
+        "category": "Host"
+      }
+    },
+    {
+      "data": {
+        "id": "Q5",
+        "text": "Was the file downloaded from the internet or an external source?",
+        "label": "Downloaded from internet?",
+        "category": "Network"
+      }
+    },
+    {
+      "data": {
+        "id": "Q6",
+        "text": "Did the user execute/run the file downloaded from the internet?",
+        "label": "Ran downloaded file?",
+        "category": "Host"
+      }
+    },
+    {
+      "data": {
+        "id": "Q7",
+        "text": "Was the file introduced via a USB or other removable media?",
+        "label": "Via USB media?",
+        "category": "Host"
+      }
+    },
+    {
+      "data": {
+        "id": "Q8",
+        "text": "Did the user run the file from the removable media device?",
+        "label": "Ran from USB?",
+        "category": "Host"
+      }
+    },
+    {
+      "data": {
+        "id": "Q9",
+        "text": "Was the file created on the host by another process (possible malware)?",
+        "label": "File dropped by malware?",
+        "category": "Host"
+      }
+    },
+    {
+      "data": {
+        "id": "Q10",
+        "text": "Is the host system compromised?",
+        "label": "Host compromised?",
+        "category": "Host"
+      }
+    },
+    {
+      "data": {
+        "id": "Q11",
+        "text": "Is there a suspicious email that could be part of this incident?",
+        "label": "Suspicious email present?",
+        "category": "Email"
+      }
+    },
+    {
+      "data": {
+        "id": "Q12",
+        "text": "Does the email contain a malicious attachment?",
+        "label": "Malicious attachment?",
+        "category": "Email"
+      }
+    },
+    {
+      "data": {
+        "id": "Q13",
+        "text": "Does the email contain suspicious links?",
+        "label": "Suspicious links?",
+        "category": "Email"
+      }
+    },
+    {
+      "data": {
+        "id": "Q14",
+        "text": "Did the user click on the suspicious email link?",
+        "label": "User clicked link?",
+        "category": "Email"
+      }
+    },
+    {
+      "data": {
+        "id": "Q15",
+        "text": "Did the suspicious link lead to a credential phishing page?",
+        "label": "Link led to phishing page?",
+        "category": "Identity"
+      }
+    },
+    {
+      "data": {
+        "id": "Q16",
+        "text": "Is the user's account compromised?",
+        "label": "User account compromised?",
+        "category": "Identity"
+      }
+    },
+    {
+      "data": {
+        "id": "Q17",
+        "text": "Did the link deliver malware to the host?",
+        "label": "Link delivered malware?",
+        "category": "Host"
+      }
+    },
+    {
+      "data": {
+        "id": "Q18",
+        "text": "Are there suspicious processes running on the host?",
+        "label": "Suspicious processes on host?",
+        "category": "Host"
+      }
+    },
+    {
+      "data": {
+        "id": "Q19",
+        "text": "Were any known malware processes or suspicious executables found on the host?",
+        "label": "Malware process found?",
+        "category": "Host"
+      }
+    },
+    {
+      "data": {
+        "id": "Q20",
+        "text": "Is there evidence of persistence on the host (e.g., autorun entries)?",
+        "label": "Host persistence evidence?",
+        "category": "Host"
+      }
+    },
+    {
+      "data": {
+        "id": "Q21",
+        "text": "Were any unusual autorun entries or startup tasks found on the host?",
+        "label": "Suspicious autoruns?",
+        "category": "Host"
+      }
+    },
+    {
+      "data": {
+        "id": "Q22",
+        "text": "Were any new services or scheduled tasks created on the host?",
+        "label": "New services or tasks?",
+        "category": "Host"
+      }
+    },
+    {
+      "data": {
+        "id": "Q23",
+        "text": "Were any system event logs on the host cleared or tampered with?",
+        "label": "Host logs cleared?",
+        "category": "Host"
+      }
+    },
+    {
+      "data": {
+        "id": "Q24",
+        "text": "Did the host connect to any known malicious IP addresses or domains?",
+        "label": "Connections to malicious hosts?",
+        "category": "Network"
+      }
+    },
+    {
+      "data": {
+        "id": "Q25",
+        "text": "Is there evidence of data exfiltration from the network?",
+        "label": "Data exfiltration observed?",
+        "category": "Network"
+      }
+    },
+    {
+      "data": {
+        "id": "Q26",
+        "text": "Were there unusually large or frequent data transfers out of the network?",
+        "label": "Large outbound data transfers?",
+        "category": "Network"
+      }
+    },
+    {
+      "data": {
+        "id": "Q27",
+        "text": "Did the attacker attempt lateral movement from this host?",
+        "label": "Lateral movement attempted?",
+        "category": "Host"
+      }
+    },
+    {
+      "data": {
+        "id": "Q28",
+        "text": "Were any remote administration tools (e.g., PsExec) used on the host?",
+        "label": "Remote tools used?",
+        "category": "Host"
+      }
+    },
+    {
+      "data": {
+        "id": "Q29",
+        "text": "Have other hosts in the network shown signs of compromise?",
+        "label": "Other hosts compromised?",
+        "category": "Host"
+      }
+    },
+    {
+      "data": {
+        "id": "Q30",
+        "text": "Were any user credentials (passwords or hashes) harvested from the host?",
+        "label": "Credentials harvested on host?",
+        "category": "Host"
+      }
+    },
+    {
+      "data": {
+        "id": "Q31",
+        "text": "Did the attacker obtain any high-privilege credentials (e.g., domain admin)?",
+        "label": "High-privilege creds obtained?",
+        "category": "Identity"
+      }
+    },
+    {
+      "data": {
+        "id": "Q32",
+        "text": "Did the attacker use any stolen credentials to access other systems or services?",
+        "label": "Stolen creds used elsewhere?",
+        "category": "Identity"
+      }
+    },
+    {
+      "data": {
+        "id": "Q33",
+        "text": "Did the attacker use stolen credentials to access cloud resources?",
+        "label": "Stolen creds used in cloud?",
+        "category": "Cloud"
+      }
+    },
+    {
+      "data": {
+        "id": "Q34",
+        "text": "Did the attacker use stolen credentials to access any corporate applications?",
+        "label": "Stolen creds used in apps?",
+        "category": "Application"
+      }
+    },
+    {
+      "data": {
+        "id": "Q35",
+        "text": "Did the attacker escalate privileges on the host (e.g., to admin/root)?",
+        "label": "Privilege escalation on host?",
+        "category": "Host"
+      }
+    },
+    {
+      "data": {
+        "id": "Q36",
+        "text": "Is the cloud infrastructure environment compromised?",
+        "label": "Cloud environment compromised?",
+        "category": "Cloud"
+      }
+    },
+    {
+      "data": {
+        "id": "Q37",
+        "text": "Were any new accounts or keys created in the cloud environment?",
+        "label": "New cloud accounts/keys?",
+        "category": "Cloud"
+      }
+    },
+    {
+      "data": {
+        "id": "Q38",
+        "text": "Were there any unusual or suspicious cloud API calls or actions?",
+        "label": "Suspicious cloud API calls?",
+        "category": "Cloud"
+      }
+    },
+    {
+      "data": {
+        "id": "Q39",
+        "text": "Were cloud logging or security configurations altered?",
+        "label": "Cloud logging/security tampered?",
+        "category": "Cloud"
+      }
+    },
+    {
+      "data": {
+        "id": "Q40",
+        "text": "Were any unexpected cloud resources (instances, services) created or modified?",
+        "label": "Unexpected cloud resources?",
+        "category": "Cloud"
+      }
+    },
+    {
+      "data": {
+        "id": "Q41",
+        "text": "Did the attacker access any sensitive data in the cloud environment?",
+        "label": "Sensitive cloud data accessed?",
+        "category": "Cloud"
+      }
+    },
+    {
+      "data": {
+        "id": "Q42",
+        "text": "Were any cloud storage buckets or resources shared externally?",
+        "label": "Cloud storage shared externally?",
+        "category": "Cloud"
+      }
+    },
+    {
+      "data": {
+        "id": "Q43",
+        "text": "Was data exfiltrated from the cloud environment?",
+        "label": "Data exfiltrated from cloud?",
+        "category": "Cloud"
+      }
+    },
+    {
+      "data": {
+        "id": "Q44",
+        "text": "Did the attacker attempt to pivot from the cloud environment to other targets?",
+        "label": "Pivot from cloud to other targets?",
+        "category": "Cloud"
+      }
+    },
+    {
+      "data": {
+        "id": "Q45",
+        "text": "Was an email or user account taken over (possible Business Email Compromise)?",
+        "label": "Account takeover (BEC)?",
+        "category": "Identity"
+      }
+    },
+    {
+      "data": {
+        "id": "Q46",
+        "text": "Did the attacker set up any unauthorized email forwarding rules?",
+        "label": "Malicious forwarding rules?",
+        "category": "Email"
+      }
+    },
+    {
+      "data": {
+        "id": "Q47",
+        "text": "Did the attacker access or tamper with sensitive emails or data in the mailbox?",
+        "label": "Mailbox data accessed?",
+        "category": "Email"
+      }
+    },
+    {
+      "data": {
+        "id": "Q48",
+        "text": "Did the attacker change the account's password or other credentials?",
+        "label": "Account password changed?",
+        "category": "Identity"
+      }
+    },
+    {
+      "data": {
+        "id": "Q49",
+        "text": "Were any other user accounts compromised as part of this incident?",
+        "label": "Other accounts compromised?",
+        "category": "Identity"
+      }
+    },
+    {
+      "data": {
+        "id": "Q50",
+        "text": "Did the attacker attempt to access other services with the compromised account?",
+        "label": "Used account on other services?",
+        "category": "Identity"
+      }
+    },
+    {
+      "data": {
+        "id": "Q51",
+        "text": "Is an application or service (e.g., web app) compromised via an exploit?",
+        "label": "Application compromised via exploit?",
+        "category": "Application"
+      }
+    },
+    {
+      "data": {
+        "id": "Q52",
+        "text": "Did the attacker install a web shell or malicious code in the application?",
+        "label": "Web shell installed?",
+        "category": "Application"
+      }
+    },
+    {
+      "data": {
+        "id": "Q53",
+        "text": "Did the attacker access sensitive data through the application?",
+        "label": "Sensitive data accessed via app?",
+        "category": "Application"
+      }
+    },
+    {
+      "data": {
+        "id": "Q54",
+        "text": "Were there any suspicious administrative actions in the application?",
+        "label": "Suspicious admin actions in app?",
+        "category": "Application"
+      }
+    },
+    {
+      "data": {
+        "id": "Q55",
+        "text": "Were there any error messages or crashes that indicate a possible exploit?",
+        "label": "Errors indicating exploit?",
+        "category": "Application"
+      }
+    },
+    {
+      "data": {
+        "id": "Q56",
+        "text": "Do application logs show any malicious activity or injections?",
+        "label": "Malicious activity in app logs?",
+        "category": "Application"
+      }
+    },
+    {
+      "data": {
+        "id": "Q57",
+        "text": "Were there any bulk data downloads or exports from the application?",
+        "label": "Bulk data downloads from app?",
+        "category": "Application"
+      }
+    },
+    {
+      "data": {
+        "id": "Q58",
+        "text": "Were any files or records in the application altered or deleted?",
+        "label": "Records altered in app?",
+        "category": "Application"
+      }
+    },
+    {
+      "data": {
+        "id": "Q59",
+        "text": "Did the attacker create any new user accounts or roles in the application?",
+        "label": "New accounts in application?",
+        "category": "Application"
+      }
+    },
+    {
+      "data": {
+        "id": "Q60",
+        "text": "Were any API keys or tokens in the application stolen or misused?",
+        "label": "API tokens stolen?",
+        "category": "Application"
+      }
+    },
+    {
+      "data": {
+        "id": "Q61",
+        "text": "Was the file created or modified recently (within the incident timeframe)?",
+        "label": "File created recently?",
+        "category": "File"
+      }
+    },
+    {
+      "data": {
+        "id": "Q62",
+        "text": "Does the file have known malware signatures or indicators?",
+        "label": "Known malicious indicators?",
+        "category": "File"
+      }
+    },
+    {
+      "data": {
+        "id": "Q63",
+        "text": "Is the file's type or extension suspicious or mismatched?",
+        "label": "File extension mismatched?",
+        "category": "File"
+      }
+    },
+    {
+      "data": {
+        "id": "Q64",
+        "text": "Were any internal network scans or reconnaissance activities detected?",
+        "label": "Internal scanning detected?",
+        "category": "Network"
+      }
+    },
+    {
+      "data": {
+        "id": "Q65",
+        "text": "Were there any remote access connections from unusual locations (e.g., VPN, RDP)?",
+        "label": "Unusual remote access?",
+        "category": "Network"
+      }
+    },
+    {
+      "data": {
+        "id": "Q66",
+        "text": "Were any DNS queries made to known malicious domains?",
+        "label": "DNS queries to malicious domains?",
+        "category": "Network"
+      }
+    },
+    {
+      "data": {
+        "id": "Q67",
+        "text": "Were large data uploads to external services or websites observed?",
+        "label": "Large uploads to external sites?",
+        "category": "Network"
+      }
+    },
+    {
+      "data": {
+        "id": "Q68",
+        "text": "Is there evidence of cryptomining or illicit use of cloud resources?",
+        "label": "Cryptomining in cloud?",
+        "category": "Cloud"
+      }
+    },
+    {
+      "data": {
+        "id": "Q69",
+        "text": "Did the attacker use compromised cloud resources to attack other systems?",
+        "label": "Cloud resources used for attack?",
+        "category": "Cloud"
+      }
+    },
+    {
+      "data": {
+        "id": "Q70",
+        "text": "Is there evidence of cryptomining malware on the host?",
+        "label": "Cryptomining malware on host?",
+        "category": "Host"
+      }
+    },
+    {
+      "data": {
+        "id": "Q71",
+        "text": "Did the attacker install any backdoors or malicious tools on the host?",
+        "label": "Backdoors installed on host?",
+        "category": "Host"
+      }
+    },
+    {
+      "data": {
+        "id": "Q72",
+        "text": "Did the attacker access or collect sensitive data on the host?",
+        "label": "Sensitive data collected on host?",
+        "category": "Host"
+      }
+    },
+    {
+      "data": {
+        "id": "Q73",
+        "text": "Did the attacker use any removable media (USB) to exfiltrate data?",
+        "label": "Data exfil via USB?",
+        "category": "Host"
+      }
+    },
+    {
+      "data": {
+        "id": "Q74",
+        "text": "Did the attacker deploy ransomware or other destructive malware on the host?",
+        "label": "Ransomware deployed?",
+        "category": "Host"
+      }
+    },
+    {
+      "data": {
+        "id": "Q75",
+        "text": "Did the attacker exfiltrate data via email (e.g., sending out attachments)?",
+        "label": "Data exfil via email?",
+        "category": "Email"
+      }
+    },
+    {
+      "data": {
+        "id": "Q76",
+        "text": "Did the attacker use any anti-forensic tools or techniques on the host?",
+        "label": "Anti-forensic tools used?",
+        "category": "Host"
+      }
+    },
+    {
+      "data": {
+        "id": "Q77",
+        "text": "Is there evidence of privilege escalation attempts on cloud platforms?",
+        "label": "Is there evidence of privilege...",
+        "category": "Cloud"
+      }
+    },
+    {
+      "data": {
+        "id": "Q78",
+        "text": "Did the attacker disable or bypass security tools (e.g., antivirus, firewall)?",
+        "label": "Did the attacker disable or by...",
+        "category": "Host"
+      }
+    },
+    {
+      "data": {
+        "id": "Q79",
+        "text": "Are there anomalies in endpoint protection or antivirus logs?",
+        "label": "Are there anomalies in endpoin...",
+        "category": "Host"
+      }
+    },
+    {
+      "data": {
+        "id": "Q80",
+        "text": "Were credentials compromised through brute-force or password spraying attacks?",
+        "label": "Were credentials compromised t...",
+        "category": "Identity"
+      }
+    },
+    {
+      "data": {
+        "id": "Q81",
+        "text": "Were attempts made to disable or alter audit logging mechanisms?",
+        "label": "Were attempts made to disable ...",
+        "category": "Host"
+      }
+    },
+    {
+      "data": {
+        "id": "Q82",
+        "text": "Did the attacker leverage valid accounts to maintain persistence?",
+        "label": "Did the attacker leverage vali...",
+        "category": "Identity"
+      }
+    },
+    {
+      "data": {
+        "id": "Q83",
+        "text": "Were multi-factor authentication mechanisms bypassed or compromised?",
+        "label": "Were multi-factor authenticati...",
+        "category": "Identity"
+      }
+    },
+    {
+      "data": {
+        "id": "Q84",
+        "text": "Were there indications of email account reconnaissance (e.g., inbox rules, mail forwarding)?",
+        "label": "Were there indications of emai...",
+        "category": "Email"
+      }
+    },
+    {
+      "data": {
+        "id": "Q85",
+        "text": "Is there evidence of data manipulation or integrity compromise in critical systems?",
+        "label": "Is there evidence of data mani...",
+        "category": "Application"
+      }
+    },
+    {
+      "data": {
+        "id": "Q86",
+        "text": "Did the attacker exploit vulnerabilities in publicly facing systems?",
+        "label": "Did the attacker exploit vulne...",
+        "category": "Network"
+      }
+    },
+    {
+      "data": {
+        "id": "Q87",
+        "text": "Was there exploitation of remote services (e.g., SSH, VPN) with stolen credentials?",
+        "label": "Was there exploitation of remo...",
+        "category": "Network"
+      }
+    },
+    {
+      "data": {
+        "id": "Q88",
+        "text": "Did the attacker use living-off-the-land binaries (LOLBins) to evade detection?",
+        "label": "Did the attacker use living-of...",
+        "category": "Host"
+      }
+    },
+    {
+      "data": {
+        "id": "Q89",
+        "text": "Is the file digitally signed with a trusted certificate authority?",
+        "label": "File signed by CA?",
+        "category": "File"
+      }
+    },
+    {
+      "data": {
+        "id": "Q90",
+        "text": "Does the file exhibit obfuscated or packed code indicating potential evasion?",
+        "label": "Obfuscated/packed code?",
+        "category": "File"
+      }
+    },
+    {
+      "data": {
+        "id": "Q91",
+        "text": "Has the file hash appeared in threat‑intelligence feeds as malicious?",
+        "label": "Hash in threat intel feeds?",
+        "category": "File"
+      }
+    },
+    {
+      "data": {
+        "id": "Q92",
+        "text": "Did the suspicious email fail SPF, DKIM, or DMARC authentication checks?",
+        "label": "Email failed SPF/DKIM/DMARC?",
+        "category": "Email"
+      }
+    },
+    {
+      "data": {
+        "id": "Q93",
+        "text": "Was the email sent from an anomalous geolocation or infrastructure for the sender?",
+        "label": "Email from anomalous geo?",
+        "category": "Email"
+      }
+    },
+    {
+      "data": {
+        "id": "Q94",
+        "text": "Does the email content use language consistent with known phishing lures or templates?",
+        "label": "Phishing lure language?",
+        "category": "Email"
+      }
+    },
+    {
+      "data": {
+        "id": "Q95",
+        "text": "Did URL‑reputation engines classify links in the email as malicious?",
+        "label": "Email links malicious reputation?",
+        "category": "Email"
+      }
+    },
+    {
+      "data": {
+        "id": "Q96",
+        "text": "Were any impossible‑travel authentication events detected for the account?",
+        "label": "Impossible travel detected?",
+        "category": "Identity"
+      }
+    },
+    {
+      "data": {
+        "id": "Q97",
+        "text": "Did the user disable MFA prompts or register new authentication methods?",
+        "label": "MFA disabled/new method?",
+        "category": "Identity"
+      }
+    },
+    {
+      "data": {
+        "id": "Q98",
+        "text": "Were conditional‑access policies bypassed or modified?",
+        "label": "Conditional access bypass?",
+        "category": "Identity"
+      }
+    },
+    {
+      "data": {
+        "id": "Q99",
+        "text": "Were password‑reset tokens generated from suspicious IP addresses?",
+        "label": "Suspicious password reset?",
+        "category": "Identity"
+      }
+    },
+    {
+      "data": {
+        "id": "Q100",
+        "text": "Was DNS tunneling observed indicating command‑and‑control channels?",
+        "label": "DNS tunneling observed?",
+        "category": "Network"
+      }
+    },
+    {
+      "data": {
+        "id": "Q101",
+        "text": "Was beaconing traffic to external hosts detected at regular intervals?",
+        "label": "Regular beaconing traffic?",
+        "category": "Network"
+      }
+    },
+    {
+      "data": {
+        "id": "Q102",
+        "text": "Did VPN logs show long‑lived connections from unusual locations or hours?",
+        "label": "Anomalous VPN session?",
+        "category": "Network"
+      }
+    },
+    {
+      "data": {
+        "id": "Q103",
+        "text": "Were there bursts of failed authentication attempts against the application?",
+        "label": "Auth bursts in app?",
+        "category": "Application"
+      }
+    },
+    {
+      "data": {
+        "id": "Q104",
+        "text": "Did the application experience error spikes suggesting enumeration or probing?",
+        "label": "Error spikes in app?",
+        "category": "Application"
+      }
+    },
+    {
+      "data": {
+        "id": "Q105",
+        "text": "Are vulnerable dependencies present in application components (e.g., CVE flagged)?",
+        "label": "Vulnerable dependencies?",
+        "category": "Application"
+      }
+    },
+    {
+      "data": {
+        "id": "Q106",
+        "text": "Were IAM roles delegated unexpectedly or beyond least privilege?",
+        "label": "Unexpected IAM delegation?",
+        "category": "Cloud"
+      }
+    },
+    {
+      "data": {
+        "id": "Q107",
+        "text": "Was new or modified serverless‑function code deployed unexpectedly?",
+        "label": "Unexpected serverless code?",
+        "category": "Cloud"
+      }
+    },
+    {
+      "data": {
+        "id": "Q108",
+        "text": "Were KMS keys accessed, disabled, or deleted suspiciously?",
+        "label": "Suspicious KMS key activity?",
+        "category": "Cloud"
+      }
+    },
+    {
+      "data": {
+        "id": "Q109",
+        "text": "Does the file attempt to disable endpoint protection services?",
+        "label": "Does the file attempt to disable...",
+        "category": "File"
+      }
+    },
+    {
+      "data": {
+        "id": "Q110",
+        "text": "Is the file configured to run with elevated privileges?",
+        "label": "Is the file configured to run wi...",
+        "category": "File"
+      }
+    },
+    {
+      "data": {
+        "id": "Q111",
+        "text": "Does static analysis reveal suspicious API imports?",
+        "label": "Does static analysis reveal susp...",
+        "category": "File"
+      }
+    },
+    {
+      "data": {
+        "id": "Q112",
+        "text": "Does the file drop or create additional executables upon execution?",
+        "label": "Does the file drop or create add...",
+        "category": "File"
+      }
+    },
+    {
+      "data": {
+        "id": "Q113",
+        "text": "Does the file use uncommon persistence techniques (e.g., WMI event subscriptions)?",
+        "label": "Does the file use uncommon persi...",
+        "category": "File"
+      }
+    },
+    {
+      "data": {
+        "id": "Q114",
+        "text": "Did sandbox detonation show network callbacks to command domains?",
+        "label": "Did sandbox detonation show netw...",
+        "category": "File"
+      }
+    },
+    {
+      "data": {
+        "id": "Q115",
+        "text": "Is the file entropy unusually high indicating encryption or packing?",
+        "label": "Is the file entropy unusually hi...",
+        "category": "File"
+      }
+    },
+    {
+      "data": {
+        "id": "Q116",
+        "text": "Does the file modify registry keys related to startup?",
+        "label": "Does the file modify registry ke...",
+        "category": "File"
+      }
+    },
+    {
+      "data": {
+        "id": "Q117",
+        "text": "Has the file been observed sideloading DLLs?",
+        "label": "Has the file been observed sidel...",
+        "category": "File"
+      }
+    },
+    {
+      "data": {
+        "id": "Q118",
+        "text": "Is the file timestamp spoofed or inconsistent?",
+        "label": "Is the file timestamp spoofed or...",
+        "category": "File"
+      }
+    },
+    {
+      "data": {
+        "id": "Q119",
+        "text": "Does dynamic analysis reveal anti‑debugging behaviour?",
+        "label": "Does dynamic analysis reveal ant...",
+        "category": "File"
+      }
+    },
+    {
+      "data": {
+        "id": "Q120",
+        "text": "Were display‑name spoofing techniques used?",
+        "label": "Were display‑name spoofing techn...",
+        "category": "Email"
+      }
+    },
+    {
+      "data": {
+        "id": "Q121",
+        "text": "Does the email contain mismatched reply‑to and from domains?",
+        "label": "Does the email contain mismatche...",
+        "category": "Email"
+      }
+    },
+    {
+      "data": {
+        "id": "Q122",
+        "text": "Does the email include links using punycode homographs?",
+        "label": "Does the email include links usi...",
+        "category": "Email"
+      }
+    },
+    {
+      "data": {
+        "id": "Q123",
+        "text": "Was the email header manipulated to hide original sender IP?",
+        "label": "Was the email header manipulated...",
+        "category": "Email"
+      }
+    },
+    {
+      "data": {
+        "id": "Q124",
+        "text": "Were anomalous ports opened that are not in baseline?",
+        "label": "Were anomalous ports opened that...",
+        "category": "Network"
+      }
+    },
+    {
+      "data": {
+        "id": "Q125",
+        "text": "Did SSL inspection detect self‑signed certs for outbound sessions?",
+        "label": "Did SSL inspection detect self‑s...",
+        "category": "Network"
+      }
+    },
+    {
+      "data": {
+        "id": "Q126",
+        "text": "Was atypical peer‑to‑peer traffic detected internally?",
+        "label": "Was atypical peer‑to‑peer traffi...",
+        "category": "Network"
+      }
+    },
+    {
+      "data": {
+        "id": "Q127",
+        "text": "Did traffic volume spikes occur outside business hours?",
+        "label": "Did traffic volume spikes occur ...",
+        "category": "Network"
+      }
+    },
+    {
+      "data": {
+        "id": "Q128",
+        "text": "Was lateral movement via RDP over unusual protocols observed?",
+        "label": "Was lateral movement via RDP ove...",
+        "category": "Network"
+      }
+    },
+    {
+      "data": {
+        "id": "Q129",
+        "text": "Did the account add new OAuth applications with broad scopes?",
+        "label": "Did the account add new OAuth ap...",
+        "category": "Identity"
+      }
+    },
+    {
+      "data": {
+        "id": "Q130",
+        "text": "Was there a surge in directory read events by the account?",
+        "label": "Was there a surge in directory r...",
+        "category": "Identity"
+      }
+    },
+    {
+      "data": {
+        "id": "Q131",
+        "text": "Did the account's risk score increase sharply in the last 24 h?",
+        "label": "Did the account's risk score inc...",
+        "category": "Identity"
+      }
+    },
+    {
+      "data": {
+        "id": "Q132",
+        "text": "Were new public buckets or blobs created without policy exemptions?",
+        "label": "Were new public buckets or blobs...",
+        "category": "Cloud"
+      }
+    },
+    {
+      "data": {
+        "id": "Q133",
+        "text": "Was cross‑account role assumption observed from unknown accounts?",
+        "label": "Was cross‑account role assumptio...",
+        "category": "Cloud"
+      }
+    },
+    {
+      "data": {
+        "id": "Q134",
+        "text": "Did web application firewall logs flag injection attempts?",
+        "label": "Did web application firewall log...",
+        "category": "Application"
+      }
+    },
+    {
+      "data": {
+        "id": "Q135",
+        "text": "Was excessive resource consumption indicating DoS attempted?",
+        "label": "Was excessive resource consumpti...",
+        "category": "Application"
+      }
+    },
+    {
+      "data": {
+        "id": "Q136",
+        "text": "Were debug or admin endpoints accessed externally?",
+        "label": "Were debug or admin endpoints ac...",
+        "category": "Application"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "data": {
+        "id": "Q62-no-Q63",
+        "source": "Q62",
+        "target": "Q63",
+        "decision": "no"
+      }
+    },
+    {
+      "data": {
+        "id": "Q63-no-Q61",
+        "source": "Q63",
+        "target": "Q61",
+        "decision": "no"
+      }
+    },
+    {
+      "data": {
+        "id": "Q62-yes-Q1",
+        "source": "Q62",
+        "target": "Q1",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q63-yes-Q1",
+        "source": "Q63",
+        "target": "Q1",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q61-yes-Q1",
+        "source": "Q61",
+        "target": "Q1",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q61-no-Q1",
+        "source": "Q61",
+        "target": "Q1",
+        "decision": "no"
+      }
+    },
+    {
+      "data": {
+        "id": "Q1-yes-Q2",
+        "source": "Q1",
+        "target": "Q2",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q1-no-Q11",
+        "source": "Q1",
+        "target": "Q11",
+        "decision": "no"
+      }
+    },
+    {
+      "data": {
+        "id": "Q2-yes-Q3",
+        "source": "Q2",
+        "target": "Q3",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q2-no-Q5",
+        "source": "Q2",
+        "target": "Q5",
+        "decision": "no"
+      }
+    },
+    {
+      "data": {
+        "id": "Q3-yes-Q4",
+        "source": "Q3",
+        "target": "Q4",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q5-yes-Q6",
+        "source": "Q5",
+        "target": "Q6",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q5-no-Q7",
+        "source": "Q5",
+        "target": "Q7",
+        "decision": "no"
+      }
+    },
+    {
+      "data": {
+        "id": "Q6-yes-Q4",
+        "source": "Q6",
+        "target": "Q4",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q7-yes-Q8",
+        "source": "Q7",
+        "target": "Q8",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q7-no-Q9",
+        "source": "Q7",
+        "target": "Q9",
+        "decision": "no"
+      }
+    },
+    {
+      "data": {
+        "id": "Q8-yes-Q4",
+        "source": "Q8",
+        "target": "Q4",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q9-yes-Q10",
+        "source": "Q9",
+        "target": "Q10",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q4-yes-Q10",
+        "source": "Q4",
+        "target": "Q10",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q11-yes-Q12",
+        "source": "Q11",
+        "target": "Q12",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q12-yes-Q1",
+        "source": "Q12",
+        "target": "Q1",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q12-no-Q13",
+        "source": "Q12",
+        "target": "Q13",
+        "decision": "no"
+      }
+    },
+    {
+      "data": {
+        "id": "Q13-yes-Q14",
+        "source": "Q13",
+        "target": "Q14",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q13-no-Q45",
+        "source": "Q13",
+        "target": "Q45",
+        "decision": "no"
+      }
+    },
+    {
+      "data": {
+        "id": "Q14-yes-Q15",
+        "source": "Q14",
+        "target": "Q15",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q15-yes-Q16",
+        "source": "Q15",
+        "target": "Q16",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q15-no-Q17",
+        "source": "Q15",
+        "target": "Q17",
+        "decision": "no"
+      }
+    },
+    {
+      "data": {
+        "id": "Q17-yes-Q10",
+        "source": "Q17",
+        "target": "Q10",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q18-yes-Q19",
+        "source": "Q18",
+        "target": "Q19",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q19-yes-Q1",
+        "source": "Q19",
+        "target": "Q1",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q20-yes-Q21",
+        "source": "Q20",
+        "target": "Q21",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q20-yes-Q22",
+        "source": "Q20",
+        "target": "Q22",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q25-yes-Q26",
+        "source": "Q25",
+        "target": "Q26",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q25-no-Q73",
+        "source": "Q25",
+        "target": "Q73",
+        "decision": "no"
+      }
+    },
+    {
+      "data": {
+        "id": "Q27-yes-Q28",
+        "source": "Q27",
+        "target": "Q28",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q27-yes-Q29",
+        "source": "Q27",
+        "target": "Q29",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q30-yes-Q31",
+        "source": "Q30",
+        "target": "Q31",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q30-yes-Q32",
+        "source": "Q30",
+        "target": "Q32",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q32-yes-Q33",
+        "source": "Q32",
+        "target": "Q33",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q32-yes-Q34",
+        "source": "Q32",
+        "target": "Q34",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q33-yes-Q36",
+        "source": "Q33",
+        "target": "Q36",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q34-yes-Q53",
+        "source": "Q34",
+        "target": "Q53",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q36-yes-Q37",
+        "source": "Q36",
+        "target": "Q37",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q36-yes-Q38",
+        "source": "Q36",
+        "target": "Q38",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q36-yes-Q39",
+        "source": "Q36",
+        "target": "Q39",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q36-yes-Q40",
+        "source": "Q36",
+        "target": "Q40",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q36-yes-Q41",
+        "source": "Q36",
+        "target": "Q41",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q36-yes-Q42",
+        "source": "Q36",
+        "target": "Q42",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q36-yes-Q43",
+        "source": "Q36",
+        "target": "Q43",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q36-yes-Q44",
+        "source": "Q36",
+        "target": "Q44",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q36-yes-Q68",
+        "source": "Q36",
+        "target": "Q68",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q36-yes-Q69",
+        "source": "Q36",
+        "target": "Q69",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q44-yes-Q10",
+        "source": "Q44",
+        "target": "Q10",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q45-yes-Q16",
+        "source": "Q45",
+        "target": "Q16",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q16-yes-Q46",
+        "source": "Q16",
+        "target": "Q46",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q16-yes-Q47",
+        "source": "Q16",
+        "target": "Q47",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q16-yes-Q48",
+        "source": "Q16",
+        "target": "Q48",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q16-yes-Q49",
+        "source": "Q16",
+        "target": "Q49",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q16-yes-Q50",
+        "source": "Q16",
+        "target": "Q50",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q47-yes-Q75",
+        "source": "Q47",
+        "target": "Q75",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q50-yes-Q33",
+        "source": "Q50",
+        "target": "Q33",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q50-yes-Q34",
+        "source": "Q50",
+        "target": "Q34",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q10-yes-Q18",
+        "source": "Q10",
+        "target": "Q18",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q10-yes-Q20",
+        "source": "Q10",
+        "target": "Q20",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q10-yes-Q23",
+        "source": "Q10",
+        "target": "Q23",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q10-yes-Q24",
+        "source": "Q10",
+        "target": "Q24",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q10-yes-Q25",
+        "source": "Q10",
+        "target": "Q25",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q10-yes-Q27",
+        "source": "Q10",
+        "target": "Q27",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q10-yes-Q30",
+        "source": "Q10",
+        "target": "Q30",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q10-yes-Q35",
+        "source": "Q10",
+        "target": "Q35",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q10-yes-Q74",
+        "source": "Q10",
+        "target": "Q74",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q10-yes-Q76",
+        "source": "Q10",
+        "target": "Q76",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q51-yes-Q52",
+        "source": "Q51",
+        "target": "Q52",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q51-yes-Q53",
+        "source": "Q51",
+        "target": "Q53",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q51-yes-Q54",
+        "source": "Q51",
+        "target": "Q54",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q51-yes-Q55",
+        "source": "Q51",
+        "target": "Q55",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q51-yes-Q56",
+        "source": "Q51",
+        "target": "Q56",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q51-yes-Q57",
+        "source": "Q51",
+        "target": "Q57",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q51-yes-Q58",
+        "source": "Q51",
+        "target": "Q58",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q51-yes-Q59",
+        "source": "Q51",
+        "target": "Q59",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q51-yes-Q60",
+        "source": "Q51",
+        "target": "Q60",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q24-yes-Q65",
+        "source": "Q24",
+        "target": "Q65",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q28-yes-Q71",
+        "source": "Q28",
+        "target": "Q71",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q26-yes-Q67",
+        "source": "Q26",
+        "target": "Q67",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q24-no-Q64",
+        "source": "Q24",
+        "target": "Q64",
+        "decision": "no"
+      }
+    },
+    {
+      "data": {
+        "id": "Q71-yes-Q72",
+        "source": "Q71",
+        "target": "Q72",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q65-yes-Q66",
+        "source": "Q65",
+        "target": "Q66",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q66-no-Q70",
+        "source": "Q66",
+        "target": "Q70",
+        "decision": "no"
+      }
+    },
+    {
+      "data": {
+        "id": "Q77-yes-Q36",
+        "source": "Q77",
+        "target": "Q36",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q78-yes-Q10",
+        "source": "Q78",
+        "target": "Q10",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q79-yes-Q18",
+        "source": "Q79",
+        "target": "Q18",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q80-yes-Q16",
+        "source": "Q80",
+        "target": "Q16",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q81-yes-Q23",
+        "source": "Q81",
+        "target": "Q23",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q82-yes-Q20",
+        "source": "Q82",
+        "target": "Q20",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q83-yes-Q16",
+        "source": "Q83",
+        "target": "Q16",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q84-yes-Q45",
+        "source": "Q84",
+        "target": "Q45",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q85-yes-Q53",
+        "source": "Q85",
+        "target": "Q53",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q86-yes-Q10",
+        "source": "Q86",
+        "target": "Q10",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q87-yes-Q29",
+        "source": "Q87",
+        "target": "Q29",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q88-yes-Q18",
+        "source": "Q88",
+        "target": "Q18",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q16-yes-Q77",
+        "source": "Q16",
+        "target": "Q77",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q16-yes-Q78",
+        "source": "Q16",
+        "target": "Q78",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q1-yes-Q4",
+        "source": "Q1",
+        "target": "Q4",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q1-yes-Q89",
+        "source": "Q1",
+        "target": "Q89",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q89-yes-Q91",
+        "source": "Q89",
+        "target": "Q91",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q89-no-Q90",
+        "source": "Q89",
+        "target": "Q90",
+        "decision": "no"
+      }
+    },
+    {
+      "data": {
+        "id": "Q90-yes-Q10",
+        "source": "Q90",
+        "target": "Q10",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q90-no-Q91",
+        "source": "Q90",
+        "target": "Q91",
+        "decision": "no"
+      }
+    },
+    {
+      "data": {
+        "id": "Q91-yes-Q1",
+        "source": "Q91",
+        "target": "Q1",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q91-no-Q1",
+        "source": "Q91",
+        "target": "Q1",
+        "decision": "no"
+      }
+    },
+    {
+      "data": {
+        "id": "Q11-yes-Q92",
+        "source": "Q11",
+        "target": "Q92",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q92-yes-Q45",
+        "source": "Q92",
+        "target": "Q45",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q92-no-Q93",
+        "source": "Q92",
+        "target": "Q93",
+        "decision": "no"
+      }
+    },
+    {
+      "data": {
+        "id": "Q92-unknown-Q95",
+        "source": "Q92",
+        "target": "Q95",
+        "decision": "unknown"
+      }
+    },
+    {
+      "data": {
+        "id": "Q93-yes-Q45",
+        "source": "Q93",
+        "target": "Q45",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q93-no-Q94",
+        "source": "Q93",
+        "target": "Q94",
+        "decision": "no"
+      }
+    },
+    {
+      "data": {
+        "id": "Q94-yes-Q14",
+        "source": "Q94",
+        "target": "Q14",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q94-no-Q95",
+        "source": "Q94",
+        "target": "Q95",
+        "decision": "no"
+      }
+    },
+    {
+      "data": {
+        "id": "Q95-yes-Q14",
+        "source": "Q95",
+        "target": "Q14",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q95-no-Q13",
+        "source": "Q95",
+        "target": "Q13",
+        "decision": "no"
+      }
+    },
+    {
+      "data": {
+        "id": "Q16-yes-Q96",
+        "source": "Q16",
+        "target": "Q96",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q96-yes-Q45",
+        "source": "Q96",
+        "target": "Q45",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q96-no-Q97",
+        "source": "Q96",
+        "target": "Q97",
+        "decision": "no"
+      }
+    },
+    {
+      "data": {
+        "id": "Q96-unknown-Q82",
+        "source": "Q96",
+        "target": "Q82",
+        "decision": "unknown"
+      }
+    },
+    {
+      "data": {
+        "id": "Q97-yes-Q48",
+        "source": "Q97",
+        "target": "Q48",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q97-no-Q98",
+        "source": "Q97",
+        "target": "Q98",
+        "decision": "no"
+      }
+    },
+    {
+      "data": {
+        "id": "Q97-unknown-Q82",
+        "source": "Q97",
+        "target": "Q82",
+        "decision": "unknown"
+      }
+    },
+    {
+      "data": {
+        "id": "Q98-yes-Q83",
+        "source": "Q98",
+        "target": "Q83",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q98-no-Q99",
+        "source": "Q98",
+        "target": "Q99",
+        "decision": "no"
+      }
+    },
+    {
+      "data": {
+        "id": "Q99-yes-Q48",
+        "source": "Q99",
+        "target": "Q48",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q99-no-Q16",
+        "source": "Q99",
+        "target": "Q16",
+        "decision": "no"
+      }
+    },
+    {
+      "data": {
+        "id": "Q24-yes-Q100",
+        "source": "Q24",
+        "target": "Q100",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q100-yes-Q25",
+        "source": "Q100",
+        "target": "Q25",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q100-no-Q101",
+        "source": "Q100",
+        "target": "Q101",
+        "decision": "no"
+      }
+    },
+    {
+      "data": {
+        "id": "Q100-unknown-Q66",
+        "source": "Q100",
+        "target": "Q66",
+        "decision": "unknown"
+      }
+    },
+    {
+      "data": {
+        "id": "Q101-yes-Q24",
+        "source": "Q101",
+        "target": "Q24",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q101-no-Q102",
+        "source": "Q101",
+        "target": "Q102",
+        "decision": "no"
+      }
+    },
+    {
+      "data": {
+        "id": "Q101-unknown-Q64",
+        "source": "Q101",
+        "target": "Q64",
+        "decision": "unknown"
+      }
+    },
+    {
+      "data": {
+        "id": "Q102-yes-Q65",
+        "source": "Q102",
+        "target": "Q65",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q102-no-Q65",
+        "source": "Q102",
+        "target": "Q65",
+        "decision": "no"
+      }
+    },
+    {
+      "data": {
+        "id": "Q51-yes-Q103",
+        "source": "Q51",
+        "target": "Q103",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q103-yes-Q54",
+        "source": "Q103",
+        "target": "Q54",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q103-no-Q104",
+        "source": "Q103",
+        "target": "Q104",
+        "decision": "no"
+      }
+    },
+    {
+      "data": {
+        "id": "Q103-unknown-Q55",
+        "source": "Q103",
+        "target": "Q55",
+        "decision": "unknown"
+      }
+    },
+    {
+      "data": {
+        "id": "Q104-yes-Q56",
+        "source": "Q104",
+        "target": "Q56",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q104-no-Q105",
+        "source": "Q104",
+        "target": "Q105",
+        "decision": "no"
+      }
+    },
+    {
+      "data": {
+        "id": "Q104-unknown-Q56",
+        "source": "Q104",
+        "target": "Q56",
+        "decision": "unknown"
+      }
+    },
+    {
+      "data": {
+        "id": "Q105-yes-Q85",
+        "source": "Q105",
+        "target": "Q85",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q105-no-Q51",
+        "source": "Q105",
+        "target": "Q51",
+        "decision": "no"
+      }
+    },
+    {
+      "data": {
+        "id": "Q36-yes-Q106",
+        "source": "Q36",
+        "target": "Q106",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q106-yes-Q41",
+        "source": "Q106",
+        "target": "Q41",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q106-no-Q107",
+        "source": "Q106",
+        "target": "Q107",
+        "decision": "no"
+      }
+    },
+    {
+      "data": {
+        "id": "Q106-unknown-Q38",
+        "source": "Q106",
+        "target": "Q38",
+        "decision": "unknown"
+      }
+    },
+    {
+      "data": {
+        "id": "Q107-yes-Q41",
+        "source": "Q107",
+        "target": "Q41",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q107-no-Q108",
+        "source": "Q107",
+        "target": "Q108",
+        "decision": "no"
+      }
+    },
+    {
+      "data": {
+        "id": "Q107-unknown-Q40",
+        "source": "Q107",
+        "target": "Q40",
+        "decision": "unknown"
+      }
+    },
+    {
+      "data": {
+        "id": "Q108-yes-Q41",
+        "source": "Q108",
+        "target": "Q41",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q108-no-Q68",
+        "source": "Q108",
+        "target": "Q68",
+        "decision": "no"
+      }
+    },
+    {
+      "data": {
+        "id": "Q108-unknown-Q43",
+        "source": "Q108",
+        "target": "Q43",
+        "decision": "unknown"
+      }
+    },
+    {
+      "data": {
+        "id": "Q1-yes-Q109",
+        "source": "Q1",
+        "target": "Q109",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q109-no-Q1",
+        "source": "Q109",
+        "target": "Q1",
+        "decision": "no"
+      }
+    },
+    {
+      "data": {
+        "id": "Q1-yes-Q110",
+        "source": "Q1",
+        "target": "Q110",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q110-no-Q1",
+        "source": "Q110",
+        "target": "Q1",
+        "decision": "no"
+      }
+    },
+    {
+      "data": {
+        "id": "Q1-yes-Q111",
+        "source": "Q1",
+        "target": "Q111",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q111-no-Q1",
+        "source": "Q111",
+        "target": "Q1",
+        "decision": "no"
+      }
+    },
+    {
+      "data": {
+        "id": "Q1-yes-Q112",
+        "source": "Q1",
+        "target": "Q112",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q112-no-Q1",
+        "source": "Q112",
+        "target": "Q1",
+        "decision": "no"
+      }
+    },
+    {
+      "data": {
+        "id": "Q1-yes-Q113",
+        "source": "Q1",
+        "target": "Q113",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q113-no-Q1",
+        "source": "Q113",
+        "target": "Q1",
+        "decision": "no"
+      }
+    },
+    {
+      "data": {
+        "id": "Q1-yes-Q114",
+        "source": "Q1",
+        "target": "Q114",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q114-no-Q1",
+        "source": "Q114",
+        "target": "Q1",
+        "decision": "no"
+      }
+    },
+    {
+      "data": {
+        "id": "Q1-yes-Q115",
+        "source": "Q1",
+        "target": "Q115",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q115-no-Q1",
+        "source": "Q115",
+        "target": "Q1",
+        "decision": "no"
+      }
+    },
+    {
+      "data": {
+        "id": "Q1-yes-Q116",
+        "source": "Q1",
+        "target": "Q116",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q116-no-Q1",
+        "source": "Q116",
+        "target": "Q1",
+        "decision": "no"
+      }
+    },
+    {
+      "data": {
+        "id": "Q1-yes-Q117",
+        "source": "Q1",
+        "target": "Q117",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q117-no-Q1",
+        "source": "Q117",
+        "target": "Q1",
+        "decision": "no"
+      }
+    },
+    {
+      "data": {
+        "id": "Q1-yes-Q118",
+        "source": "Q1",
+        "target": "Q118",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q118-no-Q1",
+        "source": "Q118",
+        "target": "Q1",
+        "decision": "no"
+      }
+    },
+    {
+      "data": {
+        "id": "Q1-yes-Q119",
+        "source": "Q1",
+        "target": "Q119",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q119-no-Q1",
+        "source": "Q119",
+        "target": "Q1",
+        "decision": "no"
+      }
+    },
+    {
+      "data": {
+        "id": "Q2-yes-Q120",
+        "source": "Q2",
+        "target": "Q120",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q120-no-Q2",
+        "source": "Q120",
+        "target": "Q2",
+        "decision": "no"
+      }
+    },
+    {
+      "data": {
+        "id": "Q2-yes-Q121",
+        "source": "Q2",
+        "target": "Q121",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q121-no-Q2",
+        "source": "Q121",
+        "target": "Q2",
+        "decision": "no"
+      }
+    },
+    {
+      "data": {
+        "id": "Q2-yes-Q122",
+        "source": "Q2",
+        "target": "Q122",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q122-no-Q2",
+        "source": "Q122",
+        "target": "Q2",
+        "decision": "no"
+      }
+    },
+    {
+      "data": {
+        "id": "Q2-yes-Q123",
+        "source": "Q2",
+        "target": "Q123",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q123-no-Q2",
+        "source": "Q123",
+        "target": "Q2",
+        "decision": "no"
+      }
+    },
+    {
+      "data": {
+        "id": "Q5-yes-Q124",
+        "source": "Q5",
+        "target": "Q124",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q124-no-Q5",
+        "source": "Q124",
+        "target": "Q5",
+        "decision": "no"
+      }
+    },
+    {
+      "data": {
+        "id": "Q5-yes-Q125",
+        "source": "Q5",
+        "target": "Q125",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q125-no-Q5",
+        "source": "Q125",
+        "target": "Q5",
+        "decision": "no"
+      }
+    },
+    {
+      "data": {
+        "id": "Q5-yes-Q126",
+        "source": "Q5",
+        "target": "Q126",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q126-no-Q5",
+        "source": "Q126",
+        "target": "Q5",
+        "decision": "no"
+      }
+    },
+    {
+      "data": {
+        "id": "Q5-yes-Q127",
+        "source": "Q5",
+        "target": "Q127",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q127-no-Q5",
+        "source": "Q127",
+        "target": "Q5",
+        "decision": "no"
+      }
+    },
+    {
+      "data": {
+        "id": "Q5-yes-Q128",
+        "source": "Q5",
+        "target": "Q128",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q128-no-Q5",
+        "source": "Q128",
+        "target": "Q5",
+        "decision": "no"
+      }
+    },
+    {
+      "data": {
+        "id": "Q15-yes-Q129",
+        "source": "Q15",
+        "target": "Q129",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q129-no-Q15",
+        "source": "Q129",
+        "target": "Q15",
+        "decision": "no"
+      }
+    },
+    {
+      "data": {
+        "id": "Q15-yes-Q130",
+        "source": "Q15",
+        "target": "Q130",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q130-no-Q15",
+        "source": "Q130",
+        "target": "Q15",
+        "decision": "no"
+      }
+    },
+    {
+      "data": {
+        "id": "Q15-yes-Q131",
+        "source": "Q15",
+        "target": "Q131",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q131-no-Q15",
+        "source": "Q131",
+        "target": "Q15",
+        "decision": "no"
+      }
+    },
+    {
+      "data": {
+        "id": "Q33-yes-Q132",
+        "source": "Q33",
+        "target": "Q132",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q132-no-Q33",
+        "source": "Q132",
+        "target": "Q33",
+        "decision": "no"
+      }
+    },
+    {
+      "data": {
+        "id": "Q33-yes-Q133",
+        "source": "Q33",
+        "target": "Q133",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q133-no-Q33",
+        "source": "Q133",
+        "target": "Q33",
+        "decision": "no"
+      }
+    },
+    {
+      "data": {
+        "id": "Q34-yes-Q134",
+        "source": "Q34",
+        "target": "Q134",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q134-no-Q34",
+        "source": "Q134",
+        "target": "Q34",
+        "decision": "no"
+      }
+    },
+    {
+      "data": {
+        "id": "Q34-yes-Q135",
+        "source": "Q34",
+        "target": "Q135",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q135-no-Q34",
+        "source": "Q135",
+        "target": "Q34",
+        "decision": "no"
+      }
+    },
+    {
+      "data": {
+        "id": "Q34-yes-Q136",
+        "source": "Q34",
+        "target": "Q136",
+        "decision": "yes"
+      }
+    },
+    {
+      "data": {
+        "id": "Q136-no-Q34",
+        "source": "Q136",
+        "target": "Q34",
+        "decision": "no"
+      }
+    }
+  ]
+}
