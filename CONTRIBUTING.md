@@ -24,7 +24,7 @@ For technical changes, provide:
 
 ## Local checks
 
-Use Node.js 22 or newer and Python 3:
+Use Node.js 24 LTS (see `.node-version`) and Python 3:
 
 ```sh
 npm ci

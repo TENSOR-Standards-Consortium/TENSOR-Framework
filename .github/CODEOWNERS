@@ -1,0 +1,7 @@
+# Bootstrap ownership is concentrated in the existing repository administrator.
+# Add consenting independent maintainers before requiring independent approval.
+/core/ @johnschieferleuhlenbrock
+/proposals/ @johnschieferleuhlenbrock
+/releases/ @johnschieferleuhlenbrock
+/.github/ @johnschieferleuhlenbrock
+/SECURITY.md @johnschieferleuhlenbrock

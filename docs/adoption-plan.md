@@ -2,6 +2,8 @@
 
 This is a proposed work plan, not a calendar commitment or evidence of contact with an institution. Confirm maintainer capacity and consenting owners before scheduling it. The purpose is recognition earned through usable public artifacts and independent evidence.
 
+The [prioritized next-stage plan](next-stage-plan.md) records current readiness, immediate operational closeout and the evidence required before partnership or stable-standard claims.
+
 ## Days 1–30: make the contract reviewable
 
 Publish the candidate specification, examples, validator, CLI, browser lab, citable questions, and explicit limitations. Keep the existing graph archive accessible. Triage public issues by semantic ambiguity, interoperability failure, domain content, and usability. Select and record a convenor, editor, conformance maintainer, and private reporting contact through accepted appointments.
