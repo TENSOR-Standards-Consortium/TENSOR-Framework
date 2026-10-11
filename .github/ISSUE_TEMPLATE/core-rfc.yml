@@ -1,0 +1,56 @@
+name: Core RFC
+description: Propose a change to investigative semantics, the candidate binding, profiles, or governance.
+title: "RFC: "
+body:
+  - type: markdown
+    attributes:
+      value: "Use synthetic examples. This is a public proposal, not an approval or a private security channel. Read CONTRIBUTING.md and SECURITY.md first."
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem and investigative task
+      description: Who needs this, what happens today, and what should happen instead?
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope and affected versions
+      description: Identify proposal/binding versions, TC requirement IDs, roles, profiles, and affected artifact paths.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change and example
+      description: Provide concrete text or data and the expected interpretation.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives and standards reuse
+      description: Compare retaining current behavior, reuse/profile/extension of an existing standard, and the proposed approach.
+    validations:
+      required: true
+  - type: textarea
+    id: impact
+    attributes:
+      label: Compatibility, loss, security, and privacy
+      description: Include old records, unknown semantics, authority boundaries, and migration behavior.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Acceptance evidence
+      description: State fixtures, expected outcomes, test commands, implementation independence, and known exclusions.
+    validations:
+      required: true
+  - type: textarea
+    id: affiliations
+    attributes:
+      label: Authors, affiliations, and conflicts
+      description: Disclose interests relevant to this proposal. Do not include private contact information.
+    validations:
+      required: true

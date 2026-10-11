@@ -1,56 +1,59 @@
-name: Validate Release Contract
+name: Validate Legacy Release and Draft
 
 on:
   pull_request:
     paths:
       - 'releases/**'
-      - 'drafts/core/source/**'
-      - 'scripts/validate_release_contract.py'
-      - 'scripts/generate_release_checksums.py'
-      - 'scripts/core_graph_pipeline.py'
-      - 'scripts/core_graph_math_assurance.py'
-      - 'scripts/build_core_graph_from_source.py'
-      - 'scripts/lint_core_graph_quality.py'
+      - 'drafts/core/**'
+      - 'scripts/**'
+      - 'tests/legacy/**'
       - 'standards/**'
       - '.github/workflows/validate-release-contract.yml'
+      - '.github/workflows/update-latest.yml'
   push:
     branches: [ main ]
     paths:
       - 'releases/**'
-      - 'drafts/core/source/**'
-      - 'scripts/validate_release_contract.py'
-      - 'scripts/generate_release_checksums.py'
-      - 'scripts/core_graph_pipeline.py'
-      - 'scripts/core_graph_math_assurance.py'
-      - 'scripts/build_core_graph_from_source.py'
-      - 'scripts/lint_core_graph_quality.py'
+      - 'drafts/core/**'
+      - 'scripts/**'
+      - 'tests/legacy/**'
       - 'standards/**'
       - '.github/workflows/validate-release-contract.yml'
+      - '.github/workflows/update-latest.yml'
+
+permissions:
+  contents: read
 
 jobs:
-  validate-release-contract:
+  validate-released-artifacts:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repository
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-
-      - name: Validate release contract
+      - name: Validate exact published artifacts against their legacy release contract
         run: python3 scripts/validate_release_contract.py
+      - name: Run legacy preservation and input-binding regressions
+        run: python3 -m unittest discover -s tests/legacy -v
 
-      - name: Resolve latest core version from manifest
-        id: latest
-        run: |
-          python3 - <<'PY' >> "$GITHUB_OUTPUT"
-          import json
-          with open("releases/manifest.json", "r", encoding="utf-8") as f:
-              manifest = json.load(f)
-          print(f"version={manifest['latestGraphVersion']}")
-          PY
-
-      - name: Validate core graph quality gates
-        run: python3 scripts/lint_core_graph_quality.py --version "${{ steps.latest.outputs.version }}"
+  validate-draft-authoring:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Assess the exact draft using current legacy authoring rules
+        run: >-
+          python3 scripts/lint_core_graph_quality.py
+          --graph-path drafts/core/tensor.core.graph.json
+          --entry-path drafts/core/source/entry_nodes.json
+          --output-dir "${{ runner.temp }}/tensor-draft-quality"
+      - name: Retain digest-bound draft reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: legacy-draft-authoring-report
+          path: ${{ runner.temp }}/tensor-draft-quality
+          if-no-files-found: warn
