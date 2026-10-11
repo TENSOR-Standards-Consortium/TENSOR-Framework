@@ -1,0 +1,660 @@
+{
+  "scope": "In-memory counterexamples, not proposed graph changes, empirical investigator outcomes or schema conformance proofs",
+  "baseline": {
+    "scores": {
+      "overallScore": 70.32654,
+      "coverageScore": 100.0,
+      "routingScore": 80.0,
+      "informationScore": 0.0,
+      "robustnessScore": 81.6327
+    },
+    "reference": {
+      "allPassed": false,
+      "failedGateIds": [
+        "cross_domain_pivots",
+        "routing_score",
+        "robustness_score",
+        "targeted_resilience",
+        "routing_centralization",
+        "overall_score"
+      ],
+      "gates": [
+        {
+          "id": "dag_pass",
+          "description": "Graph remains acyclic.",
+          "metric": "graph_theory.dagPass",
+          "operator": "==",
+          "threshold": true,
+          "value": true,
+          "passed": true
+        },
+        {
+          "id": "full_reachability",
+          "description": "All nodes are reachable from configured entries.",
+          "metric": "graph_theory.reachableRatio",
+          "operator": ">=",
+          "threshold": 1.0,
+          "value": 1.0,
+          "passed": true
+        },
+        {
+          "id": "branch_totality",
+          "description": "Every non-terminal preserves yes/no/unknown determinism.",
+          "metric": "graph_theory.branchCompletenessRatio",
+          "operator": ">=",
+          "threshold": 1.0,
+          "value": 1.0,
+          "passed": true
+        },
+        {
+          "id": "cross_domain_pivots",
+          "description": "Cross-domain pivot ratio meets minimum standard.",
+          "metric": "quality.crossDomainRatio",
+          "operator": ">=",
+          "threshold": 0.25,
+          "value": 0.0,
+          "passed": false
+        },
+        {
+          "id": "coverage_score",
+          "description": "Domain x archetype coverage remains complete.",
+          "metric": "optimization.coverageScore",
+          "operator": ">=",
+          "threshold": 100.0,
+          "value": 100.0,
+          "passed": true
+        },
+        {
+          "id": "routing_score",
+          "description": "Routing integrity score remains maximal.",
+          "metric": "optimization.routingScore",
+          "operator": ">=",
+          "threshold": 100.0,
+          "value": 80.0,
+          "passed": false
+        },
+        {
+          "id": "robustness_score",
+          "description": "Overall robustness score stays above baseline.",
+          "metric": "optimization.robustnessScore",
+          "operator": ">=",
+          "threshold": 85.0,
+          "value": 81.6327,
+          "passed": false
+        },
+        {
+          "id": "targeted_resilience",
+          "description": "Reachability under 5% targeted removal stays above baseline.",
+          "metric": "robustness.targetedReachabilityAt5Percent",
+          "operator": ">=",
+          "threshold": 0.85,
+          "value": 0.816327,
+          "passed": false
+        },
+        {
+          "id": "routing_centralization",
+          "description": "Betweenness centralization stays below concentration threshold.",
+          "metric": "centrality.betweennessCentralization",
+          "operator": "<=",
+          "threshold": 0.02,
+          "value": 0.029056,
+          "passed": false
+        },
+        {
+          "id": "information_gain",
+          "description": "No nodes regress to negative information gain.",
+          "metric": "information_theory.negativeInformationGainNodeCount",
+          "operator": "<=",
+          "threshold": 0,
+          "value": 0,
+          "passed": true
+        },
+        {
+          "id": "overall_score",
+          "description": "Composite optimization score remains publishable.",
+          "metric": "optimization.overallScore",
+          "operator": ">=",
+          "threshold": 80.0,
+          "value": 70.32654,
+          "passed": false
+        }
+      ]
+    },
+    "maximumBetweennessShare": 0.029056,
+    "targetedReachability": 0.816327,
+    "crossDomainRatio": 0.0,
+    "authoringErrors": []
+  },
+  "meaninglessPredicates": {
+    "metrics": {
+      "scores": {
+        "overallScore": 70.32654,
+        "coverageScore": 100.0,
+        "routingScore": 80.0,
+        "informationScore": 0.0,
+        "robustnessScore": 81.6327
+      },
+      "reference": {
+        "allPassed": false,
+        "failedGateIds": [
+          "cross_domain_pivots",
+          "routing_score",
+          "robustness_score",
+          "targeted_resilience",
+          "routing_centralization",
+          "overall_score"
+        ],
+        "gates": [
+          {
+            "id": "dag_pass",
+            "description": "Graph remains acyclic.",
+            "metric": "graph_theory.dagPass",
+            "operator": "==",
+            "threshold": true,
+            "value": true,
+            "passed": true
+          },
+          {
+            "id": "full_reachability",
+            "description": "All nodes are reachable from configured entries.",
+            "metric": "graph_theory.reachableRatio",
+            "operator": ">=",
+            "threshold": 1.0,
+            "value": 1.0,
+            "passed": true
+          },
+          {
+            "id": "branch_totality",
+            "description": "Every non-terminal preserves yes/no/unknown determinism.",
+            "metric": "graph_theory.branchCompletenessRatio",
+            "operator": ">=",
+            "threshold": 1.0,
+            "value": 1.0,
+            "passed": true
+          },
+          {
+            "id": "cross_domain_pivots",
+            "description": "Cross-domain pivot ratio meets minimum standard.",
+            "metric": "quality.crossDomainRatio",
+            "operator": ">=",
+            "threshold": 0.25,
+            "value": 0.0,
+            "passed": false
+          },
+          {
+            "id": "coverage_score",
+            "description": "Domain x archetype coverage remains complete.",
+            "metric": "optimization.coverageScore",
+            "operator": ">=",
+            "threshold": 100.0,
+            "value": 100.0,
+            "passed": true
+          },
+          {
+            "id": "routing_score",
+            "description": "Routing integrity score remains maximal.",
+            "metric": "optimization.routingScore",
+            "operator": ">=",
+            "threshold": 100.0,
+            "value": 80.0,
+            "passed": false
+          },
+          {
+            "id": "robustness_score",
+            "description": "Overall robustness score stays above baseline.",
+            "metric": "optimization.robustnessScore",
+            "operator": ">=",
+            "threshold": 85.0,
+            "value": 81.6327,
+            "passed": false
+          },
+          {
+            "id": "targeted_resilience",
+            "description": "Reachability under 5% targeted removal stays above baseline.",
+            "metric": "robustness.targetedReachabilityAt5Percent",
+            "operator": ">=",
+            "threshold": 0.85,
+            "value": 0.816327,
+            "passed": false
+          },
+          {
+            "id": "routing_centralization",
+            "description": "Betweenness centralization stays below concentration threshold.",
+            "metric": "centrality.betweennessCentralization",
+            "operator": "<=",
+            "threshold": 0.02,
+            "value": 0.029056,
+            "passed": false
+          },
+          {
+            "id": "information_gain",
+            "description": "No nodes regress to negative information gain.",
+            "metric": "information_theory.negativeInformationGainNodeCount",
+            "operator": "<=",
+            "threshold": 0,
+            "value": 0,
+            "passed": true
+          },
+          {
+            "id": "overall_score",
+            "description": "Composite optimization score remains publishable.",
+            "metric": "optimization.overallScore",
+            "operator": ">=",
+            "threshold": 80.0,
+            "value": 70.32654,
+            "passed": false
+          }
+        ]
+      },
+      "maximumBetweennessShare": 0.029056,
+      "targetedReachability": 0.816327,
+      "crossDomainRatio": 0.0,
+      "authoringErrors": []
+    },
+    "scoresUnchanged": true,
+    "failedEvidenceChecks": [
+      "evidence_cards"
+    ],
+    "interpretation": "Historical scores cannot detect loss of predicate meaning; exact public-card binding rejects this unreviewed edit"
+  },
+  "scatteredDomainLabels": {
+    "metrics": {
+      "scores": {
+        "overallScore": 95.79083,
+        "coverageScore": 98.2143,
+        "routingScore": 100.0,
+        "informationScore": 100.0,
+        "robustnessScore": 81.6327
+      },
+      "reference": {
+        "allPassed": false,
+        "failedGateIds": [
+          "coverage_score",
+          "robustness_score",
+          "targeted_resilience",
+          "routing_centralization"
+        ],
+        "gates": [
+          {
+            "id": "dag_pass",
+            "description": "Graph remains acyclic.",
+            "metric": "graph_theory.dagPass",
+            "operator": "==",
+            "threshold": true,
+            "value": true,
+            "passed": true
+          },
+          {
+            "id": "full_reachability",
+            "description": "All nodes are reachable from configured entries.",
+            "metric": "graph_theory.reachableRatio",
+            "operator": ">=",
+            "threshold": 1.0,
+            "value": 1.0,
+            "passed": true
+          },
+          {
+            "id": "branch_totality",
+            "description": "Every non-terminal preserves yes/no/unknown determinism.",
+            "metric": "graph_theory.branchCompletenessRatio",
+            "operator": ">=",
+            "threshold": 1.0,
+            "value": 1.0,
+            "passed": true
+          },
+          {
+            "id": "cross_domain_pivots",
+            "description": "Cross-domain pivot ratio meets minimum standard.",
+            "metric": "quality.crossDomainRatio",
+            "operator": ">=",
+            "threshold": 0.25,
+            "value": 0.782222,
+            "passed": true
+          },
+          {
+            "id": "coverage_score",
+            "description": "Domain x archetype coverage remains complete.",
+            "metric": "optimization.coverageScore",
+            "operator": ">=",
+            "threshold": 100.0,
+            "value": 98.2143,
+            "passed": false
+          },
+          {
+            "id": "routing_score",
+            "description": "Routing integrity score remains maximal.",
+            "metric": "optimization.routingScore",
+            "operator": ">=",
+            "threshold": 100.0,
+            "value": 100.0,
+            "passed": true
+          },
+          {
+            "id": "robustness_score",
+            "description": "Overall robustness score stays above baseline.",
+            "metric": "optimization.robustnessScore",
+            "operator": ">=",
+            "threshold": 85.0,
+            "value": 81.6327,
+            "passed": false
+          },
+          {
+            "id": "targeted_resilience",
+            "description": "Reachability under 5% targeted removal stays above baseline.",
+            "metric": "robustness.targetedReachabilityAt5Percent",
+            "operator": ">=",
+            "threshold": 0.85,
+            "value": 0.816327,
+            "passed": false
+          },
+          {
+            "id": "routing_centralization",
+            "description": "Betweenness centralization stays below concentration threshold.",
+            "metric": "centrality.betweennessCentralization",
+            "operator": "<=",
+            "threshold": 0.02,
+            "value": 0.029056,
+            "passed": false
+          },
+          {
+            "id": "information_gain",
+            "description": "No nodes regress to negative information gain.",
+            "metric": "information_theory.negativeInformationGainNodeCount",
+            "operator": "<=",
+            "threshold": 0,
+            "value": 0,
+            "passed": true
+          },
+          {
+            "id": "overall_score",
+            "description": "Composite optimization score remains publishable.",
+            "metric": "optimization.overallScore",
+            "operator": ">=",
+            "threshold": 80.0,
+            "value": 95.79083,
+            "passed": true
+          }
+        ]
+      },
+      "maximumBetweennessShare": 0.029056,
+      "targetedReachability": 0.816327,
+      "crossDomainRatio": 0.7822222222222223,
+      "authoringErrors": [
+        "nodes[0].label must start with 'Application:' for graph readability.",
+        "nodes[1].label must start with 'Cloud:' for graph readability.",
+        "nodes[2].label must start with 'Email:' for graph readability.",
+        "nodes[3].label must start with 'File:' for graph readability.",
+        "nodes[4].label must start with 'Host:' for graph readability.",
+        "nodes[5].label must start with 'Identity:' for graph readability.",
+        "nodes[6].label must start with 'Network:' for graph readability.",
+        "nodes[7].label must start with 'Application:' for graph readability.",
+        "nodes[8].label must start with 'Cloud:' for graph readability.",
+        "nodes[9].label must start with 'Email:' for graph readability.",
+        "nodes[10].label must start with 'File:' for graph readability.",
+        "nodes[11].label must start with 'Host:' for graph readability.",
+        "nodes[12].label must start with 'Identity:' for graph readability.",
+        "nodes[13].label must start with 'Network:' for graph readability.",
+        "nodes[14].label must start with 'Application:' for graph readability.",
+        "nodes[16].label must start with 'Email:' for graph readability.",
+        "nodes[18].label must start with 'Host:' for graph readability.",
+        "nodes[19].label must start with 'Identity:' for graph readability.",
+        "nodes[20].label must start with 'Network:' for graph readability.",
+        "nodes[21].label must start with 'Application:' for graph readability.",
+        "nodes[22].label must start with 'Cloud:' for graph readability.",
+        "nodes[23].label must start with 'Email:' for graph readability.",
+        "nodes[24].label must start with 'File:' for graph readability.",
+        "nodes[25].label must start with 'Host:' for graph readability.",
+        "nodes[27].label must start with 'Network:' for graph readability.",
+        "nodes[28].label must start with 'Application:' for graph readability.",
+        "nodes[29].label must start with 'Cloud:' for graph readability.",
+        "nodes[30].label must start with 'Email:' for graph readability.",
+        "nodes[31].label must start with 'File:' for graph readability.",
+        "nodes[32].label must start with 'Host:' for graph readability.",
+        "nodes[33].label must start with 'Identity:' for graph readability.",
+        "nodes[34].label must start with 'Network:' for graph readability.",
+        "nodes[35].label must start with 'Application:' for graph readability.",
+        "nodes[36].label must start with 'Cloud:' for graph readability.",
+        "nodes[37].label must start with 'Email:' for graph readability.",
+        "nodes[38].label must start with 'File:' for graph readability.",
+        "nodes[39].label must start with 'Host:' for graph readability.",
+        "nodes[41].label must start with 'Network:' for graph readability.",
+        "nodes[42].label must start with 'Application:' for graph readability.",
+        "nodes[45].label must start with 'File:' for graph readability.",
+        "nodes[46].label must start with 'Host:' for graph readability.",
+        "nodes[47].label must start with 'Identity:' for graph readability.",
+        "nodes[48].label must start with 'Network:' for graph readability.",
+        "nodes[50].label must start with 'Cloud:' for graph readability.",
+        "nodes[51].label must start with 'Email:' for graph readability.",
+        "nodes[52].label must start with 'File:' for graph readability.",
+        "nodes[53].label must start with 'Host:' for graph readability.",
+        "nodes[54].label must start with 'Identity:' for graph readability.",
+        "nodes[55].label must start with 'Network:' for graph readability.",
+        "nodes[56].label must start with 'Application:' for graph readability.",
+        "nodes[57].label must start with 'Cloud:' for graph readability.",
+        "nodes[58].label must start with 'Email:' for graph readability.",
+        "nodes[59].label must start with 'File:' for graph readability.",
+        "nodes[60].label must start with 'Host:' for graph readability.",
+        "nodes[61].label must start with 'Identity:' for graph readability.",
+        "nodes[62].label must start with 'Network:' for graph readability.",
+        "nodes[63].label must start with 'Application:' for graph readability.",
+        "nodes[64].label must start with 'Cloud:' for graph readability.",
+        "nodes[65].label must start with 'Email:' for graph readability.",
+        "nodes[66].label must start with 'File:' for graph readability.",
+        "nodes[67].label must start with 'Host:' for graph readability.",
+        "nodes[69].label must start with 'Network:' for graph readability.",
+        "nodes[70].label must start with 'Application:' for graph readability.",
+        "nodes[73].label must start with 'File:' for graph readability.",
+        "nodes[74].label must start with 'Host:' for graph readability.",
+        "nodes[75].label must start with 'Identity:' for graph readability.",
+        "nodes[77].label must start with 'Application:' for graph readability.",
+        "nodes[78].label must start with 'Cloud:' for graph readability.",
+        "nodes[79].label must start with 'Email:' for graph readability.",
+        "nodes[81].label must start with 'Host:' for graph readability.",
+        "nodes[83].label must start with 'Network:' for graph readability.",
+        "nodes[84].label must start with 'Application:' for graph readability.",
+        "nodes[87].label must start with 'File:' for graph readability.",
+        "nodes[88].label must start with 'Host:' for graph readability.",
+        "nodes[90].label must start with 'Network:' for graph readability.",
+        "nodes[91].label must start with 'Application:' for graph readability.",
+        "nodes[94].label must start with 'File:' for graph readability.",
+        "nodes[95].label must start with 'Host:' for graph readability.",
+        "nodes[97].label must start with 'Network:' for graph readability.",
+        "nodes[98].label must start with 'Application:' for graph readability.",
+        "nodes[101].label must start with 'File:' for graph readability.",
+        "nodes[102].label must start with 'Host:' for graph readability.",
+        "edges[0] violates early-stage semantic coherence: yes edges from detect must remain in-domain (source=Application, target=Identity).",
+        "edges[3] violates early-stage semantic coherence: yes edges from detect must remain in-domain (source=Cloud, target=Network).",
+        "edges[15] violates early-stage semantic coherence: yes edges from detect must remain in-domain (source=Identity, target=Email).",
+        "edges[18] violates early-stage semantic coherence: yes edges from detect must remain in-domain (source=Network, target=File).",
+        "edges[27] violates early-stage semantic coherence: yes edges from detect must remain in-domain (source=Email, target=Application).",
+        "edges[30] violates early-stage semantic coherence: yes edges from detect must remain in-domain (source=File, target=Cloud).",
+        "edges[42] violates early-stage semantic coherence: yes edges from validate must remain in-domain (source=Application, target=File).",
+        "edges[45] violates early-stage semantic coherence: yes edges from validate must remain in-domain (source=Cloud, target=Host).",
+        "edges[48] violates early-stage semantic coherence: yes edges from validate must remain in-domain (source=Email, target=Identity).",
+        "edges[51] violates early-stage semantic coherence: yes edges from validate must remain in-domain (source=File, target=Email).",
+        "edges[54] violates early-stage semantic coherence: yes edges from validate must remain in-domain (source=Host, target=File).",
+        "edges[57] violates early-stage semantic coherence: yes edges from validate must remain in-domain (source=Identity, target=Host).",
+        "edges[60] violates early-stage semantic coherence: yes edges from validate must remain in-domain (source=Network, target=Application).",
+        "edges[63] violates early-stage semantic coherence: yes edges from validate must remain in-domain (source=Application, target=Identity).",
+        "edges[69] violates early-stage semantic coherence: yes edges from validate must remain in-domain (source=Email, target=Application).",
+        "edges[72] violates early-stage semantic coherence: yes edges from validate must remain in-domain (source=File, target=Email).",
+        "edges[75] violates early-stage semantic coherence: yes edges from validate must remain in-domain (source=Host, target=Cloud)."
+      ]
+    },
+    "interpretation": "Unsupported label changes meet the cross-domain quota and improve its derived routing score while violating authoring coherence"
+  },
+  "identicalRouteReplication": {
+    "metrics": {
+      "scores": {
+        "overallScore": 70.32654,
+        "coverageScore": 100.0,
+        "routingScore": 80.0,
+        "informationScore": 0.0,
+        "robustnessScore": 81.6327
+      },
+      "reference": {
+        "allPassed": false,
+        "failedGateIds": [
+          "cross_domain_pivots",
+          "routing_score",
+          "robustness_score",
+          "targeted_resilience",
+          "overall_score"
+        ],
+        "gates": [
+          {
+            "id": "dag_pass",
+            "description": "Graph remains acyclic.",
+            "metric": "graph_theory.dagPass",
+            "operator": "==",
+            "threshold": true,
+            "value": true,
+            "passed": true
+          },
+          {
+            "id": "full_reachability",
+            "description": "All nodes are reachable from configured entries.",
+            "metric": "graph_theory.reachableRatio",
+            "operator": ">=",
+            "threshold": 1.0,
+            "value": 1.0,
+            "passed": true
+          },
+          {
+            "id": "branch_totality",
+            "description": "Every non-terminal preserves yes/no/unknown determinism.",
+            "metric": "graph_theory.branchCompletenessRatio",
+            "operator": ">=",
+            "threshold": 1.0,
+            "value": 1.0,
+            "passed": true
+          },
+          {
+            "id": "cross_domain_pivots",
+            "description": "Cross-domain pivot ratio meets minimum standard.",
+            "metric": "quality.crossDomainRatio",
+            "operator": ">=",
+            "threshold": 0.25,
+            "value": 0.0,
+            "passed": false
+          },
+          {
+            "id": "coverage_score",
+            "description": "Domain x archetype coverage remains complete.",
+            "metric": "optimization.coverageScore",
+            "operator": ">=",
+            "threshold": 100.0,
+            "value": 100.0,
+            "passed": true
+          },
+          {
+            "id": "routing_score",
+            "description": "Routing integrity score remains maximal.",
+            "metric": "optimization.routingScore",
+            "operator": ">=",
+            "threshold": 100.0,
+            "value": 80.0,
+            "passed": false
+          },
+          {
+            "id": "robustness_score",
+            "description": "Overall robustness score stays above baseline.",
+            "metric": "optimization.robustnessScore",
+            "operator": ">=",
+            "threshold": 85.0,
+            "value": 81.6327,
+            "passed": false
+          },
+          {
+            "id": "targeted_resilience",
+            "description": "Reachability under 5% targeted removal stays above baseline.",
+            "metric": "robustness.targetedReachabilityAt5Percent",
+            "operator": ">=",
+            "threshold": 0.85,
+            "value": 0.816327,
+            "passed": false
+          },
+          {
+            "id": "routing_centralization",
+            "description": "Betweenness centralization stays below concentration threshold.",
+            "metric": "centrality.betweennessCentralization",
+            "operator": "<=",
+            "threshold": 0.02,
+            "value": 0.014528,
+            "passed": true
+          },
+          {
+            "id": "information_gain",
+            "description": "No nodes regress to negative information gain.",
+            "metric": "information_theory.negativeInformationGainNodeCount",
+            "operator": "<=",
+            "threshold": 0,
+            "value": 0,
+            "passed": true
+          },
+          {
+            "id": "overall_score",
+            "description": "Composite optimization score remains publishable.",
+            "metric": "optimization.overallScore",
+            "operator": ">=",
+            "threshold": 80.0,
+            "value": 70.32654,
+            "passed": false
+          }
+        ]
+      },
+      "maximumBetweennessShare": 0.014528,
+      "targetedReachability": 0.816327,
+      "crossDomainRatio": 0.0,
+      "authoringErrors": []
+    },
+    "interpretation": "An identical disconnected copy changes no original route but halves maximum betweenness share and crosses the 0.02 threshold"
+  },
+  "deletedPrerequisiteToy": {
+    "remainingReachabilityWithoutBypass": 0.5,
+    "remainingReachabilityWithUnsafeBypass": 1.0,
+    "interpretation": "Reachability after deleting a prerequisite rewards an unsafe shortcut; use unknown evidence routes instead"
+  },
+  "duplicateFailure": {
+    "robustnessScore": 81.6327,
+    "100TimesTargetedReachability": 81.6327
+  },
+  "inputs": [
+    {
+      "path": "drafts/core/tensor.core.graph.json",
+      "sha256": "8b83f19f83d7d796c96b404d37f4ae093d36415b35123602133f34cad5c172be"
+    },
+    {
+      "path": "drafts/core/entry-evidence-criteria.json",
+      "sha256": "0595cdd6a27c44ca87839981a2b4b93d51452a234a7af8d400da68c900cf1e49"
+    },
+    {
+      "path": "drafts/core/scenarios/entry-evidence-cases.json",
+      "sha256": "13541a42427aa3b61a1bd2ae58e1913dbd04d40049085c1826ef503dc4026f69"
+    },
+    {
+      "path": "scripts/review_topology_gates.py",
+      "sha256": "8573abf0c1ca2082491dfd1454c678d5ac9147668259d397d7f130932366ed51"
+    },
+    {
+      "path": "scripts/core_graph_math_assurance.py",
+      "sha256": "ac5c3e22f6914584261e5a26c0bbae284d4651d201979e56ba50cac4026f7d87"
+    },
+    {
+      "path": "scripts/core_graph_pipeline.py",
+      "sha256": "eea70a4dc645ed9c0b336dbe06daa39b7a672cda6e9a21bdd5978b48320fc452"
+    },
+    {
+      "path": "scripts/graph_assurance_policy.py",
+      "sha256": "395562a580510d3f55f4e8a8ee56e30af61c1d1452151b0b202d535c85dddc4a"
+    },
+    {
+      "path": "scripts/evaluate_entry_scenarios.py",
+      "sha256": "fa2380d410f427ce049281e8db4fddd9f954921224f2bbbfa87064c5120aafea"
+    },
+    {
+      "path": "standards/graph-assurance-policy.md",
+      "sha256": "bd45e7caa0c6a63d23d25e0efc7d50f2c1e3d1fd5a6622749e963237ed3c242b"
+    }
+  ]
+}

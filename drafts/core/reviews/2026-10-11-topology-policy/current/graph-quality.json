@@ -1,0 +1,307 @@
+{
+  "version": "0.20261011b",
+  "provenance": {
+    "inputMode": "graph-artifact",
+    "inputs": [
+      {
+        "path": "drafts/core/tensor.core.graph.json",
+        "sha256": "8b83f19f83d7d796c96b404d37f4ae093d36415b35123602133f34cad5c172be"
+      },
+      {
+        "path": "drafts/core/source/entry_nodes.json",
+        "sha256": "f4c50d88d48478047a25fd8bda7a3897b9b9a2cde8344a5590f025d3ab06625a"
+      },
+      {
+        "path": "drafts/core/entry-evidence-criteria.json",
+        "sha256": "0595cdd6a27c44ca87839981a2b4b93d51452a234a7af8d400da68c900cf1e49"
+      },
+      {
+        "path": "drafts/core/scenarios/entry-evidence-cases.json",
+        "sha256": "13541a42427aa3b61a1bd2ae58e1913dbd04d40049085c1826ef503dc4026f69"
+      },
+      {
+        "path": "standards/graph-assurance-policy.md",
+        "sha256": "bd45e7caa0c6a63d23d25e0efc7d50f2c1e3d1fd5a6622749e963237ed3c242b"
+      },
+      {
+        "path": "scripts/graph_assurance_policy.py",
+        "sha256": "395562a580510d3f55f4e8a8ee56e30af61c1d1452151b0b202d535c85dddc4a"
+      },
+      {
+        "path": "scripts/core_graph_pipeline.py",
+        "sha256": "eea70a4dc645ed9c0b336dbe06daa39b7a672cda6e9a21bdd5978b48320fc452"
+      },
+      {
+        "path": "scripts/core_graph_math_assurance.py",
+        "sha256": "ac5c3e22f6914584261e5a26c0bbae284d4651d201979e56ba50cac4026f7d87"
+      },
+      {
+        "path": "scripts/evaluate_entry_scenarios.py",
+        "sha256": "fa2380d410f427ce049281e8db4fddd9f954921224f2bbbfa87064c5120aafea"
+      },
+      {
+        "path": "scripts/lint_core_graph_quality.py",
+        "sha256": "ba64c3033f1b36088769f8172ffe9f18cf859a6aa63a92e43fc9550d6e6afa34"
+      }
+    ],
+    "policy": "tensor-graph-assurance/1",
+    "scope": "Structural and simulated authoring checks; not release conformance or investigative effectiveness.",
+    "assessmentMode": "current-authoring-acceptance"
+  },
+  "errors": [],
+  "warnings": [
+    "Historical cross-domain reference ratio 0.0000 is below 0.25; diagnostic only under the current graph assurance policy.",
+    "Historical diagnostic thresholds not met: cross_domain_pivots, overall_score, robustness_score, routing_centralization, routing_score, targeted_resilience. Values remain visible; no score was recalibrated and this is not release authorization."
+  ],
+  "metrics": {
+    "nodeCount": 103,
+    "edgeCount": 225,
+    "nonTerminalCount": 75,
+    "terminalCount": 28,
+    "entryCount": 7,
+    "entryNodeIds": [
+      "Q1",
+      "Q2",
+      "Q3",
+      "Q4",
+      "Q5",
+      "Q6",
+      "Q7"
+    ],
+    "entryCoverageByDomain": {
+      "Application": true,
+      "Cloud": true,
+      "Email": true,
+      "File": true,
+      "Host": true,
+      "Identity": true,
+      "Network": true
+    },
+    "domainCounts": {
+      "Application": 15,
+      "Cloud": 15,
+      "Email": 15,
+      "File": 15,
+      "Host": 15,
+      "Identity": 13,
+      "Network": 15
+    },
+    "archetypeCounts": {
+      "attribute": 7,
+      "classify": 13,
+      "correlate": 7,
+      "detect": 14,
+      "impact": 7,
+      "scope": 13,
+      "terminal": 28,
+      "validate": 14
+    },
+    "domainArchetypeMatrix": {
+      "Application": {
+        "detect": 2,
+        "validate": 2,
+        "classify": 2,
+        "scope": 2,
+        "correlate": 1,
+        "attribute": 1,
+        "impact": 1,
+        "terminal": 4
+      },
+      "Cloud": {
+        "detect": 2,
+        "validate": 2,
+        "classify": 2,
+        "scope": 2,
+        "correlate": 1,
+        "attribute": 1,
+        "impact": 1,
+        "terminal": 4
+      },
+      "Email": {
+        "detect": 2,
+        "validate": 2,
+        "classify": 2,
+        "scope": 2,
+        "correlate": 1,
+        "attribute": 1,
+        "impact": 1,
+        "terminal": 4
+      },
+      "File": {
+        "detect": 2,
+        "validate": 2,
+        "classify": 2,
+        "scope": 2,
+        "correlate": 1,
+        "attribute": 1,
+        "impact": 1,
+        "terminal": 4
+      },
+      "Host": {
+        "detect": 2,
+        "validate": 2,
+        "classify": 2,
+        "scope": 2,
+        "correlate": 1,
+        "attribute": 1,
+        "impact": 1,
+        "terminal": 4
+      },
+      "Identity": {
+        "detect": 2,
+        "validate": 2,
+        "classify": 1,
+        "scope": 1,
+        "correlate": 1,
+        "attribute": 1,
+        "impact": 1,
+        "terminal": 4
+      },
+      "Network": {
+        "detect": 2,
+        "validate": 2,
+        "classify": 2,
+        "scope": 2,
+        "correlate": 1,
+        "attribute": 1,
+        "impact": 1,
+        "terminal": 4
+      }
+    },
+    "crossDomainEdgeCount": 0,
+    "crossDomainRatio": 0.0,
+    "crossDomainRatioMin": 0.25,
+    "fanInDefaultLimit": 8,
+    "fanInExceptionLimit": 12,
+    "fanInTerminalLimit": 24,
+    "maxFanIn": 12,
+    "fanInExceptionNodeIds": [],
+    "fanInExceptionNodesUsed": [],
+    "branchDeterminism": {
+      "requiredDecisions": [
+        "yes",
+        "no",
+        "unknown"
+      ],
+      "violations": 0
+    },
+    "semanticRouting": {
+      "yesProgressionViolations": 0,
+      "earlyPositiveCrossDomainViolations": 0,
+      "earlyPositiveArchetypes": [
+        "detect",
+        "validate"
+      ],
+      "yesProgressionRule": "target_archetype_rank in [source_rank, source_rank+1]"
+    },
+    "dagPass": true,
+    "reachableNodeCount": 103,
+    "allNodesReachable": true
+  },
+  "acceptance": {
+    "policy": "tensor-graph-assurance/1",
+    "allPassed": true,
+    "failedGateIds": [],
+    "gates": [
+      {
+        "id": "graph_authoring",
+        "passed": true,
+        "status": "pass",
+        "evidence": [
+          "Required checks passed"
+        ],
+        "blocking": true
+      },
+      {
+        "id": "policy_catalog",
+        "passed": true,
+        "status": "pass",
+        "evidence": [
+          "Required checks passed"
+        ],
+        "blocking": true
+      },
+      {
+        "id": "dag_pass",
+        "description": "Graph remains acyclic.",
+        "metric": "graph_theory.dagPass",
+        "operator": "==",
+        "threshold": true,
+        "value": true,
+        "passed": true,
+        "blocking": true,
+        "status": "pass"
+      },
+      {
+        "id": "full_reachability",
+        "description": "All nodes are reachable from configured entries.",
+        "metric": "graph_theory.reachableRatio",
+        "operator": ">=",
+        "threshold": 1.0,
+        "value": 1.0,
+        "passed": true,
+        "blocking": true,
+        "status": "pass"
+      },
+      {
+        "id": "branch_totality",
+        "description": "Every non-terminal preserves yes/no/unknown determinism.",
+        "metric": "graph_theory.branchCompletenessRatio",
+        "operator": ">=",
+        "threshold": 1.0,
+        "value": 1.0,
+        "passed": true,
+        "blocking": true,
+        "status": "pass"
+      },
+      {
+        "id": "coverage_score",
+        "description": "Domain x archetype coverage remains complete.",
+        "metric": "optimization.coverageScore",
+        "operator": ">=",
+        "threshold": 100.0,
+        "value": 100.0,
+        "passed": true,
+        "blocking": true,
+        "status": "pass"
+      },
+      {
+        "id": "evidence_cards",
+        "passed": true,
+        "status": "pass",
+        "evidence": [
+          "Required checks passed"
+        ],
+        "blocking": true
+      },
+      {
+        "id": "evidence_transitions",
+        "passed": true,
+        "status": "pass",
+        "evidence": [
+          "Required checks passed"
+        ],
+        "blocking": true
+      },
+      {
+        "id": "scenario_agreement",
+        "passed": true,
+        "status": "pass",
+        "evidence": [
+          "Required checks passed"
+        ],
+        "blocking": true
+      },
+      {
+        "id": "scenario_coverage",
+        "passed": true,
+        "status": "pass",
+        "evidence": [
+          "Required checks passed"
+        ],
+        "blocking": true
+      }
+    ],
+    "scope": "Author-side graph structure and bounded evidence-profile acceptance; not investigative effectiveness, independent review or release authorization"
+  }
+}

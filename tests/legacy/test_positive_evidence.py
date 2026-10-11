@@ -149,10 +149,11 @@ class PositiveEvidenceTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "evidence only"):
             evaluator.expand_suite({"cases": [base, bad]})
 
-    def test_strict_release_authoring_keeps_cross_domain_quota_blocking(self):
+    def test_structural_validation_retains_quota_as_diagnostic(self):
         from core_graph_pipeline import validate_and_measure
-        errors, _, _ = validate_and_measure(self.graph["nodes"], self.graph["edges"], self.graph["entryNodeIds"], [])
-        self.assertTrue(any("Cross-domain edge ratio" in error for error in errors))
+        errors, warnings, _ = validate_and_measure(self.graph["nodes"], self.graph["edges"], self.graph["entryNodeIds"], [])
+        self.assertFalse(errors)
+        self.assertTrue(any("Historical cross-domain reference" in warning for warning in warnings))
 
 
 if __name__ == "__main__":

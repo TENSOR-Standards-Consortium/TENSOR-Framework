@@ -163,8 +163,7 @@ class LegacyPreservationTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             before = self.prepare_builder_repository(root)
-            # A frozen, authoring-valid graph isolates new-directory safety from
-            # the current draft's intentionally failing topology quota.
+            # A frozen, authoring-valid graph isolates new-directory safety.
             stable = json.loads((ROOT / "drafts/core/reviews/2026-10-11-positive-evidence/prior-draft.graph.json").read_text())
             for key, filename in (("nodes", "nodes.jsonl"), ("edges", "edges.jsonl")):
                 (root / "drafts/core/source" / filename).write_text("".join(json.dumps(v) + "\n" for v in stable[key]))
@@ -204,15 +203,24 @@ class LegacyPreservationTests(unittest.TestCase):
             self.assertNotEqual(0, run.returncode)
             self.assertEqual(before, (root / STABLE).read_bytes())
 
-    def test_release_preparation_does_not_waive_current_draft_quota(self):
+    def test_release_preparation_is_not_evidence_acceptance_or_promotion(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             before = self.prepare_builder_repository(root)
             run = self.run_builder(root, "0.20990101", "--prepare-release")
-            self.assertNotEqual(0, run.returncode)
-            self.assertIn("Cross-domain edge ratio", run.stderr)
-            self.assertFalse((root / "releases/core/graphs/v0.20990101").exists())
-            self.assertEqual(before, {str(p.relative_to(root)): p.read_bytes() for p in (root / "releases").rglob("*") if p.is_file()})
+            self.assertEqual(0, run.returncode, run.stderr)
+            prepared = root / "releases/core/graphs/v0.20990101/tensor.core.graph.json"
+            self.assertTrue(prepared.is_file())
+            self.assertIn("Unpromoted release graph", run.stdout)
+            for path, raw in before.items():
+                self.assertEqual(raw, (root / path).read_bytes())
+            payload = json.loads(prepared.read_text())
+            from core_graph_pipeline import validate_and_measure
+            from core_graph_math_assurance import build_math_assurance_payload
+            _, _, metrics = validate_and_measure(payload["nodes"], payload["edges"], payload["entryNodeIds"], [])
+            report = build_math_assurance_payload(payload["version"], payload["nodes"], payload["edges"], payload["entryNodeIds"], metrics)
+            self.assertFalse(report["monitoring"]["publishGates"]["allPassed"])
+            self.assertIn("evidence_cards", report["monitoring"]["publishGates"]["failedGateIds"])
 
     def test_legacy_manifest_positive_and_negative_fixtures(self):
         # Historical fixture latest pointers are isolated from today's latest release.

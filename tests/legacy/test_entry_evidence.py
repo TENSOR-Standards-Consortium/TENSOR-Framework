@@ -122,7 +122,7 @@ class EntryEvidenceTests(unittest.TestCase):
 
     def test_graph_stays_acyclic_reachable_and_deterministic(self):
         config = json.loads((ROOT / "drafts/core/source/entry_nodes.json").read_text())
-        errors, warnings, metrics = validate_and_measure(self.graph["nodes"], self.graph["edges"], self.graph["entryNodeIds"], set(config["fanInExceptionNodeIds"]), require_cross_domain_ratio=False)
+        errors, warnings, metrics = validate_and_measure(self.graph["nodes"], self.graph["edges"], self.graph["entryNodeIds"], set(config["fanInExceptionNodeIds"]))
         self.assertEqual([], errors)
         self.assertTrue(warnings, "The historical cross-domain quota must remain visible")
         self.assertTrue(metrics["allNodesReachable"])
@@ -151,10 +151,12 @@ class EntryEvidenceTests(unittest.TestCase):
                 run = subprocess.run([sys.executable, "scripts/lint_core_graph_quality.py", "--graph-path", "drafts/core/tensor.core.graph.json", "--entry-path", "drafts/core/source/entry_nodes.json", "--output-dir", output, *flags], cwd=ROOT, capture_output=True, text=True)
                 quality = json.loads((Path(output) / "graph-quality.json").read_text())
                 math = json.loads((Path(output) / "math-assurance.json").read_text())
-                self.assertEqual(0 if review else 1, run.returncode, run.stdout + run.stderr)
-                self.assertFalse(math["monitoring"]["publishGates"]["allPassed"])
-                self.assertEqual({"cross_domain_pivots", "routing_score", "robustness_score", "targeted_resilience", "routing_centralization", "overall_score"}, set(math["monitoring"]["publishGates"]["failedGateIds"]))
-                self.assertTrue(quality["warnings"] if review else quality["errors"])
+                self.assertEqual(0, run.returncode, run.stdout + run.stderr)
+                self.assertTrue(math["monitoring"]["publishGates"]["allPassed"])
+                self.assertFalse(math["monitoring"]["legacyReferenceThresholds"]["allPassed"])
+                self.assertEqual({"cross_domain_pivots", "routing_score", "robustness_score", "targeted_resilience", "routing_centralization", "overall_score"}, set(math["monitoring"]["legacyReferenceThresholds"]["failedGateIds"]))
+                self.assertTrue(quality["warnings"])
+                self.assertFalse(quality["errors"])
 
     def test_draft_mode_refuses_released_graphs(self):
         with tempfile.TemporaryDirectory() as output:

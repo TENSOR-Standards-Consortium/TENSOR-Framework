@@ -65,10 +65,10 @@ Use Python 3 from the repository root:
 python3 scripts/validate_release_contract.py
 python3 -m unittest discover -s tests/legacy -v
 python3 scripts/evaluate_entry_scenarios.py
-python3 scripts/lint_core_graph_quality.py --graph-path drafts/core/tensor.core.graph.json --entry-path drafts/core/source/entry_nodes.json --draft-review --output-dir /tmp/tensor-draft-quality
+python3 scripts/lint_core_graph_quality.py --graph-path drafts/core/tensor.core.graph.json --entry-path drafts/core/source/entry_nodes.json --output-dir /tmp/tensor-draft-quality
 ```
 
-The linter labels exact inputs and writes outside `releases/`. Draft-review mode keeps synthetic optimization and historical cross-domain quota failures visible as warnings; structural and other authoring errors still fail. Strict gates remain blocking without that explicit mode. Neither mode promotes drafts or rewrites historical reports. See the [positive review and evidence limits](drafts/core/POSITIVE-REVIEW.md) and [authoring playbook](standards/core-graph-authoring-playbook.md).
+The linter applies [graph assurance policy `tensor-graph-assurance/1`](standards/graph-assurance-policy.md): structural validity, exact evidence cards, safe transitions and scenario agreement/coverage block acceptance. Historical topology scores remain visible diagnostics, with unchanged formulas and thresholds. The canonical draft selects its adjacent evidence package automatically; other artifacts need explicit criteria/scenario paths. `--draft-review` remains a compatibility spelling with the same checks. Reports pin graph, evidence and policy implementation digests and write outside `releases/`. Acceptance does not authorize publication or rewrite historical reports. See the [gate review and counterexamples](drafts/core/reviews/2026-10-11-topology-policy/README.md).
 
 ## Public participation and claims
 

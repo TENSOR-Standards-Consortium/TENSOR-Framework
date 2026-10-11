@@ -23,6 +23,7 @@ from core_graph_math_assurance import (
     build_math_assurance_markdown,
     build_math_assurance_payload,
 )
+from graph_assurance_policy import POLICY_ID, DIAGNOSTIC_IDS, assess_evidence, build_acceptance, gate, EVIDENCE_IDS
 
 
 def parse_args() -> argparse.Namespace:
@@ -33,9 +34,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--nodes-path", type=Path, help="Explicit nodes JSONL source path.")
     parser.add_argument("--edges-path", type=Path, help="Explicit edges JSONL source path.")
     parser.add_argument("--entry-path", type=Path, help="Entry configuration and fan-in exceptions.")
+    parser.add_argument("--criteria-path", type=Path, help="Exact evidence criteria; canonical draft defaults to its adjacent criteria.")
+    parser.add_argument("--scenarios-path", type=Path, help="Exact normalized evidence scenarios; canonical draft defaults to its scenario suite.")
     parser.add_argument(
         "--draft-review", action="store_true",
-        help="Unpromoted canonical draft only: retain synthetic optimization and cross-domain quota failures as warnings; structural and other authoring errors remain fatal.",
+        help="Compatibility alias restricted to the canonical draft; applies the same current policy as default lint, with no waived checks.",
     )
     parser.add_argument(
         "--output-dir", type=Path, required=True,
@@ -84,7 +87,7 @@ def load_inputs(args: argparse.Namespace, repo_root: Path):
     return version, nodes, edges, entry_node_ids, fanin_exception_ids, {
         "inputMode": mode,
         "inputs": inputs,
-        "policy": "current-legacy-graph-authoring-policy",
+        "policy": POLICY_ID,
         "scope": "Structural and simulated authoring checks; not release conformance or investigative effectiveness.",
     }
 
@@ -107,13 +110,12 @@ def main() -> int:
 
     try:
         version, nodes, edges, entry_node_ids, fanin_exception_ids, provenance = load_inputs(args, repo_root)
-        provenance["assessmentMode"] = "unpromoted-draft-review" if args.draft_review else "strict-authoring-gates"
+        provenance["assessmentMode"] = "current-authoring-acceptance"
         errors, warnings, metrics = validate_and_measure(
             nodes=nodes,
             edges=edges,
             entry_node_ids=entry_node_ids,
             fanin_exception_node_ids=fanin_exception_ids,
-            require_cross_domain_ratio=not args.draft_review,
         )
         output_dir.mkdir(parents=True, exist_ok=True)
 
@@ -146,29 +148,35 @@ def main() -> int:
             entry_node_ids=entry_node_ids,
             quality_metrics=metrics,
         )
-        publish_gates = (
-            math_payload.get("monitoring", {}).get("publishGates")
-            if isinstance(math_payload.get("monitoring"), dict)
-            else None
-        )
-        if not isinstance(publish_gates, dict):
-            errors.append("Math assurance payload missing monitoring.publishGates.")
-        else:
-            all_passed = publish_gates.get("allPassed")
-            failed_gate_ids = publish_gates.get("failedGateIds")
-            if not isinstance(all_passed, bool):
-                errors.append("Math assurance publish gates must include boolean allPassed.")
-            if not isinstance(failed_gate_ids, list):
-                errors.append("Math assurance publish gates must include failedGateIds list.")
-                failed_gate_ids = []
-            if isinstance(all_passed, bool) and not all_passed:
-                rendered = ", ".join(str(gate_id) for gate_id in failed_gate_ids) or "unknown"
-                advisory_ids = {"robustness_score", "targeted_resilience", "routing_centralization", "information_gain", "overall_score", "cross_domain_pivots", "routing_score"}
-                if args.draft_review and failed_gate_ids and set(failed_gate_ids) <= advisory_ids:
-                    warnings.append(f"Synthetic optimization gates failed: {rendered}. Original gate failures remain in math-assurance; this is not publication approval.")
-                else:
-                    errors.append(f"Publish gates failed: {rendered}")
+        canonical = args.graph_path is not None and (repo_root / args.graph_path).resolve() == (repo_root / "drafts/core/tensor.core.graph.json").resolve()
+        criteria_path = args.criteria_path or (Path("drafts/core/entry-evidence-criteria.json") if canonical else None)
+        scenarios_path = args.scenarios_path or (Path("drafts/core/scenarios/entry-evidence-cases.json") if canonical else None)
+        evidence_gates = None
+        if args.graph_path is not None and criteria_path is not None and scenarios_path is not None:
+            try:
+                evidence_inputs = []
+                for path in (criteria_path, scenarios_path):
+                    raw = (repo_root / path).read_bytes()
+                    provenance["inputs"].append({"path": str(path), "sha256": hashlib.sha256(raw).hexdigest()})
+                    evidence_inputs.append(json.loads(raw))
+                raw_graph = (repo_root / args.graph_path).read_bytes()
+                evidence_gates = assess_evidence(json.loads(raw_graph), hashlib.sha256(raw_graph).hexdigest(), *evidence_inputs)
+            except (OSError, ValueError, KeyError, TypeError) as exc:
+                evidence_gates = [gate(gid, [f"Evidence input could not be loaded: {exc}"], "notRun") for gid in EVIDENCE_IDS]
+        for relative in ("standards/graph-assurance-policy.md", "scripts/graph_assurance_policy.py", "scripts/core_graph_pipeline.py",
+                         "scripts/core_graph_math_assurance.py", "scripts/evaluate_entry_scenarios.py", "scripts/lint_core_graph_quality.py"):
+            provenance["inputs"].append({"path": relative, "sha256": hashlib.sha256((repo_root / relative).read_bytes()).hexdigest()})
+        reference = math_payload["monitoring"]["legacyReferenceThresholds"]
+        acceptance = build_acceptance(errors, reference, evidence_gates)
+        math_payload["monitoring"]["publishGates"] = acceptance
+        quality_json_payload["acceptance"] = acceptance
+        if not acceptance["allPassed"]:
+            errors.append("Authoring acceptance failed: " + ", ".join(acceptance["failedGateIds"]))
+        unmet = set(reference["failedGateIds"]) & DIAGNOSTIC_IDS
+        if unmet:
+            warnings.append("Historical diagnostic thresholds not met: " + ", ".join(sorted(unmet)) + ". Values remain visible; no score was recalibrated and this is not release authorization.")
         math_payload["provenance"] = provenance
+        write_json(coverage_json_path, coverage_payload)
         write_json(math_json_path, math_payload)
         # Include authoring and simulated gate failures in the same quality report.
         write_json(quality_json_path, quality_json_payload)

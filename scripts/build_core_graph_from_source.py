@@ -85,7 +85,6 @@ def main() -> int:
             edges=edges,
             entry_node_ids=entry_node_ids,
             fanin_exception_node_ids=fanin_exception_ids,
-            require_cross_domain_ratio=args.prepare_release,
         )
 
         if errors:
