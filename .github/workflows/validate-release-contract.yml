@@ -40,6 +40,8 @@ jobs:
         run: python3 scripts/validate_release_contract.py
       - name: Verify frozen institutional review snapshot
         run: python3 review/2026-10-11.1/verify-snapshot.py
+      - name: Verify review ZIP matches its guides and frozen source
+        run: python3 scripts/verify_review_bundle.py
       - name: Run legacy preservation and input-binding regressions
         run: python3 -m unittest discover -s tests/legacy -v
 
