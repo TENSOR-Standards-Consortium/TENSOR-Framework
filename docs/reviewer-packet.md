@@ -16,7 +16,7 @@ Reviewers should challenge:
 
 ## Reproduce
 
-From an exact checkout using Node.js 22 or newer:
+From an exact checkout using Node.js 24 LTS (see `.node-version`):
 
 ```sh
 git rev-parse HEAD

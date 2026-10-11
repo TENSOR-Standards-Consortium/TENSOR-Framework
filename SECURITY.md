@@ -6,7 +6,7 @@ The candidate validator and browser lab process investigation data. A validation
 
 For an ordinary defect with a synthetic reproduction and no sensitive details, open a repository issue and identify the exact commit, binding version, environment, expected result, and actual result.
 
-For a vulnerability, accidental disclosure, credentials, or real investigation data, use GitHub's **Report a vulnerability** option in this repository's Security tab if it is available. This document does not claim that private reporting has been enabled or that a staffed response service exists. If the option is unavailable, open a minimal public issue requesting a private contact **without the sensitive details**, and wait for a maintainer to establish that channel. Do not attach exploit secrets, live records, or personal data to a public issue.
+For a vulnerability, accidental disclosure, credentials, or real investigation data, use [GitHub's private vulnerability reporting channel](https://github.com/TENSOR-Standards-Consortium/TENSOR-Framework/security/advisories/new). Private reporting was verified enabled on October 11, 2026; repository administrators receive reports, but this does not establish a staffed response service. If the option becomes unavailable, open a minimal public issue requesting a private contact **without the sensitive details**, and wait for a maintainer to establish that channel. Do not attach exploit secrets, live records, or personal data to a public issue.
 
 No response-time commitment, bounty, support contract, or production security certification is offered by this candidate.
 
