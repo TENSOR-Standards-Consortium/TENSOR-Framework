@@ -1,0 +1,1793 @@
+{
+  "scope": "Offline author-side scenario evaluation; source reports and supplied evidence assessments are not independently verified",
+  "graphVersion": "0.20261011a",
+  "inputs": [
+    {
+      "path": "drafts/core/tensor.core.graph.json",
+      "sha256": "ed390a26b887e560f2224bbd577ba282e2fc331bb5c1293f6002413da7a72a0d"
+    },
+    {
+      "path": "drafts/core/entry-evidence-criteria.json",
+      "sha256": "9abaa2074117c478630492b42d5715a92abd77b77781b4793326b5848452b797"
+    },
+    {
+      "path": "drafts/core/scenarios/entry-evidence-cases.json",
+      "sha256": "945632f039c99c172c2751e8882ba780f2b40de845b0e669c89d3b3a0c222fe7"
+    }
+  ],
+  "caseCount": 77,
+  "passed": 77,
+  "results": [
+    {
+      "caseId": "identity-public-report",
+      "trace": [
+        {
+          "nodeId": "Q1",
+          "answer": "unknown",
+          "reason": "Subject or time binding is unresolved",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q8",
+          "answer": "unknown",
+          "reason": "Subject or time binding is unresolved",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q596",
+          "answer": "yes",
+          "reason": "The prior assessment retained a material evidence, context, or verification limitation",
+          "recordId": null
+        }
+      ],
+      "state": "unresolved",
+      "passed": true
+    },
+    {
+      "caseId": "identity-supported-record",
+      "trace": [
+        {
+          "nodeId": "Q1",
+          "answer": "yes",
+          "reason": "A record matches the exact bound subjects and interval",
+          "recordId": "identity-synthetic-record"
+        },
+        {
+          "nodeId": "Q155",
+          "answer": "yes",
+          "reason": "Supplied provenance and interpretation assessments cite a supporting basis",
+          "recordId": "identity-synthetic-record"
+        }
+      ],
+      "state": "positive-review-boundary",
+      "nextQuestionId": "Q233",
+      "passed": true
+    },
+    {
+      "caseId": "identity-bounded-absence",
+      "trace": [
+        {
+          "nodeId": "Q1",
+          "answer": "no",
+          "reason": "The completed search found no matching record in the examined material",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q589",
+          "answer": "yes",
+          "reason": "The supplied applicable coverage/search basis supports this bounded exclusion only",
+          "recordId": null
+        }
+      ],
+      "state": "bounded-exclusion",
+      "passed": true
+    },
+    {
+      "caseId": "identity-missing-logs",
+      "trace": [
+        {
+          "nodeId": "Q1",
+          "answer": "no",
+          "reason": "The completed search found no matching record in the examined material",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q589",
+          "answer": "no",
+          "reason": "A known logging, collection, retention, clock, search, or integrity gap prevents exclusion",
+          "recordId": null
+        }
+      ],
+      "state": "unresolved",
+      "passed": true
+    },
+    {
+      "caseId": "identity-independent-recovery",
+      "trace": [
+        {
+          "nodeId": "Q1",
+          "answer": "unknown",
+          "reason": "Evidence is unavailable or the search is incomplete",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q8",
+          "answer": "yes",
+          "reason": "A record matches the exact bound subjects and interval",
+          "recordId": "identity-independent-record"
+        },
+        {
+          "nodeId": "Q150",
+          "answer": "yes",
+          "reason": "Supplied provenance and interpretation assessments cite a supporting basis",
+          "recordId": "identity-independent-record"
+        }
+      ],
+      "state": "positive-review-boundary",
+      "nextQuestionId": "Q233",
+      "passed": true
+    },
+    {
+      "caseId": "identity-copied-log-is-not-corroboration",
+      "trace": [
+        {
+          "nodeId": "Q1",
+          "answer": "unknown",
+          "reason": "Evidence is unavailable or the search is incomplete",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q8",
+          "answer": "unknown",
+          "reason": "Record time or independent lineage is unresolved",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q596",
+          "answer": "yes",
+          "reason": "The prior assessment retained a material evidence, context, or verification limitation",
+          "recordId": null
+        }
+      ],
+      "state": "unresolved",
+      "passed": true
+    },
+    {
+      "caseId": "identity-rejected-provenance",
+      "trace": [
+        {
+          "nodeId": "Q1",
+          "answer": "yes",
+          "reason": "A record matches the exact bound subjects and interval",
+          "recordId": "identity-synthetic-record"
+        },
+        {
+          "nodeId": "Q155",
+          "answer": "no",
+          "reason": "A supplied provenance or interpretation assessment rejects the selected record",
+          "recordId": "identity-synthetic-record"
+        },
+        {
+          "nodeId": "Q596",
+          "answer": "yes",
+          "reason": "The prior assessment retained a material evidence, context, or verification limitation",
+          "recordId": "identity-synthetic-record"
+        }
+      ],
+      "state": "unresolved",
+      "passed": true
+    },
+    {
+      "caseId": "identity-conflicting-records",
+      "trace": [
+        {
+          "nodeId": "Q1",
+          "answer": "unknown",
+          "reason": "Material counterevidence is unresolved",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q8",
+          "answer": "unknown",
+          "reason": "Material counterevidence is unresolved",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q596",
+          "answer": "yes",
+          "reason": "The prior assessment retained a material evidence, context, or verification limitation",
+          "recordId": null
+        }
+      ],
+      "state": "unresolved",
+      "passed": true
+    },
+    {
+      "caseId": "identity-wrong-subject-corroboration",
+      "trace": [
+        {
+          "nodeId": "Q1",
+          "answer": "unknown",
+          "reason": "Evidence is unavailable or the search is incomplete",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q8",
+          "answer": "no",
+          "reason": "The completed search found no matching record in the examined material",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q596",
+          "answer": "yes",
+          "reason": "The prior assessment retained a material evidence, context, or verification limitation",
+          "recordId": null
+        }
+      ],
+      "state": "unresolved",
+      "passed": true
+    },
+    {
+      "caseId": "identity-outside-time-interval",
+      "trace": [
+        {
+          "nodeId": "Q1",
+          "answer": "unknown",
+          "reason": "Evidence is unavailable or the search is incomplete",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q8",
+          "answer": "no",
+          "reason": "The completed search found no matching record in the examined material",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q596",
+          "answer": "yes",
+          "reason": "The prior assessment retained a material evidence, context, or verification limitation",
+          "recordId": null
+        }
+      ],
+      "state": "unresolved",
+      "passed": true
+    },
+    {
+      "caseId": "identity-unknown-coverage",
+      "trace": [
+        {
+          "nodeId": "Q1",
+          "answer": "no",
+          "reason": "The completed search found no matching record in the examined material",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q589",
+          "answer": "unknown",
+          "reason": "Complete applicable evidence coverage has not been established",
+          "recordId": null
+        }
+      ],
+      "state": "unresolved",
+      "passed": true
+    },
+    {
+      "caseId": "host-public-report",
+      "trace": [
+        {
+          "nodeId": "Q2",
+          "answer": "unknown",
+          "reason": "Subject or time binding is unresolved",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q9",
+          "answer": "unknown",
+          "reason": "Subject or time binding is unresolved",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q597",
+          "answer": "yes",
+          "reason": "The prior assessment retained a material evidence, context, or verification limitation",
+          "recordId": null
+        }
+      ],
+      "state": "unresolved",
+      "passed": true
+    },
+    {
+      "caseId": "host-supported-record",
+      "trace": [
+        {
+          "nodeId": "Q2",
+          "answer": "yes",
+          "reason": "A record matches the exact bound subjects and interval",
+          "recordId": "host-synthetic-record"
+        },
+        {
+          "nodeId": "Q156",
+          "answer": "yes",
+          "reason": "Supplied provenance and interpretation assessments cite a supporting basis",
+          "recordId": "host-synthetic-record"
+        }
+      ],
+      "state": "positive-review-boundary",
+      "nextQuestionId": "Q214",
+      "passed": true
+    },
+    {
+      "caseId": "host-bounded-absence",
+      "trace": [
+        {
+          "nodeId": "Q2",
+          "answer": "no",
+          "reason": "The completed search found no matching record in the examined material",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q590",
+          "answer": "yes",
+          "reason": "The supplied applicable coverage/search basis supports this bounded exclusion only",
+          "recordId": null
+        }
+      ],
+      "state": "bounded-exclusion",
+      "passed": true
+    },
+    {
+      "caseId": "host-missing-logs",
+      "trace": [
+        {
+          "nodeId": "Q2",
+          "answer": "no",
+          "reason": "The completed search found no matching record in the examined material",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q590",
+          "answer": "no",
+          "reason": "A known logging, collection, retention, clock, search, or integrity gap prevents exclusion",
+          "recordId": null
+        }
+      ],
+      "state": "unresolved",
+      "passed": true
+    },
+    {
+      "caseId": "host-independent-recovery",
+      "trace": [
+        {
+          "nodeId": "Q2",
+          "answer": "unknown",
+          "reason": "Evidence is unavailable or the search is incomplete",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q9",
+          "answer": "yes",
+          "reason": "A record matches the exact bound subjects and interval",
+          "recordId": "host-independent-record"
+        },
+        {
+          "nodeId": "Q151",
+          "answer": "yes",
+          "reason": "Supplied provenance and interpretation assessments cite a supporting basis",
+          "recordId": "host-independent-record"
+        }
+      ],
+      "state": "positive-review-boundary",
+      "nextQuestionId": "Q221",
+      "passed": true
+    },
+    {
+      "caseId": "host-copied-log-is-not-corroboration",
+      "trace": [
+        {
+          "nodeId": "Q2",
+          "answer": "unknown",
+          "reason": "Evidence is unavailable or the search is incomplete",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q9",
+          "answer": "unknown",
+          "reason": "Record time or independent lineage is unresolved",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q597",
+          "answer": "yes",
+          "reason": "The prior assessment retained a material evidence, context, or verification limitation",
+          "recordId": null
+        }
+      ],
+      "state": "unresolved",
+      "passed": true
+    },
+    {
+      "caseId": "host-rejected-provenance",
+      "trace": [
+        {
+          "nodeId": "Q2",
+          "answer": "yes",
+          "reason": "A record matches the exact bound subjects and interval",
+          "recordId": "host-synthetic-record"
+        },
+        {
+          "nodeId": "Q156",
+          "answer": "no",
+          "reason": "A supplied provenance or interpretation assessment rejects the selected record",
+          "recordId": "host-synthetic-record"
+        },
+        {
+          "nodeId": "Q597",
+          "answer": "yes",
+          "reason": "The prior assessment retained a material evidence, context, or verification limitation",
+          "recordId": "host-synthetic-record"
+        }
+      ],
+      "state": "unresolved",
+      "passed": true
+    },
+    {
+      "caseId": "host-conflicting-records",
+      "trace": [
+        {
+          "nodeId": "Q2",
+          "answer": "unknown",
+          "reason": "Material counterevidence is unresolved",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q9",
+          "answer": "unknown",
+          "reason": "Material counterevidence is unresolved",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q597",
+          "answer": "yes",
+          "reason": "The prior assessment retained a material evidence, context, or verification limitation",
+          "recordId": null
+        }
+      ],
+      "state": "unresolved",
+      "passed": true
+    },
+    {
+      "caseId": "host-wrong-subject-corroboration",
+      "trace": [
+        {
+          "nodeId": "Q2",
+          "answer": "unknown",
+          "reason": "Evidence is unavailable or the search is incomplete",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q9",
+          "answer": "no",
+          "reason": "The completed search found no matching record in the examined material",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q597",
+          "answer": "yes",
+          "reason": "The prior assessment retained a material evidence, context, or verification limitation",
+          "recordId": null
+        }
+      ],
+      "state": "unresolved",
+      "passed": true
+    },
+    {
+      "caseId": "host-outside-time-interval",
+      "trace": [
+        {
+          "nodeId": "Q2",
+          "answer": "unknown",
+          "reason": "Evidence is unavailable or the search is incomplete",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q9",
+          "answer": "no",
+          "reason": "The completed search found no matching record in the examined material",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q597",
+          "answer": "yes",
+          "reason": "The prior assessment retained a material evidence, context, or verification limitation",
+          "recordId": null
+        }
+      ],
+      "state": "unresolved",
+      "passed": true
+    },
+    {
+      "caseId": "host-unknown-coverage",
+      "trace": [
+        {
+          "nodeId": "Q2",
+          "answer": "no",
+          "reason": "The completed search found no matching record in the examined material",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q590",
+          "answer": "unknown",
+          "reason": "Complete applicable evidence coverage has not been established",
+          "recordId": null
+        }
+      ],
+      "state": "unresolved",
+      "passed": true
+    },
+    {
+      "caseId": "network-public-report",
+      "trace": [
+        {
+          "nodeId": "Q3",
+          "answer": "unknown",
+          "reason": "Subject or time binding is unresolved",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q10",
+          "answer": "unknown",
+          "reason": "Subject or time binding is unresolved",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q598",
+          "answer": "yes",
+          "reason": "The prior assessment retained a material evidence, context, or verification limitation",
+          "recordId": null
+        }
+      ],
+      "state": "unresolved",
+      "passed": true
+    },
+    {
+      "caseId": "network-supported-record",
+      "trace": [
+        {
+          "nodeId": "Q3",
+          "answer": "yes",
+          "reason": "A record matches the exact bound subjects and interval",
+          "recordId": "network-synthetic-record"
+        },
+        {
+          "nodeId": "Q152",
+          "answer": "yes",
+          "reason": "Supplied provenance and interpretation assessments cite a supporting basis",
+          "recordId": "network-synthetic-record"
+        }
+      ],
+      "state": "positive-review-boundary",
+      "nextQuestionId": "Q159",
+      "passed": true
+    },
+    {
+      "caseId": "network-bounded-absence",
+      "trace": [
+        {
+          "nodeId": "Q3",
+          "answer": "no",
+          "reason": "The completed search found no matching record in the examined material",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q591",
+          "answer": "yes",
+          "reason": "The supplied applicable coverage/search basis supports this bounded exclusion only",
+          "recordId": null
+        }
+      ],
+      "state": "bounded-exclusion",
+      "passed": true
+    },
+    {
+      "caseId": "network-missing-logs",
+      "trace": [
+        {
+          "nodeId": "Q3",
+          "answer": "no",
+          "reason": "The completed search found no matching record in the examined material",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q591",
+          "answer": "no",
+          "reason": "A known logging, collection, retention, clock, search, or integrity gap prevents exclusion",
+          "recordId": null
+        }
+      ],
+      "state": "unresolved",
+      "passed": true
+    },
+    {
+      "caseId": "network-independent-recovery",
+      "trace": [
+        {
+          "nodeId": "Q3",
+          "answer": "unknown",
+          "reason": "Evidence is unavailable or the search is incomplete",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q10",
+          "answer": "yes",
+          "reason": "A record matches the exact bound subjects and interval",
+          "recordId": "network-independent-record"
+        },
+        {
+          "nodeId": "Q82",
+          "answer": "yes",
+          "reason": "Supplied provenance and interpretation assessments cite a supporting basis",
+          "recordId": "network-independent-record"
+        }
+      ],
+      "state": "positive-review-boundary",
+      "nextQuestionId": "Q187",
+      "passed": true
+    },
+    {
+      "caseId": "network-copied-log-is-not-corroboration",
+      "trace": [
+        {
+          "nodeId": "Q3",
+          "answer": "unknown",
+          "reason": "Evidence is unavailable or the search is incomplete",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q10",
+          "answer": "unknown",
+          "reason": "Record time or independent lineage is unresolved",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q598",
+          "answer": "yes",
+          "reason": "The prior assessment retained a material evidence, context, or verification limitation",
+          "recordId": null
+        }
+      ],
+      "state": "unresolved",
+      "passed": true
+    },
+    {
+      "caseId": "network-rejected-provenance",
+      "trace": [
+        {
+          "nodeId": "Q3",
+          "answer": "yes",
+          "reason": "A record matches the exact bound subjects and interval",
+          "recordId": "network-synthetic-record"
+        },
+        {
+          "nodeId": "Q152",
+          "answer": "no",
+          "reason": "A supplied provenance or interpretation assessment rejects the selected record",
+          "recordId": "network-synthetic-record"
+        },
+        {
+          "nodeId": "Q598",
+          "answer": "yes",
+          "reason": "The prior assessment retained a material evidence, context, or verification limitation",
+          "recordId": "network-synthetic-record"
+        }
+      ],
+      "state": "unresolved",
+      "passed": true
+    },
+    {
+      "caseId": "network-conflicting-records",
+      "trace": [
+        {
+          "nodeId": "Q3",
+          "answer": "unknown",
+          "reason": "Material counterevidence is unresolved",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q10",
+          "answer": "unknown",
+          "reason": "Material counterevidence is unresolved",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q598",
+          "answer": "yes",
+          "reason": "The prior assessment retained a material evidence, context, or verification limitation",
+          "recordId": null
+        }
+      ],
+      "state": "unresolved",
+      "passed": true
+    },
+    {
+      "caseId": "network-wrong-subject-corroboration",
+      "trace": [
+        {
+          "nodeId": "Q3",
+          "answer": "unknown",
+          "reason": "Evidence is unavailable or the search is incomplete",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q10",
+          "answer": "no",
+          "reason": "The completed search found no matching record in the examined material",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q598",
+          "answer": "yes",
+          "reason": "The prior assessment retained a material evidence, context, or verification limitation",
+          "recordId": null
+        }
+      ],
+      "state": "unresolved",
+      "passed": true
+    },
+    {
+      "caseId": "network-outside-time-interval",
+      "trace": [
+        {
+          "nodeId": "Q3",
+          "answer": "unknown",
+          "reason": "Evidence is unavailable or the search is incomplete",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q10",
+          "answer": "no",
+          "reason": "The completed search found no matching record in the examined material",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q598",
+          "answer": "yes",
+          "reason": "The prior assessment retained a material evidence, context, or verification limitation",
+          "recordId": null
+        }
+      ],
+      "state": "unresolved",
+      "passed": true
+    },
+    {
+      "caseId": "network-unknown-coverage",
+      "trace": [
+        {
+          "nodeId": "Q3",
+          "answer": "no",
+          "reason": "The completed search found no matching record in the examined material",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q591",
+          "answer": "unknown",
+          "reason": "Complete applicable evidence coverage has not been established",
+          "recordId": null
+        }
+      ],
+      "state": "unresolved",
+      "passed": true
+    },
+    {
+      "caseId": "cloud-public-report",
+      "trace": [
+        {
+          "nodeId": "Q4",
+          "answer": "unknown",
+          "reason": "Subject or time binding is unresolved",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q11",
+          "answer": "unknown",
+          "reason": "Subject or time binding is unresolved",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q599",
+          "answer": "yes",
+          "reason": "The prior assessment retained a material evidence, context, or verification limitation",
+          "recordId": null
+        }
+      ],
+      "state": "unresolved",
+      "passed": true
+    },
+    {
+      "caseId": "cloud-supported-record",
+      "trace": [
+        {
+          "nodeId": "Q4",
+          "answer": "yes",
+          "reason": "A record matches the exact bound subjects and interval",
+          "recordId": "cloud-synthetic-record"
+        },
+        {
+          "nodeId": "Q153",
+          "answer": "yes",
+          "reason": "Supplied provenance and interpretation assessments cite a supporting basis",
+          "recordId": "cloud-synthetic-record"
+        }
+      ],
+      "state": "positive-review-boundary",
+      "nextQuestionId": "Q223",
+      "passed": true
+    },
+    {
+      "caseId": "cloud-bounded-absence",
+      "trace": [
+        {
+          "nodeId": "Q4",
+          "answer": "no",
+          "reason": "The completed search found no matching record in the examined material",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q592",
+          "answer": "yes",
+          "reason": "The supplied applicable coverage/search basis supports this bounded exclusion only",
+          "recordId": null
+        }
+      ],
+      "state": "bounded-exclusion",
+      "passed": true
+    },
+    {
+      "caseId": "cloud-missing-logs",
+      "trace": [
+        {
+          "nodeId": "Q4",
+          "answer": "no",
+          "reason": "The completed search found no matching record in the examined material",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q592",
+          "answer": "no",
+          "reason": "A known logging, collection, retention, clock, search, or integrity gap prevents exclusion",
+          "recordId": null
+        }
+      ],
+      "state": "unresolved",
+      "passed": true
+    },
+    {
+      "caseId": "cloud-independent-recovery",
+      "trace": [
+        {
+          "nodeId": "Q4",
+          "answer": "unknown",
+          "reason": "Evidence is unavailable or the search is incomplete",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q11",
+          "answer": "yes",
+          "reason": "A record matches the exact bound subjects and interval",
+          "recordId": "cloud-independent-record"
+        },
+        {
+          "nodeId": "Q83",
+          "answer": "yes",
+          "reason": "Supplied provenance and interpretation assessments cite a supporting basis",
+          "recordId": "cloud-independent-record"
+        }
+      ],
+      "state": "positive-review-boundary",
+      "nextQuestionId": "Q188",
+      "passed": true
+    },
+    {
+      "caseId": "cloud-copied-log-is-not-corroboration",
+      "trace": [
+        {
+          "nodeId": "Q4",
+          "answer": "unknown",
+          "reason": "Evidence is unavailable or the search is incomplete",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q11",
+          "answer": "unknown",
+          "reason": "Record time or independent lineage is unresolved",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q599",
+          "answer": "yes",
+          "reason": "The prior assessment retained a material evidence, context, or verification limitation",
+          "recordId": null
+        }
+      ],
+      "state": "unresolved",
+      "passed": true
+    },
+    {
+      "caseId": "cloud-rejected-provenance",
+      "trace": [
+        {
+          "nodeId": "Q4",
+          "answer": "yes",
+          "reason": "A record matches the exact bound subjects and interval",
+          "recordId": "cloud-synthetic-record"
+        },
+        {
+          "nodeId": "Q153",
+          "answer": "no",
+          "reason": "A supplied provenance or interpretation assessment rejects the selected record",
+          "recordId": "cloud-synthetic-record"
+        },
+        {
+          "nodeId": "Q599",
+          "answer": "yes",
+          "reason": "The prior assessment retained a material evidence, context, or verification limitation",
+          "recordId": "cloud-synthetic-record"
+        }
+      ],
+      "state": "unresolved",
+      "passed": true
+    },
+    {
+      "caseId": "cloud-conflicting-records",
+      "trace": [
+        {
+          "nodeId": "Q4",
+          "answer": "unknown",
+          "reason": "Material counterevidence is unresolved",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q11",
+          "answer": "unknown",
+          "reason": "Material counterevidence is unresolved",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q599",
+          "answer": "yes",
+          "reason": "The prior assessment retained a material evidence, context, or verification limitation",
+          "recordId": null
+        }
+      ],
+      "state": "unresolved",
+      "passed": true
+    },
+    {
+      "caseId": "cloud-wrong-subject-corroboration",
+      "trace": [
+        {
+          "nodeId": "Q4",
+          "answer": "unknown",
+          "reason": "Evidence is unavailable or the search is incomplete",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q11",
+          "answer": "no",
+          "reason": "The completed search found no matching record in the examined material",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q599",
+          "answer": "yes",
+          "reason": "The prior assessment retained a material evidence, context, or verification limitation",
+          "recordId": null
+        }
+      ],
+      "state": "unresolved",
+      "passed": true
+    },
+    {
+      "caseId": "cloud-outside-time-interval",
+      "trace": [
+        {
+          "nodeId": "Q4",
+          "answer": "unknown",
+          "reason": "Evidence is unavailable or the search is incomplete",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q11",
+          "answer": "no",
+          "reason": "The completed search found no matching record in the examined material",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q599",
+          "answer": "yes",
+          "reason": "The prior assessment retained a material evidence, context, or verification limitation",
+          "recordId": null
+        }
+      ],
+      "state": "unresolved",
+      "passed": true
+    },
+    {
+      "caseId": "cloud-unknown-coverage",
+      "trace": [
+        {
+          "nodeId": "Q4",
+          "answer": "no",
+          "reason": "The completed search found no matching record in the examined material",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q592",
+          "answer": "unknown",
+          "reason": "Complete applicable evidence coverage has not been established",
+          "recordId": null
+        }
+      ],
+      "state": "unresolved",
+      "passed": true
+    },
+    {
+      "caseId": "email-public-report",
+      "trace": [
+        {
+          "nodeId": "Q5",
+          "answer": "unknown",
+          "reason": "Subject or time binding is unresolved",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q12",
+          "answer": "unknown",
+          "reason": "Subject or time binding is unresolved",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q600",
+          "answer": "yes",
+          "reason": "The prior assessment retained a material evidence, context, or verification limitation",
+          "recordId": null
+        }
+      ],
+      "state": "unresolved",
+      "passed": true
+    },
+    {
+      "caseId": "email-supported-record",
+      "trace": [
+        {
+          "nodeId": "Q5",
+          "answer": "yes",
+          "reason": "A record matches the exact bound subjects and interval",
+          "recordId": "email-synthetic-record"
+        },
+        {
+          "nodeId": "Q154",
+          "answer": "yes",
+          "reason": "Supplied provenance and interpretation assessments cite a supporting basis",
+          "recordId": "email-synthetic-record"
+        }
+      ],
+      "state": "positive-review-boundary",
+      "nextQuestionId": "Q161",
+      "passed": true
+    },
+    {
+      "caseId": "email-bounded-absence",
+      "trace": [
+        {
+          "nodeId": "Q5",
+          "answer": "no",
+          "reason": "The completed search found no matching record in the examined material",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q593",
+          "answer": "yes",
+          "reason": "The supplied applicable coverage/search basis supports this bounded exclusion only",
+          "recordId": null
+        }
+      ],
+      "state": "bounded-exclusion",
+      "passed": true
+    },
+    {
+      "caseId": "email-missing-logs",
+      "trace": [
+        {
+          "nodeId": "Q5",
+          "answer": "no",
+          "reason": "The completed search found no matching record in the examined material",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q593",
+          "answer": "no",
+          "reason": "A known logging, collection, retention, clock, search, or integrity gap prevents exclusion",
+          "recordId": null
+        }
+      ],
+      "state": "unresolved",
+      "passed": true
+    },
+    {
+      "caseId": "email-independent-recovery",
+      "trace": [
+        {
+          "nodeId": "Q5",
+          "answer": "unknown",
+          "reason": "Evidence is unavailable or the search is incomplete",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q12",
+          "answer": "yes",
+          "reason": "A record matches the exact bound subjects and interval",
+          "recordId": "email-independent-record"
+        },
+        {
+          "nodeId": "Q147",
+          "answer": "yes",
+          "reason": "Supplied provenance and interpretation assessments cite a supporting basis",
+          "recordId": "email-independent-record"
+        }
+      ],
+      "state": "positive-review-boundary",
+      "nextQuestionId": "Q224",
+      "passed": true
+    },
+    {
+      "caseId": "email-copied-log-is-not-corroboration",
+      "trace": [
+        {
+          "nodeId": "Q5",
+          "answer": "unknown",
+          "reason": "Evidence is unavailable or the search is incomplete",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q12",
+          "answer": "unknown",
+          "reason": "Record time or independent lineage is unresolved",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q600",
+          "answer": "yes",
+          "reason": "The prior assessment retained a material evidence, context, or verification limitation",
+          "recordId": null
+        }
+      ],
+      "state": "unresolved",
+      "passed": true
+    },
+    {
+      "caseId": "email-rejected-provenance",
+      "trace": [
+        {
+          "nodeId": "Q5",
+          "answer": "yes",
+          "reason": "A record matches the exact bound subjects and interval",
+          "recordId": "email-synthetic-record"
+        },
+        {
+          "nodeId": "Q154",
+          "answer": "no",
+          "reason": "A supplied provenance or interpretation assessment rejects the selected record",
+          "recordId": "email-synthetic-record"
+        },
+        {
+          "nodeId": "Q600",
+          "answer": "yes",
+          "reason": "The prior assessment retained a material evidence, context, or verification limitation",
+          "recordId": "email-synthetic-record"
+        }
+      ],
+      "state": "unresolved",
+      "passed": true
+    },
+    {
+      "caseId": "email-conflicting-records",
+      "trace": [
+        {
+          "nodeId": "Q5",
+          "answer": "unknown",
+          "reason": "Material counterevidence is unresolved",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q12",
+          "answer": "unknown",
+          "reason": "Material counterevidence is unresolved",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q600",
+          "answer": "yes",
+          "reason": "The prior assessment retained a material evidence, context, or verification limitation",
+          "recordId": null
+        }
+      ],
+      "state": "unresolved",
+      "passed": true
+    },
+    {
+      "caseId": "email-wrong-subject-corroboration",
+      "trace": [
+        {
+          "nodeId": "Q5",
+          "answer": "unknown",
+          "reason": "Evidence is unavailable or the search is incomplete",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q12",
+          "answer": "no",
+          "reason": "The completed search found no matching record in the examined material",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q600",
+          "answer": "yes",
+          "reason": "The prior assessment retained a material evidence, context, or verification limitation",
+          "recordId": null
+        }
+      ],
+      "state": "unresolved",
+      "passed": true
+    },
+    {
+      "caseId": "email-outside-time-interval",
+      "trace": [
+        {
+          "nodeId": "Q5",
+          "answer": "unknown",
+          "reason": "Evidence is unavailable or the search is incomplete",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q12",
+          "answer": "no",
+          "reason": "The completed search found no matching record in the examined material",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q600",
+          "answer": "yes",
+          "reason": "The prior assessment retained a material evidence, context, or verification limitation",
+          "recordId": null
+        }
+      ],
+      "state": "unresolved",
+      "passed": true
+    },
+    {
+      "caseId": "email-unknown-coverage",
+      "trace": [
+        {
+          "nodeId": "Q5",
+          "answer": "no",
+          "reason": "The completed search found no matching record in the examined material",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q593",
+          "answer": "unknown",
+          "reason": "Complete applicable evidence coverage has not been established",
+          "recordId": null
+        }
+      ],
+      "state": "unresolved",
+      "passed": true
+    },
+    {
+      "caseId": "application-public-report",
+      "trace": [
+        {
+          "nodeId": "Q6",
+          "answer": "unknown",
+          "reason": "Subject or time binding is unresolved",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q13",
+          "answer": "unknown",
+          "reason": "Subject or time binding is unresolved",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q601",
+          "answer": "yes",
+          "reason": "The prior assessment retained a material evidence, context, or verification limitation",
+          "recordId": null
+        }
+      ],
+      "state": "unresolved",
+      "passed": true
+    },
+    {
+      "caseId": "application-supported-record",
+      "trace": [
+        {
+          "nodeId": "Q6",
+          "answer": "yes",
+          "reason": "A record matches the exact bound subjects and interval",
+          "recordId": "application-synthetic-record"
+        },
+        {
+          "nodeId": "Q85",
+          "answer": "yes",
+          "reason": "Supplied provenance and interpretation assessments cite a supporting basis",
+          "recordId": "application-synthetic-record"
+        }
+      ],
+      "state": "positive-review-boundary",
+      "nextQuestionId": "Q190",
+      "passed": true
+    },
+    {
+      "caseId": "application-bounded-absence",
+      "trace": [
+        {
+          "nodeId": "Q6",
+          "answer": "no",
+          "reason": "The completed search found no matching record in the examined material",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q594",
+          "answer": "yes",
+          "reason": "The supplied applicable coverage/search basis supports this bounded exclusion only",
+          "recordId": null
+        }
+      ],
+      "state": "bounded-exclusion",
+      "passed": true
+    },
+    {
+      "caseId": "application-missing-logs",
+      "trace": [
+        {
+          "nodeId": "Q6",
+          "answer": "no",
+          "reason": "The completed search found no matching record in the examined material",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q594",
+          "answer": "no",
+          "reason": "A known logging, collection, retention, clock, search, or integrity gap prevents exclusion",
+          "recordId": null
+        }
+      ],
+      "state": "unresolved",
+      "passed": true
+    },
+    {
+      "caseId": "application-independent-recovery",
+      "trace": [
+        {
+          "nodeId": "Q6",
+          "answer": "unknown",
+          "reason": "Evidence is unavailable or the search is incomplete",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q13",
+          "answer": "yes",
+          "reason": "A record matches the exact bound subjects and interval",
+          "recordId": "application-independent-record"
+        },
+        {
+          "nodeId": "Q148",
+          "answer": "yes",
+          "reason": "Supplied provenance and interpretation assessments cite a supporting basis",
+          "recordId": "application-independent-record"
+        }
+      ],
+      "state": "positive-review-boundary",
+      "nextQuestionId": "Q225",
+      "passed": true
+    },
+    {
+      "caseId": "application-copied-log-is-not-corroboration",
+      "trace": [
+        {
+          "nodeId": "Q6",
+          "answer": "unknown",
+          "reason": "Evidence is unavailable or the search is incomplete",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q13",
+          "answer": "unknown",
+          "reason": "Record time or independent lineage is unresolved",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q601",
+          "answer": "yes",
+          "reason": "The prior assessment retained a material evidence, context, or verification limitation",
+          "recordId": null
+        }
+      ],
+      "state": "unresolved",
+      "passed": true
+    },
+    {
+      "caseId": "application-rejected-provenance",
+      "trace": [
+        {
+          "nodeId": "Q6",
+          "answer": "yes",
+          "reason": "A record matches the exact bound subjects and interval",
+          "recordId": "application-synthetic-record"
+        },
+        {
+          "nodeId": "Q85",
+          "answer": "no",
+          "reason": "A supplied provenance or interpretation assessment rejects the selected record",
+          "recordId": "application-synthetic-record"
+        },
+        {
+          "nodeId": "Q601",
+          "answer": "yes",
+          "reason": "The prior assessment retained a material evidence, context, or verification limitation",
+          "recordId": "application-synthetic-record"
+        }
+      ],
+      "state": "unresolved",
+      "passed": true
+    },
+    {
+      "caseId": "application-conflicting-records",
+      "trace": [
+        {
+          "nodeId": "Q6",
+          "answer": "unknown",
+          "reason": "Material counterevidence is unresolved",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q13",
+          "answer": "unknown",
+          "reason": "Material counterevidence is unresolved",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q601",
+          "answer": "yes",
+          "reason": "The prior assessment retained a material evidence, context, or verification limitation",
+          "recordId": null
+        }
+      ],
+      "state": "unresolved",
+      "passed": true
+    },
+    {
+      "caseId": "application-wrong-subject-corroboration",
+      "trace": [
+        {
+          "nodeId": "Q6",
+          "answer": "unknown",
+          "reason": "Evidence is unavailable or the search is incomplete",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q13",
+          "answer": "no",
+          "reason": "The completed search found no matching record in the examined material",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q601",
+          "answer": "yes",
+          "reason": "The prior assessment retained a material evidence, context, or verification limitation",
+          "recordId": null
+        }
+      ],
+      "state": "unresolved",
+      "passed": true
+    },
+    {
+      "caseId": "application-outside-time-interval",
+      "trace": [
+        {
+          "nodeId": "Q6",
+          "answer": "unknown",
+          "reason": "Evidence is unavailable or the search is incomplete",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q13",
+          "answer": "no",
+          "reason": "The completed search found no matching record in the examined material",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q601",
+          "answer": "yes",
+          "reason": "The prior assessment retained a material evidence, context, or verification limitation",
+          "recordId": null
+        }
+      ],
+      "state": "unresolved",
+      "passed": true
+    },
+    {
+      "caseId": "application-unknown-coverage",
+      "trace": [
+        {
+          "nodeId": "Q6",
+          "answer": "no",
+          "reason": "The completed search found no matching record in the examined material",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q594",
+          "answer": "unknown",
+          "reason": "Complete applicable evidence coverage has not been established",
+          "recordId": null
+        }
+      ],
+      "state": "unresolved",
+      "passed": true
+    },
+    {
+      "caseId": "file-public-report",
+      "trace": [
+        {
+          "nodeId": "Q7",
+          "answer": "unknown",
+          "reason": "Subject or time binding is unresolved",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q14",
+          "answer": "unknown",
+          "reason": "Subject or time binding is unresolved",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q602",
+          "answer": "yes",
+          "reason": "The prior assessment retained a material evidence, context, or verification limitation",
+          "recordId": null
+        }
+      ],
+      "state": "unresolved",
+      "passed": true
+    },
+    {
+      "caseId": "file-supported-record",
+      "trace": [
+        {
+          "nodeId": "Q7",
+          "answer": "yes",
+          "reason": "A record matches the exact bound subjects and interval",
+          "recordId": "file-synthetic-record"
+        },
+        {
+          "nodeId": "Q86",
+          "answer": "yes",
+          "reason": "Supplied provenance and interpretation assessments cite a supporting basis",
+          "recordId": "file-synthetic-record"
+        }
+      ],
+      "state": "positive-review-boundary",
+      "nextQuestionId": "Q184",
+      "passed": true
+    },
+    {
+      "caseId": "file-bounded-absence",
+      "trace": [
+        {
+          "nodeId": "Q7",
+          "answer": "no",
+          "reason": "The completed search found no matching record in the examined material",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q595",
+          "answer": "yes",
+          "reason": "The supplied applicable coverage/search basis supports this bounded exclusion only",
+          "recordId": null
+        }
+      ],
+      "state": "bounded-exclusion",
+      "passed": true
+    },
+    {
+      "caseId": "file-missing-logs",
+      "trace": [
+        {
+          "nodeId": "Q7",
+          "answer": "no",
+          "reason": "The completed search found no matching record in the examined material",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q595",
+          "answer": "no",
+          "reason": "A known logging, collection, retention, clock, search, or integrity gap prevents exclusion",
+          "recordId": null
+        }
+      ],
+      "state": "unresolved",
+      "passed": true
+    },
+    {
+      "caseId": "file-independent-recovery",
+      "trace": [
+        {
+          "nodeId": "Q7",
+          "answer": "unknown",
+          "reason": "Evidence is unavailable or the search is incomplete",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q14",
+          "answer": "yes",
+          "reason": "A record matches the exact bound subjects and interval",
+          "recordId": "file-independent-record"
+        },
+        {
+          "nodeId": "Q149",
+          "answer": "yes",
+          "reason": "Supplied provenance and interpretation assessments cite a supporting basis",
+          "recordId": "file-independent-record"
+        }
+      ],
+      "state": "positive-review-boundary",
+      "nextQuestionId": "Q219",
+      "passed": true
+    },
+    {
+      "caseId": "file-copied-log-is-not-corroboration",
+      "trace": [
+        {
+          "nodeId": "Q7",
+          "answer": "unknown",
+          "reason": "Evidence is unavailable or the search is incomplete",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q14",
+          "answer": "unknown",
+          "reason": "Record time or independent lineage is unresolved",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q602",
+          "answer": "yes",
+          "reason": "The prior assessment retained a material evidence, context, or verification limitation",
+          "recordId": null
+        }
+      ],
+      "state": "unresolved",
+      "passed": true
+    },
+    {
+      "caseId": "file-rejected-provenance",
+      "trace": [
+        {
+          "nodeId": "Q7",
+          "answer": "yes",
+          "reason": "A record matches the exact bound subjects and interval",
+          "recordId": "file-synthetic-record"
+        },
+        {
+          "nodeId": "Q86",
+          "answer": "no",
+          "reason": "A supplied provenance or interpretation assessment rejects the selected record",
+          "recordId": "file-synthetic-record"
+        },
+        {
+          "nodeId": "Q602",
+          "answer": "yes",
+          "reason": "The prior assessment retained a material evidence, context, or verification limitation",
+          "recordId": "file-synthetic-record"
+        }
+      ],
+      "state": "unresolved",
+      "passed": true
+    },
+    {
+      "caseId": "file-conflicting-records",
+      "trace": [
+        {
+          "nodeId": "Q7",
+          "answer": "unknown",
+          "reason": "Material counterevidence is unresolved",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q14",
+          "answer": "unknown",
+          "reason": "Material counterevidence is unresolved",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q602",
+          "answer": "yes",
+          "reason": "The prior assessment retained a material evidence, context, or verification limitation",
+          "recordId": null
+        }
+      ],
+      "state": "unresolved",
+      "passed": true
+    },
+    {
+      "caseId": "file-wrong-subject-corroboration",
+      "trace": [
+        {
+          "nodeId": "Q7",
+          "answer": "unknown",
+          "reason": "Evidence is unavailable or the search is incomplete",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q14",
+          "answer": "no",
+          "reason": "The completed search found no matching record in the examined material",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q602",
+          "answer": "yes",
+          "reason": "The prior assessment retained a material evidence, context, or verification limitation",
+          "recordId": null
+        }
+      ],
+      "state": "unresolved",
+      "passed": true
+    },
+    {
+      "caseId": "file-outside-time-interval",
+      "trace": [
+        {
+          "nodeId": "Q7",
+          "answer": "unknown",
+          "reason": "Evidence is unavailable or the search is incomplete",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q14",
+          "answer": "no",
+          "reason": "The completed search found no matching record in the examined material",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q602",
+          "answer": "yes",
+          "reason": "The prior assessment retained a material evidence, context, or verification limitation",
+          "recordId": null
+        }
+      ],
+      "state": "unresolved",
+      "passed": true
+    },
+    {
+      "caseId": "file-unknown-coverage",
+      "trace": [
+        {
+          "nodeId": "Q7",
+          "answer": "no",
+          "reason": "The completed search found no matching record in the examined material",
+          "recordId": null
+        },
+        {
+          "nodeId": "Q595",
+          "answer": "unknown",
+          "reason": "Complete applicable evidence coverage has not been established",
+          "recordId": null
+        }
+      ],
+      "state": "unresolved",
+      "passed": true
+    }
+  ]
+}

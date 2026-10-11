@@ -1,0 +1,1236 @@
+{
+  "status": "Detached draft review material, not an active or released graph",
+  "sourceVersion": "0.20260212e",
+  "sourceSha256": "6d289f3d30b24929bff07856fe7280fc002896741c4d397335e677c1cda7e951",
+  "sourceCommit": "35fd053f375b786b4cc82c106010255fcbeeea24",
+  "reason": "Removing unsupported entry and validation fallback pivots made these questions unreachable. They are preserved for separate semantic review, not reconnected without evidence.",
+  "nodes": [
+    {
+      "id": "Q240",
+      "text": "Have scope boundaries for endpoint execution and persistence activity in process ancestry been expanded to include connected evidence?",
+      "label": "Host: Scope boundaries - Process ancestry",
+      "category": "Host",
+      "archetype": "scope"
+    },
+    {
+      "id": "Q244",
+      "text": "Were upstream and downstream dependencies for application request and session activity in network pivots included in scope?",
+      "label": "Application: Dependencies in scope - Network pivots",
+      "category": "Application",
+      "archetype": "scope"
+    },
+    {
+      "id": "Q246",
+      "text": "Were additional assets, identities, sessions, or artifacts tied to identity authentication and privilege activity in collaboration artifacts brought into scope?",
+      "label": "Identity: Additional assets in scope - Collaboration artifacts",
+      "category": "Identity",
+      "archetype": "scope"
+    },
+    {
+      "id": "Q248",
+      "text": "Were additional assets, identities, sessions, or artifacts tied to network session and transport activity in process ancestry brought into scope?",
+      "label": "Network: Additional assets in scope - Process ancestry",
+      "category": "Network",
+      "archetype": "scope"
+    },
+    {
+      "id": "Q269",
+      "text": "Have scope boundaries for network session and transport activity in session anomalies been expanded to include connected evidence?",
+      "label": "Network: Scope boundaries - Session anomalies",
+      "category": "Network",
+      "archetype": "scope"
+    },
+    {
+      "id": "Q277",
+      "text": "Were materially affected entities linked to cloud control-plane and workload activity in endpoint state changes identified for investigative scope?",
+      "label": "Cloud: Affected entities - Endpoint state changes",
+      "category": "Cloud",
+      "archetype": "scope"
+    },
+    {
+      "id": "Q280",
+      "text": "Were materially affected entities linked to file artifact and content activity in workload identity context identified for investigative scope?",
+      "label": "File: Affected entities - Workload identity context",
+      "category": "File",
+      "archetype": "scope"
+    },
+    {
+      "id": "Q281",
+      "text": "Have scope boundaries for identity authentication and privilege activity in content lineage been expanded to include connected evidence?",
+      "label": "Identity: Scope boundaries - Content lineage",
+      "category": "Identity",
+      "archetype": "scope"
+    },
+    {
+      "id": "Q282",
+      "text": "Have scope boundaries for endpoint execution and persistence activity in control-plane actions been expanded to include connected evidence?",
+      "label": "Host: Scope boundaries - Control-plane actions",
+      "category": "Host",
+      "archetype": "scope"
+    },
+    {
+      "id": "Q285",
+      "text": "Were upstream and downstream dependencies for mailbox message and collaboration activity in endpoint state changes included in scope?",
+      "label": "Email: Dependencies in scope - Endpoint state changes",
+      "category": "Email",
+      "archetype": "scope"
+    },
+    {
+      "id": "Q286",
+      "text": "Were upstream and downstream dependencies for application request and session activity in artifact provenance included in scope?",
+      "label": "Application: Dependencies in scope - Artifact provenance",
+      "category": "Application",
+      "archetype": "scope"
+    },
+    {
+      "id": "Q288",
+      "text": "Were additional assets, identities, sessions, or artifacts tied to identity authentication and privilege activity in process ancestry brought into scope?",
+      "label": "Identity: Additional assets in scope - Process ancestry",
+      "category": "Identity",
+      "archetype": "scope"
+    },
+    {
+      "id": "Q289",
+      "text": "Were additional assets, identities, sessions, or artifacts tied to endpoint execution and persistence activity in content lineage brought into scope?",
+      "label": "Host: Additional assets in scope - Content lineage",
+      "category": "Host",
+      "archetype": "scope"
+    },
+    {
+      "id": "Q290",
+      "text": "Were additional assets, identities, sessions, or artifacts tied to network session and transport activity in control-plane actions brought into scope?",
+      "label": "Network: Additional assets in scope - Control-plane actions",
+      "category": "Network",
+      "archetype": "scope"
+    },
+    {
+      "id": "Q291",
+      "text": "Were materially affected entities linked to cloud control-plane and workload activity in api invocation patterns identified for investigative scope?",
+      "label": "Cloud: Affected entities - API invocation patterns",
+      "category": "Cloud",
+      "archetype": "scope"
+    },
+    {
+      "id": "Q292",
+      "text": "Were materially affected entities linked to mailbox message and collaboration activity in network pivots identified for investigative scope?",
+      "label": "Email: Affected entities - Network pivots",
+      "category": "Email",
+      "archetype": "scope"
+    },
+    {
+      "id": "Q293",
+      "text": "Were materially affected entities linked to application request and session activity in endpoint state changes identified for investigative scope?",
+      "label": "Application: Affected entities - Endpoint state changes",
+      "category": "Application",
+      "archetype": "scope"
+    },
+    {
+      "id": "Q295",
+      "text": "Have scope boundaries for identity authentication and privilege activity in execution lineage been expanded to include connected evidence?",
+      "label": "Identity: Scope boundaries - Execution lineage",
+      "category": "Identity",
+      "archetype": "scope"
+    },
+    {
+      "id": "Q302",
+      "text": "Were materially affected entities linked to endpoint execution and persistence activity in authentication pathways identified for investigative scope?",
+      "label": "Host: Affected entities - Authentication pathways",
+      "category": "Host",
+      "archetype": "scope"
+    },
+    {
+      "id": "Q306",
+      "text": "Were upstream and downstream dependencies for network session and transport activity in api invocation patterns included in scope?",
+      "label": "Network: Dependencies in scope - API invocation patterns",
+      "category": "Network",
+      "archetype": "scope"
+    },
+    {
+      "id": "Q328",
+      "text": "Did timeline correlation for network session and transport activity in workload identity context reveal synchronized cross-domain activity?",
+      "label": "Network: Timeline correlation - Workload identity context",
+      "category": "Network",
+      "archetype": "correlate"
+    },
+    {
+      "id": "Q331",
+      "text": "Have pivoted indicators for application request and session activity in privileged access events strengthened correlation confidence?",
+      "label": "Application: Pivot strengthening - Privileged access events",
+      "category": "Application",
+      "archetype": "correlate"
+    },
+    {
+      "id": "Q334",
+      "text": "Did multi-source correlation for endpoint execution and persistence activity in artifact provenance expose linked investigative signals?",
+      "label": "Host: Multi-source correlation - Artifact provenance",
+      "category": "Host",
+      "archetype": "correlate"
+    },
+    {
+      "id": "Q340",
+      "text": "Did timeline correlation for identity authentication and privilege activity in network pivots reveal synchronized cross-domain activity?",
+      "label": "Identity: Timeline correlation - Network pivots",
+      "category": "Identity",
+      "archetype": "correlate"
+    },
+    {
+      "id": "Q353",
+      "text": "Did file artifact and content activity in control-plane actions correlate with evidence from at least one other domain?",
+      "label": "File: Cross-domain correlation - Control-plane actions",
+      "category": "File",
+      "archetype": "correlate"
+    },
+    {
+      "id": "Q354",
+      "text": "Did timeline correlation for identity authentication and privilege activity in data access traces reveal synchronized cross-domain activity?",
+      "label": "Identity: Timeline correlation - Data access traces",
+      "category": "Identity",
+      "archetype": "correlate"
+    },
+    {
+      "id": "Q355",
+      "text": "Did timeline correlation for endpoint execution and persistence activity in api invocation patterns reveal synchronized cross-domain activity?",
+      "label": "Host: Timeline correlation - API invocation patterns",
+      "category": "Host",
+      "archetype": "correlate"
+    },
+    {
+      "id": "Q358",
+      "text": "Have pivoted indicators for mailbox message and collaboration activity in execution lineage strengthened correlation confidence?",
+      "label": "Email: Pivot strengthening - Execution lineage",
+      "category": "Email",
+      "archetype": "correlate"
+    },
+    {
+      "id": "Q359",
+      "text": "Have pivoted indicators for application request and session activity in process ancestry strengthened correlation confidence?",
+      "label": "Application: Pivot strengthening - Process ancestry",
+      "category": "Application",
+      "archetype": "correlate"
+    },
+    {
+      "id": "Q360",
+      "text": "Have pivoted indicators for file artifact and content activity in content lineage strengthened correlation confidence?",
+      "label": "File: Pivot strengthening - Content lineage",
+      "category": "File",
+      "archetype": "correlate"
+    },
+    {
+      "id": "Q362",
+      "text": "Did multi-source correlation for endpoint execution and persistence activity in data access traces expose linked investigative signals?",
+      "label": "Host: Multi-source correlation - Data access traces",
+      "category": "Host",
+      "archetype": "correlate"
+    },
+    {
+      "id": "Q363",
+      "text": "Did multi-source correlation for network session and transport activity in api invocation patterns expose linked investigative signals?",
+      "label": "Network: Multi-source correlation - API invocation patterns",
+      "category": "Network",
+      "archetype": "correlate"
+    },
+    {
+      "id": "Q365",
+      "text": "Did mailbox message and collaboration activity in collaboration artifacts correlate with evidence from at least one other domain?",
+      "label": "Email: Cross-domain correlation - Collaboration artifacts",
+      "category": "Email",
+      "archetype": "correlate"
+    },
+    {
+      "id": "Q375",
+      "text": "Did timeline correlation for network session and transport activity in artifact provenance reveal synchronized cross-domain activity?",
+      "label": "Network: Timeline correlation - Artifact provenance",
+      "category": "Network",
+      "archetype": "correlate"
+    },
+    {
+      "id": "Q376",
+      "text": "Did timeline correlation for cloud control-plane and workload activity in message delivery paths reveal synchronized cross-domain activity?",
+      "label": "Cloud: Timeline correlation - Message delivery paths",
+      "category": "Cloud",
+      "archetype": "correlate"
+    },
+    {
+      "id": "Q377",
+      "text": "Have pivoted indicators for identity authentication and privilege activity in transport metadata strengthened correlation confidence?",
+      "label": "Identity: Pivot strengthening - Transport metadata",
+      "category": "Identity",
+      "archetype": "correlate"
+    },
+    {
+      "id": "Q380",
+      "text": "Did timeline correlation for endpoint execution and persistence activity in message delivery paths reveal synchronized cross-domain activity?",
+      "label": "Host: Timeline correlation - Message delivery paths",
+      "category": "Host",
+      "archetype": "correlate"
+    },
+    {
+      "id": "Q383",
+      "text": "Does attribution evidence for identity authentication and privilege activity in execution lineage support a defensible objective hypothesis?",
+      "label": "Identity: Objective hypothesis - Execution lineage",
+      "category": "Identity",
+      "archetype": "attribute"
+    },
+    {
+      "id": "Q384",
+      "text": "Does attribution evidence for endpoint execution and persistence activity in process ancestry support a defensible objective hypothesis?",
+      "label": "Host: Objective hypothesis - Process ancestry",
+      "category": "Host",
+      "archetype": "attribute"
+    },
+    {
+      "id": "Q390",
+      "text": "Did identity authentication and privilege activity in collaboration artifacts align with a repeatable adversary objective or technique pattern?",
+      "label": "Identity: Technique pattern - Collaboration artifacts",
+      "category": "Identity",
+      "archetype": "attribute"
+    },
+    {
+      "id": "Q392",
+      "text": "Did network session and transport activity in process ancestry align with a repeatable adversary objective or technique pattern?",
+      "label": "Network: Technique pattern - Process ancestry",
+      "category": "Network",
+      "archetype": "attribute"
+    },
+    {
+      "id": "Q396",
+      "text": "Was file artifact and content activity in network pivots attributable to a coherent activity cluster with common intent?",
+      "label": "File: Activity clustering - Network pivots",
+      "category": "File",
+      "archetype": "attribute"
+    },
+    {
+      "id": "Q399",
+      "text": "Does attribution evidence for network session and transport activity in execution lineage support a defensible objective hypothesis?",
+      "label": "Network: Objective hypothesis - Execution lineage",
+      "category": "Network",
+      "archetype": "attribute"
+    },
+    {
+      "id": "Q416",
+      "text": "Did behavioral patterns around application request and session activity in workload identity context support attribution confidence?",
+      "label": "Application: Attribution confidence - Workload identity context",
+      "category": "Application",
+      "archetype": "attribute"
+    },
+    {
+      "id": "Q424",
+      "text": "Was file artifact and content activity in workload identity context attributable to a coherent activity cluster with common intent?",
+      "label": "File: Activity clustering - Workload identity context",
+      "category": "File",
+      "archetype": "attribute"
+    },
+    {
+      "id": "Q428",
+      "text": "Does attribution evidence for cloud control-plane and workload activity in privileged access events support a defensible objective hypothesis?",
+      "label": "Cloud: Objective hypothesis - Privileged access events",
+      "category": "Cloud",
+      "archetype": "attribute"
+    },
+    {
+      "id": "Q431",
+      "text": "Was identity authentication and privilege activity in data access traces attributable to a coherent activity cluster with common intent?",
+      "label": "Identity: Activity clustering - Data access traces",
+      "category": "Identity",
+      "archetype": "attribute"
+    },
+    {
+      "id": "Q433",
+      "text": "Was network session and transport activity in network pivots attributable to a coherent activity cluster with common intent?",
+      "label": "Network: Activity clustering - Network pivots",
+      "category": "Network",
+      "archetype": "attribute"
+    },
+    {
+      "id": "Q436",
+      "text": "Does attribution evidence for application request and session activity in process ancestry support a defensible objective hypothesis?",
+      "label": "Application: Objective hypothesis - Process ancestry",
+      "category": "Application",
+      "archetype": "attribute"
+    }
+  ],
+  "edges": [
+    {
+      "id": "Q240-yes-Q334",
+      "source": "Q240",
+      "target": "Q334",
+      "decision": "yes"
+    },
+    {
+      "id": "Q240-no-Q495",
+      "source": "Q240",
+      "target": "Q495",
+      "decision": "no"
+    },
+    {
+      "id": "Q240-unknown-Q433",
+      "source": "Q240",
+      "target": "Q433",
+      "decision": "unknown"
+    },
+    {
+      "id": "Q244-yes-Q331",
+      "source": "Q244",
+      "target": "Q331",
+      "decision": "yes"
+    },
+    {
+      "id": "Q244-no-Q494",
+      "source": "Q244",
+      "target": "Q494",
+      "decision": "no"
+    },
+    {
+      "id": "Q244-unknown-Q430",
+      "source": "Q244",
+      "target": "Q430",
+      "decision": "unknown"
+    },
+    {
+      "id": "Q246-yes-Q340",
+      "source": "Q246",
+      "target": "Q340",
+      "decision": "yes"
+    },
+    {
+      "id": "Q246-no-Q512",
+      "source": "Q246",
+      "target": "Q512",
+      "decision": "no"
+    },
+    {
+      "id": "Q246-unknown-Q428",
+      "source": "Q246",
+      "target": "Q428",
+      "decision": "unknown"
+    },
+    {
+      "id": "Q248-yes-Q328",
+      "source": "Q248",
+      "target": "Q328",
+      "decision": "yes"
+    },
+    {
+      "id": "Q248-no-Q472",
+      "source": "Q248",
+      "target": "Q472",
+      "decision": "no"
+    },
+    {
+      "id": "Q248-unknown-Q440",
+      "source": "Q248",
+      "target": "Q440",
+      "decision": "unknown"
+    },
+    {
+      "id": "Q269-yes-Q370",
+      "source": "Q269",
+      "target": "Q370",
+      "decision": "yes"
+    },
+    {
+      "id": "Q269-no-Q581",
+      "source": "Q269",
+      "target": "Q581",
+      "decision": "no"
+    },
+    {
+      "id": "Q269-unknown-Q416",
+      "source": "Q269",
+      "target": "Q416",
+      "decision": "unknown"
+    },
+    {
+      "id": "Q277-yes-Q357",
+      "source": "Q277",
+      "target": "Q357",
+      "decision": "yes"
+    },
+    {
+      "id": "Q277-no-Q492",
+      "source": "Q277",
+      "target": "Q492",
+      "decision": "no"
+    },
+    {
+      "id": "Q277-unknown-Q396",
+      "source": "Q277",
+      "target": "Q396",
+      "decision": "unknown"
+    },
+    {
+      "id": "Q280-yes-Q353",
+      "source": "Q280",
+      "target": "Q353",
+      "decision": "yes"
+    },
+    {
+      "id": "Q280-no-Q507",
+      "source": "Q280",
+      "target": "Q507",
+      "decision": "no"
+    },
+    {
+      "id": "Q280-unknown-Q390",
+      "source": "Q280",
+      "target": "Q390",
+      "decision": "unknown"
+    },
+    {
+      "id": "Q281-yes-Q354",
+      "source": "Q281",
+      "target": "Q354",
+      "decision": "yes"
+    },
+    {
+      "id": "Q281-no-Q508",
+      "source": "Q281",
+      "target": "Q508",
+      "decision": "no"
+    },
+    {
+      "id": "Q281-unknown-Q445",
+      "source": "Q281",
+      "target": "Q445",
+      "decision": "unknown"
+    },
+    {
+      "id": "Q282-yes-Q355",
+      "source": "Q282",
+      "target": "Q355",
+      "decision": "yes"
+    },
+    {
+      "id": "Q282-no-Q509",
+      "source": "Q282",
+      "target": "Q509",
+      "decision": "no"
+    },
+    {
+      "id": "Q282-unknown-Q392",
+      "source": "Q282",
+      "target": "Q392",
+      "decision": "unknown"
+    },
+    {
+      "id": "Q285-yes-Q358",
+      "source": "Q285",
+      "target": "Q358",
+      "decision": "yes"
+    },
+    {
+      "id": "Q285-no-Q493",
+      "source": "Q285",
+      "target": "Q493",
+      "decision": "no"
+    },
+    {
+      "id": "Q285-unknown-Q383",
+      "source": "Q285",
+      "target": "Q383",
+      "decision": "unknown"
+    },
+    {
+      "id": "Q286-yes-Q359",
+      "source": "Q286",
+      "target": "Q359",
+      "decision": "yes"
+    },
+    {
+      "id": "Q286-no-Q506",
+      "source": "Q286",
+      "target": "Q506",
+      "decision": "no"
+    },
+    {
+      "id": "Q286-unknown-Q384",
+      "source": "Q286",
+      "target": "Q384",
+      "decision": "unknown"
+    },
+    {
+      "id": "Q288-yes-Q379",
+      "source": "Q288",
+      "target": "Q379",
+      "decision": "yes"
+    },
+    {
+      "id": "Q288-no-Q502",
+      "source": "Q288",
+      "target": "Q502",
+      "decision": "no"
+    },
+    {
+      "id": "Q288-unknown-Q448",
+      "source": "Q288",
+      "target": "Q448",
+      "decision": "unknown"
+    },
+    {
+      "id": "Q289-yes-Q378",
+      "source": "Q289",
+      "target": "Q378",
+      "decision": "yes"
+    },
+    {
+      "id": "Q289-no-Q503",
+      "source": "Q289",
+      "target": "Q503",
+      "decision": "no"
+    },
+    {
+      "id": "Q289-unknown-Q441",
+      "source": "Q289",
+      "target": "Q441",
+      "decision": "unknown"
+    },
+    {
+      "id": "Q290-yes-Q363",
+      "source": "Q290",
+      "target": "Q363",
+      "decision": "yes"
+    },
+    {
+      "id": "Q290-no-Q581",
+      "source": "Q290",
+      "target": "Q581",
+      "decision": "no"
+    },
+    {
+      "id": "Q290-unknown-Q436",
+      "source": "Q290",
+      "target": "Q436",
+      "decision": "unknown"
+    },
+    {
+      "id": "Q291-yes-Q376",
+      "source": "Q291",
+      "target": "Q376",
+      "decision": "yes"
+    },
+    {
+      "id": "Q291-no-Q497",
+      "source": "Q291",
+      "target": "Q497",
+      "decision": "no"
+    },
+    {
+      "id": "Q291-unknown-Q381",
+      "source": "Q291",
+      "target": "Q381",
+      "decision": "unknown"
+    },
+    {
+      "id": "Q292-yes-Q365",
+      "source": "Q292",
+      "target": "Q365",
+      "decision": "yes"
+    },
+    {
+      "id": "Q292-no-Q493",
+      "source": "Q292",
+      "target": "Q493",
+      "decision": "no"
+    },
+    {
+      "id": "Q292-unknown-Q435",
+      "source": "Q292",
+      "target": "Q435",
+      "decision": "unknown"
+    },
+    {
+      "id": "Q293-yes-Q366",
+      "source": "Q293",
+      "target": "Q366",
+      "decision": "yes"
+    },
+    {
+      "id": "Q293-no-Q512",
+      "source": "Q293",
+      "target": "Q512",
+      "decision": "no"
+    },
+    {
+      "id": "Q293-unknown-Q443",
+      "source": "Q293",
+      "target": "Q443",
+      "decision": "unknown"
+    },
+    {
+      "id": "Q295-yes-Q377",
+      "source": "Q295",
+      "target": "Q377",
+      "decision": "yes"
+    },
+    {
+      "id": "Q295-no-Q490",
+      "source": "Q295",
+      "target": "Q490",
+      "decision": "no"
+    },
+    {
+      "id": "Q295-unknown-Q432",
+      "source": "Q295",
+      "target": "Q432",
+      "decision": "unknown"
+    },
+    {
+      "id": "Q302-yes-Q380",
+      "source": "Q302",
+      "target": "Q380",
+      "decision": "yes"
+    },
+    {
+      "id": "Q302-no-Q509",
+      "source": "Q302",
+      "target": "Q509",
+      "decision": "no"
+    },
+    {
+      "id": "Q302-unknown-Q428",
+      "source": "Q302",
+      "target": "Q428",
+      "decision": "unknown"
+    },
+    {
+      "id": "Q306-yes-Q362",
+      "source": "Q306",
+      "target": "Q362",
+      "decision": "yes"
+    },
+    {
+      "id": "Q306-no-Q581",
+      "source": "Q306",
+      "target": "Q581",
+      "decision": "no"
+    },
+    {
+      "id": "Q306-unknown-Q421",
+      "source": "Q306",
+      "target": "Q421",
+      "decision": "unknown"
+    },
+    {
+      "id": "Q328-yes-Q439",
+      "source": "Q328",
+      "target": "Q439",
+      "decision": "yes"
+    },
+    {
+      "id": "Q328-no-Q550",
+      "source": "Q328",
+      "target": "Q550",
+      "decision": "no"
+    },
+    {
+      "id": "Q328-unknown-Q509",
+      "source": "Q328",
+      "target": "Q509",
+      "decision": "unknown"
+    },
+    {
+      "id": "Q331-yes-Q436",
+      "source": "Q331",
+      "target": "Q436",
+      "decision": "yes"
+    },
+    {
+      "id": "Q331-no-Q577",
+      "source": "Q331",
+      "target": "Q577",
+      "decision": "no"
+    },
+    {
+      "id": "Q331-unknown-Q511",
+      "source": "Q331",
+      "target": "Q511",
+      "decision": "unknown"
+    },
+    {
+      "id": "Q334-yes-Q432",
+      "source": "Q334",
+      "target": "Q432",
+      "decision": "yes"
+    },
+    {
+      "id": "Q334-no-Q549",
+      "source": "Q334",
+      "target": "Q549",
+      "decision": "no"
+    },
+    {
+      "id": "Q334-unknown-Q508",
+      "source": "Q334",
+      "target": "Q508",
+      "decision": "unknown"
+    },
+    {
+      "id": "Q340-yes-Q431",
+      "source": "Q340",
+      "target": "Q431",
+      "decision": "yes"
+    },
+    {
+      "id": "Q340-no-Q578",
+      "source": "Q340",
+      "target": "Q578",
+      "decision": "no"
+    },
+    {
+      "id": "Q340-unknown-Q498",
+      "source": "Q340",
+      "target": "Q498",
+      "decision": "unknown"
+    },
+    {
+      "id": "Q353-yes-Q424",
+      "source": "Q353",
+      "target": "Q424",
+      "decision": "yes"
+    },
+    {
+      "id": "Q353-no-Q548",
+      "source": "Q353",
+      "target": "Q548",
+      "decision": "no"
+    },
+    {
+      "id": "Q353-unknown-Q512",
+      "source": "Q353",
+      "target": "Q512",
+      "decision": "unknown"
+    },
+    {
+      "id": "Q354-yes-Q383",
+      "source": "Q354",
+      "target": "Q383",
+      "decision": "yes"
+    },
+    {
+      "id": "Q354-no-Q556",
+      "source": "Q354",
+      "target": "Q556",
+      "decision": "no"
+    },
+    {
+      "id": "Q354-unknown-Q507",
+      "source": "Q354",
+      "target": "Q507",
+      "decision": "unknown"
+    },
+    {
+      "id": "Q355-yes-Q419",
+      "source": "Q355",
+      "target": "Q419",
+      "decision": "yes"
+    },
+    {
+      "id": "Q355-no-Q557",
+      "source": "Q355",
+      "target": "Q557",
+      "decision": "no"
+    },
+    {
+      "id": "Q355-unknown-Q467",
+      "source": "Q355",
+      "target": "Q467",
+      "decision": "unknown"
+    },
+    {
+      "id": "Q358-yes-Q401",
+      "source": "Q358",
+      "target": "Q401",
+      "decision": "yes"
+    },
+    {
+      "id": "Q358-no-Q553",
+      "source": "Q358",
+      "target": "Q553",
+      "decision": "no"
+    },
+    {
+      "id": "Q358-unknown-Q466",
+      "source": "Q358",
+      "target": "Q466",
+      "decision": "unknown"
+    },
+    {
+      "id": "Q359-yes-Q409",
+      "source": "Q359",
+      "target": "Q409",
+      "decision": "yes"
+    },
+    {
+      "id": "Q359-no-Q554",
+      "source": "Q359",
+      "target": "Q554",
+      "decision": "no"
+    },
+    {
+      "id": "Q359-unknown-Q467",
+      "source": "Q359",
+      "target": "Q467",
+      "decision": "unknown"
+    },
+    {
+      "id": "Q360-yes-Q416",
+      "source": "Q360",
+      "target": "Q416",
+      "decision": "yes"
+    },
+    {
+      "id": "Q360-no-Q555",
+      "source": "Q360",
+      "target": "Q555",
+      "decision": "no"
+    },
+    {
+      "id": "Q360-unknown-Q493",
+      "source": "Q360",
+      "target": "Q493",
+      "decision": "unknown"
+    },
+    {
+      "id": "Q362-yes-Q384",
+      "source": "Q362",
+      "target": "Q384",
+      "decision": "yes"
+    },
+    {
+      "id": "Q362-no-Q550",
+      "source": "Q362",
+      "target": "Q550",
+      "decision": "no"
+    },
+    {
+      "id": "Q362-unknown-Q495",
+      "source": "Q362",
+      "target": "Q495",
+      "decision": "unknown"
+    },
+    {
+      "id": "Q363-yes-Q399",
+      "source": "Q363",
+      "target": "Q399",
+      "decision": "yes"
+    },
+    {
+      "id": "Q363-no-Q549",
+      "source": "Q363",
+      "target": "Q549",
+      "decision": "no"
+    },
+    {
+      "id": "Q363-unknown-Q496",
+      "source": "Q363",
+      "target": "Q496",
+      "decision": "unknown"
+    },
+    {
+      "id": "Q365-yes-Q415",
+      "source": "Q365",
+      "target": "Q415",
+      "decision": "yes"
+    },
+    {
+      "id": "Q365-no-Q546",
+      "source": "Q365",
+      "target": "Q546",
+      "decision": "no"
+    },
+    {
+      "id": "Q365-unknown-Q508",
+      "source": "Q365",
+      "target": "Q508",
+      "decision": "unknown"
+    },
+    {
+      "id": "Q375-yes-Q440",
+      "source": "Q375",
+      "target": "Q440",
+      "decision": "yes"
+    },
+    {
+      "id": "Q375-no-Q549",
+      "source": "Q375",
+      "target": "Q549",
+      "decision": "no"
+    },
+    {
+      "id": "Q375-unknown-Q494",
+      "source": "Q375",
+      "target": "Q494",
+      "decision": "unknown"
+    },
+    {
+      "id": "Q376-yes-Q397",
+      "source": "Q376",
+      "target": "Q397",
+      "decision": "yes"
+    },
+    {
+      "id": "Q376-no-Q545",
+      "source": "Q376",
+      "target": "Q545",
+      "decision": "no"
+    },
+    {
+      "id": "Q376-unknown-Q472",
+      "source": "Q376",
+      "target": "Q472",
+      "decision": "unknown"
+    },
+    {
+      "id": "Q377-yes-Q437",
+      "source": "Q377",
+      "target": "Q437",
+      "decision": "yes"
+    },
+    {
+      "id": "Q377-no-Q549",
+      "source": "Q377",
+      "target": "Q549",
+      "decision": "no"
+    },
+    {
+      "id": "Q377-unknown-Q516",
+      "source": "Q377",
+      "target": "Q516",
+      "decision": "unknown"
+    },
+    {
+      "id": "Q380-yes-Q437",
+      "source": "Q380",
+      "target": "Q437",
+      "decision": "yes"
+    },
+    {
+      "id": "Q380-no-Q550",
+      "source": "Q380",
+      "target": "Q550",
+      "decision": "no"
+    },
+    {
+      "id": "Q380-unknown-Q511",
+      "source": "Q380",
+      "target": "Q511",
+      "decision": "unknown"
+    },
+    {
+      "id": "Q383-yes-Q510",
+      "source": "Q383",
+      "target": "Q510",
+      "decision": "yes"
+    },
+    {
+      "id": "Q383-no-Q549",
+      "source": "Q383",
+      "target": "Q549",
+      "decision": "no"
+    },
+    {
+      "id": "Q383-unknown-Q507",
+      "source": "Q383",
+      "target": "Q507",
+      "decision": "unknown"
+    },
+    {
+      "id": "Q384-yes-Q511",
+      "source": "Q384",
+      "target": "Q511",
+      "decision": "yes"
+    },
+    {
+      "id": "Q384-no-Q548",
+      "source": "Q384",
+      "target": "Q548",
+      "decision": "no"
+    },
+    {
+      "id": "Q384-unknown-Q508",
+      "source": "Q384",
+      "target": "Q508",
+      "decision": "unknown"
+    },
+    {
+      "id": "Q390-yes-Q466",
+      "source": "Q390",
+      "target": "Q466",
+      "decision": "yes"
+    },
+    {
+      "id": "Q390-no-Q560",
+      "source": "Q390",
+      "target": "Q560",
+      "decision": "no"
+    },
+    {
+      "id": "Q390-unknown-Q500",
+      "source": "Q390",
+      "target": "Q500",
+      "decision": "unknown"
+    },
+    {
+      "id": "Q392-yes-Q506",
+      "source": "Q392",
+      "target": "Q506",
+      "decision": "yes"
+    },
+    {
+      "id": "Q392-no-Q584",
+      "source": "Q392",
+      "target": "Q584",
+      "decision": "no"
+    },
+    {
+      "id": "Q392-unknown-Q503",
+      "source": "Q392",
+      "target": "Q503",
+      "decision": "unknown"
+    },
+    {
+      "id": "Q396-yes-Q581",
+      "source": "Q396",
+      "target": "Q581",
+      "decision": "yes"
+    },
+    {
+      "id": "Q396-no-Q555",
+      "source": "Q396",
+      "target": "Q555",
+      "decision": "no"
+    },
+    {
+      "id": "Q396-unknown-Q494",
+      "source": "Q396",
+      "target": "Q494",
+      "decision": "unknown"
+    },
+    {
+      "id": "Q399-yes-Q494",
+      "source": "Q399",
+      "target": "Q494",
+      "decision": "yes"
+    },
+    {
+      "id": "Q399-no-Q584",
+      "source": "Q399",
+      "target": "Q584",
+      "decision": "no"
+    },
+    {
+      "id": "Q399-unknown-Q490",
+      "source": "Q399",
+      "target": "Q490",
+      "decision": "unknown"
+    },
+    {
+      "id": "Q416-yes-Q497",
+      "source": "Q416",
+      "target": "Q497",
+      "decision": "yes"
+    },
+    {
+      "id": "Q416-no-Q547",
+      "source": "Q416",
+      "target": "Q547",
+      "decision": "no"
+    },
+    {
+      "id": "Q416-unknown-Q492",
+      "source": "Q416",
+      "target": "Q492",
+      "decision": "unknown"
+    },
+    {
+      "id": "Q424-yes-Q492",
+      "source": "Q424",
+      "target": "Q492",
+      "decision": "yes"
+    },
+    {
+      "id": "Q424-no-Q555",
+      "source": "Q424",
+      "target": "Q555",
+      "decision": "no"
+    },
+    {
+      "id": "Q424-unknown-Q506",
+      "source": "Q424",
+      "target": "Q506",
+      "decision": "unknown"
+    },
+    {
+      "id": "Q428-yes-Q516",
+      "source": "Q428",
+      "target": "Q516",
+      "decision": "yes"
+    },
+    {
+      "id": "Q428-no-Q545",
+      "source": "Q428",
+      "target": "Q545",
+      "decision": "no"
+    },
+    {
+      "id": "Q428-unknown-Q472",
+      "source": "Q428",
+      "target": "Q472",
+      "decision": "unknown"
+    },
+    {
+      "id": "Q431-yes-Q510",
+      "source": "Q431",
+      "target": "Q510",
+      "decision": "yes"
+    },
+    {
+      "id": "Q431-no-Q574",
+      "source": "Q431",
+      "target": "Q574",
+      "decision": "no"
+    },
+    {
+      "id": "Q431-unknown-Q507",
+      "source": "Q431",
+      "target": "Q507",
+      "decision": "unknown"
+    },
+    {
+      "id": "Q433-yes-Q506",
+      "source": "Q433",
+      "target": "Q506",
+      "decision": "yes"
+    },
+    {
+      "id": "Q433-no-Q584",
+      "source": "Q433",
+      "target": "Q584",
+      "decision": "no"
+    },
+    {
+      "id": "Q433-unknown-Q513",
+      "source": "Q433",
+      "target": "Q513",
+      "decision": "unknown"
+    },
+    {
+      "id": "Q436-yes-Q509",
+      "source": "Q436",
+      "target": "Q509",
+      "decision": "yes"
+    },
+    {
+      "id": "Q436-no-Q577",
+      "source": "Q436",
+      "target": "Q577",
+      "decision": "no"
+    },
+    {
+      "id": "Q436-unknown-Q467",
+      "source": "Q436",
+      "target": "Q467",
+      "decision": "unknown"
+    }
+  ]
+}

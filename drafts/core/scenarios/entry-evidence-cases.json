@@ -1,0 +1,4664 @@
+{
+  "graphVersion": "0.20261011a",
+  "scope": "Public-report-only cases retain missing evidence. Synthetic reconstructions exercise concrete event matching and supplied provenance/coverage claims, not raw incident replay or independent validation.",
+  "sources": {
+    "unc3944": {
+      "title": "Mandiant: UNC3944 Targets SaaS Applications",
+      "url": "https://cloud.google.com/blog/topics/threat-intelligence/unc3944-targets-saas-applications",
+      "locator": "Virtual Machine Compromise; Pivot to SaaS Applications; Figure 2",
+      "published": "2024-06-13",
+      "sourceKind": "First-party incident-response report with redacted log excerpt"
+    },
+    "sunburst": {
+      "title": "Mandiant: SolarWinds supply-chain compromise with SUNBURST",
+      "url": "https://cloud.google.com/blog/topics/threat-intelligence/evasive-attacker-leverages-solarwinds-supply-chain-compromises-with-sunburst-backdoor",
+      "locator": "SUNBURST backdoor summary and command-and-control discussion",
+      "published": "2020-12-13",
+      "sourceKind": "First-party incident-response report"
+    },
+    "openclaw": {
+      "title": "MITRE ATLAS OpenClaw Investigation",
+      "url": "https://www.mitre.org/sites/default/files/2026-02/PR-26-00176-1-MITRE-ATLAS-OpenClaw-Investigation.pdf",
+      "locator": "Page 2: Command & Control via Prompt Injection",
+      "published": "2026-02-09",
+      "sourceKind": "Published researcher demonstration; not a victim incident dataset"
+    },
+    "aitm": {
+      "title": "Microsoft: Multistage AiTM phishing and BEC campaign abusing SharePoint",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/01/21/multistage-aitm-phishing-bec-campaign-abusing-sharepoint/",
+      "locator": "Campaign overview and post-delivery message removal",
+      "published": "2026-01-21",
+      "sourceKind": "First-party campaign investigation report"
+    },
+    "storm0558": {
+      "title": "Microsoft: Analysis of Storm-0558 techniques for unauthorized email access",
+      "url": "https://www.microsoft.com/en-us/security/blog/2023/07/14/analysis-of-storm-0558-techniques-for-unauthorized-email-access/",
+      "locator": "Forged token use and OWA API access",
+      "published": "2023-07-14",
+      "sourceKind": "First-party incident-response report"
+    }
+  },
+  "cases": [
+    {
+      "id": "identity-public-report",
+      "domain": "Identity",
+      "evidenceKind": "public-report-only",
+      "sourceIds": [
+        "unc3944"
+      ],
+      "sourceObservation": "A published SSO event has redacted subject and time fields; it cannot resolve a precisely bound victim event.",
+      "bindings": {
+        "principalId": null,
+        "identityAction": null
+      },
+      "interval": {
+        "start": null,
+        "end": null
+      },
+      "primaryOrigin": "unc3944",
+      "primary": {
+        "accessible": true,
+        "searched": true,
+        "records": [
+          {
+            "id": "published-redacted-sso-excerpt",
+            "subjects": {
+              "principalId": null,
+              "identityAction": "user.authentication.sso"
+            },
+            "eventTime": null,
+            "origin": "unc3944-published-okta-excerpt",
+            "provenanceAssessment": "unknown",
+            "interpretationAssessment": "unknown",
+            "assessmentEvidenceRefs": [
+              "unc3944:Figure2"
+            ]
+          }
+        ]
+      },
+      "independent": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "coverage": {},
+      "expectedTrace": [
+        [
+          "Q1",
+          "unknown"
+        ],
+        [
+          "Q8",
+          "unknown"
+        ],
+        [
+          "Q596",
+          "yes"
+        ]
+      ],
+      "expectedState": "unresolved"
+    },
+    {
+      "id": "identity-supported-record",
+      "domain": "Identity",
+      "evidenceKind": "synthetic-reconstruction",
+      "sourceIds": [
+        "unc3944"
+      ],
+      "sourceObservation": "Author-created normalized event inspired by the cited behavior; all identifiers, dates and coverage/provenance assertions are synthetic. No actor intent or authorization is inferred.",
+      "bindings": {
+        "principalId": "principal:lab-admin",
+        "identityAction": "register-mfa-method"
+      },
+      "interval": {
+        "start": "2026-10-01T10:00:00Z",
+        "end": "2026-10-01T11:00:00Z"
+      },
+      "primaryOrigin": "primary-native-sensor",
+      "primary": {
+        "accessible": true,
+        "searched": true,
+        "records": [
+          {
+            "id": "identity-synthetic-record",
+            "subjects": {
+              "principalId": "principal:lab-admin",
+              "identityAction": "register-mfa-method"
+            },
+            "eventTime": "2026-10-01T10:30:00Z",
+            "origin": "primary-native-sensor",
+            "provenanceAssessment": "accepted",
+            "interpretationAssessment": "accepted",
+            "assessmentEvidenceRefs": [
+              "synthetic-acquisition-receipt",
+              "synthetic-event-interpretation"
+            ],
+            "eventInterpretation": "A normalized audit event records enrollment of an MFA method for the lab principal. Enrollment does not prove legitimate user consent."
+          }
+        ]
+      },
+      "independent": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "coverage": {},
+      "expectedTrace": [
+        [
+          "Q1",
+          "yes"
+        ],
+        [
+          "Q155",
+          "yes"
+        ]
+      ],
+      "expectedState": "positive-review-boundary",
+      "investigativeQuestion": "A normalized audit event records enrollment of an MFA method for the lab principal. Enrollment does not prove legitimate user consent."
+    },
+    {
+      "id": "identity-bounded-absence",
+      "domain": "Identity",
+      "evidenceKind": "synthetic-reconstruction",
+      "sourceIds": [
+        "unc3944"
+      ],
+      "sourceObservation": "Author-created normalized event inspired by the cited behavior; all identifiers, dates and coverage/provenance assertions are synthetic. No actor intent or authorization is inferred.",
+      "bindings": {
+        "principalId": "principal:lab-admin",
+        "identityAction": "register-mfa-method"
+      },
+      "interval": {
+        "start": "2026-10-01T10:00:00Z",
+        "end": "2026-10-01T11:00:00Z"
+      },
+      "primaryOrigin": "primary-native-sensor",
+      "primary": {
+        "accessible": true,
+        "searched": true,
+        "records": []
+      },
+      "independent": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "coverage": {
+        "subjects": {
+          "principalId": "principal:lab-admin",
+          "identityAction": "register-mfa-method"
+        },
+        "interval": {
+          "start": "2026-10-01T10:00:00Z",
+          "end": "2026-10-01T11:00:00Z"
+        },
+        "applicableLogging": true,
+        "continuousCollection": true,
+        "retentionComplete": true,
+        "clockBounded": true,
+        "searchComplete": true,
+        "integrityAssessed": true,
+        "evidenceRefs": [
+          "synthetic-coverage-receipt"
+        ]
+      },
+      "expectedTrace": [
+        [
+          "Q1",
+          "no"
+        ],
+        [
+          "Q589",
+          "yes"
+        ]
+      ],
+      "expectedState": "bounded-exclusion",
+      "investigativeQuestion": "A normalized audit event records enrollment of an MFA method for the lab principal. Enrollment does not prove legitimate user consent."
+    },
+    {
+      "id": "identity-missing-logs",
+      "domain": "Identity",
+      "evidenceKind": "synthetic-reconstruction",
+      "sourceIds": [
+        "unc3944"
+      ],
+      "sourceObservation": "Author-created normalized event inspired by the cited behavior; all identifiers, dates and coverage/provenance assertions are synthetic. No actor intent or authorization is inferred.",
+      "bindings": {
+        "principalId": "principal:lab-admin",
+        "identityAction": "register-mfa-method"
+      },
+      "interval": {
+        "start": "2026-10-01T10:00:00Z",
+        "end": "2026-10-01T11:00:00Z"
+      },
+      "primaryOrigin": "primary-native-sensor",
+      "primary": {
+        "accessible": true,
+        "searched": true,
+        "records": []
+      },
+      "independent": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "coverage": {
+        "subjects": {
+          "principalId": "principal:lab-admin",
+          "identityAction": "register-mfa-method"
+        },
+        "interval": {
+          "start": "2026-10-01T10:00:00Z",
+          "end": "2026-10-01T11:00:00Z"
+        },
+        "applicableLogging": true,
+        "continuousCollection": false,
+        "retentionComplete": true,
+        "clockBounded": true,
+        "searchComplete": true,
+        "integrityAssessed": true,
+        "evidenceRefs": [
+          "synthetic-coverage-receipt"
+        ]
+      },
+      "expectedTrace": [
+        [
+          "Q1",
+          "no"
+        ],
+        [
+          "Q589",
+          "no"
+        ]
+      ],
+      "expectedState": "unresolved",
+      "investigativeQuestion": "A normalized audit event records enrollment of an MFA method for the lab principal. Enrollment does not prove legitimate user consent."
+    },
+    {
+      "id": "identity-independent-recovery",
+      "domain": "Identity",
+      "evidenceKind": "synthetic-reconstruction",
+      "sourceIds": [
+        "unc3944"
+      ],
+      "sourceObservation": "Author-created normalized event inspired by the cited behavior; all identifiers, dates and coverage/provenance assertions are synthetic. No actor intent or authorization is inferred.",
+      "bindings": {
+        "principalId": "principal:lab-admin",
+        "identityAction": "register-mfa-method"
+      },
+      "interval": {
+        "start": "2026-10-01T10:00:00Z",
+        "end": "2026-10-01T11:00:00Z"
+      },
+      "primaryOrigin": "primary-native-sensor",
+      "primary": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "independent": {
+        "accessible": true,
+        "searched": true,
+        "records": [
+          {
+            "id": "identity-independent-record",
+            "subjects": {
+              "principalId": "principal:lab-admin",
+              "identityAction": "register-mfa-method"
+            },
+            "eventTime": "2026-10-01T10:30:00Z",
+            "origin": "separately-originating-sensor",
+            "provenanceAssessment": "accepted",
+            "interpretationAssessment": "accepted",
+            "assessmentEvidenceRefs": [
+              "synthetic-acquisition-receipt",
+              "synthetic-event-interpretation"
+            ],
+            "eventInterpretation": "A normalized audit event records enrollment of an MFA method for the lab principal. Enrollment does not prove legitimate user consent."
+          }
+        ]
+      },
+      "coverage": {},
+      "expectedTrace": [
+        [
+          "Q1",
+          "unknown"
+        ],
+        [
+          "Q8",
+          "yes"
+        ],
+        [
+          "Q150",
+          "yes"
+        ]
+      ],
+      "expectedState": "positive-review-boundary",
+      "investigativeQuestion": "A normalized audit event records enrollment of an MFA method for the lab principal. Enrollment does not prove legitimate user consent."
+    },
+    {
+      "id": "identity-copied-log-is-not-corroboration",
+      "domain": "Identity",
+      "evidenceKind": "synthetic-reconstruction",
+      "sourceIds": [
+        "unc3944"
+      ],
+      "sourceObservation": "Author-created normalized event inspired by the cited behavior; all identifiers, dates and coverage/provenance assertions are synthetic. No actor intent or authorization is inferred.",
+      "bindings": {
+        "principalId": "principal:lab-admin",
+        "identityAction": "register-mfa-method"
+      },
+      "interval": {
+        "start": "2026-10-01T10:00:00Z",
+        "end": "2026-10-01T11:00:00Z"
+      },
+      "primaryOrigin": "primary-native-sensor",
+      "primary": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "independent": {
+        "accessible": true,
+        "searched": true,
+        "records": [
+          {
+            "id": "identity-independent-record",
+            "subjects": {
+              "principalId": "principal:lab-admin",
+              "identityAction": "register-mfa-method"
+            },
+            "eventTime": "2026-10-01T10:30:00Z",
+            "origin": "primary-native-sensor",
+            "provenanceAssessment": "accepted",
+            "interpretationAssessment": "accepted",
+            "assessmentEvidenceRefs": [
+              "synthetic-acquisition-receipt",
+              "synthetic-event-interpretation"
+            ],
+            "eventInterpretation": "A normalized audit event records enrollment of an MFA method for the lab principal. Enrollment does not prove legitimate user consent."
+          }
+        ]
+      },
+      "coverage": {},
+      "expectedTrace": [
+        [
+          "Q1",
+          "unknown"
+        ],
+        [
+          "Q8",
+          "unknown"
+        ],
+        [
+          "Q596",
+          "yes"
+        ]
+      ],
+      "expectedState": "unresolved",
+      "investigativeQuestion": "A normalized audit event records enrollment of an MFA method for the lab principal. Enrollment does not prove legitimate user consent."
+    },
+    {
+      "id": "identity-rejected-provenance",
+      "domain": "Identity",
+      "evidenceKind": "synthetic-reconstruction",
+      "sourceIds": [
+        "unc3944"
+      ],
+      "sourceObservation": "Author-created normalized event inspired by the cited behavior; all identifiers, dates and coverage/provenance assertions are synthetic. No actor intent or authorization is inferred.",
+      "bindings": {
+        "principalId": "principal:lab-admin",
+        "identityAction": "register-mfa-method"
+      },
+      "interval": {
+        "start": "2026-10-01T10:00:00Z",
+        "end": "2026-10-01T11:00:00Z"
+      },
+      "primaryOrigin": "primary-native-sensor",
+      "primary": {
+        "accessible": true,
+        "searched": true,
+        "records": [
+          {
+            "id": "identity-synthetic-record",
+            "subjects": {
+              "principalId": "principal:lab-admin",
+              "identityAction": "register-mfa-method"
+            },
+            "eventTime": "2026-10-01T10:30:00Z",
+            "origin": "primary-native-sensor",
+            "provenanceAssessment": "rejected",
+            "interpretationAssessment": "accepted",
+            "assessmentEvidenceRefs": [
+              "synthetic-acquisition-receipt",
+              "synthetic-event-interpretation"
+            ],
+            "eventInterpretation": "A normalized audit event records enrollment of an MFA method for the lab principal. Enrollment does not prove legitimate user consent."
+          }
+        ]
+      },
+      "independent": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "coverage": {},
+      "expectedTrace": [
+        [
+          "Q1",
+          "yes"
+        ],
+        [
+          "Q155",
+          "no"
+        ],
+        [
+          "Q596",
+          "yes"
+        ]
+      ],
+      "expectedState": "unresolved",
+      "investigativeQuestion": "A normalized audit event records enrollment of an MFA method for the lab principal. Enrollment does not prove legitimate user consent."
+    },
+    {
+      "id": "identity-conflicting-records",
+      "domain": "Identity",
+      "evidenceKind": "synthetic-reconstruction",
+      "sourceIds": [
+        "unc3944"
+      ],
+      "sourceObservation": "Author-created normalized event inspired by the cited behavior; all identifiers, dates and coverage/provenance assertions are synthetic. No actor intent or authorization is inferred.",
+      "bindings": {
+        "principalId": "principal:lab-admin",
+        "identityAction": "register-mfa-method"
+      },
+      "interval": {
+        "start": "2026-10-01T10:00:00Z",
+        "end": "2026-10-01T11:00:00Z"
+      },
+      "primaryOrigin": "primary-native-sensor",
+      "primary": {
+        "accessible": true,
+        "searched": true,
+        "records": [
+          {
+            "id": "identity-synthetic-record",
+            "subjects": {
+              "principalId": "principal:lab-admin",
+              "identityAction": "register-mfa-method"
+            },
+            "eventTime": "2026-10-01T10:30:00Z",
+            "origin": "primary-native-sensor",
+            "provenanceAssessment": "accepted",
+            "interpretationAssessment": "accepted",
+            "assessmentEvidenceRefs": [
+              "synthetic-acquisition-receipt",
+              "synthetic-event-interpretation"
+            ],
+            "eventInterpretation": "A normalized audit event records enrollment of an MFA method for the lab principal. Enrollment does not prove legitimate user consent."
+          }
+        ]
+      },
+      "independent": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "coverage": {},
+      "expectedTrace": [
+        [
+          "Q1",
+          "unknown"
+        ],
+        [
+          "Q8",
+          "unknown"
+        ],
+        [
+          "Q596",
+          "yes"
+        ]
+      ],
+      "expectedState": "unresolved",
+      "materialConflict": true,
+      "investigativeQuestion": "A normalized audit event records enrollment of an MFA method for the lab principal. Enrollment does not prove legitimate user consent."
+    },
+    {
+      "id": "identity-wrong-subject-corroboration",
+      "domain": "Identity",
+      "evidenceKind": "synthetic-reconstruction",
+      "sourceIds": [
+        "unc3944"
+      ],
+      "sourceObservation": "Author-created normalized event inspired by the cited behavior; all identifiers, dates and coverage/provenance assertions are synthetic. No actor intent or authorization is inferred.",
+      "bindings": {
+        "principalId": "principal:lab-admin",
+        "identityAction": "register-mfa-method"
+      },
+      "interval": {
+        "start": "2026-10-01T10:00:00Z",
+        "end": "2026-10-01T11:00:00Z"
+      },
+      "primaryOrigin": "primary-native-sensor",
+      "primary": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "independent": {
+        "accessible": true,
+        "searched": true,
+        "records": [
+          {
+            "id": "wrong-subject-record",
+            "subjects": {
+              "principalId": "different-entity",
+              "identityAction": "register-mfa-method"
+            },
+            "eventTime": "2026-10-01T10:30:00Z",
+            "origin": "separately-originating-sensor",
+            "provenanceAssessment": "accepted",
+            "interpretationAssessment": "accepted",
+            "assessmentEvidenceRefs": [
+              "synthetic-acquisition-receipt",
+              "synthetic-event-interpretation"
+            ],
+            "eventInterpretation": "A normalized audit event records enrollment of an MFA method for the lab principal. Enrollment does not prove legitimate user consent."
+          }
+        ]
+      },
+      "coverage": {},
+      "expectedTrace": [
+        [
+          "Q1",
+          "unknown"
+        ],
+        [
+          "Q8",
+          "no"
+        ],
+        [
+          "Q596",
+          "yes"
+        ]
+      ],
+      "expectedState": "unresolved",
+      "investigativeQuestion": "A normalized audit event records enrollment of an MFA method for the lab principal. Enrollment does not prove legitimate user consent."
+    },
+    {
+      "id": "identity-outside-time-interval",
+      "domain": "Identity",
+      "evidenceKind": "synthetic-reconstruction",
+      "sourceIds": [
+        "unc3944"
+      ],
+      "sourceObservation": "Author-created normalized event inspired by the cited behavior; all identifiers, dates and coverage/provenance assertions are synthetic. No actor intent or authorization is inferred.",
+      "bindings": {
+        "principalId": "principal:lab-admin",
+        "identityAction": "register-mfa-method"
+      },
+      "interval": {
+        "start": "2026-10-01T10:00:00Z",
+        "end": "2026-10-01T11:00:00Z"
+      },
+      "primaryOrigin": "primary-native-sensor",
+      "primary": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "independent": {
+        "accessible": true,
+        "searched": true,
+        "records": [
+          {
+            "id": "wrong-subject-record",
+            "subjects": {
+              "principalId": "principal:lab-admin",
+              "identityAction": "register-mfa-method"
+            },
+            "eventTime": "2026-10-01T11:00:00Z",
+            "origin": "separately-originating-sensor",
+            "provenanceAssessment": "accepted",
+            "interpretationAssessment": "accepted",
+            "assessmentEvidenceRefs": [
+              "synthetic-acquisition-receipt",
+              "synthetic-event-interpretation"
+            ],
+            "eventInterpretation": "A normalized audit event records enrollment of an MFA method for the lab principal. Enrollment does not prove legitimate user consent."
+          }
+        ]
+      },
+      "coverage": {},
+      "expectedTrace": [
+        [
+          "Q1",
+          "unknown"
+        ],
+        [
+          "Q8",
+          "no"
+        ],
+        [
+          "Q596",
+          "yes"
+        ]
+      ],
+      "expectedState": "unresolved",
+      "investigativeQuestion": "A normalized audit event records enrollment of an MFA method for the lab principal. Enrollment does not prove legitimate user consent."
+    },
+    {
+      "id": "identity-unknown-coverage",
+      "domain": "Identity",
+      "evidenceKind": "synthetic-reconstruction",
+      "sourceIds": [
+        "unc3944"
+      ],
+      "sourceObservation": "Author-created normalized event inspired by the cited behavior; all identifiers, dates and coverage/provenance assertions are synthetic. No actor intent or authorization is inferred.",
+      "bindings": {
+        "principalId": "principal:lab-admin",
+        "identityAction": "register-mfa-method"
+      },
+      "interval": {
+        "start": "2026-10-01T10:00:00Z",
+        "end": "2026-10-01T11:00:00Z"
+      },
+      "primaryOrigin": "primary-native-sensor",
+      "primary": {
+        "accessible": true,
+        "searched": true,
+        "records": []
+      },
+      "independent": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "coverage": {
+        "subjects": {
+          "principalId": "principal:lab-admin",
+          "identityAction": "register-mfa-method"
+        },
+        "interval": {
+          "start": "2026-10-01T10:00:00Z",
+          "end": "2026-10-01T11:00:00Z"
+        },
+        "applicableLogging": true,
+        "continuousCollection": true,
+        "retentionComplete": null,
+        "clockBounded": true,
+        "searchComplete": true,
+        "integrityAssessed": true,
+        "evidenceRefs": [
+          "synthetic-coverage-receipt"
+        ]
+      },
+      "expectedTrace": [
+        [
+          "Q1",
+          "no"
+        ],
+        [
+          "Q589",
+          "unknown"
+        ]
+      ],
+      "expectedState": "unresolved",
+      "investigativeQuestion": "A normalized audit event records enrollment of an MFA method for the lab principal. Enrollment does not prove legitimate user consent."
+    },
+    {
+      "id": "host-public-report",
+      "domain": "Host",
+      "evidenceKind": "public-report-only",
+      "sourceIds": [
+        "openclaw"
+      ],
+      "sourceObservation": "A demonstrated injection caused an agent to invoke an execution tool; the report does not provide a bound process event log.",
+      "bindings": {
+        "hostId": null,
+        "processId": null
+      },
+      "interval": {
+        "start": null,
+        "end": null
+      },
+      "primaryOrigin": "openclaw",
+      "primary": {
+        "accessible": true,
+        "searched": true,
+        "records": []
+      },
+      "independent": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "coverage": {},
+      "expectedTrace": [
+        [
+          "Q2",
+          "unknown"
+        ],
+        [
+          "Q9",
+          "unknown"
+        ],
+        [
+          "Q597",
+          "yes"
+        ]
+      ],
+      "expectedState": "unresolved"
+    },
+    {
+      "id": "host-supported-record",
+      "domain": "Host",
+      "evidenceKind": "synthetic-reconstruction",
+      "sourceIds": [
+        "openclaw"
+      ],
+      "sourceObservation": "Author-created normalized event inspired by the cited behavior; all identifiers, dates and coverage/provenance assertions are synthetic. No actor intent or authorization is inferred.",
+      "bindings": {
+        "hostId": "host:agent-lab",
+        "processId": "process:agent-tool-exec-42"
+      },
+      "interval": {
+        "start": "2026-10-01T10:00:00Z",
+        "end": "2026-10-01T11:00:00Z"
+      },
+      "primaryOrigin": "primary-native-sensor",
+      "primary": {
+        "accessible": true,
+        "searched": true,
+        "records": [
+          {
+            "id": "host-synthetic-record",
+            "subjects": {
+              "hostId": "host:agent-lab",
+              "processId": "process:agent-tool-exec-42"
+            },
+            "eventTime": "2026-10-01T10:30:00Z",
+            "origin": "primary-native-sensor",
+            "provenanceAssessment": "accepted",
+            "interpretationAssessment": "accepted",
+            "assessmentEvidenceRefs": [
+              "synthetic-acquisition-receipt",
+              "synthetic-event-interpretation"
+            ],
+            "eventInterpretation": "A normalized process event records an agent tool execution on a lab host. An instruction or tool request alone would not establish execution."
+          }
+        ]
+      },
+      "independent": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "coverage": {},
+      "expectedTrace": [
+        [
+          "Q2",
+          "yes"
+        ],
+        [
+          "Q156",
+          "yes"
+        ]
+      ],
+      "expectedState": "positive-review-boundary",
+      "investigativeQuestion": "A normalized process event records an agent tool execution on a lab host. An instruction or tool request alone would not establish execution."
+    },
+    {
+      "id": "host-bounded-absence",
+      "domain": "Host",
+      "evidenceKind": "synthetic-reconstruction",
+      "sourceIds": [
+        "openclaw"
+      ],
+      "sourceObservation": "Author-created normalized event inspired by the cited behavior; all identifiers, dates and coverage/provenance assertions are synthetic. No actor intent or authorization is inferred.",
+      "bindings": {
+        "hostId": "host:agent-lab",
+        "processId": "process:agent-tool-exec-42"
+      },
+      "interval": {
+        "start": "2026-10-01T10:00:00Z",
+        "end": "2026-10-01T11:00:00Z"
+      },
+      "primaryOrigin": "primary-native-sensor",
+      "primary": {
+        "accessible": true,
+        "searched": true,
+        "records": []
+      },
+      "independent": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "coverage": {
+        "subjects": {
+          "hostId": "host:agent-lab",
+          "processId": "process:agent-tool-exec-42"
+        },
+        "interval": {
+          "start": "2026-10-01T10:00:00Z",
+          "end": "2026-10-01T11:00:00Z"
+        },
+        "applicableLogging": true,
+        "continuousCollection": true,
+        "retentionComplete": true,
+        "clockBounded": true,
+        "searchComplete": true,
+        "integrityAssessed": true,
+        "evidenceRefs": [
+          "synthetic-coverage-receipt"
+        ]
+      },
+      "expectedTrace": [
+        [
+          "Q2",
+          "no"
+        ],
+        [
+          "Q590",
+          "yes"
+        ]
+      ],
+      "expectedState": "bounded-exclusion",
+      "investigativeQuestion": "A normalized process event records an agent tool execution on a lab host. An instruction or tool request alone would not establish execution."
+    },
+    {
+      "id": "host-missing-logs",
+      "domain": "Host",
+      "evidenceKind": "synthetic-reconstruction",
+      "sourceIds": [
+        "openclaw"
+      ],
+      "sourceObservation": "Author-created normalized event inspired by the cited behavior; all identifiers, dates and coverage/provenance assertions are synthetic. No actor intent or authorization is inferred.",
+      "bindings": {
+        "hostId": "host:agent-lab",
+        "processId": "process:agent-tool-exec-42"
+      },
+      "interval": {
+        "start": "2026-10-01T10:00:00Z",
+        "end": "2026-10-01T11:00:00Z"
+      },
+      "primaryOrigin": "primary-native-sensor",
+      "primary": {
+        "accessible": true,
+        "searched": true,
+        "records": []
+      },
+      "independent": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "coverage": {
+        "subjects": {
+          "hostId": "host:agent-lab",
+          "processId": "process:agent-tool-exec-42"
+        },
+        "interval": {
+          "start": "2026-10-01T10:00:00Z",
+          "end": "2026-10-01T11:00:00Z"
+        },
+        "applicableLogging": true,
+        "continuousCollection": false,
+        "retentionComplete": true,
+        "clockBounded": true,
+        "searchComplete": true,
+        "integrityAssessed": true,
+        "evidenceRefs": [
+          "synthetic-coverage-receipt"
+        ]
+      },
+      "expectedTrace": [
+        [
+          "Q2",
+          "no"
+        ],
+        [
+          "Q590",
+          "no"
+        ]
+      ],
+      "expectedState": "unresolved",
+      "investigativeQuestion": "A normalized process event records an agent tool execution on a lab host. An instruction or tool request alone would not establish execution."
+    },
+    {
+      "id": "host-independent-recovery",
+      "domain": "Host",
+      "evidenceKind": "synthetic-reconstruction",
+      "sourceIds": [
+        "openclaw"
+      ],
+      "sourceObservation": "Author-created normalized event inspired by the cited behavior; all identifiers, dates and coverage/provenance assertions are synthetic. No actor intent or authorization is inferred.",
+      "bindings": {
+        "hostId": "host:agent-lab",
+        "processId": "process:agent-tool-exec-42"
+      },
+      "interval": {
+        "start": "2026-10-01T10:00:00Z",
+        "end": "2026-10-01T11:00:00Z"
+      },
+      "primaryOrigin": "primary-native-sensor",
+      "primary": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "independent": {
+        "accessible": true,
+        "searched": true,
+        "records": [
+          {
+            "id": "host-independent-record",
+            "subjects": {
+              "hostId": "host:agent-lab",
+              "processId": "process:agent-tool-exec-42"
+            },
+            "eventTime": "2026-10-01T10:30:00Z",
+            "origin": "separately-originating-sensor",
+            "provenanceAssessment": "accepted",
+            "interpretationAssessment": "accepted",
+            "assessmentEvidenceRefs": [
+              "synthetic-acquisition-receipt",
+              "synthetic-event-interpretation"
+            ],
+            "eventInterpretation": "A normalized process event records an agent tool execution on a lab host. An instruction or tool request alone would not establish execution."
+          }
+        ]
+      },
+      "coverage": {},
+      "expectedTrace": [
+        [
+          "Q2",
+          "unknown"
+        ],
+        [
+          "Q9",
+          "yes"
+        ],
+        [
+          "Q151",
+          "yes"
+        ]
+      ],
+      "expectedState": "positive-review-boundary",
+      "investigativeQuestion": "A normalized process event records an agent tool execution on a lab host. An instruction or tool request alone would not establish execution."
+    },
+    {
+      "id": "host-copied-log-is-not-corroboration",
+      "domain": "Host",
+      "evidenceKind": "synthetic-reconstruction",
+      "sourceIds": [
+        "openclaw"
+      ],
+      "sourceObservation": "Author-created normalized event inspired by the cited behavior; all identifiers, dates and coverage/provenance assertions are synthetic. No actor intent or authorization is inferred.",
+      "bindings": {
+        "hostId": "host:agent-lab",
+        "processId": "process:agent-tool-exec-42"
+      },
+      "interval": {
+        "start": "2026-10-01T10:00:00Z",
+        "end": "2026-10-01T11:00:00Z"
+      },
+      "primaryOrigin": "primary-native-sensor",
+      "primary": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "independent": {
+        "accessible": true,
+        "searched": true,
+        "records": [
+          {
+            "id": "host-independent-record",
+            "subjects": {
+              "hostId": "host:agent-lab",
+              "processId": "process:agent-tool-exec-42"
+            },
+            "eventTime": "2026-10-01T10:30:00Z",
+            "origin": "primary-native-sensor",
+            "provenanceAssessment": "accepted",
+            "interpretationAssessment": "accepted",
+            "assessmentEvidenceRefs": [
+              "synthetic-acquisition-receipt",
+              "synthetic-event-interpretation"
+            ],
+            "eventInterpretation": "A normalized process event records an agent tool execution on a lab host. An instruction or tool request alone would not establish execution."
+          }
+        ]
+      },
+      "coverage": {},
+      "expectedTrace": [
+        [
+          "Q2",
+          "unknown"
+        ],
+        [
+          "Q9",
+          "unknown"
+        ],
+        [
+          "Q597",
+          "yes"
+        ]
+      ],
+      "expectedState": "unresolved",
+      "investigativeQuestion": "A normalized process event records an agent tool execution on a lab host. An instruction or tool request alone would not establish execution."
+    },
+    {
+      "id": "host-rejected-provenance",
+      "domain": "Host",
+      "evidenceKind": "synthetic-reconstruction",
+      "sourceIds": [
+        "openclaw"
+      ],
+      "sourceObservation": "Author-created normalized event inspired by the cited behavior; all identifiers, dates and coverage/provenance assertions are synthetic. No actor intent or authorization is inferred.",
+      "bindings": {
+        "hostId": "host:agent-lab",
+        "processId": "process:agent-tool-exec-42"
+      },
+      "interval": {
+        "start": "2026-10-01T10:00:00Z",
+        "end": "2026-10-01T11:00:00Z"
+      },
+      "primaryOrigin": "primary-native-sensor",
+      "primary": {
+        "accessible": true,
+        "searched": true,
+        "records": [
+          {
+            "id": "host-synthetic-record",
+            "subjects": {
+              "hostId": "host:agent-lab",
+              "processId": "process:agent-tool-exec-42"
+            },
+            "eventTime": "2026-10-01T10:30:00Z",
+            "origin": "primary-native-sensor",
+            "provenanceAssessment": "rejected",
+            "interpretationAssessment": "accepted",
+            "assessmentEvidenceRefs": [
+              "synthetic-acquisition-receipt",
+              "synthetic-event-interpretation"
+            ],
+            "eventInterpretation": "A normalized process event records an agent tool execution on a lab host. An instruction or tool request alone would not establish execution."
+          }
+        ]
+      },
+      "independent": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "coverage": {},
+      "expectedTrace": [
+        [
+          "Q2",
+          "yes"
+        ],
+        [
+          "Q156",
+          "no"
+        ],
+        [
+          "Q597",
+          "yes"
+        ]
+      ],
+      "expectedState": "unresolved",
+      "investigativeQuestion": "A normalized process event records an agent tool execution on a lab host. An instruction or tool request alone would not establish execution."
+    },
+    {
+      "id": "host-conflicting-records",
+      "domain": "Host",
+      "evidenceKind": "synthetic-reconstruction",
+      "sourceIds": [
+        "openclaw"
+      ],
+      "sourceObservation": "Author-created normalized event inspired by the cited behavior; all identifiers, dates and coverage/provenance assertions are synthetic. No actor intent or authorization is inferred.",
+      "bindings": {
+        "hostId": "host:agent-lab",
+        "processId": "process:agent-tool-exec-42"
+      },
+      "interval": {
+        "start": "2026-10-01T10:00:00Z",
+        "end": "2026-10-01T11:00:00Z"
+      },
+      "primaryOrigin": "primary-native-sensor",
+      "primary": {
+        "accessible": true,
+        "searched": true,
+        "records": [
+          {
+            "id": "host-synthetic-record",
+            "subjects": {
+              "hostId": "host:agent-lab",
+              "processId": "process:agent-tool-exec-42"
+            },
+            "eventTime": "2026-10-01T10:30:00Z",
+            "origin": "primary-native-sensor",
+            "provenanceAssessment": "accepted",
+            "interpretationAssessment": "accepted",
+            "assessmentEvidenceRefs": [
+              "synthetic-acquisition-receipt",
+              "synthetic-event-interpretation"
+            ],
+            "eventInterpretation": "A normalized process event records an agent tool execution on a lab host. An instruction or tool request alone would not establish execution."
+          }
+        ]
+      },
+      "independent": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "coverage": {},
+      "expectedTrace": [
+        [
+          "Q2",
+          "unknown"
+        ],
+        [
+          "Q9",
+          "unknown"
+        ],
+        [
+          "Q597",
+          "yes"
+        ]
+      ],
+      "expectedState": "unresolved",
+      "materialConflict": true,
+      "investigativeQuestion": "A normalized process event records an agent tool execution on a lab host. An instruction or tool request alone would not establish execution."
+    },
+    {
+      "id": "host-wrong-subject-corroboration",
+      "domain": "Host",
+      "evidenceKind": "synthetic-reconstruction",
+      "sourceIds": [
+        "openclaw"
+      ],
+      "sourceObservation": "Author-created normalized event inspired by the cited behavior; all identifiers, dates and coverage/provenance assertions are synthetic. No actor intent or authorization is inferred.",
+      "bindings": {
+        "hostId": "host:agent-lab",
+        "processId": "process:agent-tool-exec-42"
+      },
+      "interval": {
+        "start": "2026-10-01T10:00:00Z",
+        "end": "2026-10-01T11:00:00Z"
+      },
+      "primaryOrigin": "primary-native-sensor",
+      "primary": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "independent": {
+        "accessible": true,
+        "searched": true,
+        "records": [
+          {
+            "id": "wrong-subject-record",
+            "subjects": {
+              "hostId": "different-entity",
+              "processId": "process:agent-tool-exec-42"
+            },
+            "eventTime": "2026-10-01T10:30:00Z",
+            "origin": "separately-originating-sensor",
+            "provenanceAssessment": "accepted",
+            "interpretationAssessment": "accepted",
+            "assessmentEvidenceRefs": [
+              "synthetic-acquisition-receipt",
+              "synthetic-event-interpretation"
+            ],
+            "eventInterpretation": "A normalized process event records an agent tool execution on a lab host. An instruction or tool request alone would not establish execution."
+          }
+        ]
+      },
+      "coverage": {},
+      "expectedTrace": [
+        [
+          "Q2",
+          "unknown"
+        ],
+        [
+          "Q9",
+          "no"
+        ],
+        [
+          "Q597",
+          "yes"
+        ]
+      ],
+      "expectedState": "unresolved",
+      "investigativeQuestion": "A normalized process event records an agent tool execution on a lab host. An instruction or tool request alone would not establish execution."
+    },
+    {
+      "id": "host-outside-time-interval",
+      "domain": "Host",
+      "evidenceKind": "synthetic-reconstruction",
+      "sourceIds": [
+        "openclaw"
+      ],
+      "sourceObservation": "Author-created normalized event inspired by the cited behavior; all identifiers, dates and coverage/provenance assertions are synthetic. No actor intent or authorization is inferred.",
+      "bindings": {
+        "hostId": "host:agent-lab",
+        "processId": "process:agent-tool-exec-42"
+      },
+      "interval": {
+        "start": "2026-10-01T10:00:00Z",
+        "end": "2026-10-01T11:00:00Z"
+      },
+      "primaryOrigin": "primary-native-sensor",
+      "primary": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "independent": {
+        "accessible": true,
+        "searched": true,
+        "records": [
+          {
+            "id": "wrong-subject-record",
+            "subjects": {
+              "hostId": "host:agent-lab",
+              "processId": "process:agent-tool-exec-42"
+            },
+            "eventTime": "2026-10-01T11:00:00Z",
+            "origin": "separately-originating-sensor",
+            "provenanceAssessment": "accepted",
+            "interpretationAssessment": "accepted",
+            "assessmentEvidenceRefs": [
+              "synthetic-acquisition-receipt",
+              "synthetic-event-interpretation"
+            ],
+            "eventInterpretation": "A normalized process event records an agent tool execution on a lab host. An instruction or tool request alone would not establish execution."
+          }
+        ]
+      },
+      "coverage": {},
+      "expectedTrace": [
+        [
+          "Q2",
+          "unknown"
+        ],
+        [
+          "Q9",
+          "no"
+        ],
+        [
+          "Q597",
+          "yes"
+        ]
+      ],
+      "expectedState": "unresolved",
+      "investigativeQuestion": "A normalized process event records an agent tool execution on a lab host. An instruction or tool request alone would not establish execution."
+    },
+    {
+      "id": "host-unknown-coverage",
+      "domain": "Host",
+      "evidenceKind": "synthetic-reconstruction",
+      "sourceIds": [
+        "openclaw"
+      ],
+      "sourceObservation": "Author-created normalized event inspired by the cited behavior; all identifiers, dates and coverage/provenance assertions are synthetic. No actor intent or authorization is inferred.",
+      "bindings": {
+        "hostId": "host:agent-lab",
+        "processId": "process:agent-tool-exec-42"
+      },
+      "interval": {
+        "start": "2026-10-01T10:00:00Z",
+        "end": "2026-10-01T11:00:00Z"
+      },
+      "primaryOrigin": "primary-native-sensor",
+      "primary": {
+        "accessible": true,
+        "searched": true,
+        "records": []
+      },
+      "independent": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "coverage": {
+        "subjects": {
+          "hostId": "host:agent-lab",
+          "processId": "process:agent-tool-exec-42"
+        },
+        "interval": {
+          "start": "2026-10-01T10:00:00Z",
+          "end": "2026-10-01T11:00:00Z"
+        },
+        "applicableLogging": true,
+        "continuousCollection": true,
+        "retentionComplete": null,
+        "clockBounded": true,
+        "searchComplete": true,
+        "integrityAssessed": true,
+        "evidenceRefs": [
+          "synthetic-coverage-receipt"
+        ]
+      },
+      "expectedTrace": [
+        [
+          "Q2",
+          "no"
+        ],
+        [
+          "Q590",
+          "unknown"
+        ]
+      ],
+      "expectedState": "unresolved",
+      "investigativeQuestion": "A normalized process event records an agent tool execution on a lab host. An instruction or tool request alone would not establish execution."
+    },
+    {
+      "id": "network-public-report",
+      "domain": "Network",
+      "evidenceKind": "public-report-only",
+      "sourceIds": [
+        "sunburst"
+      ],
+      "sourceObservation": "Reported backdoor communication is a useful lead, but the article alone does not supply a bound victim communication record.",
+      "bindings": {
+        "sourceEndpoint": null,
+        "destinationEndpoint": null,
+        "communicationId": null
+      },
+      "interval": {
+        "start": null,
+        "end": null
+      },
+      "primaryOrigin": "sunburst",
+      "primary": {
+        "accessible": true,
+        "searched": true,
+        "records": []
+      },
+      "independent": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "coverage": {},
+      "expectedTrace": [
+        [
+          "Q3",
+          "unknown"
+        ],
+        [
+          "Q10",
+          "unknown"
+        ],
+        [
+          "Q598",
+          "yes"
+        ]
+      ],
+      "expectedState": "unresolved"
+    },
+    {
+      "id": "network-supported-record",
+      "domain": "Network",
+      "evidenceKind": "synthetic-reconstruction",
+      "sourceIds": [
+        "sunburst"
+      ],
+      "sourceObservation": "Author-created normalized event inspired by the cited behavior; all identifiers, dates and coverage/provenance assertions are synthetic. No actor intent or authorization is inferred.",
+      "bindings": {
+        "sourceEndpoint": "endpoint:orion-lab",
+        "destinationEndpoint": "endpoint:callback.example.invalid:443",
+        "communicationId": "flow:orion-http-42"
+      },
+      "interval": {
+        "start": "2026-10-01T10:00:00Z",
+        "end": "2026-10-01T11:00:00Z"
+      },
+      "primaryOrigin": "primary-native-sensor",
+      "primary": {
+        "accessible": true,
+        "searched": true,
+        "records": [
+          {
+            "id": "network-synthetic-record",
+            "subjects": {
+              "sourceEndpoint": "endpoint:orion-lab",
+              "destinationEndpoint": "endpoint:callback.example.invalid:443",
+              "communicationId": "flow:orion-http-42"
+            },
+            "eventTime": "2026-10-01T10:30:00Z",
+            "origin": "primary-native-sensor",
+            "provenanceAssessment": "accepted",
+            "interpretationAssessment": "accepted",
+            "assessmentEvidenceRefs": [
+              "synthetic-acquisition-receipt",
+              "synthetic-event-interpretation"
+            ],
+            "eventInterpretation": "A normalized flow event records communication from the lab Orion endpoint. Reputation alone does not establish this flow."
+          }
+        ]
+      },
+      "independent": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "coverage": {},
+      "expectedTrace": [
+        [
+          "Q3",
+          "yes"
+        ],
+        [
+          "Q152",
+          "yes"
+        ]
+      ],
+      "expectedState": "positive-review-boundary",
+      "investigativeQuestion": "A normalized flow event records communication from the lab Orion endpoint. Reputation alone does not establish this flow."
+    },
+    {
+      "id": "network-bounded-absence",
+      "domain": "Network",
+      "evidenceKind": "synthetic-reconstruction",
+      "sourceIds": [
+        "sunburst"
+      ],
+      "sourceObservation": "Author-created normalized event inspired by the cited behavior; all identifiers, dates and coverage/provenance assertions are synthetic. No actor intent or authorization is inferred.",
+      "bindings": {
+        "sourceEndpoint": "endpoint:orion-lab",
+        "destinationEndpoint": "endpoint:callback.example.invalid:443",
+        "communicationId": "flow:orion-http-42"
+      },
+      "interval": {
+        "start": "2026-10-01T10:00:00Z",
+        "end": "2026-10-01T11:00:00Z"
+      },
+      "primaryOrigin": "primary-native-sensor",
+      "primary": {
+        "accessible": true,
+        "searched": true,
+        "records": []
+      },
+      "independent": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "coverage": {
+        "subjects": {
+          "sourceEndpoint": "endpoint:orion-lab",
+          "destinationEndpoint": "endpoint:callback.example.invalid:443",
+          "communicationId": "flow:orion-http-42"
+        },
+        "interval": {
+          "start": "2026-10-01T10:00:00Z",
+          "end": "2026-10-01T11:00:00Z"
+        },
+        "applicableLogging": true,
+        "continuousCollection": true,
+        "retentionComplete": true,
+        "clockBounded": true,
+        "searchComplete": true,
+        "integrityAssessed": true,
+        "evidenceRefs": [
+          "synthetic-coverage-receipt"
+        ]
+      },
+      "expectedTrace": [
+        [
+          "Q3",
+          "no"
+        ],
+        [
+          "Q591",
+          "yes"
+        ]
+      ],
+      "expectedState": "bounded-exclusion",
+      "investigativeQuestion": "A normalized flow event records communication from the lab Orion endpoint. Reputation alone does not establish this flow."
+    },
+    {
+      "id": "network-missing-logs",
+      "domain": "Network",
+      "evidenceKind": "synthetic-reconstruction",
+      "sourceIds": [
+        "sunburst"
+      ],
+      "sourceObservation": "Author-created normalized event inspired by the cited behavior; all identifiers, dates and coverage/provenance assertions are synthetic. No actor intent or authorization is inferred.",
+      "bindings": {
+        "sourceEndpoint": "endpoint:orion-lab",
+        "destinationEndpoint": "endpoint:callback.example.invalid:443",
+        "communicationId": "flow:orion-http-42"
+      },
+      "interval": {
+        "start": "2026-10-01T10:00:00Z",
+        "end": "2026-10-01T11:00:00Z"
+      },
+      "primaryOrigin": "primary-native-sensor",
+      "primary": {
+        "accessible": true,
+        "searched": true,
+        "records": []
+      },
+      "independent": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "coverage": {
+        "subjects": {
+          "sourceEndpoint": "endpoint:orion-lab",
+          "destinationEndpoint": "endpoint:callback.example.invalid:443",
+          "communicationId": "flow:orion-http-42"
+        },
+        "interval": {
+          "start": "2026-10-01T10:00:00Z",
+          "end": "2026-10-01T11:00:00Z"
+        },
+        "applicableLogging": true,
+        "continuousCollection": false,
+        "retentionComplete": true,
+        "clockBounded": true,
+        "searchComplete": true,
+        "integrityAssessed": true,
+        "evidenceRefs": [
+          "synthetic-coverage-receipt"
+        ]
+      },
+      "expectedTrace": [
+        [
+          "Q3",
+          "no"
+        ],
+        [
+          "Q591",
+          "no"
+        ]
+      ],
+      "expectedState": "unresolved",
+      "investigativeQuestion": "A normalized flow event records communication from the lab Orion endpoint. Reputation alone does not establish this flow."
+    },
+    {
+      "id": "network-independent-recovery",
+      "domain": "Network",
+      "evidenceKind": "synthetic-reconstruction",
+      "sourceIds": [
+        "sunburst"
+      ],
+      "sourceObservation": "Author-created normalized event inspired by the cited behavior; all identifiers, dates and coverage/provenance assertions are synthetic. No actor intent or authorization is inferred.",
+      "bindings": {
+        "sourceEndpoint": "endpoint:orion-lab",
+        "destinationEndpoint": "endpoint:callback.example.invalid:443",
+        "communicationId": "flow:orion-http-42"
+      },
+      "interval": {
+        "start": "2026-10-01T10:00:00Z",
+        "end": "2026-10-01T11:00:00Z"
+      },
+      "primaryOrigin": "primary-native-sensor",
+      "primary": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "independent": {
+        "accessible": true,
+        "searched": true,
+        "records": [
+          {
+            "id": "network-independent-record",
+            "subjects": {
+              "sourceEndpoint": "endpoint:orion-lab",
+              "destinationEndpoint": "endpoint:callback.example.invalid:443",
+              "communicationId": "flow:orion-http-42"
+            },
+            "eventTime": "2026-10-01T10:30:00Z",
+            "origin": "separately-originating-sensor",
+            "provenanceAssessment": "accepted",
+            "interpretationAssessment": "accepted",
+            "assessmentEvidenceRefs": [
+              "synthetic-acquisition-receipt",
+              "synthetic-event-interpretation"
+            ],
+            "eventInterpretation": "A normalized flow event records communication from the lab Orion endpoint. Reputation alone does not establish this flow."
+          }
+        ]
+      },
+      "coverage": {},
+      "expectedTrace": [
+        [
+          "Q3",
+          "unknown"
+        ],
+        [
+          "Q10",
+          "yes"
+        ],
+        [
+          "Q82",
+          "yes"
+        ]
+      ],
+      "expectedState": "positive-review-boundary",
+      "investigativeQuestion": "A normalized flow event records communication from the lab Orion endpoint. Reputation alone does not establish this flow."
+    },
+    {
+      "id": "network-copied-log-is-not-corroboration",
+      "domain": "Network",
+      "evidenceKind": "synthetic-reconstruction",
+      "sourceIds": [
+        "sunburst"
+      ],
+      "sourceObservation": "Author-created normalized event inspired by the cited behavior; all identifiers, dates and coverage/provenance assertions are synthetic. No actor intent or authorization is inferred.",
+      "bindings": {
+        "sourceEndpoint": "endpoint:orion-lab",
+        "destinationEndpoint": "endpoint:callback.example.invalid:443",
+        "communicationId": "flow:orion-http-42"
+      },
+      "interval": {
+        "start": "2026-10-01T10:00:00Z",
+        "end": "2026-10-01T11:00:00Z"
+      },
+      "primaryOrigin": "primary-native-sensor",
+      "primary": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "independent": {
+        "accessible": true,
+        "searched": true,
+        "records": [
+          {
+            "id": "network-independent-record",
+            "subjects": {
+              "sourceEndpoint": "endpoint:orion-lab",
+              "destinationEndpoint": "endpoint:callback.example.invalid:443",
+              "communicationId": "flow:orion-http-42"
+            },
+            "eventTime": "2026-10-01T10:30:00Z",
+            "origin": "primary-native-sensor",
+            "provenanceAssessment": "accepted",
+            "interpretationAssessment": "accepted",
+            "assessmentEvidenceRefs": [
+              "synthetic-acquisition-receipt",
+              "synthetic-event-interpretation"
+            ],
+            "eventInterpretation": "A normalized flow event records communication from the lab Orion endpoint. Reputation alone does not establish this flow."
+          }
+        ]
+      },
+      "coverage": {},
+      "expectedTrace": [
+        [
+          "Q3",
+          "unknown"
+        ],
+        [
+          "Q10",
+          "unknown"
+        ],
+        [
+          "Q598",
+          "yes"
+        ]
+      ],
+      "expectedState": "unresolved",
+      "investigativeQuestion": "A normalized flow event records communication from the lab Orion endpoint. Reputation alone does not establish this flow."
+    },
+    {
+      "id": "network-rejected-provenance",
+      "domain": "Network",
+      "evidenceKind": "synthetic-reconstruction",
+      "sourceIds": [
+        "sunburst"
+      ],
+      "sourceObservation": "Author-created normalized event inspired by the cited behavior; all identifiers, dates and coverage/provenance assertions are synthetic. No actor intent or authorization is inferred.",
+      "bindings": {
+        "sourceEndpoint": "endpoint:orion-lab",
+        "destinationEndpoint": "endpoint:callback.example.invalid:443",
+        "communicationId": "flow:orion-http-42"
+      },
+      "interval": {
+        "start": "2026-10-01T10:00:00Z",
+        "end": "2026-10-01T11:00:00Z"
+      },
+      "primaryOrigin": "primary-native-sensor",
+      "primary": {
+        "accessible": true,
+        "searched": true,
+        "records": [
+          {
+            "id": "network-synthetic-record",
+            "subjects": {
+              "sourceEndpoint": "endpoint:orion-lab",
+              "destinationEndpoint": "endpoint:callback.example.invalid:443",
+              "communicationId": "flow:orion-http-42"
+            },
+            "eventTime": "2026-10-01T10:30:00Z",
+            "origin": "primary-native-sensor",
+            "provenanceAssessment": "rejected",
+            "interpretationAssessment": "accepted",
+            "assessmentEvidenceRefs": [
+              "synthetic-acquisition-receipt",
+              "synthetic-event-interpretation"
+            ],
+            "eventInterpretation": "A normalized flow event records communication from the lab Orion endpoint. Reputation alone does not establish this flow."
+          }
+        ]
+      },
+      "independent": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "coverage": {},
+      "expectedTrace": [
+        [
+          "Q3",
+          "yes"
+        ],
+        [
+          "Q152",
+          "no"
+        ],
+        [
+          "Q598",
+          "yes"
+        ]
+      ],
+      "expectedState": "unresolved",
+      "investigativeQuestion": "A normalized flow event records communication from the lab Orion endpoint. Reputation alone does not establish this flow."
+    },
+    {
+      "id": "network-conflicting-records",
+      "domain": "Network",
+      "evidenceKind": "synthetic-reconstruction",
+      "sourceIds": [
+        "sunburst"
+      ],
+      "sourceObservation": "Author-created normalized event inspired by the cited behavior; all identifiers, dates and coverage/provenance assertions are synthetic. No actor intent or authorization is inferred.",
+      "bindings": {
+        "sourceEndpoint": "endpoint:orion-lab",
+        "destinationEndpoint": "endpoint:callback.example.invalid:443",
+        "communicationId": "flow:orion-http-42"
+      },
+      "interval": {
+        "start": "2026-10-01T10:00:00Z",
+        "end": "2026-10-01T11:00:00Z"
+      },
+      "primaryOrigin": "primary-native-sensor",
+      "primary": {
+        "accessible": true,
+        "searched": true,
+        "records": [
+          {
+            "id": "network-synthetic-record",
+            "subjects": {
+              "sourceEndpoint": "endpoint:orion-lab",
+              "destinationEndpoint": "endpoint:callback.example.invalid:443",
+              "communicationId": "flow:orion-http-42"
+            },
+            "eventTime": "2026-10-01T10:30:00Z",
+            "origin": "primary-native-sensor",
+            "provenanceAssessment": "accepted",
+            "interpretationAssessment": "accepted",
+            "assessmentEvidenceRefs": [
+              "synthetic-acquisition-receipt",
+              "synthetic-event-interpretation"
+            ],
+            "eventInterpretation": "A normalized flow event records communication from the lab Orion endpoint. Reputation alone does not establish this flow."
+          }
+        ]
+      },
+      "independent": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "coverage": {},
+      "expectedTrace": [
+        [
+          "Q3",
+          "unknown"
+        ],
+        [
+          "Q10",
+          "unknown"
+        ],
+        [
+          "Q598",
+          "yes"
+        ]
+      ],
+      "expectedState": "unresolved",
+      "materialConflict": true,
+      "investigativeQuestion": "A normalized flow event records communication from the lab Orion endpoint. Reputation alone does not establish this flow."
+    },
+    {
+      "id": "network-wrong-subject-corroboration",
+      "domain": "Network",
+      "evidenceKind": "synthetic-reconstruction",
+      "sourceIds": [
+        "sunburst"
+      ],
+      "sourceObservation": "Author-created normalized event inspired by the cited behavior; all identifiers, dates and coverage/provenance assertions are synthetic. No actor intent or authorization is inferred.",
+      "bindings": {
+        "sourceEndpoint": "endpoint:orion-lab",
+        "destinationEndpoint": "endpoint:callback.example.invalid:443",
+        "communicationId": "flow:orion-http-42"
+      },
+      "interval": {
+        "start": "2026-10-01T10:00:00Z",
+        "end": "2026-10-01T11:00:00Z"
+      },
+      "primaryOrigin": "primary-native-sensor",
+      "primary": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "independent": {
+        "accessible": true,
+        "searched": true,
+        "records": [
+          {
+            "id": "wrong-subject-record",
+            "subjects": {
+              "sourceEndpoint": "different-entity",
+              "destinationEndpoint": "endpoint:callback.example.invalid:443",
+              "communicationId": "flow:orion-http-42"
+            },
+            "eventTime": "2026-10-01T10:30:00Z",
+            "origin": "separately-originating-sensor",
+            "provenanceAssessment": "accepted",
+            "interpretationAssessment": "accepted",
+            "assessmentEvidenceRefs": [
+              "synthetic-acquisition-receipt",
+              "synthetic-event-interpretation"
+            ],
+            "eventInterpretation": "A normalized flow event records communication from the lab Orion endpoint. Reputation alone does not establish this flow."
+          }
+        ]
+      },
+      "coverage": {},
+      "expectedTrace": [
+        [
+          "Q3",
+          "unknown"
+        ],
+        [
+          "Q10",
+          "no"
+        ],
+        [
+          "Q598",
+          "yes"
+        ]
+      ],
+      "expectedState": "unresolved",
+      "investigativeQuestion": "A normalized flow event records communication from the lab Orion endpoint. Reputation alone does not establish this flow."
+    },
+    {
+      "id": "network-outside-time-interval",
+      "domain": "Network",
+      "evidenceKind": "synthetic-reconstruction",
+      "sourceIds": [
+        "sunburst"
+      ],
+      "sourceObservation": "Author-created normalized event inspired by the cited behavior; all identifiers, dates and coverage/provenance assertions are synthetic. No actor intent or authorization is inferred.",
+      "bindings": {
+        "sourceEndpoint": "endpoint:orion-lab",
+        "destinationEndpoint": "endpoint:callback.example.invalid:443",
+        "communicationId": "flow:orion-http-42"
+      },
+      "interval": {
+        "start": "2026-10-01T10:00:00Z",
+        "end": "2026-10-01T11:00:00Z"
+      },
+      "primaryOrigin": "primary-native-sensor",
+      "primary": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "independent": {
+        "accessible": true,
+        "searched": true,
+        "records": [
+          {
+            "id": "wrong-subject-record",
+            "subjects": {
+              "sourceEndpoint": "endpoint:orion-lab",
+              "destinationEndpoint": "endpoint:callback.example.invalid:443",
+              "communicationId": "flow:orion-http-42"
+            },
+            "eventTime": "2026-10-01T11:00:00Z",
+            "origin": "separately-originating-sensor",
+            "provenanceAssessment": "accepted",
+            "interpretationAssessment": "accepted",
+            "assessmentEvidenceRefs": [
+              "synthetic-acquisition-receipt",
+              "synthetic-event-interpretation"
+            ],
+            "eventInterpretation": "A normalized flow event records communication from the lab Orion endpoint. Reputation alone does not establish this flow."
+          }
+        ]
+      },
+      "coverage": {},
+      "expectedTrace": [
+        [
+          "Q3",
+          "unknown"
+        ],
+        [
+          "Q10",
+          "no"
+        ],
+        [
+          "Q598",
+          "yes"
+        ]
+      ],
+      "expectedState": "unresolved",
+      "investigativeQuestion": "A normalized flow event records communication from the lab Orion endpoint. Reputation alone does not establish this flow."
+    },
+    {
+      "id": "network-unknown-coverage",
+      "domain": "Network",
+      "evidenceKind": "synthetic-reconstruction",
+      "sourceIds": [
+        "sunburst"
+      ],
+      "sourceObservation": "Author-created normalized event inspired by the cited behavior; all identifiers, dates and coverage/provenance assertions are synthetic. No actor intent or authorization is inferred.",
+      "bindings": {
+        "sourceEndpoint": "endpoint:orion-lab",
+        "destinationEndpoint": "endpoint:callback.example.invalid:443",
+        "communicationId": "flow:orion-http-42"
+      },
+      "interval": {
+        "start": "2026-10-01T10:00:00Z",
+        "end": "2026-10-01T11:00:00Z"
+      },
+      "primaryOrigin": "primary-native-sensor",
+      "primary": {
+        "accessible": true,
+        "searched": true,
+        "records": []
+      },
+      "independent": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "coverage": {
+        "subjects": {
+          "sourceEndpoint": "endpoint:orion-lab",
+          "destinationEndpoint": "endpoint:callback.example.invalid:443",
+          "communicationId": "flow:orion-http-42"
+        },
+        "interval": {
+          "start": "2026-10-01T10:00:00Z",
+          "end": "2026-10-01T11:00:00Z"
+        },
+        "applicableLogging": true,
+        "continuousCollection": true,
+        "retentionComplete": null,
+        "clockBounded": true,
+        "searchComplete": true,
+        "integrityAssessed": true,
+        "evidenceRefs": [
+          "synthetic-coverage-receipt"
+        ]
+      },
+      "expectedTrace": [
+        [
+          "Q3",
+          "no"
+        ],
+        [
+          "Q591",
+          "unknown"
+        ]
+      ],
+      "expectedState": "unresolved",
+      "investigativeQuestion": "A normalized flow event records communication from the lab Orion endpoint. Reputation alone does not establish this flow."
+    },
+    {
+      "id": "cloud-public-report",
+      "domain": "Cloud",
+      "evidenceKind": "public-report-only",
+      "sourceIds": [
+        "unc3944"
+      ],
+      "sourceObservation": "Reported VM creation motivates a control-plane investigation; no exact victim tenant, operation identifier and event interval are supplied here.",
+      "bindings": {
+        "tenantId": null,
+        "resourceId": null,
+        "operationId": null
+      },
+      "interval": {
+        "start": null,
+        "end": null
+      },
+      "primaryOrigin": "unc3944",
+      "primary": {
+        "accessible": true,
+        "searched": true,
+        "records": []
+      },
+      "independent": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "coverage": {},
+      "expectedTrace": [
+        [
+          "Q4",
+          "unknown"
+        ],
+        [
+          "Q11",
+          "unknown"
+        ],
+        [
+          "Q599",
+          "yes"
+        ]
+      ],
+      "expectedState": "unresolved"
+    },
+    {
+      "id": "cloud-supported-record",
+      "domain": "Cloud",
+      "evidenceKind": "synthetic-reconstruction",
+      "sourceIds": [
+        "unc3944"
+      ],
+      "sourceObservation": "Author-created normalized event inspired by the cited behavior; all identifiers, dates and coverage/provenance assertions are synthetic. No actor intent or authorization is inferred.",
+      "bindings": {
+        "tenantId": "tenant:lab",
+        "resourceId": "vm:lab-42",
+        "operationId": "operation:create-vm-42"
+      },
+      "interval": {
+        "start": "2026-10-01T10:00:00Z",
+        "end": "2026-10-01T11:00:00Z"
+      },
+      "primaryOrigin": "primary-native-sensor",
+      "primary": {
+        "accessible": true,
+        "searched": true,
+        "records": [
+          {
+            "id": "cloud-synthetic-record",
+            "subjects": {
+              "tenantId": "tenant:lab",
+              "resourceId": "vm:lab-42",
+              "operationId": "operation:create-vm-42"
+            },
+            "eventTime": "2026-10-01T10:30:00Z",
+            "origin": "primary-native-sensor",
+            "provenanceAssessment": "accepted",
+            "interpretationAssessment": "accepted",
+            "assessmentEvidenceRefs": [
+              "synthetic-acquisition-receipt",
+              "synthetic-event-interpretation"
+            ],
+            "eventInterpretation": "A normalized control-plane audit event records the lab VM operation. A role assignment alone would not prove the operation occurred."
+          }
+        ]
+      },
+      "independent": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "coverage": {},
+      "expectedTrace": [
+        [
+          "Q4",
+          "yes"
+        ],
+        [
+          "Q153",
+          "yes"
+        ]
+      ],
+      "expectedState": "positive-review-boundary",
+      "investigativeQuestion": "A normalized control-plane audit event records the lab VM operation. A role assignment alone would not prove the operation occurred."
+    },
+    {
+      "id": "cloud-bounded-absence",
+      "domain": "Cloud",
+      "evidenceKind": "synthetic-reconstruction",
+      "sourceIds": [
+        "unc3944"
+      ],
+      "sourceObservation": "Author-created normalized event inspired by the cited behavior; all identifiers, dates and coverage/provenance assertions are synthetic. No actor intent or authorization is inferred.",
+      "bindings": {
+        "tenantId": "tenant:lab",
+        "resourceId": "vm:lab-42",
+        "operationId": "operation:create-vm-42"
+      },
+      "interval": {
+        "start": "2026-10-01T10:00:00Z",
+        "end": "2026-10-01T11:00:00Z"
+      },
+      "primaryOrigin": "primary-native-sensor",
+      "primary": {
+        "accessible": true,
+        "searched": true,
+        "records": []
+      },
+      "independent": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "coverage": {
+        "subjects": {
+          "tenantId": "tenant:lab",
+          "resourceId": "vm:lab-42",
+          "operationId": "operation:create-vm-42"
+        },
+        "interval": {
+          "start": "2026-10-01T10:00:00Z",
+          "end": "2026-10-01T11:00:00Z"
+        },
+        "applicableLogging": true,
+        "continuousCollection": true,
+        "retentionComplete": true,
+        "clockBounded": true,
+        "searchComplete": true,
+        "integrityAssessed": true,
+        "evidenceRefs": [
+          "synthetic-coverage-receipt"
+        ]
+      },
+      "expectedTrace": [
+        [
+          "Q4",
+          "no"
+        ],
+        [
+          "Q592",
+          "yes"
+        ]
+      ],
+      "expectedState": "bounded-exclusion",
+      "investigativeQuestion": "A normalized control-plane audit event records the lab VM operation. A role assignment alone would not prove the operation occurred."
+    },
+    {
+      "id": "cloud-missing-logs",
+      "domain": "Cloud",
+      "evidenceKind": "synthetic-reconstruction",
+      "sourceIds": [
+        "unc3944"
+      ],
+      "sourceObservation": "Author-created normalized event inspired by the cited behavior; all identifiers, dates and coverage/provenance assertions are synthetic. No actor intent or authorization is inferred.",
+      "bindings": {
+        "tenantId": "tenant:lab",
+        "resourceId": "vm:lab-42",
+        "operationId": "operation:create-vm-42"
+      },
+      "interval": {
+        "start": "2026-10-01T10:00:00Z",
+        "end": "2026-10-01T11:00:00Z"
+      },
+      "primaryOrigin": "primary-native-sensor",
+      "primary": {
+        "accessible": true,
+        "searched": true,
+        "records": []
+      },
+      "independent": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "coverage": {
+        "subjects": {
+          "tenantId": "tenant:lab",
+          "resourceId": "vm:lab-42",
+          "operationId": "operation:create-vm-42"
+        },
+        "interval": {
+          "start": "2026-10-01T10:00:00Z",
+          "end": "2026-10-01T11:00:00Z"
+        },
+        "applicableLogging": true,
+        "continuousCollection": false,
+        "retentionComplete": true,
+        "clockBounded": true,
+        "searchComplete": true,
+        "integrityAssessed": true,
+        "evidenceRefs": [
+          "synthetic-coverage-receipt"
+        ]
+      },
+      "expectedTrace": [
+        [
+          "Q4",
+          "no"
+        ],
+        [
+          "Q592",
+          "no"
+        ]
+      ],
+      "expectedState": "unresolved",
+      "investigativeQuestion": "A normalized control-plane audit event records the lab VM operation. A role assignment alone would not prove the operation occurred."
+    },
+    {
+      "id": "cloud-independent-recovery",
+      "domain": "Cloud",
+      "evidenceKind": "synthetic-reconstruction",
+      "sourceIds": [
+        "unc3944"
+      ],
+      "sourceObservation": "Author-created normalized event inspired by the cited behavior; all identifiers, dates and coverage/provenance assertions are synthetic. No actor intent or authorization is inferred.",
+      "bindings": {
+        "tenantId": "tenant:lab",
+        "resourceId": "vm:lab-42",
+        "operationId": "operation:create-vm-42"
+      },
+      "interval": {
+        "start": "2026-10-01T10:00:00Z",
+        "end": "2026-10-01T11:00:00Z"
+      },
+      "primaryOrigin": "primary-native-sensor",
+      "primary": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "independent": {
+        "accessible": true,
+        "searched": true,
+        "records": [
+          {
+            "id": "cloud-independent-record",
+            "subjects": {
+              "tenantId": "tenant:lab",
+              "resourceId": "vm:lab-42",
+              "operationId": "operation:create-vm-42"
+            },
+            "eventTime": "2026-10-01T10:30:00Z",
+            "origin": "separately-originating-sensor",
+            "provenanceAssessment": "accepted",
+            "interpretationAssessment": "accepted",
+            "assessmentEvidenceRefs": [
+              "synthetic-acquisition-receipt",
+              "synthetic-event-interpretation"
+            ],
+            "eventInterpretation": "A normalized control-plane audit event records the lab VM operation. A role assignment alone would not prove the operation occurred."
+          }
+        ]
+      },
+      "coverage": {},
+      "expectedTrace": [
+        [
+          "Q4",
+          "unknown"
+        ],
+        [
+          "Q11",
+          "yes"
+        ],
+        [
+          "Q83",
+          "yes"
+        ]
+      ],
+      "expectedState": "positive-review-boundary",
+      "investigativeQuestion": "A normalized control-plane audit event records the lab VM operation. A role assignment alone would not prove the operation occurred."
+    },
+    {
+      "id": "cloud-copied-log-is-not-corroboration",
+      "domain": "Cloud",
+      "evidenceKind": "synthetic-reconstruction",
+      "sourceIds": [
+        "unc3944"
+      ],
+      "sourceObservation": "Author-created normalized event inspired by the cited behavior; all identifiers, dates and coverage/provenance assertions are synthetic. No actor intent or authorization is inferred.",
+      "bindings": {
+        "tenantId": "tenant:lab",
+        "resourceId": "vm:lab-42",
+        "operationId": "operation:create-vm-42"
+      },
+      "interval": {
+        "start": "2026-10-01T10:00:00Z",
+        "end": "2026-10-01T11:00:00Z"
+      },
+      "primaryOrigin": "primary-native-sensor",
+      "primary": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "independent": {
+        "accessible": true,
+        "searched": true,
+        "records": [
+          {
+            "id": "cloud-independent-record",
+            "subjects": {
+              "tenantId": "tenant:lab",
+              "resourceId": "vm:lab-42",
+              "operationId": "operation:create-vm-42"
+            },
+            "eventTime": "2026-10-01T10:30:00Z",
+            "origin": "primary-native-sensor",
+            "provenanceAssessment": "accepted",
+            "interpretationAssessment": "accepted",
+            "assessmentEvidenceRefs": [
+              "synthetic-acquisition-receipt",
+              "synthetic-event-interpretation"
+            ],
+            "eventInterpretation": "A normalized control-plane audit event records the lab VM operation. A role assignment alone would not prove the operation occurred."
+          }
+        ]
+      },
+      "coverage": {},
+      "expectedTrace": [
+        [
+          "Q4",
+          "unknown"
+        ],
+        [
+          "Q11",
+          "unknown"
+        ],
+        [
+          "Q599",
+          "yes"
+        ]
+      ],
+      "expectedState": "unresolved",
+      "investigativeQuestion": "A normalized control-plane audit event records the lab VM operation. A role assignment alone would not prove the operation occurred."
+    },
+    {
+      "id": "cloud-rejected-provenance",
+      "domain": "Cloud",
+      "evidenceKind": "synthetic-reconstruction",
+      "sourceIds": [
+        "unc3944"
+      ],
+      "sourceObservation": "Author-created normalized event inspired by the cited behavior; all identifiers, dates and coverage/provenance assertions are synthetic. No actor intent or authorization is inferred.",
+      "bindings": {
+        "tenantId": "tenant:lab",
+        "resourceId": "vm:lab-42",
+        "operationId": "operation:create-vm-42"
+      },
+      "interval": {
+        "start": "2026-10-01T10:00:00Z",
+        "end": "2026-10-01T11:00:00Z"
+      },
+      "primaryOrigin": "primary-native-sensor",
+      "primary": {
+        "accessible": true,
+        "searched": true,
+        "records": [
+          {
+            "id": "cloud-synthetic-record",
+            "subjects": {
+              "tenantId": "tenant:lab",
+              "resourceId": "vm:lab-42",
+              "operationId": "operation:create-vm-42"
+            },
+            "eventTime": "2026-10-01T10:30:00Z",
+            "origin": "primary-native-sensor",
+            "provenanceAssessment": "rejected",
+            "interpretationAssessment": "accepted",
+            "assessmentEvidenceRefs": [
+              "synthetic-acquisition-receipt",
+              "synthetic-event-interpretation"
+            ],
+            "eventInterpretation": "A normalized control-plane audit event records the lab VM operation. A role assignment alone would not prove the operation occurred."
+          }
+        ]
+      },
+      "independent": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "coverage": {},
+      "expectedTrace": [
+        [
+          "Q4",
+          "yes"
+        ],
+        [
+          "Q153",
+          "no"
+        ],
+        [
+          "Q599",
+          "yes"
+        ]
+      ],
+      "expectedState": "unresolved",
+      "investigativeQuestion": "A normalized control-plane audit event records the lab VM operation. A role assignment alone would not prove the operation occurred."
+    },
+    {
+      "id": "cloud-conflicting-records",
+      "domain": "Cloud",
+      "evidenceKind": "synthetic-reconstruction",
+      "sourceIds": [
+        "unc3944"
+      ],
+      "sourceObservation": "Author-created normalized event inspired by the cited behavior; all identifiers, dates and coverage/provenance assertions are synthetic. No actor intent or authorization is inferred.",
+      "bindings": {
+        "tenantId": "tenant:lab",
+        "resourceId": "vm:lab-42",
+        "operationId": "operation:create-vm-42"
+      },
+      "interval": {
+        "start": "2026-10-01T10:00:00Z",
+        "end": "2026-10-01T11:00:00Z"
+      },
+      "primaryOrigin": "primary-native-sensor",
+      "primary": {
+        "accessible": true,
+        "searched": true,
+        "records": [
+          {
+            "id": "cloud-synthetic-record",
+            "subjects": {
+              "tenantId": "tenant:lab",
+              "resourceId": "vm:lab-42",
+              "operationId": "operation:create-vm-42"
+            },
+            "eventTime": "2026-10-01T10:30:00Z",
+            "origin": "primary-native-sensor",
+            "provenanceAssessment": "accepted",
+            "interpretationAssessment": "accepted",
+            "assessmentEvidenceRefs": [
+              "synthetic-acquisition-receipt",
+              "synthetic-event-interpretation"
+            ],
+            "eventInterpretation": "A normalized control-plane audit event records the lab VM operation. A role assignment alone would not prove the operation occurred."
+          }
+        ]
+      },
+      "independent": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "coverage": {},
+      "expectedTrace": [
+        [
+          "Q4",
+          "unknown"
+        ],
+        [
+          "Q11",
+          "unknown"
+        ],
+        [
+          "Q599",
+          "yes"
+        ]
+      ],
+      "expectedState": "unresolved",
+      "materialConflict": true,
+      "investigativeQuestion": "A normalized control-plane audit event records the lab VM operation. A role assignment alone would not prove the operation occurred."
+    },
+    {
+      "id": "cloud-wrong-subject-corroboration",
+      "domain": "Cloud",
+      "evidenceKind": "synthetic-reconstruction",
+      "sourceIds": [
+        "unc3944"
+      ],
+      "sourceObservation": "Author-created normalized event inspired by the cited behavior; all identifiers, dates and coverage/provenance assertions are synthetic. No actor intent or authorization is inferred.",
+      "bindings": {
+        "tenantId": "tenant:lab",
+        "resourceId": "vm:lab-42",
+        "operationId": "operation:create-vm-42"
+      },
+      "interval": {
+        "start": "2026-10-01T10:00:00Z",
+        "end": "2026-10-01T11:00:00Z"
+      },
+      "primaryOrigin": "primary-native-sensor",
+      "primary": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "independent": {
+        "accessible": true,
+        "searched": true,
+        "records": [
+          {
+            "id": "wrong-subject-record",
+            "subjects": {
+              "tenantId": "different-entity",
+              "resourceId": "vm:lab-42",
+              "operationId": "operation:create-vm-42"
+            },
+            "eventTime": "2026-10-01T10:30:00Z",
+            "origin": "separately-originating-sensor",
+            "provenanceAssessment": "accepted",
+            "interpretationAssessment": "accepted",
+            "assessmentEvidenceRefs": [
+              "synthetic-acquisition-receipt",
+              "synthetic-event-interpretation"
+            ],
+            "eventInterpretation": "A normalized control-plane audit event records the lab VM operation. A role assignment alone would not prove the operation occurred."
+          }
+        ]
+      },
+      "coverage": {},
+      "expectedTrace": [
+        [
+          "Q4",
+          "unknown"
+        ],
+        [
+          "Q11",
+          "no"
+        ],
+        [
+          "Q599",
+          "yes"
+        ]
+      ],
+      "expectedState": "unresolved",
+      "investigativeQuestion": "A normalized control-plane audit event records the lab VM operation. A role assignment alone would not prove the operation occurred."
+    },
+    {
+      "id": "cloud-outside-time-interval",
+      "domain": "Cloud",
+      "evidenceKind": "synthetic-reconstruction",
+      "sourceIds": [
+        "unc3944"
+      ],
+      "sourceObservation": "Author-created normalized event inspired by the cited behavior; all identifiers, dates and coverage/provenance assertions are synthetic. No actor intent or authorization is inferred.",
+      "bindings": {
+        "tenantId": "tenant:lab",
+        "resourceId": "vm:lab-42",
+        "operationId": "operation:create-vm-42"
+      },
+      "interval": {
+        "start": "2026-10-01T10:00:00Z",
+        "end": "2026-10-01T11:00:00Z"
+      },
+      "primaryOrigin": "primary-native-sensor",
+      "primary": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "independent": {
+        "accessible": true,
+        "searched": true,
+        "records": [
+          {
+            "id": "wrong-subject-record",
+            "subjects": {
+              "tenantId": "tenant:lab",
+              "resourceId": "vm:lab-42",
+              "operationId": "operation:create-vm-42"
+            },
+            "eventTime": "2026-10-01T11:00:00Z",
+            "origin": "separately-originating-sensor",
+            "provenanceAssessment": "accepted",
+            "interpretationAssessment": "accepted",
+            "assessmentEvidenceRefs": [
+              "synthetic-acquisition-receipt",
+              "synthetic-event-interpretation"
+            ],
+            "eventInterpretation": "A normalized control-plane audit event records the lab VM operation. A role assignment alone would not prove the operation occurred."
+          }
+        ]
+      },
+      "coverage": {},
+      "expectedTrace": [
+        [
+          "Q4",
+          "unknown"
+        ],
+        [
+          "Q11",
+          "no"
+        ],
+        [
+          "Q599",
+          "yes"
+        ]
+      ],
+      "expectedState": "unresolved",
+      "investigativeQuestion": "A normalized control-plane audit event records the lab VM operation. A role assignment alone would not prove the operation occurred."
+    },
+    {
+      "id": "cloud-unknown-coverage",
+      "domain": "Cloud",
+      "evidenceKind": "synthetic-reconstruction",
+      "sourceIds": [
+        "unc3944"
+      ],
+      "sourceObservation": "Author-created normalized event inspired by the cited behavior; all identifiers, dates and coverage/provenance assertions are synthetic. No actor intent or authorization is inferred.",
+      "bindings": {
+        "tenantId": "tenant:lab",
+        "resourceId": "vm:lab-42",
+        "operationId": "operation:create-vm-42"
+      },
+      "interval": {
+        "start": "2026-10-01T10:00:00Z",
+        "end": "2026-10-01T11:00:00Z"
+      },
+      "primaryOrigin": "primary-native-sensor",
+      "primary": {
+        "accessible": true,
+        "searched": true,
+        "records": []
+      },
+      "independent": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "coverage": {
+        "subjects": {
+          "tenantId": "tenant:lab",
+          "resourceId": "vm:lab-42",
+          "operationId": "operation:create-vm-42"
+        },
+        "interval": {
+          "start": "2026-10-01T10:00:00Z",
+          "end": "2026-10-01T11:00:00Z"
+        },
+        "applicableLogging": true,
+        "continuousCollection": true,
+        "retentionComplete": null,
+        "clockBounded": true,
+        "searchComplete": true,
+        "integrityAssessed": true,
+        "evidenceRefs": [
+          "synthetic-coverage-receipt"
+        ]
+      },
+      "expectedTrace": [
+        [
+          "Q4",
+          "no"
+        ],
+        [
+          "Q592",
+          "unknown"
+        ]
+      ],
+      "expectedState": "unresolved",
+      "investigativeQuestion": "A normalized control-plane audit event records the lab VM operation. A role assignment alone would not prove the operation occurred."
+    },
+    {
+      "id": "email-public-report",
+      "domain": "Email",
+      "evidenceKind": "public-report-only",
+      "sourceIds": [
+        "aitm"
+      ],
+      "sourceObservation": "Post-delivery removal means a current mailbox view alone cannot establish that a reported message was never delivered.",
+      "bindings": {
+        "messageId": null,
+        "mailboxId": null
+      },
+      "interval": {
+        "start": null,
+        "end": null
+      },
+      "primaryOrigin": "aitm",
+      "primary": {
+        "accessible": true,
+        "searched": true,
+        "records": []
+      },
+      "independent": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "coverage": {},
+      "expectedTrace": [
+        [
+          "Q5",
+          "unknown"
+        ],
+        [
+          "Q12",
+          "unknown"
+        ],
+        [
+          "Q600",
+          "yes"
+        ]
+      ],
+      "expectedState": "unresolved"
+    },
+    {
+      "id": "email-supported-record",
+      "domain": "Email",
+      "evidenceKind": "synthetic-reconstruction",
+      "sourceIds": [
+        "aitm"
+      ],
+      "sourceObservation": "Author-created normalized event inspired by the cited behavior; all identifiers, dates and coverage/provenance assertions are synthetic. No actor intent or authorization is inferred.",
+      "bindings": {
+        "messageId": "<sharepoint-link-42@example.invalid>",
+        "mailboxId": "mailbox:lab-recipient"
+      },
+      "interval": {
+        "start": "2026-10-01T10:00:00Z",
+        "end": "2026-10-01T11:00:00Z"
+      },
+      "primaryOrigin": "primary-native-sensor",
+      "primary": {
+        "accessible": true,
+        "searched": true,
+        "records": [
+          {
+            "id": "email-synthetic-record",
+            "subjects": {
+              "messageId": "<sharepoint-link-42@example.invalid>",
+              "mailboxId": "mailbox:lab-recipient"
+            },
+            "eventTime": "2026-10-01T10:30:00Z",
+            "origin": "primary-native-sensor",
+            "provenanceAssessment": "accepted",
+            "interpretationAssessment": "accepted",
+            "assessmentEvidenceRefs": [
+              "synthetic-acquisition-receipt",
+              "synthetic-event-interpretation"
+            ],
+            "eventInterpretation": "A historical transport event records delivery to the lab mailbox. A later empty mailbox does not negate historical delivery."
+          }
+        ]
+      },
+      "independent": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "coverage": {},
+      "expectedTrace": [
+        [
+          "Q5",
+          "yes"
+        ],
+        [
+          "Q154",
+          "yes"
+        ]
+      ],
+      "expectedState": "positive-review-boundary",
+      "investigativeQuestion": "A historical transport event records delivery to the lab mailbox. A later empty mailbox does not negate historical delivery."
+    },
+    {
+      "id": "email-bounded-absence",
+      "domain": "Email",
+      "evidenceKind": "synthetic-reconstruction",
+      "sourceIds": [
+        "aitm"
+      ],
+      "sourceObservation": "Author-created normalized event inspired by the cited behavior; all identifiers, dates and coverage/provenance assertions are synthetic. No actor intent or authorization is inferred.",
+      "bindings": {
+        "messageId": "<sharepoint-link-42@example.invalid>",
+        "mailboxId": "mailbox:lab-recipient"
+      },
+      "interval": {
+        "start": "2026-10-01T10:00:00Z",
+        "end": "2026-10-01T11:00:00Z"
+      },
+      "primaryOrigin": "primary-native-sensor",
+      "primary": {
+        "accessible": true,
+        "searched": true,
+        "records": []
+      },
+      "independent": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "coverage": {
+        "subjects": {
+          "messageId": "<sharepoint-link-42@example.invalid>",
+          "mailboxId": "mailbox:lab-recipient"
+        },
+        "interval": {
+          "start": "2026-10-01T10:00:00Z",
+          "end": "2026-10-01T11:00:00Z"
+        },
+        "applicableLogging": true,
+        "continuousCollection": true,
+        "retentionComplete": true,
+        "clockBounded": true,
+        "searchComplete": true,
+        "integrityAssessed": true,
+        "evidenceRefs": [
+          "synthetic-coverage-receipt"
+        ]
+      },
+      "expectedTrace": [
+        [
+          "Q5",
+          "no"
+        ],
+        [
+          "Q593",
+          "yes"
+        ]
+      ],
+      "expectedState": "bounded-exclusion",
+      "investigativeQuestion": "A historical transport event records delivery to the lab mailbox. A later empty mailbox does not negate historical delivery."
+    },
+    {
+      "id": "email-missing-logs",
+      "domain": "Email",
+      "evidenceKind": "synthetic-reconstruction",
+      "sourceIds": [
+        "aitm"
+      ],
+      "sourceObservation": "Author-created normalized event inspired by the cited behavior; all identifiers, dates and coverage/provenance assertions are synthetic. No actor intent or authorization is inferred.",
+      "bindings": {
+        "messageId": "<sharepoint-link-42@example.invalid>",
+        "mailboxId": "mailbox:lab-recipient"
+      },
+      "interval": {
+        "start": "2026-10-01T10:00:00Z",
+        "end": "2026-10-01T11:00:00Z"
+      },
+      "primaryOrigin": "primary-native-sensor",
+      "primary": {
+        "accessible": true,
+        "searched": true,
+        "records": []
+      },
+      "independent": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "coverage": {
+        "subjects": {
+          "messageId": "<sharepoint-link-42@example.invalid>",
+          "mailboxId": "mailbox:lab-recipient"
+        },
+        "interval": {
+          "start": "2026-10-01T10:00:00Z",
+          "end": "2026-10-01T11:00:00Z"
+        },
+        "applicableLogging": true,
+        "continuousCollection": false,
+        "retentionComplete": true,
+        "clockBounded": true,
+        "searchComplete": true,
+        "integrityAssessed": true,
+        "evidenceRefs": [
+          "synthetic-coverage-receipt"
+        ]
+      },
+      "expectedTrace": [
+        [
+          "Q5",
+          "no"
+        ],
+        [
+          "Q593",
+          "no"
+        ]
+      ],
+      "expectedState": "unresolved",
+      "investigativeQuestion": "A historical transport event records delivery to the lab mailbox. A later empty mailbox does not negate historical delivery."
+    },
+    {
+      "id": "email-independent-recovery",
+      "domain": "Email",
+      "evidenceKind": "synthetic-reconstruction",
+      "sourceIds": [
+        "aitm"
+      ],
+      "sourceObservation": "Author-created normalized event inspired by the cited behavior; all identifiers, dates and coverage/provenance assertions are synthetic. No actor intent or authorization is inferred.",
+      "bindings": {
+        "messageId": "<sharepoint-link-42@example.invalid>",
+        "mailboxId": "mailbox:lab-recipient"
+      },
+      "interval": {
+        "start": "2026-10-01T10:00:00Z",
+        "end": "2026-10-01T11:00:00Z"
+      },
+      "primaryOrigin": "primary-native-sensor",
+      "primary": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "independent": {
+        "accessible": true,
+        "searched": true,
+        "records": [
+          {
+            "id": "email-independent-record",
+            "subjects": {
+              "messageId": "<sharepoint-link-42@example.invalid>",
+              "mailboxId": "mailbox:lab-recipient"
+            },
+            "eventTime": "2026-10-01T10:30:00Z",
+            "origin": "separately-originating-sensor",
+            "provenanceAssessment": "accepted",
+            "interpretationAssessment": "accepted",
+            "assessmentEvidenceRefs": [
+              "synthetic-acquisition-receipt",
+              "synthetic-event-interpretation"
+            ],
+            "eventInterpretation": "A historical transport event records delivery to the lab mailbox. A later empty mailbox does not negate historical delivery."
+          }
+        ]
+      },
+      "coverage": {},
+      "expectedTrace": [
+        [
+          "Q5",
+          "unknown"
+        ],
+        [
+          "Q12",
+          "yes"
+        ],
+        [
+          "Q147",
+          "yes"
+        ]
+      ],
+      "expectedState": "positive-review-boundary",
+      "investigativeQuestion": "A historical transport event records delivery to the lab mailbox. A later empty mailbox does not negate historical delivery."
+    },
+    {
+      "id": "email-copied-log-is-not-corroboration",
+      "domain": "Email",
+      "evidenceKind": "synthetic-reconstruction",
+      "sourceIds": [
+        "aitm"
+      ],
+      "sourceObservation": "Author-created normalized event inspired by the cited behavior; all identifiers, dates and coverage/provenance assertions are synthetic. No actor intent or authorization is inferred.",
+      "bindings": {
+        "messageId": "<sharepoint-link-42@example.invalid>",
+        "mailboxId": "mailbox:lab-recipient"
+      },
+      "interval": {
+        "start": "2026-10-01T10:00:00Z",
+        "end": "2026-10-01T11:00:00Z"
+      },
+      "primaryOrigin": "primary-native-sensor",
+      "primary": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "independent": {
+        "accessible": true,
+        "searched": true,
+        "records": [
+          {
+            "id": "email-independent-record",
+            "subjects": {
+              "messageId": "<sharepoint-link-42@example.invalid>",
+              "mailboxId": "mailbox:lab-recipient"
+            },
+            "eventTime": "2026-10-01T10:30:00Z",
+            "origin": "primary-native-sensor",
+            "provenanceAssessment": "accepted",
+            "interpretationAssessment": "accepted",
+            "assessmentEvidenceRefs": [
+              "synthetic-acquisition-receipt",
+              "synthetic-event-interpretation"
+            ],
+            "eventInterpretation": "A historical transport event records delivery to the lab mailbox. A later empty mailbox does not negate historical delivery."
+          }
+        ]
+      },
+      "coverage": {},
+      "expectedTrace": [
+        [
+          "Q5",
+          "unknown"
+        ],
+        [
+          "Q12",
+          "unknown"
+        ],
+        [
+          "Q600",
+          "yes"
+        ]
+      ],
+      "expectedState": "unresolved",
+      "investigativeQuestion": "A historical transport event records delivery to the lab mailbox. A later empty mailbox does not negate historical delivery."
+    },
+    {
+      "id": "email-rejected-provenance",
+      "domain": "Email",
+      "evidenceKind": "synthetic-reconstruction",
+      "sourceIds": [
+        "aitm"
+      ],
+      "sourceObservation": "Author-created normalized event inspired by the cited behavior; all identifiers, dates and coverage/provenance assertions are synthetic. No actor intent or authorization is inferred.",
+      "bindings": {
+        "messageId": "<sharepoint-link-42@example.invalid>",
+        "mailboxId": "mailbox:lab-recipient"
+      },
+      "interval": {
+        "start": "2026-10-01T10:00:00Z",
+        "end": "2026-10-01T11:00:00Z"
+      },
+      "primaryOrigin": "primary-native-sensor",
+      "primary": {
+        "accessible": true,
+        "searched": true,
+        "records": [
+          {
+            "id": "email-synthetic-record",
+            "subjects": {
+              "messageId": "<sharepoint-link-42@example.invalid>",
+              "mailboxId": "mailbox:lab-recipient"
+            },
+            "eventTime": "2026-10-01T10:30:00Z",
+            "origin": "primary-native-sensor",
+            "provenanceAssessment": "rejected",
+            "interpretationAssessment": "accepted",
+            "assessmentEvidenceRefs": [
+              "synthetic-acquisition-receipt",
+              "synthetic-event-interpretation"
+            ],
+            "eventInterpretation": "A historical transport event records delivery to the lab mailbox. A later empty mailbox does not negate historical delivery."
+          }
+        ]
+      },
+      "independent": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "coverage": {},
+      "expectedTrace": [
+        [
+          "Q5",
+          "yes"
+        ],
+        [
+          "Q154",
+          "no"
+        ],
+        [
+          "Q600",
+          "yes"
+        ]
+      ],
+      "expectedState": "unresolved",
+      "investigativeQuestion": "A historical transport event records delivery to the lab mailbox. A later empty mailbox does not negate historical delivery."
+    },
+    {
+      "id": "email-conflicting-records",
+      "domain": "Email",
+      "evidenceKind": "synthetic-reconstruction",
+      "sourceIds": [
+        "aitm"
+      ],
+      "sourceObservation": "Author-created normalized event inspired by the cited behavior; all identifiers, dates and coverage/provenance assertions are synthetic. No actor intent or authorization is inferred.",
+      "bindings": {
+        "messageId": "<sharepoint-link-42@example.invalid>",
+        "mailboxId": "mailbox:lab-recipient"
+      },
+      "interval": {
+        "start": "2026-10-01T10:00:00Z",
+        "end": "2026-10-01T11:00:00Z"
+      },
+      "primaryOrigin": "primary-native-sensor",
+      "primary": {
+        "accessible": true,
+        "searched": true,
+        "records": [
+          {
+            "id": "email-synthetic-record",
+            "subjects": {
+              "messageId": "<sharepoint-link-42@example.invalid>",
+              "mailboxId": "mailbox:lab-recipient"
+            },
+            "eventTime": "2026-10-01T10:30:00Z",
+            "origin": "primary-native-sensor",
+            "provenanceAssessment": "accepted",
+            "interpretationAssessment": "accepted",
+            "assessmentEvidenceRefs": [
+              "synthetic-acquisition-receipt",
+              "synthetic-event-interpretation"
+            ],
+            "eventInterpretation": "A historical transport event records delivery to the lab mailbox. A later empty mailbox does not negate historical delivery."
+          }
+        ]
+      },
+      "independent": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "coverage": {},
+      "expectedTrace": [
+        [
+          "Q5",
+          "unknown"
+        ],
+        [
+          "Q12",
+          "unknown"
+        ],
+        [
+          "Q600",
+          "yes"
+        ]
+      ],
+      "expectedState": "unresolved",
+      "materialConflict": true,
+      "investigativeQuestion": "A historical transport event records delivery to the lab mailbox. A later empty mailbox does not negate historical delivery."
+    },
+    {
+      "id": "email-wrong-subject-corroboration",
+      "domain": "Email",
+      "evidenceKind": "synthetic-reconstruction",
+      "sourceIds": [
+        "aitm"
+      ],
+      "sourceObservation": "Author-created normalized event inspired by the cited behavior; all identifiers, dates and coverage/provenance assertions are synthetic. No actor intent or authorization is inferred.",
+      "bindings": {
+        "messageId": "<sharepoint-link-42@example.invalid>",
+        "mailboxId": "mailbox:lab-recipient"
+      },
+      "interval": {
+        "start": "2026-10-01T10:00:00Z",
+        "end": "2026-10-01T11:00:00Z"
+      },
+      "primaryOrigin": "primary-native-sensor",
+      "primary": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "independent": {
+        "accessible": true,
+        "searched": true,
+        "records": [
+          {
+            "id": "wrong-subject-record",
+            "subjects": {
+              "messageId": "different-entity",
+              "mailboxId": "mailbox:lab-recipient"
+            },
+            "eventTime": "2026-10-01T10:30:00Z",
+            "origin": "separately-originating-sensor",
+            "provenanceAssessment": "accepted",
+            "interpretationAssessment": "accepted",
+            "assessmentEvidenceRefs": [
+              "synthetic-acquisition-receipt",
+              "synthetic-event-interpretation"
+            ],
+            "eventInterpretation": "A historical transport event records delivery to the lab mailbox. A later empty mailbox does not negate historical delivery."
+          }
+        ]
+      },
+      "coverage": {},
+      "expectedTrace": [
+        [
+          "Q5",
+          "unknown"
+        ],
+        [
+          "Q12",
+          "no"
+        ],
+        [
+          "Q600",
+          "yes"
+        ]
+      ],
+      "expectedState": "unresolved",
+      "investigativeQuestion": "A historical transport event records delivery to the lab mailbox. A later empty mailbox does not negate historical delivery."
+    },
+    {
+      "id": "email-outside-time-interval",
+      "domain": "Email",
+      "evidenceKind": "synthetic-reconstruction",
+      "sourceIds": [
+        "aitm"
+      ],
+      "sourceObservation": "Author-created normalized event inspired by the cited behavior; all identifiers, dates and coverage/provenance assertions are synthetic. No actor intent or authorization is inferred.",
+      "bindings": {
+        "messageId": "<sharepoint-link-42@example.invalid>",
+        "mailboxId": "mailbox:lab-recipient"
+      },
+      "interval": {
+        "start": "2026-10-01T10:00:00Z",
+        "end": "2026-10-01T11:00:00Z"
+      },
+      "primaryOrigin": "primary-native-sensor",
+      "primary": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "independent": {
+        "accessible": true,
+        "searched": true,
+        "records": [
+          {
+            "id": "wrong-subject-record",
+            "subjects": {
+              "messageId": "<sharepoint-link-42@example.invalid>",
+              "mailboxId": "mailbox:lab-recipient"
+            },
+            "eventTime": "2026-10-01T11:00:00Z",
+            "origin": "separately-originating-sensor",
+            "provenanceAssessment": "accepted",
+            "interpretationAssessment": "accepted",
+            "assessmentEvidenceRefs": [
+              "synthetic-acquisition-receipt",
+              "synthetic-event-interpretation"
+            ],
+            "eventInterpretation": "A historical transport event records delivery to the lab mailbox. A later empty mailbox does not negate historical delivery."
+          }
+        ]
+      },
+      "coverage": {},
+      "expectedTrace": [
+        [
+          "Q5",
+          "unknown"
+        ],
+        [
+          "Q12",
+          "no"
+        ],
+        [
+          "Q600",
+          "yes"
+        ]
+      ],
+      "expectedState": "unresolved",
+      "investigativeQuestion": "A historical transport event records delivery to the lab mailbox. A later empty mailbox does not negate historical delivery."
+    },
+    {
+      "id": "email-unknown-coverage",
+      "domain": "Email",
+      "evidenceKind": "synthetic-reconstruction",
+      "sourceIds": [
+        "aitm"
+      ],
+      "sourceObservation": "Author-created normalized event inspired by the cited behavior; all identifiers, dates and coverage/provenance assertions are synthetic. No actor intent or authorization is inferred.",
+      "bindings": {
+        "messageId": "<sharepoint-link-42@example.invalid>",
+        "mailboxId": "mailbox:lab-recipient"
+      },
+      "interval": {
+        "start": "2026-10-01T10:00:00Z",
+        "end": "2026-10-01T11:00:00Z"
+      },
+      "primaryOrigin": "primary-native-sensor",
+      "primary": {
+        "accessible": true,
+        "searched": true,
+        "records": []
+      },
+      "independent": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "coverage": {
+        "subjects": {
+          "messageId": "<sharepoint-link-42@example.invalid>",
+          "mailboxId": "mailbox:lab-recipient"
+        },
+        "interval": {
+          "start": "2026-10-01T10:00:00Z",
+          "end": "2026-10-01T11:00:00Z"
+        },
+        "applicableLogging": true,
+        "continuousCollection": true,
+        "retentionComplete": null,
+        "clockBounded": true,
+        "searchComplete": true,
+        "integrityAssessed": true,
+        "evidenceRefs": [
+          "synthetic-coverage-receipt"
+        ]
+      },
+      "expectedTrace": [
+        [
+          "Q5",
+          "no"
+        ],
+        [
+          "Q593",
+          "unknown"
+        ]
+      ],
+      "expectedState": "unresolved",
+      "investigativeQuestion": "A historical transport event records delivery to the lab mailbox. A later empty mailbox does not negate historical delivery."
+    },
+    {
+      "id": "application-public-report",
+      "domain": "Application",
+      "evidenceKind": "public-report-only",
+      "sourceIds": [
+        "storm0558"
+      ],
+      "sourceObservation": "Reported forged-token OWA access motivates request investigation; the public report is not a complete request-level evidence package.",
+      "bindings": {
+        "applicationId": null,
+        "requestId": null
+      },
+      "interval": {
+        "start": null,
+        "end": null
+      },
+      "primaryOrigin": "storm0558",
+      "primary": {
+        "accessible": true,
+        "searched": true,
+        "records": []
+      },
+      "independent": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "coverage": {},
+      "expectedTrace": [
+        [
+          "Q6",
+          "unknown"
+        ],
+        [
+          "Q13",
+          "unknown"
+        ],
+        [
+          "Q601",
+          "yes"
+        ]
+      ],
+      "expectedState": "unresolved"
+    },
+    {
+      "id": "application-supported-record",
+      "domain": "Application",
+      "evidenceKind": "synthetic-reconstruction",
+      "sourceIds": [
+        "storm0558"
+      ],
+      "sourceObservation": "Author-created normalized event inspired by the cited behavior; all identifiers, dates and coverage/provenance assertions are synthetic. No actor intent or authorization is inferred.",
+      "bindings": {
+        "applicationId": "app:owa-lab",
+        "requestId": "request:mail-read-42"
+      },
+      "interval": {
+        "start": "2026-10-01T10:00:00Z",
+        "end": "2026-10-01T11:00:00Z"
+      },
+      "primaryOrigin": "primary-native-sensor",
+      "primary": {
+        "accessible": true,
+        "searched": true,
+        "records": [
+          {
+            "id": "application-synthetic-record",
+            "subjects": {
+              "applicationId": "app:owa-lab",
+              "requestId": "request:mail-read-42"
+            },
+            "eventTime": "2026-10-01T10:30:00Z",
+            "origin": "primary-native-sensor",
+            "provenanceAssessment": "accepted",
+            "interpretationAssessment": "accepted",
+            "assessmentEvidenceRefs": [
+              "synthetic-acquisition-receipt",
+              "synthetic-event-interpretation"
+            ],
+            "eventInterpretation": "A normalized application event records the bound OWA request being handled. Token possession alone would not establish a handled request."
+          }
+        ]
+      },
+      "independent": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "coverage": {},
+      "expectedTrace": [
+        [
+          "Q6",
+          "yes"
+        ],
+        [
+          "Q85",
+          "yes"
+        ]
+      ],
+      "expectedState": "positive-review-boundary",
+      "investigativeQuestion": "A normalized application event records the bound OWA request being handled. Token possession alone would not establish a handled request."
+    },
+    {
+      "id": "application-bounded-absence",
+      "domain": "Application",
+      "evidenceKind": "synthetic-reconstruction",
+      "sourceIds": [
+        "storm0558"
+      ],
+      "sourceObservation": "Author-created normalized event inspired by the cited behavior; all identifiers, dates and coverage/provenance assertions are synthetic. No actor intent or authorization is inferred.",
+      "bindings": {
+        "applicationId": "app:owa-lab",
+        "requestId": "request:mail-read-42"
+      },
+      "interval": {
+        "start": "2026-10-01T10:00:00Z",
+        "end": "2026-10-01T11:00:00Z"
+      },
+      "primaryOrigin": "primary-native-sensor",
+      "primary": {
+        "accessible": true,
+        "searched": true,
+        "records": []
+      },
+      "independent": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "coverage": {
+        "subjects": {
+          "applicationId": "app:owa-lab",
+          "requestId": "request:mail-read-42"
+        },
+        "interval": {
+          "start": "2026-10-01T10:00:00Z",
+          "end": "2026-10-01T11:00:00Z"
+        },
+        "applicableLogging": true,
+        "continuousCollection": true,
+        "retentionComplete": true,
+        "clockBounded": true,
+        "searchComplete": true,
+        "integrityAssessed": true,
+        "evidenceRefs": [
+          "synthetic-coverage-receipt"
+        ]
+      },
+      "expectedTrace": [
+        [
+          "Q6",
+          "no"
+        ],
+        [
+          "Q594",
+          "yes"
+        ]
+      ],
+      "expectedState": "bounded-exclusion",
+      "investigativeQuestion": "A normalized application event records the bound OWA request being handled. Token possession alone would not establish a handled request."
+    },
+    {
+      "id": "application-missing-logs",
+      "domain": "Application",
+      "evidenceKind": "synthetic-reconstruction",
+      "sourceIds": [
+        "storm0558"
+      ],
+      "sourceObservation": "Author-created normalized event inspired by the cited behavior; all identifiers, dates and coverage/provenance assertions are synthetic. No actor intent or authorization is inferred.",
+      "bindings": {
+        "applicationId": "app:owa-lab",
+        "requestId": "request:mail-read-42"
+      },
+      "interval": {
+        "start": "2026-10-01T10:00:00Z",
+        "end": "2026-10-01T11:00:00Z"
+      },
+      "primaryOrigin": "primary-native-sensor",
+      "primary": {
+        "accessible": true,
+        "searched": true,
+        "records": []
+      },
+      "independent": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "coverage": {
+        "subjects": {
+          "applicationId": "app:owa-lab",
+          "requestId": "request:mail-read-42"
+        },
+        "interval": {
+          "start": "2026-10-01T10:00:00Z",
+          "end": "2026-10-01T11:00:00Z"
+        },
+        "applicableLogging": true,
+        "continuousCollection": false,
+        "retentionComplete": true,
+        "clockBounded": true,
+        "searchComplete": true,
+        "integrityAssessed": true,
+        "evidenceRefs": [
+          "synthetic-coverage-receipt"
+        ]
+      },
+      "expectedTrace": [
+        [
+          "Q6",
+          "no"
+        ],
+        [
+          "Q594",
+          "no"
+        ]
+      ],
+      "expectedState": "unresolved",
+      "investigativeQuestion": "A normalized application event records the bound OWA request being handled. Token possession alone would not establish a handled request."
+    },
+    {
+      "id": "application-independent-recovery",
+      "domain": "Application",
+      "evidenceKind": "synthetic-reconstruction",
+      "sourceIds": [
+        "storm0558"
+      ],
+      "sourceObservation": "Author-created normalized event inspired by the cited behavior; all identifiers, dates and coverage/provenance assertions are synthetic. No actor intent or authorization is inferred.",
+      "bindings": {
+        "applicationId": "app:owa-lab",
+        "requestId": "request:mail-read-42"
+      },
+      "interval": {
+        "start": "2026-10-01T10:00:00Z",
+        "end": "2026-10-01T11:00:00Z"
+      },
+      "primaryOrigin": "primary-native-sensor",
+      "primary": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "independent": {
+        "accessible": true,
+        "searched": true,
+        "records": [
+          {
+            "id": "application-independent-record",
+            "subjects": {
+              "applicationId": "app:owa-lab",
+              "requestId": "request:mail-read-42"
+            },
+            "eventTime": "2026-10-01T10:30:00Z",
+            "origin": "separately-originating-sensor",
+            "provenanceAssessment": "accepted",
+            "interpretationAssessment": "accepted",
+            "assessmentEvidenceRefs": [
+              "synthetic-acquisition-receipt",
+              "synthetic-event-interpretation"
+            ],
+            "eventInterpretation": "A normalized application event records the bound OWA request being handled. Token possession alone would not establish a handled request."
+          }
+        ]
+      },
+      "coverage": {},
+      "expectedTrace": [
+        [
+          "Q6",
+          "unknown"
+        ],
+        [
+          "Q13",
+          "yes"
+        ],
+        [
+          "Q148",
+          "yes"
+        ]
+      ],
+      "expectedState": "positive-review-boundary",
+      "investigativeQuestion": "A normalized application event records the bound OWA request being handled. Token possession alone would not establish a handled request."
+    },
+    {
+      "id": "application-copied-log-is-not-corroboration",
+      "domain": "Application",
+      "evidenceKind": "synthetic-reconstruction",
+      "sourceIds": [
+        "storm0558"
+      ],
+      "sourceObservation": "Author-created normalized event inspired by the cited behavior; all identifiers, dates and coverage/provenance assertions are synthetic. No actor intent or authorization is inferred.",
+      "bindings": {
+        "applicationId": "app:owa-lab",
+        "requestId": "request:mail-read-42"
+      },
+      "interval": {
+        "start": "2026-10-01T10:00:00Z",
+        "end": "2026-10-01T11:00:00Z"
+      },
+      "primaryOrigin": "primary-native-sensor",
+      "primary": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "independent": {
+        "accessible": true,
+        "searched": true,
+        "records": [
+          {
+            "id": "application-independent-record",
+            "subjects": {
+              "applicationId": "app:owa-lab",
+              "requestId": "request:mail-read-42"
+            },
+            "eventTime": "2026-10-01T10:30:00Z",
+            "origin": "primary-native-sensor",
+            "provenanceAssessment": "accepted",
+            "interpretationAssessment": "accepted",
+            "assessmentEvidenceRefs": [
+              "synthetic-acquisition-receipt",
+              "synthetic-event-interpretation"
+            ],
+            "eventInterpretation": "A normalized application event records the bound OWA request being handled. Token possession alone would not establish a handled request."
+          }
+        ]
+      },
+      "coverage": {},
+      "expectedTrace": [
+        [
+          "Q6",
+          "unknown"
+        ],
+        [
+          "Q13",
+          "unknown"
+        ],
+        [
+          "Q601",
+          "yes"
+        ]
+      ],
+      "expectedState": "unresolved",
+      "investigativeQuestion": "A normalized application event records the bound OWA request being handled. Token possession alone would not establish a handled request."
+    },
+    {
+      "id": "application-rejected-provenance",
+      "domain": "Application",
+      "evidenceKind": "synthetic-reconstruction",
+      "sourceIds": [
+        "storm0558"
+      ],
+      "sourceObservation": "Author-created normalized event inspired by the cited behavior; all identifiers, dates and coverage/provenance assertions are synthetic. No actor intent or authorization is inferred.",
+      "bindings": {
+        "applicationId": "app:owa-lab",
+        "requestId": "request:mail-read-42"
+      },
+      "interval": {
+        "start": "2026-10-01T10:00:00Z",
+        "end": "2026-10-01T11:00:00Z"
+      },
+      "primaryOrigin": "primary-native-sensor",
+      "primary": {
+        "accessible": true,
+        "searched": true,
+        "records": [
+          {
+            "id": "application-synthetic-record",
+            "subjects": {
+              "applicationId": "app:owa-lab",
+              "requestId": "request:mail-read-42"
+            },
+            "eventTime": "2026-10-01T10:30:00Z",
+            "origin": "primary-native-sensor",
+            "provenanceAssessment": "rejected",
+            "interpretationAssessment": "accepted",
+            "assessmentEvidenceRefs": [
+              "synthetic-acquisition-receipt",
+              "synthetic-event-interpretation"
+            ],
+            "eventInterpretation": "A normalized application event records the bound OWA request being handled. Token possession alone would not establish a handled request."
+          }
+        ]
+      },
+      "independent": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "coverage": {},
+      "expectedTrace": [
+        [
+          "Q6",
+          "yes"
+        ],
+        [
+          "Q85",
+          "no"
+        ],
+        [
+          "Q601",
+          "yes"
+        ]
+      ],
+      "expectedState": "unresolved",
+      "investigativeQuestion": "A normalized application event records the bound OWA request being handled. Token possession alone would not establish a handled request."
+    },
+    {
+      "id": "application-conflicting-records",
+      "domain": "Application",
+      "evidenceKind": "synthetic-reconstruction",
+      "sourceIds": [
+        "storm0558"
+      ],
+      "sourceObservation": "Author-created normalized event inspired by the cited behavior; all identifiers, dates and coverage/provenance assertions are synthetic. No actor intent or authorization is inferred.",
+      "bindings": {
+        "applicationId": "app:owa-lab",
+        "requestId": "request:mail-read-42"
+      },
+      "interval": {
+        "start": "2026-10-01T10:00:00Z",
+        "end": "2026-10-01T11:00:00Z"
+      },
+      "primaryOrigin": "primary-native-sensor",
+      "primary": {
+        "accessible": true,
+        "searched": true,
+        "records": [
+          {
+            "id": "application-synthetic-record",
+            "subjects": {
+              "applicationId": "app:owa-lab",
+              "requestId": "request:mail-read-42"
+            },
+            "eventTime": "2026-10-01T10:30:00Z",
+            "origin": "primary-native-sensor",
+            "provenanceAssessment": "accepted",
+            "interpretationAssessment": "accepted",
+            "assessmentEvidenceRefs": [
+              "synthetic-acquisition-receipt",
+              "synthetic-event-interpretation"
+            ],
+            "eventInterpretation": "A normalized application event records the bound OWA request being handled. Token possession alone would not establish a handled request."
+          }
+        ]
+      },
+      "independent": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "coverage": {},
+      "expectedTrace": [
+        [
+          "Q6",
+          "unknown"
+        ],
+        [
+          "Q13",
+          "unknown"
+        ],
+        [
+          "Q601",
+          "yes"
+        ]
+      ],
+      "expectedState": "unresolved",
+      "materialConflict": true,
+      "investigativeQuestion": "A normalized application event records the bound OWA request being handled. Token possession alone would not establish a handled request."
+    },
+    {
+      "id": "application-wrong-subject-corroboration",
+      "domain": "Application",
+      "evidenceKind": "synthetic-reconstruction",
+      "sourceIds": [
+        "storm0558"
+      ],
+      "sourceObservation": "Author-created normalized event inspired by the cited behavior; all identifiers, dates and coverage/provenance assertions are synthetic. No actor intent or authorization is inferred.",
+      "bindings": {
+        "applicationId": "app:owa-lab",
+        "requestId": "request:mail-read-42"
+      },
+      "interval": {
+        "start": "2026-10-01T10:00:00Z",
+        "end": "2026-10-01T11:00:00Z"
+      },
+      "primaryOrigin": "primary-native-sensor",
+      "primary": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "independent": {
+        "accessible": true,
+        "searched": true,
+        "records": [
+          {
+            "id": "wrong-subject-record",
+            "subjects": {
+              "applicationId": "different-entity",
+              "requestId": "request:mail-read-42"
+            },
+            "eventTime": "2026-10-01T10:30:00Z",
+            "origin": "separately-originating-sensor",
+            "provenanceAssessment": "accepted",
+            "interpretationAssessment": "accepted",
+            "assessmentEvidenceRefs": [
+              "synthetic-acquisition-receipt",
+              "synthetic-event-interpretation"
+            ],
+            "eventInterpretation": "A normalized application event records the bound OWA request being handled. Token possession alone would not establish a handled request."
+          }
+        ]
+      },
+      "coverage": {},
+      "expectedTrace": [
+        [
+          "Q6",
+          "unknown"
+        ],
+        [
+          "Q13",
+          "no"
+        ],
+        [
+          "Q601",
+          "yes"
+        ]
+      ],
+      "expectedState": "unresolved",
+      "investigativeQuestion": "A normalized application event records the bound OWA request being handled. Token possession alone would not establish a handled request."
+    },
+    {
+      "id": "application-outside-time-interval",
+      "domain": "Application",
+      "evidenceKind": "synthetic-reconstruction",
+      "sourceIds": [
+        "storm0558"
+      ],
+      "sourceObservation": "Author-created normalized event inspired by the cited behavior; all identifiers, dates and coverage/provenance assertions are synthetic. No actor intent or authorization is inferred.",
+      "bindings": {
+        "applicationId": "app:owa-lab",
+        "requestId": "request:mail-read-42"
+      },
+      "interval": {
+        "start": "2026-10-01T10:00:00Z",
+        "end": "2026-10-01T11:00:00Z"
+      },
+      "primaryOrigin": "primary-native-sensor",
+      "primary": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "independent": {
+        "accessible": true,
+        "searched": true,
+        "records": [
+          {
+            "id": "wrong-subject-record",
+            "subjects": {
+              "applicationId": "app:owa-lab",
+              "requestId": "request:mail-read-42"
+            },
+            "eventTime": "2026-10-01T11:00:00Z",
+            "origin": "separately-originating-sensor",
+            "provenanceAssessment": "accepted",
+            "interpretationAssessment": "accepted",
+            "assessmentEvidenceRefs": [
+              "synthetic-acquisition-receipt",
+              "synthetic-event-interpretation"
+            ],
+            "eventInterpretation": "A normalized application event records the bound OWA request being handled. Token possession alone would not establish a handled request."
+          }
+        ]
+      },
+      "coverage": {},
+      "expectedTrace": [
+        [
+          "Q6",
+          "unknown"
+        ],
+        [
+          "Q13",
+          "no"
+        ],
+        [
+          "Q601",
+          "yes"
+        ]
+      ],
+      "expectedState": "unresolved",
+      "investigativeQuestion": "A normalized application event records the bound OWA request being handled. Token possession alone would not establish a handled request."
+    },
+    {
+      "id": "application-unknown-coverage",
+      "domain": "Application",
+      "evidenceKind": "synthetic-reconstruction",
+      "sourceIds": [
+        "storm0558"
+      ],
+      "sourceObservation": "Author-created normalized event inspired by the cited behavior; all identifiers, dates and coverage/provenance assertions are synthetic. No actor intent or authorization is inferred.",
+      "bindings": {
+        "applicationId": "app:owa-lab",
+        "requestId": "request:mail-read-42"
+      },
+      "interval": {
+        "start": "2026-10-01T10:00:00Z",
+        "end": "2026-10-01T11:00:00Z"
+      },
+      "primaryOrigin": "primary-native-sensor",
+      "primary": {
+        "accessible": true,
+        "searched": true,
+        "records": []
+      },
+      "independent": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "coverage": {
+        "subjects": {
+          "applicationId": "app:owa-lab",
+          "requestId": "request:mail-read-42"
+        },
+        "interval": {
+          "start": "2026-10-01T10:00:00Z",
+          "end": "2026-10-01T11:00:00Z"
+        },
+        "applicableLogging": true,
+        "continuousCollection": true,
+        "retentionComplete": null,
+        "clockBounded": true,
+        "searchComplete": true,
+        "integrityAssessed": true,
+        "evidenceRefs": [
+          "synthetic-coverage-receipt"
+        ]
+      },
+      "expectedTrace": [
+        [
+          "Q6",
+          "no"
+        ],
+        [
+          "Q594",
+          "unknown"
+        ]
+      ],
+      "expectedState": "unresolved",
+      "investigativeQuestion": "A normalized application event records the bound OWA request being handled. Token possession alone would not establish a handled request."
+    },
+    {
+      "id": "file-public-report",
+      "domain": "File",
+      "evidenceKind": "public-report-only",
+      "sourceIds": [
+        "sunburst"
+      ],
+      "sourceObservation": "The named compromised component is a file lead, not proof it was present on a specific bound system during a specific interval.",
+      "bindings": {
+        "fileId": null,
+        "systemId": null
+      },
+      "interval": {
+        "start": null,
+        "end": null
+      },
+      "primaryOrigin": "sunburst",
+      "primary": {
+        "accessible": true,
+        "searched": true,
+        "records": []
+      },
+      "independent": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "coverage": {},
+      "expectedTrace": [
+        [
+          "Q7",
+          "unknown"
+        ],
+        [
+          "Q14",
+          "unknown"
+        ],
+        [
+          "Q602",
+          "yes"
+        ]
+      ],
+      "expectedState": "unresolved"
+    },
+    {
+      "id": "file-supported-record",
+      "domain": "File",
+      "evidenceKind": "synthetic-reconstruction",
+      "sourceIds": [
+        "sunburst"
+      ],
+      "sourceObservation": "Author-created normalized event inspired by the cited behavior; all identifiers, dates and coverage/provenance assertions are synthetic. No actor intent or authorization is inferred.",
+      "bindings": {
+        "fileId": "file:SolarWinds.Orion.Core.BusinessLayer.dll:synthetic-copy-42",
+        "systemId": "system:orion-lab"
+      },
+      "interval": {
+        "start": "2026-10-01T10:00:00Z",
+        "end": "2026-10-01T11:00:00Z"
+      },
+      "primaryOrigin": "primary-native-sensor",
+      "primary": {
+        "accessible": true,
+        "searched": true,
+        "records": [
+          {
+            "id": "file-synthetic-record",
+            "subjects": {
+              "fileId": "file:SolarWinds.Orion.Core.BusinessLayer.dll:synthetic-copy-42",
+              "systemId": "system:orion-lab"
+            },
+            "eventTime": "2026-10-01T10:30:00Z",
+            "origin": "primary-native-sensor",
+            "provenanceAssessment": "accepted",
+            "interpretationAssessment": "accepted",
+            "assessmentEvidenceRefs": [
+              "synthetic-acquisition-receipt",
+              "synthetic-event-interpretation"
+            ],
+            "eventInterpretation": "A normalized historical file observation records the bound lab component. A valid code signature alone does not prove benignness or execution."
+          }
+        ]
+      },
+      "independent": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "coverage": {},
+      "expectedTrace": [
+        [
+          "Q7",
+          "yes"
+        ],
+        [
+          "Q86",
+          "yes"
+        ]
+      ],
+      "expectedState": "positive-review-boundary",
+      "investigativeQuestion": "A normalized historical file observation records the bound lab component. A valid code signature alone does not prove benignness or execution."
+    },
+    {
+      "id": "file-bounded-absence",
+      "domain": "File",
+      "evidenceKind": "synthetic-reconstruction",
+      "sourceIds": [
+        "sunburst"
+      ],
+      "sourceObservation": "Author-created normalized event inspired by the cited behavior; all identifiers, dates and coverage/provenance assertions are synthetic. No actor intent or authorization is inferred.",
+      "bindings": {
+        "fileId": "file:SolarWinds.Orion.Core.BusinessLayer.dll:synthetic-copy-42",
+        "systemId": "system:orion-lab"
+      },
+      "interval": {
+        "start": "2026-10-01T10:00:00Z",
+        "end": "2026-10-01T11:00:00Z"
+      },
+      "primaryOrigin": "primary-native-sensor",
+      "primary": {
+        "accessible": true,
+        "searched": true,
+        "records": []
+      },
+      "independent": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "coverage": {
+        "subjects": {
+          "fileId": "file:SolarWinds.Orion.Core.BusinessLayer.dll:synthetic-copy-42",
+          "systemId": "system:orion-lab"
+        },
+        "interval": {
+          "start": "2026-10-01T10:00:00Z",
+          "end": "2026-10-01T11:00:00Z"
+        },
+        "applicableLogging": true,
+        "continuousCollection": true,
+        "retentionComplete": true,
+        "clockBounded": true,
+        "searchComplete": true,
+        "integrityAssessed": true,
+        "evidenceRefs": [
+          "synthetic-coverage-receipt"
+        ]
+      },
+      "expectedTrace": [
+        [
+          "Q7",
+          "no"
+        ],
+        [
+          "Q595",
+          "yes"
+        ]
+      ],
+      "expectedState": "bounded-exclusion",
+      "investigativeQuestion": "A normalized historical file observation records the bound lab component. A valid code signature alone does not prove benignness or execution."
+    },
+    {
+      "id": "file-missing-logs",
+      "domain": "File",
+      "evidenceKind": "synthetic-reconstruction",
+      "sourceIds": [
+        "sunburst"
+      ],
+      "sourceObservation": "Author-created normalized event inspired by the cited behavior; all identifiers, dates and coverage/provenance assertions are synthetic. No actor intent or authorization is inferred.",
+      "bindings": {
+        "fileId": "file:SolarWinds.Orion.Core.BusinessLayer.dll:synthetic-copy-42",
+        "systemId": "system:orion-lab"
+      },
+      "interval": {
+        "start": "2026-10-01T10:00:00Z",
+        "end": "2026-10-01T11:00:00Z"
+      },
+      "primaryOrigin": "primary-native-sensor",
+      "primary": {
+        "accessible": true,
+        "searched": true,
+        "records": []
+      },
+      "independent": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "coverage": {
+        "subjects": {
+          "fileId": "file:SolarWinds.Orion.Core.BusinessLayer.dll:synthetic-copy-42",
+          "systemId": "system:orion-lab"
+        },
+        "interval": {
+          "start": "2026-10-01T10:00:00Z",
+          "end": "2026-10-01T11:00:00Z"
+        },
+        "applicableLogging": true,
+        "continuousCollection": false,
+        "retentionComplete": true,
+        "clockBounded": true,
+        "searchComplete": true,
+        "integrityAssessed": true,
+        "evidenceRefs": [
+          "synthetic-coverage-receipt"
+        ]
+      },
+      "expectedTrace": [
+        [
+          "Q7",
+          "no"
+        ],
+        [
+          "Q595",
+          "no"
+        ]
+      ],
+      "expectedState": "unresolved",
+      "investigativeQuestion": "A normalized historical file observation records the bound lab component. A valid code signature alone does not prove benignness or execution."
+    },
+    {
+      "id": "file-independent-recovery",
+      "domain": "File",
+      "evidenceKind": "synthetic-reconstruction",
+      "sourceIds": [
+        "sunburst"
+      ],
+      "sourceObservation": "Author-created normalized event inspired by the cited behavior; all identifiers, dates and coverage/provenance assertions are synthetic. No actor intent or authorization is inferred.",
+      "bindings": {
+        "fileId": "file:SolarWinds.Orion.Core.BusinessLayer.dll:synthetic-copy-42",
+        "systemId": "system:orion-lab"
+      },
+      "interval": {
+        "start": "2026-10-01T10:00:00Z",
+        "end": "2026-10-01T11:00:00Z"
+      },
+      "primaryOrigin": "primary-native-sensor",
+      "primary": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "independent": {
+        "accessible": true,
+        "searched": true,
+        "records": [
+          {
+            "id": "file-independent-record",
+            "subjects": {
+              "fileId": "file:SolarWinds.Orion.Core.BusinessLayer.dll:synthetic-copy-42",
+              "systemId": "system:orion-lab"
+            },
+            "eventTime": "2026-10-01T10:30:00Z",
+            "origin": "separately-originating-sensor",
+            "provenanceAssessment": "accepted",
+            "interpretationAssessment": "accepted",
+            "assessmentEvidenceRefs": [
+              "synthetic-acquisition-receipt",
+              "synthetic-event-interpretation"
+            ],
+            "eventInterpretation": "A normalized historical file observation records the bound lab component. A valid code signature alone does not prove benignness or execution."
+          }
+        ]
+      },
+      "coverage": {},
+      "expectedTrace": [
+        [
+          "Q7",
+          "unknown"
+        ],
+        [
+          "Q14",
+          "yes"
+        ],
+        [
+          "Q149",
+          "yes"
+        ]
+      ],
+      "expectedState": "positive-review-boundary",
+      "investigativeQuestion": "A normalized historical file observation records the bound lab component. A valid code signature alone does not prove benignness or execution."
+    },
+    {
+      "id": "file-copied-log-is-not-corroboration",
+      "domain": "File",
+      "evidenceKind": "synthetic-reconstruction",
+      "sourceIds": [
+        "sunburst"
+      ],
+      "sourceObservation": "Author-created normalized event inspired by the cited behavior; all identifiers, dates and coverage/provenance assertions are synthetic. No actor intent or authorization is inferred.",
+      "bindings": {
+        "fileId": "file:SolarWinds.Orion.Core.BusinessLayer.dll:synthetic-copy-42",
+        "systemId": "system:orion-lab"
+      },
+      "interval": {
+        "start": "2026-10-01T10:00:00Z",
+        "end": "2026-10-01T11:00:00Z"
+      },
+      "primaryOrigin": "primary-native-sensor",
+      "primary": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "independent": {
+        "accessible": true,
+        "searched": true,
+        "records": [
+          {
+            "id": "file-independent-record",
+            "subjects": {
+              "fileId": "file:SolarWinds.Orion.Core.BusinessLayer.dll:synthetic-copy-42",
+              "systemId": "system:orion-lab"
+            },
+            "eventTime": "2026-10-01T10:30:00Z",
+            "origin": "primary-native-sensor",
+            "provenanceAssessment": "accepted",
+            "interpretationAssessment": "accepted",
+            "assessmentEvidenceRefs": [
+              "synthetic-acquisition-receipt",
+              "synthetic-event-interpretation"
+            ],
+            "eventInterpretation": "A normalized historical file observation records the bound lab component. A valid code signature alone does not prove benignness or execution."
+          }
+        ]
+      },
+      "coverage": {},
+      "expectedTrace": [
+        [
+          "Q7",
+          "unknown"
+        ],
+        [
+          "Q14",
+          "unknown"
+        ],
+        [
+          "Q602",
+          "yes"
+        ]
+      ],
+      "expectedState": "unresolved",
+      "investigativeQuestion": "A normalized historical file observation records the bound lab component. A valid code signature alone does not prove benignness or execution."
+    },
+    {
+      "id": "file-rejected-provenance",
+      "domain": "File",
+      "evidenceKind": "synthetic-reconstruction",
+      "sourceIds": [
+        "sunburst"
+      ],
+      "sourceObservation": "Author-created normalized event inspired by the cited behavior; all identifiers, dates and coverage/provenance assertions are synthetic. No actor intent or authorization is inferred.",
+      "bindings": {
+        "fileId": "file:SolarWinds.Orion.Core.BusinessLayer.dll:synthetic-copy-42",
+        "systemId": "system:orion-lab"
+      },
+      "interval": {
+        "start": "2026-10-01T10:00:00Z",
+        "end": "2026-10-01T11:00:00Z"
+      },
+      "primaryOrigin": "primary-native-sensor",
+      "primary": {
+        "accessible": true,
+        "searched": true,
+        "records": [
+          {
+            "id": "file-synthetic-record",
+            "subjects": {
+              "fileId": "file:SolarWinds.Orion.Core.BusinessLayer.dll:synthetic-copy-42",
+              "systemId": "system:orion-lab"
+            },
+            "eventTime": "2026-10-01T10:30:00Z",
+            "origin": "primary-native-sensor",
+            "provenanceAssessment": "rejected",
+            "interpretationAssessment": "accepted",
+            "assessmentEvidenceRefs": [
+              "synthetic-acquisition-receipt",
+              "synthetic-event-interpretation"
+            ],
+            "eventInterpretation": "A normalized historical file observation records the bound lab component. A valid code signature alone does not prove benignness or execution."
+          }
+        ]
+      },
+      "independent": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "coverage": {},
+      "expectedTrace": [
+        [
+          "Q7",
+          "yes"
+        ],
+        [
+          "Q86",
+          "no"
+        ],
+        [
+          "Q602",
+          "yes"
+        ]
+      ],
+      "expectedState": "unresolved",
+      "investigativeQuestion": "A normalized historical file observation records the bound lab component. A valid code signature alone does not prove benignness or execution."
+    },
+    {
+      "id": "file-conflicting-records",
+      "domain": "File",
+      "evidenceKind": "synthetic-reconstruction",
+      "sourceIds": [
+        "sunburst"
+      ],
+      "sourceObservation": "Author-created normalized event inspired by the cited behavior; all identifiers, dates and coverage/provenance assertions are synthetic. No actor intent or authorization is inferred.",
+      "bindings": {
+        "fileId": "file:SolarWinds.Orion.Core.BusinessLayer.dll:synthetic-copy-42",
+        "systemId": "system:orion-lab"
+      },
+      "interval": {
+        "start": "2026-10-01T10:00:00Z",
+        "end": "2026-10-01T11:00:00Z"
+      },
+      "primaryOrigin": "primary-native-sensor",
+      "primary": {
+        "accessible": true,
+        "searched": true,
+        "records": [
+          {
+            "id": "file-synthetic-record",
+            "subjects": {
+              "fileId": "file:SolarWinds.Orion.Core.BusinessLayer.dll:synthetic-copy-42",
+              "systemId": "system:orion-lab"
+            },
+            "eventTime": "2026-10-01T10:30:00Z",
+            "origin": "primary-native-sensor",
+            "provenanceAssessment": "accepted",
+            "interpretationAssessment": "accepted",
+            "assessmentEvidenceRefs": [
+              "synthetic-acquisition-receipt",
+              "synthetic-event-interpretation"
+            ],
+            "eventInterpretation": "A normalized historical file observation records the bound lab component. A valid code signature alone does not prove benignness or execution."
+          }
+        ]
+      },
+      "independent": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "coverage": {},
+      "expectedTrace": [
+        [
+          "Q7",
+          "unknown"
+        ],
+        [
+          "Q14",
+          "unknown"
+        ],
+        [
+          "Q602",
+          "yes"
+        ]
+      ],
+      "expectedState": "unresolved",
+      "materialConflict": true,
+      "investigativeQuestion": "A normalized historical file observation records the bound lab component. A valid code signature alone does not prove benignness or execution."
+    },
+    {
+      "id": "file-wrong-subject-corroboration",
+      "domain": "File",
+      "evidenceKind": "synthetic-reconstruction",
+      "sourceIds": [
+        "sunburst"
+      ],
+      "sourceObservation": "Author-created normalized event inspired by the cited behavior; all identifiers, dates and coverage/provenance assertions are synthetic. No actor intent or authorization is inferred.",
+      "bindings": {
+        "fileId": "file:SolarWinds.Orion.Core.BusinessLayer.dll:synthetic-copy-42",
+        "systemId": "system:orion-lab"
+      },
+      "interval": {
+        "start": "2026-10-01T10:00:00Z",
+        "end": "2026-10-01T11:00:00Z"
+      },
+      "primaryOrigin": "primary-native-sensor",
+      "primary": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "independent": {
+        "accessible": true,
+        "searched": true,
+        "records": [
+          {
+            "id": "wrong-subject-record",
+            "subjects": {
+              "fileId": "different-entity",
+              "systemId": "system:orion-lab"
+            },
+            "eventTime": "2026-10-01T10:30:00Z",
+            "origin": "separately-originating-sensor",
+            "provenanceAssessment": "accepted",
+            "interpretationAssessment": "accepted",
+            "assessmentEvidenceRefs": [
+              "synthetic-acquisition-receipt",
+              "synthetic-event-interpretation"
+            ],
+            "eventInterpretation": "A normalized historical file observation records the bound lab component. A valid code signature alone does not prove benignness or execution."
+          }
+        ]
+      },
+      "coverage": {},
+      "expectedTrace": [
+        [
+          "Q7",
+          "unknown"
+        ],
+        [
+          "Q14",
+          "no"
+        ],
+        [
+          "Q602",
+          "yes"
+        ]
+      ],
+      "expectedState": "unresolved",
+      "investigativeQuestion": "A normalized historical file observation records the bound lab component. A valid code signature alone does not prove benignness or execution."
+    },
+    {
+      "id": "file-outside-time-interval",
+      "domain": "File",
+      "evidenceKind": "synthetic-reconstruction",
+      "sourceIds": [
+        "sunburst"
+      ],
+      "sourceObservation": "Author-created normalized event inspired by the cited behavior; all identifiers, dates and coverage/provenance assertions are synthetic. No actor intent or authorization is inferred.",
+      "bindings": {
+        "fileId": "file:SolarWinds.Orion.Core.BusinessLayer.dll:synthetic-copy-42",
+        "systemId": "system:orion-lab"
+      },
+      "interval": {
+        "start": "2026-10-01T10:00:00Z",
+        "end": "2026-10-01T11:00:00Z"
+      },
+      "primaryOrigin": "primary-native-sensor",
+      "primary": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "independent": {
+        "accessible": true,
+        "searched": true,
+        "records": [
+          {
+            "id": "wrong-subject-record",
+            "subjects": {
+              "fileId": "file:SolarWinds.Orion.Core.BusinessLayer.dll:synthetic-copy-42",
+              "systemId": "system:orion-lab"
+            },
+            "eventTime": "2026-10-01T11:00:00Z",
+            "origin": "separately-originating-sensor",
+            "provenanceAssessment": "accepted",
+            "interpretationAssessment": "accepted",
+            "assessmentEvidenceRefs": [
+              "synthetic-acquisition-receipt",
+              "synthetic-event-interpretation"
+            ],
+            "eventInterpretation": "A normalized historical file observation records the bound lab component. A valid code signature alone does not prove benignness or execution."
+          }
+        ]
+      },
+      "coverage": {},
+      "expectedTrace": [
+        [
+          "Q7",
+          "unknown"
+        ],
+        [
+          "Q14",
+          "no"
+        ],
+        [
+          "Q602",
+          "yes"
+        ]
+      ],
+      "expectedState": "unresolved",
+      "investigativeQuestion": "A normalized historical file observation records the bound lab component. A valid code signature alone does not prove benignness or execution."
+    },
+    {
+      "id": "file-unknown-coverage",
+      "domain": "File",
+      "evidenceKind": "synthetic-reconstruction",
+      "sourceIds": [
+        "sunburst"
+      ],
+      "sourceObservation": "Author-created normalized event inspired by the cited behavior; all identifiers, dates and coverage/provenance assertions are synthetic. No actor intent or authorization is inferred.",
+      "bindings": {
+        "fileId": "file:SolarWinds.Orion.Core.BusinessLayer.dll:synthetic-copy-42",
+        "systemId": "system:orion-lab"
+      },
+      "interval": {
+        "start": "2026-10-01T10:00:00Z",
+        "end": "2026-10-01T11:00:00Z"
+      },
+      "primaryOrigin": "primary-native-sensor",
+      "primary": {
+        "accessible": true,
+        "searched": true,
+        "records": []
+      },
+      "independent": {
+        "accessible": false,
+        "searched": false,
+        "records": []
+      },
+      "coverage": {
+        "subjects": {
+          "fileId": "file:SolarWinds.Orion.Core.BusinessLayer.dll:synthetic-copy-42",
+          "systemId": "system:orion-lab"
+        },
+        "interval": {
+          "start": "2026-10-01T10:00:00Z",
+          "end": "2026-10-01T11:00:00Z"
+        },
+        "applicableLogging": true,
+        "continuousCollection": true,
+        "retentionComplete": null,
+        "clockBounded": true,
+        "searchComplete": true,
+        "integrityAssessed": true,
+        "evidenceRefs": [
+          "synthetic-coverage-receipt"
+        ]
+      },
+      "expectedTrace": [
+        [
+          "Q7",
+          "no"
+        ],
+        [
+          "Q595",
+          "unknown"
+        ]
+      ],
+      "expectedState": "unresolved",
+      "investigativeQuestion": "A normalized historical file observation records the bound lab component. A valid code signature alone does not prove benignness or execution."
+    }
+  ]
+}

@@ -34,6 +34,10 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--edges-path", type=Path, help="Explicit edges JSONL source path.")
     parser.add_argument("--entry-path", type=Path, help="Entry configuration and fan-in exceptions.")
     parser.add_argument(
+        "--draft-review", action="store_true",
+        help="Unpromoted canonical draft only: retain synthetic optimization failures as warnings; never waive authoring/structural errors.",
+    )
+    parser.add_argument(
         "--output-dir", type=Path, required=True,
         help="Report directory outside releases; never updates published reports or latest pointers.",
     )
@@ -93,9 +97,17 @@ def main() -> int:
     if output_dir == releases_dir or releases_dir in output_dir.parents:
         print("ERROR: Reports must be written outside releases; published artifacts are preserved.", file=sys.stderr)
         return 1
+    if args.draft_review and (
+        args.graph_path is None
+        or (repo_root / args.graph_path).resolve() != (repo_root / "drafts/core/tensor.core.graph.json").resolve()
+        or (repo_root / "releases").resolve() in (repo_root / args.graph_path).resolve().parents
+    ):
+        print("ERROR: --draft-review is restricted to the canonical unpromoted draft graph.", file=sys.stderr)
+        return 1
 
     try:
         version, nodes, edges, entry_node_ids, fanin_exception_ids, provenance = load_inputs(args, repo_root)
+        provenance["assessmentMode"] = "unpromoted-draft-review" if args.draft_review else "strict-authoring-gates"
         errors, warnings, metrics = validate_and_measure(
             nodes=nodes,
             edges=edges,
@@ -150,7 +162,11 @@ def main() -> int:
                 failed_gate_ids = []
             if isinstance(all_passed, bool) and not all_passed:
                 rendered = ", ".join(str(gate_id) for gate_id in failed_gate_ids) or "unknown"
-                errors.append(f"Publish gates failed: {rendered}")
+                advisory_ids = {"robustness_score", "targeted_resilience", "routing_centralization", "information_gain", "overall_score"}
+                if args.draft_review and failed_gate_ids and set(failed_gate_ids) <= advisory_ids:
+                    warnings.append(f"Synthetic optimization gates failed: {rendered}. Original gate failures remain in math-assurance; this is not publication approval.")
+                else:
+                    errors.append(f"Publish gates failed: {rendered}")
         math_payload["provenance"] = provenance
         write_json(math_json_path, math_payload)
         # Include authoring and simulated gate failures in the same quality report.

@@ -1,0 +1,178 @@
+{
+  "version": "0.20261011a",
+  "provenance": {
+    "inputMode": "graph-artifact",
+    "inputs": [
+      {
+        "path": "drafts/core/tensor.core.graph.json",
+        "sha256": "ed390a26b887e560f2224bbd577ba282e2fc331bb5c1293f6002413da7a72a0d"
+      },
+      {
+        "path": "drafts/core/source/entry_nodes.json",
+        "sha256": "b9601ac3d2ca1a2d4b62ea823ad60b46d4acfe5b68534aae04db24a6ac51d20c"
+      }
+    ],
+    "policy": "current-legacy-graph-authoring-policy",
+    "scope": "Structural and simulated authoring checks; not release conformance or investigative effectiveness.",
+    "assessmentMode": "unpromoted-draft-review"
+  },
+  "errors": [],
+  "warnings": [
+    "Synthetic optimization gates failed: robustness_score, targeted_resilience, routing_centralization. Original gate failures remain in math-assurance; this is not publication approval."
+  ],
+  "metrics": {
+    "nodeCount": 184,
+    "edgeCount": 429,
+    "nonTerminalCount": 143,
+    "terminalCount": 41,
+    "entryCount": 7,
+    "entryNodeIds": [
+      "Q1",
+      "Q2",
+      "Q3",
+      "Q4",
+      "Q5",
+      "Q6",
+      "Q7"
+    ],
+    "entryCoverageByDomain": {
+      "Application": true,
+      "Cloud": true,
+      "Email": true,
+      "File": true,
+      "Host": true,
+      "Identity": true,
+      "Network": true
+    },
+    "domainCounts": {
+      "Application": 28,
+      "Cloud": 27,
+      "Email": 29,
+      "File": 22,
+      "Host": 29,
+      "Identity": 25,
+      "Network": 24
+    },
+    "archetypeCounts": {
+      "attribute": 38,
+      "classify": 13,
+      "correlate": 25,
+      "detect": 14,
+      "impact": 26,
+      "scope": 13,
+      "terminal": 41,
+      "validate": 14
+    },
+    "domainArchetypeMatrix": {
+      "Application": {
+        "detect": 2,
+        "validate": 2,
+        "classify": 2,
+        "scope": 2,
+        "correlate": 5,
+        "attribute": 6,
+        "impact": 4,
+        "terminal": 5
+      },
+      "Cloud": {
+        "detect": 2,
+        "validate": 2,
+        "classify": 2,
+        "scope": 2,
+        "correlate": 4,
+        "attribute": 5,
+        "impact": 4,
+        "terminal": 6
+      },
+      "Email": {
+        "detect": 2,
+        "validate": 2,
+        "classify": 2,
+        "scope": 2,
+        "correlate": 4,
+        "attribute": 7,
+        "impact": 4,
+        "terminal": 6
+      },
+      "File": {
+        "detect": 2,
+        "validate": 2,
+        "classify": 2,
+        "scope": 2,
+        "correlate": 3,
+        "attribute": 3,
+        "impact": 2,
+        "terminal": 6
+      },
+      "Host": {
+        "detect": 2,
+        "validate": 2,
+        "classify": 2,
+        "scope": 2,
+        "correlate": 4,
+        "attribute": 7,
+        "impact": 4,
+        "terminal": 6
+      },
+      "Identity": {
+        "detect": 2,
+        "validate": 2,
+        "classify": 1,
+        "scope": 1,
+        "correlate": 3,
+        "attribute": 6,
+        "impact": 4,
+        "terminal": 6
+      },
+      "Network": {
+        "detect": 2,
+        "validate": 2,
+        "classify": 2,
+        "scope": 2,
+        "correlate": 2,
+        "attribute": 4,
+        "impact": 4,
+        "terminal": 6
+      }
+    },
+    "crossDomainEdgeCount": 228,
+    "crossDomainRatio": 0.5314685314685315,
+    "crossDomainRatioMin": 0.25,
+    "fanInDefaultLimit": 8,
+    "fanInExceptionLimit": 12,
+    "fanInTerminalLimit": 24,
+    "maxFanIn": 11,
+    "fanInExceptionNodeIds": [
+      "Q467",
+      "Q492",
+      "Q493",
+      "Q494",
+      "Q506",
+      "Q507",
+      "Q508",
+      "Q509",
+      "Q581"
+    ],
+    "fanInExceptionNodesUsed": [],
+    "branchDeterminism": {
+      "requiredDecisions": [
+        "yes",
+        "no",
+        "unknown"
+      ],
+      "violations": 0
+    },
+    "semanticRouting": {
+      "yesProgressionViolations": 0,
+      "earlyPositiveCrossDomainViolations": 0,
+      "earlyPositiveArchetypes": [
+        "detect",
+        "validate"
+      ],
+      "yesProgressionRule": "target_archetype_rank in [source_rank, source_rank+1]"
+    },
+    "dagPass": true,
+    "reachableNodeCount": 184,
+    "allNodesReachable": true
+  }
+}

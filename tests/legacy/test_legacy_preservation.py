@@ -56,14 +56,14 @@ class LegacyPreservationTests(unittest.TestCase):
         graph = json.loads((ROOT / DRAFT).read_text())
         source = ROOT / "drafts/core/source"
         entries, _ = load_entry_config(source / "entry_nodes.json")
-        rebuilt = build_graph_payload(graph["version"], load_jsonl(source / "nodes.jsonl"), load_jsonl(source / "edges.jsonl"), entries)
+        rebuilt = build_graph_payload(graph["version"], load_jsonl(source / "nodes.jsonl"), load_jsonl(source / "edges.jsonl"), entries, graph["schemaVersion"])
         self.assertEqual(graph, rebuilt)
 
     def test_quality_run_does_not_rewrite_releases(self):
         before = {str(p): sha(p) for p in (ROOT / "releases").rglob("*") if p.is_file()}
         with tempfile.TemporaryDirectory() as output:
             run = subprocess.run([sys.executable, "scripts/lint_core_graph_quality.py", "--graph-path", str(DRAFT),
-                "--entry-path", "drafts/core/source/entry_nodes.json", "--output-dir", output], cwd=ROOT, text=True, capture_output=True)
+                "--entry-path", "drafts/core/source/entry_nodes.json", "--draft-review", "--output-dir", output], cwd=ROOT, text=True, capture_output=True)
             self.assertEqual(0, run.returncode, run.stdout + run.stderr)
             for name in ("graph-quality.json", "coverage-matrix.json", "math-assurance.json"):
                 report = json.loads((Path(output) / name).read_text())

@@ -27,6 +27,10 @@ def parse_args() -> argparse.Namespace:
         help="Graph version in <MAJOR>.<YYYYMMDD>[REV] format (for example: 0.20260206c).",
     )
     outputs = parser.add_mutually_exclusive_group()
+    parser.add_argument(
+        "--schema-version",
+        help="Exact existing schema version; defaults to graph version. Does not create or modify a schema.",
+    )
     outputs.add_argument(
         "--draft-only",
         action="store_true",
@@ -99,6 +103,7 @@ def main() -> int:
             nodes=nodes,
             edges=edges,
             entry_node_ids=entry_node_ids,
+            schema_version=args.schema_version,
         )
 
         draft_graph_path = repo_root / "drafts/core/tensor.core.graph.json"

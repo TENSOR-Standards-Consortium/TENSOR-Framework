@@ -34,7 +34,7 @@ The runtime is usable in Node and browsers without third-party runtime dependenc
 | Track | Current artifacts | Meaning |
 | --- | --- | --- |
 | Existing graph releases | Stable graph/schema `0.20260206e`; 588 questions and 1,554 edges | Reusable investigative question definitions under their original release contract |
-| Existing graph drafts | `0.20260212e`; 219 questions and 576 edges | Editable graph content, separate from the stable release |
+| Existing graph drafts | `0.20261011a`; 184 questions and 429 edges, unchanged schema `0.20260206e` | [Evidence-bound entry review](drafts/core/ENTRY-REVIEW.md); downstream positive routes remain unreviewed |
 | Founding proposal | `proposals/founding-core-v0.1.0/`; proposal `0.1.0` | Public purpose, logical contract, and proposed governance |
 | Core implementation candidate | `core/v0.1.0-draft.1/`; binding `0.1.0-draft.1` | Trial JSON representation, validator, CLI, schemas, and synthetic records |
 
@@ -64,10 +64,11 @@ Use Python 3 from the repository root:
 ```sh
 python3 scripts/validate_release_contract.py
 python3 -m unittest discover -s tests/legacy -v
-python3 scripts/lint_core_graph_quality.py --graph-path drafts/core/tensor.core.graph.json --entry-path drafts/core/source/entry_nodes.json --output-dir /tmp/tensor-draft-quality
+python3 scripts/evaluate_entry_scenarios.py
+python3 scripts/lint_core_graph_quality.py --graph-path drafts/core/tensor.core.graph.json --entry-path drafts/core/source/entry_nodes.json --draft-review --output-dir /tmp/tensor-draft-quality
 ```
 
-The linter labels results with the exact source artifact and writes outside `releases/`. It does not promote drafts, refresh stable pointers, or rewrite historical reports. See the [graph authoring playbook](standards/core-graph-authoring-playbook.md) for new legacy graph work.
+The linter labels exact inputs and writes outside `releases/`. Draft-review mode keeps synthetic optimization failures visible as warnings; authoring and structural errors still fail. Strict score gates remain blocking without that explicit mode. Neither mode promotes drafts or rewrites historical reports. See the [entry review and evidence limits](drafts/core/ENTRY-REVIEW.md) and [authoring playbook](standards/core-graph-authoring-playbook.md).
 
 ## Public participation and claims
 
