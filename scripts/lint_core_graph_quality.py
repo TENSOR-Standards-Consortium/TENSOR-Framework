@@ -35,7 +35,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--entry-path", type=Path, help="Entry configuration and fan-in exceptions.")
     parser.add_argument(
         "--draft-review", action="store_true",
-        help="Unpromoted canonical draft only: retain synthetic optimization failures as warnings; never waive authoring/structural errors.",
+        help="Unpromoted canonical draft only: retain synthetic optimization and cross-domain quota failures as warnings; structural and other authoring errors remain fatal.",
     )
     parser.add_argument(
         "--output-dir", type=Path, required=True,
@@ -113,6 +113,7 @@ def main() -> int:
             edges=edges,
             entry_node_ids=entry_node_ids,
             fanin_exception_node_ids=fanin_exception_ids,
+            require_cross_domain_ratio=not args.draft_review,
         )
         output_dir.mkdir(parents=True, exist_ok=True)
 
@@ -162,7 +163,7 @@ def main() -> int:
                 failed_gate_ids = []
             if isinstance(all_passed, bool) and not all_passed:
                 rendered = ", ".join(str(gate_id) for gate_id in failed_gate_ids) or "unknown"
-                advisory_ids = {"robustness_score", "targeted_resilience", "routing_centralization", "information_gain", "overall_score"}
+                advisory_ids = {"robustness_score", "targeted_resilience", "routing_centralization", "information_gain", "overall_score", "cross_domain_pivots", "routing_score"}
                 if args.draft_review and failed_gate_ids and set(failed_gate_ids) <= advisory_ids:
                     warnings.append(f"Synthetic optimization gates failed: {rendered}. Original gate failures remain in math-assurance; this is not publication approval.")
                 else:

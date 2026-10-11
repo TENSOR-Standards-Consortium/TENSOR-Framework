@@ -23,14 +23,14 @@ class EntryEvidenceTests(unittest.TestCase):
     def setUpClass(cls):
         cls.graph = json.loads((ROOT / "drafts/core/tensor.core.graph.json").read_text())
         cls.criteria = json.loads((ROOT / "drafts/core/entry-evidence-criteria.json").read_text())
-        cls.suite = json.loads((ROOT / "drafts/core/scenarios/entry-evidence-cases.json").read_text())
+        cls.suite = evaluator.expand_suite(json.loads((ROOT / "drafts/core/scenarios/entry-evidence-cases.json").read_text()))
 
     def case(self, case_id):
         return copy.deepcopy(next(c for c in self.suite["cases"] if c["id"] == case_id))
 
     def test_evidence_scenarios(self):
         results = evaluator.run_cases(self.graph, self.criteria, self.suite)
-        self.assertEqual(77, len(results))
+        self.assertEqual(252, len(results))
         for result in results:
             with self.subTest(case=result["caseId"]):
                 self.assertTrue(result["passed"], result)
@@ -50,7 +50,7 @@ class EntryEvidenceTests(unittest.TestCase):
         self.assertEqual(hashlib.sha256(raw).hexdigest(), self.criteria["graphSha256"])
         self.assertEqual(self.graph["version"], self.criteria["graphVersion"])
         by_id = {n["id"]: n for n in self.graph["nodes"]}
-        self.assertEqual(42, len(self.criteria["nodes"]))
+        self.assertEqual(set(by_id), set(self.criteria["nodes"]))
         for node_id, card in self.criteria["nodes"].items():
             with self.subTest(node=node_id):
                 node = by_id[node_id]
@@ -68,17 +68,14 @@ class EntryEvidenceTests(unittest.TestCase):
                 continue
             with self.subTest(edge=edge["id"]):
                 self.assertEqual(by_id[edge["source"]]["category"], by_id[edge["target"]]["category"])
-                if edge["target"] not in cards:
-                    domain = self.criteria["domains"][by_id[edge["source"]]["category"]]
-                    self.assertEqual("yes", edge["decision"])
-                    self.assertIn(edge["target"], domain["positiveReviewBoundaries"])
+                self.assertIn(edge["target"], cards)
 
     def test_original_unjustified_no_route_is_rejected(self):
         graph = copy.deepcopy(self.graph)
         for edge in graph["edges"]:
             if (edge["source"], edge["decision"]) == ("Q1", "no"):
                 edge["target"] = "Q497"  # Original route eventually jumped to Application risk.
-        with self.assertRaisesRegex(ValueError, "escaped the reviewed entry boundary"):
+        with self.assertRaisesRegex(ValueError, "escaped the reviewed boundary"):
             evaluator.evaluate_case(graph, self.criteria, self.case("identity-bounded-absence"))
 
     def test_no_answer_does_not_exclude_activity_with_missing_logs(self):
@@ -125,8 +122,9 @@ class EntryEvidenceTests(unittest.TestCase):
 
     def test_graph_stays_acyclic_reachable_and_deterministic(self):
         config = json.loads((ROOT / "drafts/core/source/entry_nodes.json").read_text())
-        errors, _, metrics = validate_and_measure(self.graph["nodes"], self.graph["edges"], self.graph["entryNodeIds"], set(config["fanInExceptionNodeIds"]))
+        errors, warnings, metrics = validate_and_measure(self.graph["nodes"], self.graph["edges"], self.graph["entryNodeIds"], set(config["fanInExceptionNodeIds"]), require_cross_domain_ratio=False)
         self.assertEqual([], errors)
+        self.assertTrue(warnings, "The historical cross-domain quota must remain visible")
         self.assertTrue(metrics["allNodesReachable"])
         self.assertTrue(metrics["dagPass"])
         self.assertEqual(0, metrics["branchDeterminism"]["violations"])
@@ -155,7 +153,7 @@ class EntryEvidenceTests(unittest.TestCase):
                 math = json.loads((Path(output) / "math-assurance.json").read_text())
                 self.assertEqual(0 if review else 1, run.returncode, run.stdout + run.stderr)
                 self.assertFalse(math["monitoring"]["publishGates"]["allPassed"])
-                self.assertEqual({"robustness_score", "targeted_resilience", "routing_centralization"}, set(math["monitoring"]["publishGates"]["failedGateIds"]))
+                self.assertEqual({"cross_domain_pivots", "routing_score", "robustness_score", "targeted_resilience", "routing_centralization", "overall_score"}, set(math["monitoring"]["publishGates"]["failedGateIds"]))
                 self.assertTrue(quality["warnings"] if review else quality["errors"])
 
     def test_draft_mode_refuses_released_graphs(self):

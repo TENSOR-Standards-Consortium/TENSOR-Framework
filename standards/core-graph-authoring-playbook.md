@@ -37,7 +37,7 @@ Quality reports use an explicit input and an output directory outside `releases/
 python3 scripts/lint_core_graph_quality.py --graph-path drafts/core/tensor.core.graph.json --entry-path drafts/core/source/entry_nodes.json --output-dir /tmp/tensor-draft-quality
 ```
 
-The linter emits graph-quality, coverage-matrix, and math-assurance reports labeled with the exact source and digest. By default strict gates fail when thresholds are missed. Explicit `--draft-review` is restricted to the canonical unpromoted graph: synthetic robustness, centralization, information-gain and composite-score failures become warnings while failed gate results remain in math-assurance. Authoring and structural failures remain fatal. This is not publication approval. The [entry review](../drafts/core/ENTRY-REVIEW.md) explains why meaningful routes must not be distorted to optimize synthetic scores.
+The linter emits graph-quality, coverage-matrix, and math-assurance reports labeled with the exact source and digest. By default strict gates fail when thresholds are missed. Explicit `--draft-review` is restricted to the canonical unpromoted graph: synthetic robustness, centralization, information-gain, routing-score, cross-domain quota and composite-score failures become warnings while failed gate results remain in math-assurance. Structural and other authoring failures remain fatal. This is not publication approval. The [positive-route review](../drafts/core/POSITIVE-REVIEW.md) explains why meaningful routes must not be distorted to optimize synthetic scores.
 
 The linter never refreshes stable pointers or historical reports. To lint JSONL directly, provide `--nodes-path`, `--edges-path`, `--entry-path`, an expected `--version`, and `--output-dir`; draft-review mode requires the exact generated canonical graph.
 
@@ -116,6 +116,8 @@ Allowed decisions:
 - Expand the graph to the size needed for investigation quality and breadth.
 - Keep all seven domains represented with meaningful coverage.
 - Cross-domain edge ratio: >= 25%
+
+The historical cross-domain quota remains blocking for strict lint and `--prepare-release`. Working draft builds and canonical `--draft-review` retain failures as warnings, without changing thresholds or scores. A relation between domains can be declared and tested as evidence while the hypothesis route retains its original context; do not invent a control-flow pivot merely to meet the quota. Changing release policy requires a recorded review decision.
 
 ## Fan-In Constraints
 - Default max fan-in (non-terminal nodes): 8

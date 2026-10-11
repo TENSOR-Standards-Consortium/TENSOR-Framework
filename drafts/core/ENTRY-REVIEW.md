@@ -1,8 +1,8 @@
 # Evidence-bound entry routes
 
-Graph draft **0.20261011a** uses the unchanged schema **0.20260206e**. It is not a published release. All published releases and the separate investigation-record candidate remain unchanged.
+The entry foundation was merged in **0.20261011a**. Current working draft **0.20261011b** extends it through [evidence-bound positive routes](POSITIVE-REVIEW.md), using the unchanged schema **0.20260206e**. Neither draft is a published release. All published releases and the separate investigation-record candidate remain unchanged.
 
-This review covers the seven entries, independent-source checks, adjacent record validators and negative/unresolved endings: **42 questions**. The [public evidence criteria](entry-evidence-criteria.json) are pinned to the graph digest. They provide each question's proposition, subject fields, assessment record requirements and yes/no/unknown rules. Optional namespaced node annotations locate the cards; a schema pass does not prove a consumer applied them.
+This entry foundation covers the seven entries, independent-source checks, adjacent record validators and negative/unresolved endings: **42 questions**. Their predicates and routes remain unchanged in the positive-route revision. The current [public evidence criteria](entry-evidence-criteria.json) cover all 103 active questions and are pinned to the graph digest. They provide each question's proposition, subject fields, assessment record requirements and yes/no/unknown rules. Optional namespaced node annotations locate the cards; a schema pass does not prove a consumer applied them.
 
 ## Meaning before traversal
 
@@ -25,11 +25,11 @@ The event is an identity action, process execution, network communication, cloud
 | Application | Q6 | Q13 | Q85 / Q148 | Q594 / Q601 |
 | File | Q7 | Q14 | Q86 / Q149 | Q595 / Q602 |
 
-All reviewed transitions preserve domain, subjects, proposition and interval. Positive validation reaches an existing classification question at an explicitly declared **review boundary**. The scenario evaluator stops there. Classification and later positive routes have not been repaired or validated by this change.
+All entry transitions preserve domain, subjects, proposition and interval. PR #8 stopped evaluation at the classification boundary. The current [positive-route review](POSITIVE-REVIEW.md) repairs that continuation and extends the evaluator through qualified endings without changing these entry predicates.
 
 ## Investigation scenarios and proof limits
 
-The [scenario set](scenarios/entry-evidence-cases.json) has **77 cases** across all seven domains:
+The original **77 entry cases** remain within the current [252-case scenario set](scenarios/entry-evidence-cases.json), across all seven domains:
 
 - Seven public-report-only cases retain missing victim identifiers, event times and evidence as unknown. Sources are [Mandiant's UNC3944 investigation](https://cloud.google.com/blog/topics/threat-intelligence/unc3944-targets-saas-applications), [SUNBURST reporting](https://cloud.google.com/blog/topics/threat-intelligence/evasive-attacker-leverages-solarwinds-supply-chain-compromises-with-sunburst-backdoor), [Microsoft's AiTM investigation](https://www.microsoft.com/en-us/security/blog/2026/01/21/multistage-aitm-phishing-bec-campaign-abusing-sharepoint/), [Storm-0558 analysis](https://www.microsoft.com/en-us/security/blog/2023/07/14/analysis-of-storm-0558-techniques-for-unauthorized-email-access/), and [MITRE's OpenClaw report](https://www.mitre.org/sites/default/files/2026-02/PR-26-00176-1-MITRE-ATLAS-OpenClaw-Investigation.pdf). OpenClaw is a reported researcher demonstration, not victim telemetry.
 - Seventy synthetic reconstructions test supported records, bounded absence, missing logs, independent recovery, copied sources, rejected provenance, conflicting evidence, wrong subjects, out-of-window records and unknown coverage. Identifiers, dates, provenance and coverage assertions are author-created; they are not original incident logs.
@@ -41,7 +41,7 @@ Regressions also reject the original unsupported pivot, block exclusions contrad
 ## Reproduce
 
 ```sh
-python3 scripts/build_core_graph_from_source.py --version 0.20261011a --schema-version 0.20260206e --draft-only
+python3 scripts/build_core_graph_from_source.py --version 0.20261011b --schema-version 0.20260206e --draft-only
 python3 scripts/evaluate_entry_scenarios.py --output /tmp/tensor-entry-scenarios.json
 python3 -m unittest discover -s tests/legacy -v
 python3 scripts/validate_release_contract.py
@@ -52,10 +52,10 @@ Scenario output refuses overwrite; use a new receipt filename on reruns. Receipt
 
 ## Structural diagnostics and preservation
 
-The active draft has **184 nodes and 429 edges**. Removing unsupported entry/validation pivots disconnected 49 older questions. Their original text and 147 outgoing edges are preserved as [detached review material](reviews/2026-10-11-entry-evidence/detached-draft-material.json), with the original commit and digest. They were not reconnected solely to satisfy reachability or removed from historical releases.
+The entry revision had **184 nodes and 429 edges**. Removing unsupported entry/validation pivots disconnected 49 older questions. Their original text and 147 outgoing edges are preserved as [detached review material](reviews/2026-10-11-entry-evidence/detached-draft-material.json), with the original commit and digest. They were not reconnected solely to satisfy reachability or removed from historical releases. The current positive-route draft has 103 nodes and 225 edges, with its own prior-graph snapshot and preservation receipts.
 
 Authoring checks still enforce acyclicity, reachability, deterministic branches, labels, domain/archetype presence, fan-in and positive-stage progression. The strict linter also fails this draft's simulated robustness, targeted-resilience and centralization thresholds. The original values and failures remain visible in assurance reports.
 
-Explicit **--draft-review** mode is restricted to the canonical unpromoted draft. It treats synthetic optimization failures as warnings while keeping structural/authoring errors fatal. It changes neither score calculations nor release contracts, hides no gate failures, and approves no publication. CI uses it alongside semantic scenario regressions. Strict mode remains the default and still fails for the documented scores.
+Explicit **--draft-review** mode is restricted to the canonical unpromoted draft. It treats synthetic optimization and historical cross-domain quota failures as warnings while keeping structural and other authoring errors fatal. It changes neither score calculations nor release contracts, hides no gate failures, and approves no publication. CI uses it alongside semantic scenario regressions. Strict mode remains the default and still fails for the documented gates; see the [current diagnostic scope](POSITIVE-REVIEW.md#structural-policy-and-preservation).
 
 Evidence-justified routes take precedence over optimizing synthetic topology. Future promotion still requires a recorded policy/release decision and substantive review.

@@ -186,6 +186,8 @@ def validate_and_measure(
     edges: list[dict[str, Any]],
     entry_node_ids: list[str],
     fanin_exception_node_ids: list[str],
+    *,
+    require_cross_domain_ratio: bool = True,
 ) -> tuple[list[str], list[str], dict[str, Any]]:
     errors: list[str] = []
     warnings: list[str] = []
@@ -500,7 +502,7 @@ def validate_and_measure(
 
     cross_domain_ratio = (cross_domain_edges / edge_count) if edge_count else 0.0
     if cross_domain_ratio < CROSS_DOMAIN_RATIO_MIN:
-        errors.append(
+        (errors if require_cross_domain_ratio else warnings).append(
             f"Cross-domain edge ratio {cross_domain_ratio:.4f} is below required minimum {CROSS_DOMAIN_RATIO_MIN:.2f}."
         )
 

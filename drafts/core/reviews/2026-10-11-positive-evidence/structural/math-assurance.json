@@ -1,0 +1,472 @@
+{
+  "version": "0.20261011b",
+  "generatedAt": "2026-10-11T17:03:03Z",
+  "summary": {
+    "overallScore": 70.32654,
+    "coverageScore": 100.0,
+    "routingScore": 80.0,
+    "informationScore": 0.0,
+    "robustnessScore": 81.6327,
+    "recommendations": [
+      "Current optimization profile is balanced; continue trend monitoring across releases."
+    ]
+  },
+  "theories": [
+    {
+      "id": "graph_theory",
+      "name": "Graph Theory",
+      "purpose": "Structural soundness: DAG, reachability, deterministic decision routing.",
+      "metrics": {
+        "nodeCount": 103,
+        "edgeCount": 225,
+        "rootCount": 7,
+        "terminalCount": 28,
+        "nonTerminalCount": 75,
+        "branchCompletenessRatio": 1.0,
+        "deterministicDecisionGapCount": 0,
+        "reachableRatio": 1.0,
+        "dagPass": true
+      }
+    },
+    {
+      "id": "matrix_theory",
+      "name": "Matrix Theory",
+      "purpose": "Coverage completeness and balance across Domain x Archetype.",
+      "metrics": {
+        "matrixRows": 7,
+        "matrixColumns": 8,
+        "matrixRank": 2,
+        "nonZeroCellRatio": 1.0,
+        "rowEntropyNormalized": {
+          "Application": 0.946741,
+          "Cloud": 0.946741,
+          "Email": 0.946741,
+          "File": 0.946741,
+          "Host": 0.946741,
+          "Identity": 0.925788,
+          "Network": 0.946741
+        },
+        "columnEntropyNormalized": {
+          "detect": 1.0,
+          "validate": 1.0,
+          "classify": 0.989317,
+          "scope": 0.989317,
+          "correlate": 1.0,
+          "attribute": 1.0,
+          "impact": 1.0,
+          "terminal": 1.0
+        }
+      }
+    },
+    {
+      "id": "set_cover",
+      "name": "Set Cover / Hitting Set",
+      "purpose": "Minimal entry-path basis required to cover investigative feature space.",
+      "metrics": {
+        "universeSize": 56,
+        "configuredEntryCount": 7,
+        "minimalEntrySetSizeByGreedy": 7,
+        "greedyEntrySet": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "Q4",
+          "Q5",
+          "Q6",
+          "Q7"
+        ],
+        "entryCoverageRatio": 1.0,
+        "entryRedundancyRatio": 0.0
+      }
+    },
+    {
+      "id": "markov_chain",
+      "name": "Markov Chain",
+      "purpose": "Expected routing length and absorbing-outcome distribution under branch probabilities.",
+      "metrics": {
+        "decisionProbabilityModel": {
+          "yes": 0.3333333333333333,
+          "no": 0.3333333333333333,
+          "unknown": 0.3333333333333333
+        },
+        "expectedStepsFromEntriesMean": 2.024691,
+        "expectedStepsFromEntriesMedian": 2.024691,
+        "expectedStepsFromEntriesP90": 2.024691,
+        "absorptionDomainDistribution": {
+          "Application": 0.142857,
+          "Cloud": 0.142857,
+          "Email": 0.142857,
+          "File": 0.142857,
+          "Host": 0.142857,
+          "Identity": 0.142857,
+          "Network": 0.142857
+        },
+        "absorptionDomainEntropy": 2.807355
+      }
+    },
+    {
+      "id": "information_theory",
+      "name": "Information Theory",
+      "purpose": "Uncertainty reduction and information gain across investigation decisions.",
+      "metrics": {
+        "entryEntropy": 0.0,
+        "meanInformationGain": 0.0,
+        "medianInformationGain": 0.0,
+        "p90InformationGain": 0.0,
+        "negativeInformationGainNodeCount": 0,
+        "negativeInformationGainSample": []
+      }
+    },
+    {
+      "id": "flow_cut",
+      "name": "Flow / Cut Theory",
+      "purpose": "Bottleneck and fault-tolerance identification via connectivity cuts.",
+      "metrics": {
+        "entryToTerminalEdgeConnectivity": 21,
+        "entryToTerminalMinCutEdgeCount": 21,
+        "articulationPointCountUndirectedProjection": 30,
+        "articulationPointSample": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "Q4",
+          "Q5",
+          "Q6",
+          "Q7",
+          "Q233",
+          "Q253",
+          "Q323"
+        ]
+      }
+    },
+    {
+      "id": "centrality",
+      "name": "Centrality Theory",
+      "purpose": "Routing concentration and over-dependence detection.",
+      "metrics": {
+        "betweennessTop10": [
+          {
+            "nodeId": "Q233",
+            "category": "Identity",
+            "archetype": "classify",
+            "score": 0.00233
+          },
+          {
+            "nodeId": "Q323",
+            "category": "Email",
+            "archetype": "correlate",
+            "score": 0.00233
+          },
+          {
+            "nodeId": "Q345",
+            "category": "Application",
+            "archetype": "correlate",
+            "score": 0.00233
+          },
+          {
+            "nodeId": "Q346",
+            "category": "File",
+            "archetype": "correlate",
+            "score": 0.00233
+          },
+          {
+            "nodeId": "Q348",
+            "category": "Host",
+            "archetype": "correlate",
+            "score": 0.00233
+          },
+          {
+            "nodeId": "Q356",
+            "category": "Network",
+            "archetype": "correlate",
+            "score": 0.00233
+          },
+          {
+            "nodeId": "Q364",
+            "category": "Cloud",
+            "archetype": "correlate",
+            "score": 0.00233
+          },
+          {
+            "nodeId": "Q253",
+            "category": "Identity",
+            "archetype": "scope",
+            "score": 0.001941
+          },
+          {
+            "nodeId": "Q379",
+            "category": "Identity",
+            "archetype": "correlate",
+            "score": 0.001747
+          },
+          {
+            "nodeId": "Q417",
+            "category": "File",
+            "archetype": "attribute",
+            "score": 0.001747
+          }
+        ],
+        "betweennessCentralization": 0.029056,
+        "betweennessGini": 0.504854
+      }
+    },
+    {
+      "id": "robustness",
+      "name": "Robustness / Percolation",
+      "purpose": "Resilience under random and adversarial node removals.",
+      "metrics": {
+        "targetedRemovalCurve": [
+          {
+            "fractionRemoved": 0.01,
+            "removedCount": 1,
+            "reachableRatio": 0.941176
+          },
+          {
+            "fractionRemoved": 0.03,
+            "removedCount": 3,
+            "reachableRatio": 0.88
+          },
+          {
+            "fractionRemoved": 0.05,
+            "removedCount": 5,
+            "reachableRatio": 0.816327
+          },
+          {
+            "fractionRemoved": 0.1,
+            "removedCount": 10,
+            "reachableRatio": 0.774194
+          }
+        ],
+        "randomRemovalCurve": [
+          {
+            "fractionRemoved": 0.01,
+            "removedCount": 1,
+            "reachableRatioMean": 0.967843,
+            "reachableRatioStdDev": 0.046938
+          },
+          {
+            "fractionRemoved": 0.03,
+            "removedCount": 3,
+            "reachableRatioMean": 0.958,
+            "reachableRatioStdDev": 0.0401
+          },
+          {
+            "fractionRemoved": 0.05,
+            "removedCount": 5,
+            "reachableRatioMean": 0.906939,
+            "reachableRatioStdDev": 0.064943
+          },
+          {
+            "fractionRemoved": 0.1,
+            "removedCount": 10,
+            "reachableRatioMean": 0.797419,
+            "reachableRatioStdDev": 0.090868
+          }
+        ],
+        "targetedReachabilityAt5Percent": 0.816327
+      }
+    },
+    {
+      "id": "optimization",
+      "name": "Multi-objective Optimization",
+      "purpose": "Unified scorecard for coverage, routing, robustness, and information quality.",
+      "metrics": {
+        "coverageScore": 100.0,
+        "routingScore": 80.0,
+        "informationScore": 0.0,
+        "robustnessScore": 81.6327,
+        "overallScore": 70.32654,
+        "recommendations": [
+          "Current optimization profile is balanced; continue trend monitoring across releases."
+        ]
+      }
+    },
+    {
+      "id": "formal_methods",
+      "name": "Formal Methods Checks",
+      "purpose": "Machine-checkable invariants for safety and liveness-style properties.",
+      "metrics": {
+        "AG_branchTotality": true,
+        "AG_acyclic": true,
+        "AG_reachabilityFromEntries": true,
+        "AG_entryEventuallyTerminal": true,
+        "AG_terminalsAreTerminalArchetype": true
+      }
+    },
+    {
+      "id": "bayesian_causal",
+      "name": "Bayesian / Causal Readiness",
+      "purpose": "Readiness proxies for probabilistic confidence and causal interpretation overlays.",
+      "metrics": {
+        "fullArchetypeChainDomainCount": 7,
+        "fullArchetypeChainDomains": [
+          "Application",
+          "Cloud",
+          "Email",
+          "File",
+          "Host",
+          "Identity",
+          "Network"
+        ],
+        "triangulationNodeRatio": 0.0,
+        "crossSourceCorroborationRatio": 0.0,
+        "causalProgressionEdgeRatio": 1.0
+      }
+    },
+    {
+      "id": "directed_topology",
+      "name": "Directed Topology Proxies",
+      "purpose": "Higher-order path-complex and merge-pattern shape indicators.",
+      "metrics": {
+        "directedPathCounts": {
+          "length1": 225,
+          "length2": 309,
+          "length3": 450,
+          "length4": 573
+        },
+        "pathGrowthRatios": {
+          "l2_over_l1": 1.373333,
+          "l3_over_l2": 1.456311,
+          "l4_over_l3": 1.273333
+        },
+        "mergeNodeCount": 41,
+        "crossDomainMergeNodeCount": 0,
+        "diamondMotifCount": 605
+      }
+    }
+  ],
+  "monitoring": {
+    "artifactPathTemplate": "releases/core/reports/v<VER>/math-assurance.json",
+    "latestArtifactPath": "releases/core/reports/latest/math-assurance.json",
+    "historyArtifactPath": "releases/core/reports/history/math-assurance-history.json",
+    "manifestLookup": "releases/manifest.json -> latestGraphVersion",
+    "publishGates": {
+      "allPassed": false,
+      "failedGateIds": [
+        "cross_domain_pivots",
+        "routing_score",
+        "robustness_score",
+        "targeted_resilience",
+        "routing_centralization",
+        "overall_score"
+      ],
+      "gates": [
+        {
+          "id": "dag_pass",
+          "description": "Graph remains acyclic.",
+          "metric": "graph_theory.dagPass",
+          "operator": "==",
+          "threshold": true,
+          "value": true,
+          "passed": true
+        },
+        {
+          "id": "full_reachability",
+          "description": "All nodes are reachable from configured entries.",
+          "metric": "graph_theory.reachableRatio",
+          "operator": ">=",
+          "threshold": 1.0,
+          "value": 1.0,
+          "passed": true
+        },
+        {
+          "id": "branch_totality",
+          "description": "Every non-terminal preserves yes/no/unknown determinism.",
+          "metric": "graph_theory.branchCompletenessRatio",
+          "operator": ">=",
+          "threshold": 1.0,
+          "value": 1.0,
+          "passed": true
+        },
+        {
+          "id": "cross_domain_pivots",
+          "description": "Cross-domain pivot ratio meets minimum standard.",
+          "metric": "quality.crossDomainRatio",
+          "operator": ">=",
+          "threshold": 0.25,
+          "value": 0.0,
+          "passed": false
+        },
+        {
+          "id": "coverage_score",
+          "description": "Domain x archetype coverage remains complete.",
+          "metric": "optimization.coverageScore",
+          "operator": ">=",
+          "threshold": 100.0,
+          "value": 100.0,
+          "passed": true
+        },
+        {
+          "id": "routing_score",
+          "description": "Routing integrity score remains maximal.",
+          "metric": "optimization.routingScore",
+          "operator": ">=",
+          "threshold": 100.0,
+          "value": 80.0,
+          "passed": false
+        },
+        {
+          "id": "robustness_score",
+          "description": "Overall robustness score stays above baseline.",
+          "metric": "optimization.robustnessScore",
+          "operator": ">=",
+          "threshold": 85.0,
+          "value": 81.6327,
+          "passed": false
+        },
+        {
+          "id": "targeted_resilience",
+          "description": "Reachability under 5% targeted removal stays above baseline.",
+          "metric": "robustness.targetedReachabilityAt5Percent",
+          "operator": ">=",
+          "threshold": 0.85,
+          "value": 0.816327,
+          "passed": false
+        },
+        {
+          "id": "routing_centralization",
+          "description": "Betweenness centralization stays below concentration threshold.",
+          "metric": "centrality.betweennessCentralization",
+          "operator": "<=",
+          "threshold": 0.02,
+          "value": 0.029056,
+          "passed": false
+        },
+        {
+          "id": "information_gain",
+          "description": "No nodes regress to negative information gain.",
+          "metric": "information_theory.negativeInformationGainNodeCount",
+          "operator": "<=",
+          "threshold": 0,
+          "value": 0,
+          "passed": true
+        },
+        {
+          "id": "overall_score",
+          "description": "Composite optimization score remains publishable.",
+          "metric": "optimization.overallScore",
+          "operator": ">=",
+          "threshold": 80.0,
+          "value": 70.32654,
+          "passed": false
+        }
+      ]
+    }
+  },
+  "provenance": {
+    "inputMode": "graph-artifact",
+    "inputs": [
+      {
+        "path": "drafts/core/tensor.core.graph.json",
+        "sha256": "7d64a8fdf2d33861e6a06cfcb7daea8435cb5ed74acbb1df8b55ee60588b7101"
+      },
+      {
+        "path": "drafts/core/source/entry_nodes.json",
+        "sha256": "f4c50d88d48478047a25fd8bda7a3897b9b9a2cde8344a5590f025d3ab06625a"
+      }
+    ],
+    "policy": "current-legacy-graph-authoring-policy",
+    "scope": "Structural and simulated authoring checks; not release conformance or investigative effectiveness.",
+    "assessmentMode": "unpromoted-draft-review"
+  }
+}
