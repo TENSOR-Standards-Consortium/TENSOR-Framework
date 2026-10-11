@@ -1,5 +1,5 @@
 {
-  "version": "0.20261011a",
+  "version": "0.20261011b",
   "entryNodeIds": [
     "Q1",
     "Q2",
@@ -9,15 +9,5 @@
     "Q6",
     "Q7"
   ],
-  "fanInExceptionNodeIds": [
-    "Q467",
-    "Q492",
-    "Q493",
-    "Q494",
-    "Q506",
-    "Q507",
-    "Q508",
-    "Q509",
-    "Q581"
-  ]
+  "fanInExceptionNodeIds": []
 }

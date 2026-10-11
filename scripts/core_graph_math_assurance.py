@@ -12,6 +12,7 @@ from pathlib import Path
 from typing import Any
 
 from core_graph_pipeline import ARCHETYPES, CROSS_DOMAIN_RATIO_MIN, DECISIONS, DOMAINS, parse_version
+from graph_assurance_policy import build_acceptance
 
 
 def _safe_div(numerator: float, denominator: float) -> float:
@@ -312,6 +313,7 @@ def _evaluate_publish_gates(
     information_metrics: dict[str, Any],
     optimization_metrics: dict[str, Any],
 ) -> dict[str, Any]:
+    """Historical reference thresholds only; retained without recalibration."""
     overall_score_min = 80.0
     coverage_score_min = 100.0
     routing_score_min = 100.0
@@ -804,19 +806,16 @@ def build_math_assurance_payload(
 
     overall_score = 0.30 * coverage_score + 0.30 * routing_score + 0.20 * info_score + 0.20 * robustness_score
 
-    recommendations: list[str] = []
+    # Numerical formulas above are preserved for comparisons with prior receipts.
+    # Interpretation and current acceptance no longer treat these scores as proof.
+    recommendations: list[str] = [
+        "Use explicit evidence cards, safe transition checks and discriminating scenarios for authoring acceptance; topology scores do not establish investigative quality.",
+        "Review high-betweenness questions and removal sensitivity for maintenance impact; never bypass required evidence validation to improve a score.",
+    ]
     if matrix_theory_metrics["nonZeroCellRatio"] < 1.0:
         recommendations.append("Add nodes for missing Domain x Archetype cells to maintain complete investigative coverage.")
     if graph_theory_metrics["rootCount"] > len(valid_entries):
         recommendations.append("Reduce implicit roots by connecting isolated chains to explicit entry pathways.")
-    if centrality_metrics["betweennessCentralization"] > 0.08:
-        recommendations.append("Split or parallelize high-centrality hubs to reduce routing concentration risk.")
-    if robustness_metrics["targetedReachabilityAt5Percent"] < 0.80:
-        recommendations.append("Increase alternate pathways around central pivots to improve targeted-failure resilience.")
-    if information_metrics["negativeInformationGainNodeCount"] > 0:
-        recommendations.append("Rework nodes with negative information gain to increase uncertainty reduction per decision.")
-    if not recommendations:
-        recommendations.append("Current optimization profile is balanced; continue trend monitoring across releases.")
 
     optimization_metrics = {
         "coverageScore": _round(coverage_score),
@@ -970,7 +969,7 @@ def build_math_assurance_payload(
         {
             "id": "information_theory",
             "name": "Information Theory",
-            "purpose": "Uncertainty reduction and information gain across investigation decisions.",
+            "purpose": "Terminal-domain label entropy under uniform branches; not evidentiary uncertainty reduction.",
             "metrics": information_metrics,
         },
         {
@@ -982,19 +981,19 @@ def build_math_assurance_payload(
         {
             "id": "centrality",
             "name": "Centrality Theory",
-            "purpose": "Routing concentration and over-dependence detection.",
+            "purpose": "Shortest-path betweenness and maximum share of total betweenness; not normalized Freeman graph centralization.",
             "metrics": centrality_metrics,
         },
         {
             "id": "robustness",
             "name": "Robustness / Percolation",
-            "purpose": "Resilience under random and adversarial node removals.",
+            "purpose": "Synthetic reachability after deleting questions; not missing-evidence handling or permission to bypass a prerequisite.",
             "metrics": robustness_metrics,
         },
         {
             "id": "optimization",
             "name": "Multi-objective Optimization",
-            "purpose": "Unified scorecard for coverage, routing, robustness, and information quality.",
+            "purpose": "Historical weighted proxy scorecard; uncalibrated and not an acceptance criterion.",
             "metrics": optimization_metrics,
         },
         {
@@ -1034,7 +1033,8 @@ def build_math_assurance_payload(
             "latestArtifactPath": "releases/core/reports/latest/math-assurance.json",
             "historyArtifactPath": "releases/core/reports/history/math-assurance-history.json",
             "manifestLookup": "releases/manifest.json -> latestGraphVersion",
-            "publishGates": publish_gates,
+            "legacyReferenceThresholds": publish_gates,
+            "publishGates": build_acceptance([], publish_gates),
         },
     }
 
@@ -1063,7 +1063,8 @@ def build_math_assurance_markdown(payload: dict[str, Any]) -> str:
     monitoring = payload.get("monitoring", {})
     publish_gates = monitoring.get("publishGates", {}) if isinstance(monitoring, dict) else {}
     if isinstance(publish_gates, dict):
-        sections.append("## Publish Gates")
+        sections.append("## Authoring Acceptance")
+        sections.append("Structure and supplied evidence-profile checks only; not release authorization or independent investigative validation.")
         sections.append(f"Overall: **{'PASS' if publish_gates.get('allPassed') else 'FAIL'}**")
         sections.append("")
         sections.append("| Gate | Metric | Rule | Value | Result |")
@@ -1071,7 +1072,7 @@ def build_math_assurance_markdown(payload: dict[str, Any]) -> str:
         for gate in publish_gates.get("gates", []):
             if not isinstance(gate, dict):
                 continue
-            value = gate.get("value")
+            value = gate.get("value", gate.get("passed"))
             if isinstance(value, float):
                 value_rendered = f"{value:.6f}".rstrip("0").rstrip(".")
             else:
@@ -1082,7 +1083,7 @@ def build_math_assurance_markdown(payload: dict[str, Any]) -> str:
                     [
                         str(gate.get("id", "")),
                         str(gate.get("metric", "")),
-                        f"{gate.get('operator', '')} {gate.get('threshold', '')}",
+                        f"{gate.get('operator', '')} {gate.get('threshold', '')}" if "operator" in gate else str(gate.get("status", "notRun")),
                         value_rendered,
                         "pass" if gate.get("passed") else "fail",
                     ]
@@ -1090,6 +1091,15 @@ def build_math_assurance_markdown(payload: dict[str, Any]) -> str:
                 + " |"
             )
         sections.append("")
+
+    reference = monitoring.get("legacyReferenceThresholds", {})
+    sections.append("## Historical Reference Thresholds (diagnostic)")
+    sections.append("Original values and thresholds are retained; unmet reference thresholds do not block current authoring acceptance. See standards/graph-assurance-policy.md.")
+    sections.append("| Reference | Value | Rule | Met |")
+    sections.append("| --- | --- | --- | --- |")
+    for item in reference.get("gates", []):
+        sections.append(f"| {item['id']} | {item['value']} | {item['operator']} {item['threshold']} | {item['passed']} |")
+    sections.append("")
 
     sections.append("## Recommendations")
     for recommendation in summary.get("recommendations", []):

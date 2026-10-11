@@ -2,7 +2,7 @@
   "generatedAt": "2026-10-11T00:00:00Z",
   "namespace": "tensor",
   "product": "core",
-  "version": "0.20261011a",
+  "version": "0.20261011b",
   "schemaVersion": "0.20260206e",
   "locale": "en-US",
   "entryNodeIds": [
@@ -24,7 +24,7 @@
       "extensions": {
         "tensor:evidenceCriteria": {
           "document": "entry-evidence-criteria.json",
-          "version": "0.20261011a",
+          "version": "0.20261011b",
           "nodeId": "Q1"
         }
       }
@@ -38,7 +38,7 @@
       "extensions": {
         "tensor:evidenceCriteria": {
           "document": "entry-evidence-criteria.json",
-          "version": "0.20261011a",
+          "version": "0.20261011b",
           "nodeId": "Q2"
         }
       }
@@ -52,7 +52,7 @@
       "extensions": {
         "tensor:evidenceCriteria": {
           "document": "entry-evidence-criteria.json",
-          "version": "0.20261011a",
+          "version": "0.20261011b",
           "nodeId": "Q3"
         }
       }
@@ -66,7 +66,7 @@
       "extensions": {
         "tensor:evidenceCriteria": {
           "document": "entry-evidence-criteria.json",
-          "version": "0.20261011a",
+          "version": "0.20261011b",
           "nodeId": "Q4"
         }
       }
@@ -80,7 +80,7 @@
       "extensions": {
         "tensor:evidenceCriteria": {
           "document": "entry-evidence-criteria.json",
-          "version": "0.20261011a",
+          "version": "0.20261011b",
           "nodeId": "Q5"
         }
       }
@@ -94,7 +94,7 @@
       "extensions": {
         "tensor:evidenceCriteria": {
           "document": "entry-evidence-criteria.json",
-          "version": "0.20261011a",
+          "version": "0.20261011b",
           "nodeId": "Q6"
         }
       }
@@ -108,7 +108,7 @@
       "extensions": {
         "tensor:evidenceCriteria": {
           "document": "entry-evidence-criteria.json",
-          "version": "0.20261011a",
+          "version": "0.20261011b",
           "nodeId": "Q7"
         }
       }
@@ -122,7 +122,7 @@
       "extensions": {
         "tensor:evidenceCriteria": {
           "document": "entry-evidence-criteria.json",
-          "version": "0.20261011a",
+          "version": "0.20261011b",
           "nodeId": "Q8"
         }
       }
@@ -136,7 +136,7 @@
       "extensions": {
         "tensor:evidenceCriteria": {
           "document": "entry-evidence-criteria.json",
-          "version": "0.20261011a",
+          "version": "0.20261011b",
           "nodeId": "Q9"
         }
       }
@@ -150,7 +150,7 @@
       "extensions": {
         "tensor:evidenceCriteria": {
           "document": "entry-evidence-criteria.json",
-          "version": "0.20261011a",
+          "version": "0.20261011b",
           "nodeId": "Q10"
         }
       }
@@ -164,7 +164,7 @@
       "extensions": {
         "tensor:evidenceCriteria": {
           "document": "entry-evidence-criteria.json",
-          "version": "0.20261011a",
+          "version": "0.20261011b",
           "nodeId": "Q11"
         }
       }
@@ -178,7 +178,7 @@
       "extensions": {
         "tensor:evidenceCriteria": {
           "document": "entry-evidence-criteria.json",
-          "version": "0.20261011a",
+          "version": "0.20261011b",
           "nodeId": "Q12"
         }
       }
@@ -192,7 +192,7 @@
       "extensions": {
         "tensor:evidenceCriteria": {
           "document": "entry-evidence-criteria.json",
-          "version": "0.20261011a",
+          "version": "0.20261011b",
           "nodeId": "Q13"
         }
       }
@@ -206,7 +206,7 @@
       "extensions": {
         "tensor:evidenceCriteria": {
           "document": "entry-evidence-criteria.json",
-          "version": "0.20261011a",
+          "version": "0.20261011b",
           "nodeId": "Q14"
         }
       }
@@ -220,7 +220,7 @@
       "extensions": {
         "tensor:evidenceCriteria": {
           "document": "entry-evidence-criteria.json",
-          "version": "0.20261011a",
+          "version": "0.20261011b",
           "nodeId": "Q82"
         }
       }
@@ -234,7 +234,7 @@
       "extensions": {
         "tensor:evidenceCriteria": {
           "document": "entry-evidence-criteria.json",
-          "version": "0.20261011a",
+          "version": "0.20261011b",
           "nodeId": "Q83"
         }
       }
@@ -248,7 +248,7 @@
       "extensions": {
         "tensor:evidenceCriteria": {
           "document": "entry-evidence-criteria.json",
-          "version": "0.20261011a",
+          "version": "0.20261011b",
           "nodeId": "Q85"
         }
       }
@@ -262,7 +262,7 @@
       "extensions": {
         "tensor:evidenceCriteria": {
           "document": "entry-evidence-criteria.json",
-          "version": "0.20261011a",
+          "version": "0.20261011b",
           "nodeId": "Q86"
         }
       }
@@ -276,7 +276,7 @@
       "extensions": {
         "tensor:evidenceCriteria": {
           "document": "entry-evidence-criteria.json",
-          "version": "0.20261011a",
+          "version": "0.20261011b",
           "nodeId": "Q147"
         }
       }
@@ -290,7 +290,7 @@
       "extensions": {
         "tensor:evidenceCriteria": {
           "document": "entry-evidence-criteria.json",
-          "version": "0.20261011a",
+          "version": "0.20261011b",
           "nodeId": "Q148"
         }
       }
@@ -304,7 +304,7 @@
       "extensions": {
         "tensor:evidenceCriteria": {
           "document": "entry-evidence-criteria.json",
-          "version": "0.20261011a",
+          "version": "0.20261011b",
           "nodeId": "Q149"
         }
       }
@@ -318,7 +318,7 @@
       "extensions": {
         "tensor:evidenceCriteria": {
           "document": "entry-evidence-criteria.json",
-          "version": "0.20261011a",
+          "version": "0.20261011b",
           "nodeId": "Q150"
         }
       }
@@ -332,7 +332,7 @@
       "extensions": {
         "tensor:evidenceCriteria": {
           "document": "entry-evidence-criteria.json",
-          "version": "0.20261011a",
+          "version": "0.20261011b",
           "nodeId": "Q151"
         }
       }
@@ -346,7 +346,7 @@
       "extensions": {
         "tensor:evidenceCriteria": {
           "document": "entry-evidence-criteria.json",
-          "version": "0.20261011a",
+          "version": "0.20261011b",
           "nodeId": "Q152"
         }
       }
@@ -360,7 +360,7 @@
       "extensions": {
         "tensor:evidenceCriteria": {
           "document": "entry-evidence-criteria.json",
-          "version": "0.20261011a",
+          "version": "0.20261011b",
           "nodeId": "Q153"
         }
       }
@@ -374,7 +374,7 @@
       "extensions": {
         "tensor:evidenceCriteria": {
           "document": "entry-evidence-criteria.json",
-          "version": "0.20261011a",
+          "version": "0.20261011b",
           "nodeId": "Q154"
         }
       }
@@ -388,7 +388,7 @@
       "extensions": {
         "tensor:evidenceCriteria": {
           "document": "entry-evidence-criteria.json",
-          "version": "0.20261011a",
+          "version": "0.20261011b",
           "nodeId": "Q155"
         }
       }
@@ -402,1004 +402,766 @@
       "extensions": {
         "tensor:evidenceCriteria": {
           "document": "entry-evidence-criteria.json",
-          "version": "0.20261011a",
+          "version": "0.20261011b",
           "nodeId": "Q156"
         }
       }
     },
     {
       "id": "Q159",
-      "text": "Does validated network session and transport activity for collaboration artifacts align with benign activity, policy violation, or malicious behavior?",
-      "label": "Network: Behavior alignment - Collaboration artifacts",
+      "text": "Does the validated primary record of the bound communication between the bound endpoints satisfy the declared falsifiable criterion for the named technical hypothesis within the bound time interval?",
+      "label": "Network: primary classification assessment",
       "category": "Network",
-      "archetype": "classify"
+      "archetype": "classify",
+      "extensions": {
+        "tensor:evidenceCriteria": {
+          "document": "entry-evidence-criteria.json",
+          "version": "0.20261011b",
+          "nodeId": "Q159"
+        }
+      }
     },
     {
       "id": "Q161",
-      "text": "Does validated mailbox message and collaboration activity for process ancestry align with benign activity, policy violation, or malicious behavior?",
-      "label": "Email: Behavior alignment - Process ancestry",
+      "text": "Does the validated primary record of delivery of the bound message to the bound mailbox satisfy the declared falsifiable criterion for the named technical hypothesis within the bound time interval?",
+      "label": "Email: primary classification assessment",
       "category": "Email",
-      "archetype": "classify"
+      "archetype": "classify",
+      "extensions": {
+        "tensor:evidenceCriteria": {
+          "document": "entry-evidence-criteria.json",
+          "version": "0.20261011b",
+          "nodeId": "Q161"
+        }
+      }
     },
     {
       "id": "Q184",
-      "text": "Is the classification of file artifact and content activity in execution lineage supported with sufficient confidence?",
-      "label": "File: Confidence check - Execution lineage",
+      "text": "Does the validated primary record of presence of the bound file on the bound system satisfy the declared falsifiable criterion for the named technical hypothesis within the bound time interval?",
+      "label": "File: primary classification assessment",
       "category": "File",
-      "archetype": "classify"
+      "archetype": "classify",
+      "extensions": {
+        "tensor:evidenceCriteria": {
+          "document": "entry-evidence-criteria.json",
+          "version": "0.20261011b",
+          "nodeId": "Q184"
+        }
+      }
     },
     {
       "id": "Q187",
-      "text": "Does validated network session and transport activity for control-plane actions align with benign activity, policy violation, or malicious behavior?",
-      "label": "Network: Behavior alignment - Control-plane actions",
+      "text": "Does the validated independent record of the bound communication between the bound endpoints satisfy the declared falsifiable criterion for the named technical hypothesis within the bound time interval?",
+      "label": "Network: independent classification assessment",
       "category": "Network",
-      "archetype": "classify"
+      "archetype": "classify",
+      "extensions": {
+        "tensor:evidenceCriteria": {
+          "document": "entry-evidence-criteria.json",
+          "version": "0.20261011b",
+          "nodeId": "Q187"
+        }
+      }
     },
     {
       "id": "Q188",
-      "text": "Does validated cloud control-plane and workload activity for transport metadata align with benign activity, policy violation, or malicious behavior?",
-      "label": "Cloud: Behavior alignment - Transport metadata",
+      "text": "Does the validated independent record of the bound control-plane operation on the bound cloud resource satisfy the declared falsifiable criterion for the named technical hypothesis within the bound time interval?",
+      "label": "Cloud: independent classification assessment",
       "category": "Cloud",
-      "archetype": "classify"
+      "archetype": "classify",
+      "extensions": {
+        "tensor:evidenceCriteria": {
+          "document": "entry-evidence-criteria.json",
+          "version": "0.20261011b",
+          "nodeId": "Q188"
+        }
+      }
     },
     {
       "id": "Q190",
-      "text": "Does validated application request and session activity for session anomalies align with benign activity, policy violation, or malicious behavior?",
-      "label": "Application: Behavior alignment - Session anomalies",
+      "text": "Does the validated primary record of handling of the bound request by the bound application satisfy the declared falsifiable criterion for the named technical hypothesis within the bound time interval?",
+      "label": "Application: primary classification assessment",
       "category": "Application",
-      "archetype": "classify"
+      "archetype": "classify",
+      "extensions": {
+        "tensor:evidenceCriteria": {
+          "document": "entry-evidence-criteria.json",
+          "version": "0.20261011b",
+          "nodeId": "Q190"
+        }
+      }
     },
     {
       "id": "Q214",
-      "text": "Did endpoint execution and persistence activity in network pivots support at least one bounded technical hypothesis with testable evidence?",
-      "label": "Host: Hypothesis framing - Network pivots",
+      "text": "Does the validated primary record of execution of the bound process on the bound host satisfy the declared falsifiable criterion for the named technical hypothesis within the bound time interval?",
+      "label": "Host: primary classification assessment",
       "category": "Host",
-      "archetype": "classify"
+      "archetype": "classify",
+      "extensions": {
+        "tensor:evidenceCriteria": {
+          "document": "entry-evidence-criteria.json",
+          "version": "0.20261011b",
+          "nodeId": "Q214"
+        }
+      }
     },
     {
       "id": "Q219",
-      "text": "Does validated file artifact and content activity for control-plane actions align with benign activity, policy violation, or malicious behavior?",
-      "label": "File: Behavior alignment - Control-plane actions",
+      "text": "Does the validated independent record of presence of the bound file on the bound system satisfy the declared falsifiable criterion for the named technical hypothesis within the bound time interval?",
+      "label": "File: independent classification assessment",
       "category": "File",
-      "archetype": "classify"
+      "archetype": "classify",
+      "extensions": {
+        "tensor:evidenceCriteria": {
+          "document": "entry-evidence-criteria.json",
+          "version": "0.20261011b",
+          "nodeId": "Q219"
+        }
+      }
     },
     {
       "id": "Q221",
-      "text": "Does endpoint execution and persistence activity observed in api invocation patterns indicate adversarial intent?",
-      "label": "Host: Adversarial intent - API invocation patterns",
+      "text": "Does the validated independent record of execution of the bound process on the bound host satisfy the declared falsifiable criterion for the named technical hypothesis within the bound time interval?",
+      "label": "Host: independent classification assessment",
       "category": "Host",
-      "archetype": "classify"
+      "archetype": "classify",
+      "extensions": {
+        "tensor:evidenceCriteria": {
+          "document": "entry-evidence-criteria.json",
+          "version": "0.20261011b",
+          "nodeId": "Q221"
+        }
+      }
     },
     {
       "id": "Q223",
-      "text": "Is the classification of cloud control-plane and workload activity in collaboration artifacts supported with sufficient confidence?",
-      "label": "Cloud: Confidence check - Collaboration artifacts",
+      "text": "Does the validated primary record of the bound control-plane operation on the bound cloud resource satisfy the declared falsifiable criterion for the named technical hypothesis within the bound time interval?",
+      "label": "Cloud: primary classification assessment",
       "category": "Cloud",
-      "archetype": "classify"
+      "archetype": "classify",
+      "extensions": {
+        "tensor:evidenceCriteria": {
+          "document": "entry-evidence-criteria.json",
+          "version": "0.20261011b",
+          "nodeId": "Q223"
+        }
+      }
     },
     {
       "id": "Q224",
-      "text": "Is the classification of mailbox message and collaboration activity in execution lineage supported with sufficient confidence?",
-      "label": "Email: Confidence check - Execution lineage",
+      "text": "Does the validated independent record of delivery of the bound message to the bound mailbox satisfy the declared falsifiable criterion for the named technical hypothesis within the bound time interval?",
+      "label": "Email: independent classification assessment",
       "category": "Email",
-      "archetype": "classify"
+      "archetype": "classify",
+      "extensions": {
+        "tensor:evidenceCriteria": {
+          "document": "entry-evidence-criteria.json",
+          "version": "0.20261011b",
+          "nodeId": "Q224"
+        }
+      }
     },
     {
       "id": "Q225",
-      "text": "Is the classification of application request and session activity in process ancestry supported with sufficient confidence?",
-      "label": "Application: Confidence check - Process ancestry",
+      "text": "Does the validated independent record of handling of the bound request by the bound application satisfy the declared falsifiable criterion for the named technical hypothesis within the bound time interval?",
+      "label": "Application: independent classification assessment",
       "category": "Application",
-      "archetype": "classify"
+      "archetype": "classify",
+      "extensions": {
+        "tensor:evidenceCriteria": {
+          "document": "entry-evidence-criteria.json",
+          "version": "0.20261011b",
+          "nodeId": "Q225"
+        }
+      }
     },
     {
       "id": "Q233",
-      "text": "Did identity authentication and privilege activity in api invocation patterns support at least one bounded technical hypothesis with testable evidence?",
-      "label": "Identity: Hypothesis framing - API invocation patterns",
+      "text": "Does the validated selected record of the bound identity action by the bound principal satisfy the declared falsifiable criterion for the named technical hypothesis within the bound time interval?",
+      "label": "Identity: selected classification assessment",
       "category": "Identity",
-      "archetype": "classify"
+      "archetype": "classify",
+      "extensions": {
+        "tensor:evidenceCriteria": {
+          "document": "entry-evidence-criteria.json",
+          "version": "0.20261011b",
+          "nodeId": "Q233"
+        }
+      }
     },
     {
       "id": "Q245",
-      "text": "Were upstream and downstream dependencies for file artifact and content activity in endpoint state changes included in scope?",
-      "label": "File: Dependencies in scope - Endpoint state changes",
+      "text": "Is the primary hypothesis assessment of presence of the bound file on the bound system bounded to explicit subjects and time with evidenced entity inclusions, exclusions and unknown scope recorded?",
+      "label": "File: primary scope assessment",
       "category": "File",
-      "archetype": "scope"
+      "archetype": "scope",
+      "extensions": {
+        "tensor:evidenceCriteria": {
+          "document": "entry-evidence-criteria.json",
+          "version": "0.20261011b",
+          "nodeId": "Q245"
+        }
+      }
     },
     {
       "id": "Q253",
-      "text": "Have scope boundaries for identity authentication and privilege activity in session anomalies been expanded to include connected evidence?",
-      "label": "Identity: Scope boundaries - Session anomalies",
+      "text": "Is the selected hypothesis assessment of the bound identity action by the bound principal bounded to explicit subjects and time with evidenced entity inclusions, exclusions and unknown scope recorded?",
+      "label": "Identity: selected scope assessment",
       "category": "Identity",
-      "archetype": "scope"
+      "archetype": "scope",
+      "extensions": {
+        "tensor:evidenceCriteria": {
+          "document": "entry-evidence-criteria.json",
+          "version": "0.20261011b",
+          "nodeId": "Q253"
+        }
+      }
     },
     {
       "id": "Q256",
-      "text": "Were upstream and downstream dependencies for cloud control-plane and workload activity in workload identity context included in scope?",
-      "label": "Cloud: Dependencies in scope - Workload identity context",
+      "text": "Is the primary hypothesis assessment of the bound control-plane operation on the bound cloud resource bounded to explicit subjects and time with evidenced entity inclusions, exclusions and unknown scope recorded?",
+      "label": "Cloud: primary scope assessment",
       "category": "Cloud",
-      "archetype": "scope"
+      "archetype": "scope",
+      "extensions": {
+        "tensor:evidenceCriteria": {
+          "document": "entry-evidence-criteria.json",
+          "version": "0.20261011b",
+          "nodeId": "Q256"
+        }
+      }
     },
     {
       "id": "Q257",
-      "text": "Were upstream and downstream dependencies for mailbox message and collaboration activity in authentication pathways included in scope?",
-      "label": "Email: Dependencies in scope - Authentication pathways",
+      "text": "Is the independent hypothesis assessment of delivery of the bound message to the bound mailbox bounded to explicit subjects and time with evidenced entity inclusions, exclusions and unknown scope recorded?",
+      "label": "Email: independent scope assessment",
       "category": "Email",
-      "archetype": "scope"
+      "archetype": "scope",
+      "extensions": {
+        "tensor:evidenceCriteria": {
+          "document": "entry-evidence-criteria.json",
+          "version": "0.20261011b",
+          "nodeId": "Q257"
+        }
+      }
     },
     {
       "id": "Q258",
-      "text": "Were upstream and downstream dependencies for application request and session activity in data access traces included in scope?",
-      "label": "Application: Dependencies in scope - Data access traces",
+      "text": "Is the independent hypothesis assessment of handling of the bound request by the bound application bounded to explicit subjects and time with evidenced entity inclusions, exclusions and unknown scope recorded?",
+      "label": "Application: independent scope assessment",
       "category": "Application",
-      "archetype": "scope"
+      "archetype": "scope",
+      "extensions": {
+        "tensor:evidenceCriteria": {
+          "document": "entry-evidence-criteria.json",
+          "version": "0.20261011b",
+          "nodeId": "Q258"
+        }
+      }
     },
     {
       "id": "Q259",
-      "text": "Were upstream and downstream dependencies for file artifact and content activity in api invocation patterns included in scope?",
-      "label": "File: Dependencies in scope - API invocation patterns",
+      "text": "Is the independent hypothesis assessment of presence of the bound file on the bound system bounded to explicit subjects and time with evidenced entity inclusions, exclusions and unknown scope recorded?",
+      "label": "File: independent scope assessment",
       "category": "File",
-      "archetype": "scope"
+      "archetype": "scope",
+      "extensions": {
+        "tensor:evidenceCriteria": {
+          "document": "entry-evidence-criteria.json",
+          "version": "0.20261011b",
+          "nodeId": "Q259"
+        }
+      }
     },
     {
       "id": "Q261",
-      "text": "Were additional assets, identities, sessions, or artifacts tied to endpoint execution and persistence activity in session anomalies brought into scope?",
-      "label": "Host: Additional assets in scope - Session anomalies",
+      "text": "Is the independent hypothesis assessment of execution of the bound process on the bound host bounded to explicit subjects and time with evidenced entity inclusions, exclusions and unknown scope recorded?",
+      "label": "Host: independent scope assessment",
       "category": "Host",
-      "archetype": "scope"
+      "archetype": "scope",
+      "extensions": {
+        "tensor:evidenceCriteria": {
+          "document": "entry-evidence-criteria.json",
+          "version": "0.20261011b",
+          "nodeId": "Q261"
+        }
+      }
     },
     {
       "id": "Q268",
-      "text": "Have scope boundaries for endpoint execution and persistence activity in privileged access events been expanded to include connected evidence?",
-      "label": "Host: Scope boundaries - Privileged access events",
+      "text": "Is the primary hypothesis assessment of execution of the bound process on the bound host bounded to explicit subjects and time with evidenced entity inclusions, exclusions and unknown scope recorded?",
+      "label": "Host: primary scope assessment",
       "category": "Host",
-      "archetype": "scope"
+      "archetype": "scope",
+      "extensions": {
+        "tensor:evidenceCriteria": {
+          "document": "entry-evidence-criteria.json",
+          "version": "0.20261011b",
+          "nodeId": "Q268"
+        }
+      }
     },
     {
       "id": "Q279",
-      "text": "Were materially affected entities linked to application request and session activity in message delivery paths identified for investigative scope?",
-      "label": "Application: Affected entities - Message delivery paths",
+      "text": "Is the primary hypothesis assessment of handling of the bound request by the bound application bounded to explicit subjects and time with evidenced entity inclusions, exclusions and unknown scope recorded?",
+      "label": "Application: primary scope assessment",
       "category": "Application",
-      "archetype": "scope"
+      "archetype": "scope",
+      "extensions": {
+        "tensor:evidenceCriteria": {
+          "document": "entry-evidence-criteria.json",
+          "version": "0.20261011b",
+          "nodeId": "Q279"
+        }
+      }
     },
     {
       "id": "Q283",
-      "text": "Have scope boundaries for network session and transport activity in transport metadata been expanded to include connected evidence?",
-      "label": "Network: Scope boundaries - Transport metadata",
+      "text": "Is the independent hypothesis assessment of the bound communication between the bound endpoints bounded to explicit subjects and time with evidenced entity inclusions, exclusions and unknown scope recorded?",
+      "label": "Network: independent scope assessment",
       "category": "Network",
-      "archetype": "scope"
+      "archetype": "scope",
+      "extensions": {
+        "tensor:evidenceCriteria": {
+          "document": "entry-evidence-criteria.json",
+          "version": "0.20261011b",
+          "nodeId": "Q283"
+        }
+      }
     },
     {
       "id": "Q284",
-      "text": "Were upstream and downstream dependencies for cloud control-plane and workload activity in network pivots included in scope?",
-      "label": "Cloud: Dependencies in scope - Network pivots",
+      "text": "Is the independent hypothesis assessment of the bound control-plane operation on the bound cloud resource bounded to explicit subjects and time with evidenced entity inclusions, exclusions and unknown scope recorded?",
+      "label": "Cloud: independent scope assessment",
       "category": "Cloud",
-      "archetype": "scope"
+      "archetype": "scope",
+      "extensions": {
+        "tensor:evidenceCriteria": {
+          "document": "entry-evidence-criteria.json",
+          "version": "0.20261011b",
+          "nodeId": "Q284"
+        }
+      }
     },
     {
       "id": "Q299",
-      "text": "Were upstream and downstream dependencies for mailbox message and collaboration activity in api invocation patterns included in scope?",
-      "label": "Email: Dependencies in scope - API invocation patterns",
+      "text": "Is the primary hypothesis assessment of delivery of the bound message to the bound mailbox bounded to explicit subjects and time with evidenced entity inclusions, exclusions and unknown scope recorded?",
+      "label": "Email: primary scope assessment",
       "category": "Email",
-      "archetype": "scope"
+      "archetype": "scope",
+      "extensions": {
+        "tensor:evidenceCriteria": {
+          "document": "entry-evidence-criteria.json",
+          "version": "0.20261011b",
+          "nodeId": "Q299"
+        }
+      }
     },
     {
       "id": "Q303",
-      "text": "Were materially affected entities linked to network session and transport activity in data access traces identified for investigative scope?",
-      "label": "Network: Affected entities - Data access traces",
+      "text": "Is the primary hypothesis assessment of the bound communication between the bound endpoints bounded to explicit subjects and time with evidenced entity inclusions, exclusions and unknown scope recorded?",
+      "label": "Network: primary scope assessment",
       "category": "Network",
-      "archetype": "scope"
-    },
-    {
-      "id": "Q313",
-      "text": "Did timeline correlation for endpoint execution and persistence activity in authentication pathways reveal synchronized cross-domain activity?",
-      "label": "Host: Timeline correlation - Authentication pathways",
-      "category": "Host",
-      "archetype": "correlate"
-    },
-    {
-      "id": "Q315",
-      "text": "Did timeline correlation for cloud control-plane and workload activity in api invocation patterns reveal synchronized cross-domain activity?",
-      "label": "Cloud: Timeline correlation - API invocation patterns",
-      "category": "Cloud",
-      "archetype": "correlate"
-    },
-    {
-      "id": "Q317",
-      "text": "Have pivoted indicators for application request and session activity in collaboration artifacts strengthened correlation confidence?",
-      "label": "Application: Pivot strengthening - Collaboration artifacts",
-      "category": "Application",
-      "archetype": "correlate"
-    },
-    {
-      "id": "Q318",
-      "text": "Have pivoted indicators for file artifact and content activity in execution lineage strengthened correlation confidence?",
-      "label": "File: Pivot strengthening - Execution lineage",
-      "category": "File",
-      "archetype": "correlate"
-    },
-    {
-      "id": "Q320",
-      "text": "Did multi-source correlation for endpoint execution and persistence activity in workload identity context expose linked investigative signals?",
-      "label": "Host: Multi-source correlation - Workload identity context",
-      "category": "Host",
-      "archetype": "correlate"
-    },
-    {
-      "id": "Q322",
-      "text": "Did multi-source correlation for cloud control-plane and workload activity in data access traces expose linked investigative signals?",
-      "label": "Cloud: Multi-source correlation - Data access traces",
-      "category": "Cloud",
-      "archetype": "correlate"
+      "archetype": "scope",
+      "extensions": {
+        "tensor:evidenceCriteria": {
+          "document": "entry-evidence-criteria.json",
+          "version": "0.20261011b",
+          "nodeId": "Q303"
+        }
+      }
     },
     {
       "id": "Q323",
-      "text": "Did mailbox message and collaboration activity in privileged access events correlate with evidence from at least one other domain?",
-      "label": "Email: Cross-domain correlation - Privileged access events",
+      "text": "Does validated evidence support the explicitly named relationship between delivery of the bound message to the bound mailbox and the bound target observation within the assessed interval?",
+      "label": "Email: correlation assessment",
       "category": "Email",
-      "archetype": "correlate"
-    },
-    {
-      "id": "Q333",
-      "text": "Did multi-source correlation for identity authentication and privilege activity in endpoint state changes expose linked investigative signals?",
-      "label": "Identity: Multi-source correlation - Endpoint state changes",
-      "category": "Identity",
-      "archetype": "correlate"
-    },
-    {
-      "id": "Q337",
-      "text": "Did mailbox message and collaboration activity in control-plane actions correlate with evidence from at least one other domain?",
-      "label": "Email: Cross-domain correlation - Control-plane actions",
-      "category": "Email",
-      "archetype": "correlate"
-    },
-    {
-      "id": "Q338",
-      "text": "Did application request and session activity in transport metadata correlate with evidence from at least one other domain?",
-      "label": "Application: Cross-domain correlation - Transport metadata",
-      "category": "Application",
-      "archetype": "correlate"
-    },
-    {
-      "id": "Q339",
-      "text": "Did file artifact and content activity in privileged access events correlate with evidence from at least one other domain?",
-      "label": "File: Cross-domain correlation - Privileged access events",
-      "category": "File",
-      "archetype": "correlate"
-    },
-    {
-      "id": "Q344",
-      "text": "Have pivoted indicators for mailbox message and collaboration activity in content lineage strengthened correlation confidence?",
-      "label": "Email: Pivot strengthening - Content lineage",
-      "category": "Email",
-      "archetype": "correlate"
+      "archetype": "correlate",
+      "extensions": {
+        "tensor:evidenceCriteria": {
+          "document": "entry-evidence-criteria.json",
+          "version": "0.20261011b",
+          "nodeId": "Q323"
+        }
+      }
     },
     {
       "id": "Q345",
-      "text": "Have pivoted indicators for application request and session activity in control-plane actions strengthened correlation confidence?",
-      "label": "Application: Pivot strengthening - Control-plane actions",
+      "text": "Does validated evidence support the explicitly named relationship between handling of the bound request by the bound application and the bound target observation within the assessed interval?",
+      "label": "Application: correlation assessment",
       "category": "Application",
-      "archetype": "correlate"
+      "archetype": "correlate",
+      "extensions": {
+        "tensor:evidenceCriteria": {
+          "document": "entry-evidence-criteria.json",
+          "version": "0.20261011b",
+          "nodeId": "Q345"
+        }
+      }
     },
     {
       "id": "Q346",
-      "text": "Have pivoted indicators for file artifact and content activity in transport metadata strengthened correlation confidence?",
-      "label": "File: Pivot strengthening - Transport metadata",
+      "text": "Does validated evidence support the explicitly named relationship between presence of the bound file on the bound system and the bound target observation within the assessed interval?",
+      "label": "File: correlation assessment",
       "category": "File",
-      "archetype": "correlate"
-    },
-    {
-      "id": "Q347",
-      "text": "Did multi-source correlation for identity authentication and privilege activity in api invocation patterns expose linked investigative signals?",
-      "label": "Identity: Multi-source correlation - API invocation patterns",
-      "category": "Identity",
-      "archetype": "correlate"
+      "archetype": "correlate",
+      "extensions": {
+        "tensor:evidenceCriteria": {
+          "document": "entry-evidence-criteria.json",
+          "version": "0.20261011b",
+          "nodeId": "Q346"
+        }
+      }
     },
     {
       "id": "Q348",
-      "text": "Did multi-source correlation for endpoint execution and persistence activity in network pivots expose linked investigative signals?",
-      "label": "Host: Multi-source correlation - Network pivots",
+      "text": "Does validated evidence support the explicitly named relationship between execution of the bound process on the bound host and the bound target observation within the assessed interval?",
+      "label": "Host: correlation assessment",
       "category": "Host",
-      "archetype": "correlate"
-    },
-    {
-      "id": "Q352",
-      "text": "Did application request and session activity in content lineage correlate with evidence from at least one other domain?",
-      "label": "Application: Cross-domain correlation - Content lineage",
-      "category": "Application",
-      "archetype": "correlate"
+      "archetype": "correlate",
+      "extensions": {
+        "tensor:evidenceCriteria": {
+          "document": "entry-evidence-criteria.json",
+          "version": "0.20261011b",
+          "nodeId": "Q348"
+        }
+      }
     },
     {
       "id": "Q356",
-      "text": "Did timeline correlation for network session and transport activity in network pivots reveal synchronized cross-domain activity?",
-      "label": "Network: Timeline correlation - Network pivots",
+      "text": "Does validated evidence support the explicitly named relationship between the bound communication between the bound endpoints and the bound target observation within the assessed interval?",
+      "label": "Network: correlation assessment",
       "category": "Network",
-      "archetype": "correlate"
-    },
-    {
-      "id": "Q357",
-      "text": "Did timeline correlation for cloud control-plane and workload activity in endpoint state changes reveal synchronized cross-domain activity?",
-      "label": "Cloud: Timeline correlation - Endpoint state changes",
-      "category": "Cloud",
-      "archetype": "correlate"
+      "archetype": "correlate",
+      "extensions": {
+        "tensor:evidenceCriteria": {
+          "document": "entry-evidence-criteria.json",
+          "version": "0.20261011b",
+          "nodeId": "Q356"
+        }
+      }
     },
     {
       "id": "Q364",
-      "text": "Did multi-source correlation for cloud control-plane and workload activity in network pivots expose linked investigative signals?",
-      "label": "Cloud: Multi-source correlation - Network pivots",
+      "text": "Does validated evidence support the explicitly named relationship between the bound control-plane operation on the bound cloud resource and the bound target observation within the assessed interval?",
+      "label": "Cloud: correlation assessment",
       "category": "Cloud",
-      "archetype": "correlate"
-    },
-    {
-      "id": "Q366",
-      "text": "Did application request and session activity in execution lineage correlate with evidence from at least one other domain?",
-      "label": "Application: Cross-domain correlation - Execution lineage",
-      "category": "Application",
-      "archetype": "correlate"
-    },
-    {
-      "id": "Q370",
-      "text": "Did timeline correlation for network session and transport activity in data access traces reveal synchronized cross-domain activity?",
-      "label": "Network: Timeline correlation - Data access traces",
-      "category": "Network",
-      "archetype": "correlate"
-    },
-    {
-      "id": "Q372",
-      "text": "Have pivoted indicators for mailbox message and collaboration activity in session anomalies strengthened correlation confidence?",
-      "label": "Email: Pivot strengthening - Session anomalies",
-      "category": "Email",
-      "archetype": "correlate"
-    },
-    {
-      "id": "Q378",
-      "text": "Have pivoted indicators for endpoint execution and persistence activity in privileged access events strengthened correlation confidence?",
-      "label": "Host: Pivot strengthening - Privileged access events",
-      "category": "Host",
-      "archetype": "correlate"
+      "archetype": "correlate",
+      "extensions": {
+        "tensor:evidenceCriteria": {
+          "document": "entry-evidence-criteria.json",
+          "version": "0.20261011b",
+          "nodeId": "Q364"
+        }
+      }
     },
     {
       "id": "Q379",
-      "text": "Did timeline correlation for identity authentication and privilege activity in artifact provenance reveal synchronized cross-domain activity?",
-      "label": "Identity: Timeline correlation - Artifact provenance",
+      "text": "Does validated evidence support the explicitly named relationship between the bound identity action by the bound principal and the bound target observation within the assessed interval?",
+      "label": "Identity: correlation assessment",
       "category": "Identity",
-      "archetype": "correlate"
-    },
-    {
-      "id": "Q381",
-      "text": "Was application request and session activity in endpoint state changes attributable to a coherent activity cluster with common intent?",
-      "label": "Application: Activity clustering - Endpoint state changes",
-      "category": "Application",
-      "archetype": "attribute"
-    },
-    {
-      "id": "Q385",
-      "text": "Does attribution evidence for network session and transport activity in content lineage support a defensible objective hypothesis?",
-      "label": "Network: Objective hypothesis - Content lineage",
-      "category": "Network",
-      "archetype": "attribute"
-    },
-    {
-      "id": "Q386",
-      "text": "Does attribution evidence for cloud control-plane and workload activity in control-plane actions support a defensible objective hypothesis?",
-      "label": "Cloud: Objective hypothesis - Control-plane actions",
-      "category": "Cloud",
-      "archetype": "attribute"
-    },
-    {
-      "id": "Q388",
-      "text": "Did behavioral patterns around application request and session activity in network pivots support attribution confidence?",
-      "label": "Application: Attribution confidence - Network pivots",
-      "category": "Application",
-      "archetype": "attribute"
-    },
-    {
-      "id": "Q389",
-      "text": "Did behavioral patterns around file artifact and content activity in endpoint state changes support attribution confidence?",
-      "label": "File: Attribution confidence - Endpoint state changes",
-      "category": "File",
-      "archetype": "attribute"
-    },
-    {
-      "id": "Q391",
-      "text": "Did endpoint execution and persistence activity in execution lineage align with a repeatable adversary objective or technique pattern?",
-      "label": "Host: Technique pattern - Execution lineage",
-      "category": "Host",
-      "archetype": "attribute"
-    },
-    {
-      "id": "Q394",
-      "text": "Did mailbox message and collaboration activity in control-plane actions align with a repeatable adversary objective or technique pattern?",
-      "label": "Email: Technique pattern - Control-plane actions",
-      "category": "Email",
-      "archetype": "attribute"
-    },
-    {
-      "id": "Q397",
-      "text": "Does attribution evidence for identity authentication and privilege activity in session anomalies support a defensible objective hypothesis?",
-      "label": "Identity: Objective hypothesis - Session anomalies",
-      "category": "Identity",
-      "archetype": "attribute"
-    },
-    {
-      "id": "Q401",
-      "text": "Does attribution evidence for mailbox message and collaboration activity in content lineage support a defensible objective hypothesis?",
-      "label": "Email: Objective hypothesis - Content lineage",
-      "category": "Email",
-      "archetype": "attribute"
-    },
-    {
-      "id": "Q402",
-      "text": "Did behavioral patterns around application request and session activity in data access traces support attribution confidence?",
-      "label": "Application: Attribution confidence - Data access traces",
-      "category": "Application",
-      "archetype": "attribute"
-    },
-    {
-      "id": "Q409",
-      "text": "Was application request and session activity in authentication pathways attributable to a coherent activity cluster with common intent?",
-      "label": "Application: Activity clustering - Authentication pathways",
-      "category": "Application",
-      "archetype": "attribute"
-    },
-    {
-      "id": "Q410",
-      "text": "Was file artifact and content activity in data access traces attributable to a coherent activity cluster with common intent?",
-      "label": "File: Activity clustering - Data access traces",
-      "category": "File",
-      "archetype": "attribute"
-    },
-    {
-      "id": "Q412",
-      "text": "Does attribution evidence for endpoint execution and persistence activity in privileged access events support a defensible objective hypothesis?",
-      "label": "Host: Objective hypothesis - Privileged access events",
-      "category": "Host",
-      "archetype": "attribute"
-    },
-    {
-      "id": "Q413",
-      "text": "Does attribution evidence for network session and transport activity in session anomalies support a defensible objective hypothesis?",
-      "label": "Network: Objective hypothesis - Session anomalies",
-      "category": "Network",
-      "archetype": "attribute"
-    },
-    {
-      "id": "Q414",
-      "text": "Does attribution evidence for cloud control-plane and workload activity in collaboration artifacts support a defensible objective hypothesis?",
-      "label": "Cloud: Objective hypothesis - Collaboration artifacts",
-      "category": "Cloud",
-      "archetype": "attribute"
-    },
-    {
-      "id": "Q415",
-      "text": "Does attribution evidence for mailbox message and collaboration activity in execution lineage support a defensible objective hypothesis?",
-      "label": "Email: Objective hypothesis - Execution lineage",
-      "category": "Email",
-      "archetype": "attribute"
+      "archetype": "correlate",
+      "extensions": {
+        "tensor:evidenceCriteria": {
+          "document": "entry-evidence-criteria.json",
+          "version": "0.20261011b",
+          "nodeId": "Q379"
+        }
+      }
     },
     {
       "id": "Q417",
-      "text": "Did behavioral patterns around file artifact and content activity in authentication pathways support attribution confidence?",
-      "label": "File: Attribution confidence - Authentication pathways",
+      "text": "Does assessed evidence for presence of the bound file on the bound system satisfy the declared discriminator for the named technical source within the bound interval?",
+      "label": "File: attribution assessment",
       "category": "File",
-      "archetype": "attribute"
-    },
-    {
-      "id": "Q418",
-      "text": "Did identity authentication and privilege activity in control-plane actions align with a repeatable adversary objective or technique pattern?",
-      "label": "Identity: Technique pattern - Control-plane actions",
-      "category": "Identity",
-      "archetype": "attribute"
-    },
-    {
-      "id": "Q419",
-      "text": "Did endpoint execution and persistence activity in transport metadata align with a repeatable adversary objective or technique pattern?",
-      "label": "Host: Technique pattern - Transport metadata",
-      "category": "Host",
-      "archetype": "attribute"
-    },
-    {
-      "id": "Q420",
-      "text": "Did network session and transport activity in privileged access events align with a repeatable adversary objective or technique pattern?",
-      "label": "Network: Technique pattern - Privileged access events",
-      "category": "Network",
-      "archetype": "attribute"
-    },
-    {
-      "id": "Q421",
-      "text": "Did cloud control-plane and workload activity in session anomalies align with a repeatable adversary objective or technique pattern?",
-      "label": "Cloud: Technique pattern - Session anomalies",
-      "category": "Cloud",
-      "archetype": "attribute"
-    },
-    {
-      "id": "Q422",
-      "text": "Did mailbox message and collaboration activity in collaboration artifacts align with a repeatable adversary objective or technique pattern?",
-      "label": "Email: Technique pattern - Collaboration artifacts",
-      "category": "Email",
-      "archetype": "attribute"
-    },
-    {
-      "id": "Q423",
-      "text": "Was application request and session activity in message delivery paths attributable to a coherent activity cluster with common intent?",
-      "label": "Application: Activity clustering - Message delivery paths",
-      "category": "Application",
-      "archetype": "attribute"
+      "archetype": "attribute",
+      "extensions": {
+        "tensor:evidenceCriteria": {
+          "document": "entry-evidence-criteria.json",
+          "version": "0.20261011b",
+          "nodeId": "Q417"
+        }
+      }
     },
     {
       "id": "Q425",
-      "text": "Does attribution evidence for identity authentication and privilege activity in content lineage support a defensible objective hypothesis?",
-      "label": "Identity: Objective hypothesis - Content lineage",
+      "text": "Does assessed evidence for the bound identity action by the bound principal satisfy the declared discriminator for the named technical source within the bound interval?",
+      "label": "Identity: attribution assessment",
       "category": "Identity",
-      "archetype": "attribute"
+      "archetype": "attribute",
+      "extensions": {
+        "tensor:evidenceCriteria": {
+          "document": "entry-evidence-criteria.json",
+          "version": "0.20261011b",
+          "nodeId": "Q425"
+        }
+      }
     },
     {
       "id": "Q426",
-      "text": "Does attribution evidence for endpoint execution and persistence activity in control-plane actions support a defensible objective hypothesis?",
-      "label": "Host: Objective hypothesis - Control-plane actions",
+      "text": "Does assessed evidence for execution of the bound process on the bound host satisfy the declared discriminator for the named technical source within the bound interval?",
+      "label": "Host: attribution assessment",
       "category": "Host",
-      "archetype": "attribute"
-    },
-    {
-      "id": "Q429",
-      "text": "Does attribution evidence for mailbox message and collaboration activity in session anomalies support a defensible objective hypothesis?",
-      "label": "Email: Objective hypothesis - Session anomalies",
-      "category": "Email",
-      "archetype": "attribute"
+      "archetype": "attribute",
+      "extensions": {
+        "tensor:evidenceCriteria": {
+          "document": "entry-evidence-criteria.json",
+          "version": "0.20261011b",
+          "nodeId": "Q426"
+        }
+      }
     },
     {
       "id": "Q430",
-      "text": "Did behavioral patterns around application request and session activity in artifact provenance support attribution confidence?",
-      "label": "Application: Attribution confidence - Artifact provenance",
+      "text": "Does assessed evidence for handling of the bound request by the bound application satisfy the declared discriminator for the named technical source within the bound interval?",
+      "label": "Application: attribution assessment",
       "category": "Application",
-      "archetype": "attribute"
-    },
-    {
-      "id": "Q432",
-      "text": "Was endpoint execution and persistence activity in api invocation patterns attributable to a coherent activity cluster with common intent?",
-      "label": "Host: Activity clustering - API invocation patterns",
-      "category": "Host",
-      "archetype": "attribute"
-    },
-    {
-      "id": "Q435",
-      "text": "Was mailbox message and collaboration activity in artifact provenance attributable to a coherent activity cluster with common intent?",
-      "label": "Email: Activity clustering - Artifact provenance",
-      "category": "Email",
-      "archetype": "attribute"
-    },
-    {
-      "id": "Q437",
-      "text": "Did identity authentication and privilege activity in privileged access events align with a repeatable adversary objective or technique pattern?",
-      "label": "Identity: Technique pattern - Privileged access events",
-      "category": "Identity",
-      "archetype": "attribute"
+      "archetype": "attribute",
+      "extensions": {
+        "tensor:evidenceCriteria": {
+          "document": "entry-evidence-criteria.json",
+          "version": "0.20261011b",
+          "nodeId": "Q430"
+        }
+      }
     },
     {
       "id": "Q439",
-      "text": "Did network session and transport activity in collaboration artifacts align with a repeatable adversary objective or technique pattern?",
-      "label": "Network: Technique pattern - Collaboration artifacts",
+      "text": "Does assessed evidence for the bound communication between the bound endpoints satisfy the declared discriminator for the named technical source within the bound interval?",
+      "label": "Network: attribution assessment",
       "category": "Network",
-      "archetype": "attribute"
+      "archetype": "attribute",
+      "extensions": {
+        "tensor:evidenceCriteria": {
+          "document": "entry-evidence-criteria.json",
+          "version": "0.20261011b",
+          "nodeId": "Q439"
+        }
+      }
     },
     {
       "id": "Q440",
-      "text": "Did cloud control-plane and workload activity in execution lineage align with a repeatable adversary objective or technique pattern?",
-      "label": "Cloud: Technique pattern - Execution lineage",
+      "text": "Does assessed evidence for the bound control-plane operation on the bound cloud resource satisfy the declared discriminator for the named technical source within the bound interval?",
+      "label": "Cloud: attribution assessment",
       "category": "Cloud",
-      "archetype": "attribute"
+      "archetype": "attribute",
+      "extensions": {
+        "tensor:evidenceCriteria": {
+          "document": "entry-evidence-criteria.json",
+          "version": "0.20261011b",
+          "nodeId": "Q440"
+        }
+      }
     },
     {
       "id": "Q441",
-      "text": "Did mailbox message and collaboration activity in process ancestry align with a repeatable adversary objective or technique pattern?",
-      "label": "Email: Technique pattern - Process ancestry",
+      "text": "Does assessed evidence for delivery of the bound message to the bound mailbox satisfy the declared discriminator for the named technical source within the bound interval?",
+      "label": "Email: attribution assessment",
       "category": "Email",
-      "archetype": "attribute"
-    },
-    {
-      "id": "Q442",
-      "text": "Did identity authentication and privilege activity in process ancestry align with a repeatable adversary objective or technique pattern?",
-      "label": "Identity: Technique pattern - Process ancestry",
-      "category": "Identity",
-      "archetype": "attribute"
-    },
-    {
-      "id": "Q443",
-      "text": "Did endpoint execution and persistence activity in content lineage align with a repeatable adversary objective or technique pattern?",
-      "label": "Host: Technique pattern - Content lineage",
-      "category": "Host",
-      "archetype": "attribute"
-    },
-    {
-      "id": "Q445",
-      "text": "Did cloud control-plane and workload activity in transport metadata align with a repeatable adversary objective or technique pattern?",
-      "label": "Cloud: Technique pattern - Transport metadata",
-      "category": "Cloud",
-      "archetype": "attribute"
-    },
-    {
-      "id": "Q448",
-      "text": "Did endpoint execution and persistence activity in session anomalies align with a repeatable adversary objective or technique pattern?",
-      "label": "Host: Technique pattern - Session anomalies",
-      "category": "Host",
-      "archetype": "attribute"
-    },
-    {
-      "id": "Q449",
-      "text": "Did behavioral patterns around identity authentication and privilege activity in message delivery paths support attribution confidence?",
-      "label": "Identity: Attribution confidence - Message delivery paths",
-      "category": "Identity",
-      "archetype": "attribute"
-    },
-    {
-      "id": "Q466",
-      "text": "Was mission or business exposure from identity authentication and privilege activity measured with evidence?",
-      "label": "Identity: Business exposure",
-      "category": "Identity",
-      "archetype": "impact"
-    },
-    {
-      "id": "Q467",
-      "text": "Was mission or business exposure from endpoint execution and persistence activity measured with evidence?",
-      "label": "Host: Business exposure",
-      "category": "Host",
-      "archetype": "impact"
-    },
-    {
-      "id": "Q472",
-      "text": "Have downstream security impacts from file artifact and content activity been evidenced and bounded?",
-      "label": "File: Downstream impact",
-      "category": "File",
-      "archetype": "impact"
-    },
-    {
-      "id": "Q490",
-      "text": "Did mailbox message and collaboration activity in privileged access events create measurable confidentiality, integrity, or availability impact?",
-      "label": "Email: CIA impact - Privileged access events",
-      "category": "Email",
-      "archetype": "impact"
-    },
-    {
-      "id": "Q491",
-      "text": "Did application request and session activity in session anomalies create measurable confidentiality, integrity, or availability impact?",
-      "label": "Application: CIA impact - Session anomalies",
-      "category": "Application",
-      "archetype": "impact"
+      "archetype": "attribute",
+      "extensions": {
+        "tensor:evidenceCriteria": {
+          "document": "entry-evidence-criteria.json",
+          "version": "0.20261011b",
+          "nodeId": "Q441"
+        }
+      }
     },
     {
       "id": "Q492",
-      "text": "Did identity authentication and privilege activity result in measurable operational or data risk?",
-      "label": "Identity: Operational/data risk",
+      "text": "Does assessed evidence for the bound identity action by the bound principal show the named observed metric change against a comparable baseline within the bound interval?",
+      "label": "Identity: impact assessment",
       "category": "Identity",
-      "archetype": "impact"
+      "archetype": "impact",
+      "extensions": {
+        "tensor:evidenceCriteria": {
+          "document": "entry-evidence-criteria.json",
+          "version": "0.20261011b",
+          "nodeId": "Q492"
+        }
+      }
     },
     {
       "id": "Q493",
-      "text": "Did endpoint execution and persistence activity result in measurable operational or data risk?",
-      "label": "Host: Operational/data risk",
+      "text": "Does assessed evidence for execution of the bound process on the bound host show the named observed metric change against a comparable baseline within the bound interval?",
+      "label": "Host: impact assessment",
       "category": "Host",
-      "archetype": "impact"
-    },
-    {
-      "id": "Q494",
-      "text": "Did network session and transport activity result in measurable operational or data risk?",
-      "label": "Network: Operational/data risk",
-      "category": "Network",
-      "archetype": "impact"
-    },
-    {
-      "id": "Q495",
-      "text": "Did cloud control-plane and workload activity result in measurable operational or data risk?",
-      "label": "Cloud: Operational/data risk",
-      "category": "Cloud",
-      "archetype": "impact"
-    },
-    {
-      "id": "Q496",
-      "text": "Did mailbox message and collaboration activity result in measurable operational or data risk?",
-      "label": "Email: Operational/data risk",
-      "category": "Email",
-      "archetype": "impact"
-    },
-    {
-      "id": "Q497",
-      "text": "Did application request and session activity result in measurable operational or data risk?",
-      "label": "Application: Operational/data risk",
-      "category": "Application",
-      "archetype": "impact"
-    },
-    {
-      "id": "Q498",
-      "text": "Have downstream security impacts from identity authentication and privilege activity in transport metadata been evidenced and bounded?",
-      "label": "Identity: Downstream impact - Transport metadata",
-      "category": "Identity",
-      "archetype": "impact"
-    },
-    {
-      "id": "Q499",
-      "text": "Have downstream security impacts from endpoint execution and persistence activity in privileged access events been evidenced and bounded?",
-      "label": "Host: Downstream impact - Privileged access events",
-      "category": "Host",
-      "archetype": "impact"
-    },
-    {
-      "id": "Q500",
-      "text": "Have downstream security impacts from network session and transport activity in session anomalies been evidenced and bounded?",
-      "label": "Network: Downstream impact - Session anomalies",
-      "category": "Network",
-      "archetype": "impact"
-    },
-    {
-      "id": "Q502",
-      "text": "Have downstream security impacts from mailbox message and collaboration activity in execution lineage been evidenced and bounded?",
-      "label": "Email: Downstream impact - Execution lineage",
-      "category": "Email",
-      "archetype": "impact"
-    },
-    {
-      "id": "Q503",
-      "text": "Have downstream security impacts from application request and session activity in process ancestry been evidenced and bounded?",
-      "label": "Application: Downstream impact - Process ancestry",
-      "category": "Application",
-      "archetype": "impact"
+      "archetype": "impact",
+      "extensions": {
+        "tensor:evidenceCriteria": {
+          "document": "entry-evidence-criteria.json",
+          "version": "0.20261011b",
+          "nodeId": "Q493"
+        }
+      }
     },
     {
       "id": "Q506",
-      "text": "Was mission or business exposure from network session and transport activity measured with evidence?",
-      "label": "Network: Business exposure",
+      "text": "Does assessed evidence for the bound communication between the bound endpoints show the named observed metric change against a comparable baseline within the bound interval?",
+      "label": "Network: impact assessment",
       "category": "Network",
-      "archetype": "impact"
+      "archetype": "impact",
+      "extensions": {
+        "tensor:evidenceCriteria": {
+          "document": "entry-evidence-criteria.json",
+          "version": "0.20261011b",
+          "nodeId": "Q506"
+        }
+      }
     },
     {
       "id": "Q507",
-      "text": "Was mission or business exposure from cloud control-plane and workload activity measured with evidence?",
-      "label": "Cloud: Business exposure",
+      "text": "Does assessed evidence for the bound control-plane operation on the bound cloud resource show the named observed metric change against a comparable baseline within the bound interval?",
+      "label": "Cloud: impact assessment",
       "category": "Cloud",
-      "archetype": "impact"
+      "archetype": "impact",
+      "extensions": {
+        "tensor:evidenceCriteria": {
+          "document": "entry-evidence-criteria.json",
+          "version": "0.20261011b",
+          "nodeId": "Q507"
+        }
+      }
     },
     {
       "id": "Q508",
-      "text": "Was mission or business exposure from mailbox message and collaboration activity measured with evidence?",
-      "label": "Email: Business exposure",
+      "text": "Does assessed evidence for delivery of the bound message to the bound mailbox show the named observed metric change against a comparable baseline within the bound interval?",
+      "label": "Email: impact assessment",
       "category": "Email",
-      "archetype": "impact"
+      "archetype": "impact",
+      "extensions": {
+        "tensor:evidenceCriteria": {
+          "document": "entry-evidence-criteria.json",
+          "version": "0.20261011b",
+          "nodeId": "Q508"
+        }
+      }
     },
     {
       "id": "Q509",
-      "text": "Was mission or business exposure from application request and session activity measured with evidence?",
-      "label": "Application: Business exposure",
+      "text": "Does assessed evidence for handling of the bound request by the bound application show the named observed metric change against a comparable baseline within the bound interval?",
+      "label": "Application: impact assessment",
       "category": "Application",
-      "archetype": "impact"
-    },
-    {
-      "id": "Q510",
-      "text": "Did identity authentication and privilege activity create measurable confidentiality, integrity, or availability impact?",
-      "label": "Identity: CIA impact",
-      "category": "Identity",
-      "archetype": "impact"
-    },
-    {
-      "id": "Q511",
-      "text": "Did endpoint execution and persistence activity create measurable confidentiality, integrity, or availability impact?",
-      "label": "Host: CIA impact",
-      "category": "Host",
-      "archetype": "impact"
-    },
-    {
-      "id": "Q512",
-      "text": "Did network session and transport activity create measurable confidentiality, integrity, or availability impact?",
-      "label": "Network: CIA impact",
-      "category": "Network",
-      "archetype": "impact"
-    },
-    {
-      "id": "Q513",
-      "text": "Did cloud control-plane and workload activity create measurable confidentiality, integrity, or availability impact?",
-      "label": "Cloud: CIA impact",
-      "category": "Cloud",
-      "archetype": "impact"
-    },
-    {
-      "id": "Q516",
-      "text": "Have downstream security impacts from cloud control-plane and workload activity been evidenced and bounded?",
-      "label": "Cloud: Downstream impact",
-      "category": "Cloud",
-      "archetype": "impact"
-    },
-    {
-      "id": "Q545",
-      "text": "Was the investigation hypothesis for identity authentication and privilege activity resolved with sufficient objective evidence?",
-      "label": "Identity: Hypothesis resolved",
-      "category": "Identity",
-      "archetype": "terminal"
-    },
-    {
-      "id": "Q546",
-      "text": "Was the investigation hypothesis for endpoint execution and persistence activity resolved with sufficient objective evidence?",
-      "label": "Host: Hypothesis resolved",
-      "category": "Host",
-      "archetype": "terminal"
-    },
-    {
-      "id": "Q547",
-      "text": "Was the investigation hypothesis for network session and transport activity resolved with sufficient objective evidence?",
-      "label": "Network: Hypothesis resolved",
-      "category": "Network",
-      "archetype": "terminal"
-    },
-    {
-      "id": "Q548",
-      "text": "Was the investigation hypothesis for cloud control-plane and workload activity resolved with sufficient objective evidence?",
-      "label": "Cloud: Hypothesis resolved",
-      "category": "Cloud",
-      "archetype": "terminal"
-    },
-    {
-      "id": "Q549",
-      "text": "Was the investigation hypothesis for mailbox message and collaboration activity resolved with sufficient objective evidence?",
-      "label": "Email: Hypothesis resolved",
-      "category": "Email",
-      "archetype": "terminal"
-    },
-    {
-      "id": "Q550",
-      "text": "Was the investigation hypothesis for application request and session activity resolved with sufficient objective evidence?",
-      "label": "Application: Hypothesis resolved",
-      "category": "Application",
-      "archetype": "terminal"
-    },
-    {
-      "id": "Q552",
-      "text": "Was residual uncertainty for identity authentication and privilege activity documented in the terminal assessment?",
-      "label": "Identity: Residual uncertainty",
-      "category": "Identity",
-      "archetype": "terminal"
-    },
-    {
-      "id": "Q553",
-      "text": "Was residual uncertainty for endpoint execution and persistence activity documented in the terminal assessment?",
-      "label": "Host: Residual uncertainty",
-      "category": "Host",
-      "archetype": "terminal"
-    },
-    {
-      "id": "Q554",
-      "text": "Was residual uncertainty for network session and transport activity documented in the terminal assessment?",
-      "label": "Network: Residual uncertainty",
-      "category": "Network",
-      "archetype": "terminal"
-    },
-    {
-      "id": "Q555",
-      "text": "Was residual uncertainty for cloud control-plane and workload activity documented in the terminal assessment?",
-      "label": "Cloud: Residual uncertainty",
-      "category": "Cloud",
-      "archetype": "terminal"
-    },
-    {
-      "id": "Q556",
-      "text": "Was residual uncertainty for mailbox message and collaboration activity documented in the terminal assessment?",
-      "label": "Email: Residual uncertainty",
-      "category": "Email",
-      "archetype": "terminal"
-    },
-    {
-      "id": "Q557",
-      "text": "Was residual uncertainty for application request and session activity documented in the terminal assessment?",
-      "label": "Application: Residual uncertainty",
-      "category": "Application",
-      "archetype": "terminal"
+      "archetype": "impact",
+      "extensions": {
+        "tensor:evidenceCriteria": {
+          "document": "entry-evidence-criteria.json",
+          "version": "0.20261011b",
+          "nodeId": "Q509"
+        }
+      }
     },
     {
       "id": "Q558",
-      "text": "Have findings for identity authentication and privilege activity reached a defensible terminal assessment?",
-      "label": "Identity: Terminal assessment",
+      "text": "Have the supported hypothesis and bounded scope for the bound identity action by the bound principal retained separate relationship, technical-source and observed-effect assessments with all negative answers, unknowns and limitations?",
+      "label": "Identity: assessed assessment",
       "category": "Identity",
-      "archetype": "terminal"
+      "archetype": "terminal",
+      "extensions": {
+        "tensor:evidenceCriteria": {
+          "document": "entry-evidence-criteria.json",
+          "version": "0.20261011b",
+          "nodeId": "Q558"
+        }
+      }
     },
     {
       "id": "Q559",
-      "text": "Have findings for endpoint execution and persistence activity reached a defensible terminal assessment?",
-      "label": "Host: Terminal assessment",
+      "text": "Have the supported hypothesis and bounded scope for execution of the bound process on the bound host retained separate relationship, technical-source and observed-effect assessments with all negative answers, unknowns and limitations?",
+      "label": "Host: assessed assessment",
       "category": "Host",
-      "archetype": "terminal"
+      "archetype": "terminal",
+      "extensions": {
+        "tensor:evidenceCriteria": {
+          "document": "entry-evidence-criteria.json",
+          "version": "0.20261011b",
+          "nodeId": "Q559"
+        }
+      }
     },
     {
       "id": "Q560",
-      "text": "Have findings for network session and transport activity reached a defensible terminal assessment?",
-      "label": "Network: Terminal assessment",
+      "text": "Have the supported hypothesis and bounded scope for the bound communication between the bound endpoints retained separate relationship, technical-source and observed-effect assessments with all negative answers, unknowns and limitations?",
+      "label": "Network: assessed assessment",
       "category": "Network",
-      "archetype": "terminal"
+      "archetype": "terminal",
+      "extensions": {
+        "tensor:evidenceCriteria": {
+          "document": "entry-evidence-criteria.json",
+          "version": "0.20261011b",
+          "nodeId": "Q560"
+        }
+      }
     },
     {
       "id": "Q561",
-      "text": "Have findings for cloud control-plane and workload activity reached a defensible terminal assessment?",
-      "label": "Cloud: Terminal assessment",
+      "text": "Have the supported hypothesis and bounded scope for the bound control-plane operation on the bound cloud resource retained separate relationship, technical-source and observed-effect assessments with all negative answers, unknowns and limitations?",
+      "label": "Cloud: assessed assessment",
       "category": "Cloud",
-      "archetype": "terminal"
+      "archetype": "terminal",
+      "extensions": {
+        "tensor:evidenceCriteria": {
+          "document": "entry-evidence-criteria.json",
+          "version": "0.20261011b",
+          "nodeId": "Q561"
+        }
+      }
     },
     {
       "id": "Q562",
-      "text": "Have findings for mailbox message and collaboration activity reached a defensible terminal assessment?",
-      "label": "Email: Terminal assessment",
+      "text": "Have the supported hypothesis and bounded scope for delivery of the bound message to the bound mailbox retained separate relationship, technical-source and observed-effect assessments with all negative answers, unknowns and limitations?",
+      "label": "Email: assessed assessment",
       "category": "Email",
-      "archetype": "terminal"
+      "archetype": "terminal",
+      "extensions": {
+        "tensor:evidenceCriteria": {
+          "document": "entry-evidence-criteria.json",
+          "version": "0.20261011b",
+          "nodeId": "Q562"
+        }
+      }
     },
     {
       "id": "Q563",
-      "text": "Have findings for application request and session activity reached a defensible terminal assessment?",
-      "label": "Application: Terminal assessment",
+      "text": "Have the supported hypothesis and bounded scope for handling of the bound request by the bound application retained separate relationship, technical-source and observed-effect assessments with all negative answers, unknowns and limitations?",
+      "label": "Application: assessed assessment",
       "category": "Application",
-      "archetype": "terminal"
-    },
-    {
-      "id": "Q574",
-      "text": "Have terminal criteria for mailbox message and collaboration activity been satisfied by verified evidence?",
-      "label": "Email: Terminal criteria",
-      "category": "Email",
-      "archetype": "terminal"
-    },
-    {
-      "id": "Q575",
-      "text": "Have terminal criteria for identity authentication and privilege activity been satisfied by verified evidence?",
-      "label": "Identity: Terminal criteria",
-      "category": "Identity",
-      "archetype": "terminal"
-    },
-    {
-      "id": "Q576",
-      "text": "Have terminal criteria for endpoint execution and persistence activity been satisfied by verified evidence?",
-      "label": "Host: Terminal criteria",
-      "category": "Host",
-      "archetype": "terminal"
-    },
-    {
-      "id": "Q577",
-      "text": "Have terminal criteria for network session and transport activity been satisfied by verified evidence?",
-      "label": "Network: Terminal criteria",
-      "category": "Network",
-      "archetype": "terminal"
-    },
-    {
-      "id": "Q578",
-      "text": "Have terminal criteria for cloud control-plane and workload activity been satisfied by verified evidence?",
-      "label": "Cloud: Terminal criteria",
-      "category": "Cloud",
-      "archetype": "terminal"
+      "archetype": "terminal",
+      "extensions": {
+        "tensor:evidenceCriteria": {
+          "document": "entry-evidence-criteria.json",
+          "version": "0.20261011b",
+          "nodeId": "Q563"
+        }
+      }
     },
     {
       "id": "Q581",
-      "text": "Did file artifact and content activity create measurable confidentiality, integrity, or availability impact?",
-      "label": "File: CIA impact",
+      "text": "Does assessed evidence for presence of the bound file on the bound system show the named observed metric change against a comparable baseline within the bound interval?",
+      "label": "File: impact assessment",
       "category": "File",
-      "archetype": "impact"
-    },
-    {
-      "id": "Q584",
-      "text": "Was the investigation hypothesis for file artifact and content activity resolved with sufficient objective evidence?",
-      "label": "File: Hypothesis resolved",
-      "category": "File",
-      "archetype": "terminal"
-    },
-    {
-      "id": "Q586",
-      "text": "Was residual uncertainty for file artifact and content activity documented in the terminal assessment?",
-      "label": "File: Residual uncertainty",
-      "category": "File",
-      "archetype": "terminal"
-    },
-    {
-      "id": "Q587",
-      "text": "Have terminal criteria for file artifact and content activity been satisfied by verified evidence?",
-      "label": "File: Terminal criteria",
-      "category": "File",
-      "archetype": "terminal"
+      "archetype": "impact",
+      "extensions": {
+        "tensor:evidenceCriteria": {
+          "document": "entry-evidence-criteria.json",
+          "version": "0.20261011b",
+          "nodeId": "Q581"
+        }
+      }
     },
     {
       "id": "Q588",
-      "text": "Have findings for file artifact and content activity reached a defensible terminal assessment?",
-      "label": "File: Terminal assessment",
+      "text": "Have the supported hypothesis and bounded scope for presence of the bound file on the bound system retained separate relationship, technical-source and observed-effect assessments with all negative answers, unknowns and limitations?",
+      "label": "File: assessed assessment",
       "category": "File",
-      "archetype": "terminal"
+      "archetype": "terminal",
+      "extensions": {
+        "tensor:evidenceCriteria": {
+          "document": "entry-evidence-criteria.json",
+          "version": "0.20261011b",
+          "nodeId": "Q588"
+        }
+      }
     },
     {
       "id": "Q589",
@@ -1410,7 +1172,7 @@
       "extensions": {
         "tensor:evidenceCriteria": {
           "document": "entry-evidence-criteria.json",
-          "version": "0.20261011a",
+          "version": "0.20261011b",
           "nodeId": "Q589"
         }
       }
@@ -1424,7 +1186,7 @@
       "extensions": {
         "tensor:evidenceCriteria": {
           "document": "entry-evidence-criteria.json",
-          "version": "0.20261011a",
+          "version": "0.20261011b",
           "nodeId": "Q590"
         }
       }
@@ -1438,7 +1200,7 @@
       "extensions": {
         "tensor:evidenceCriteria": {
           "document": "entry-evidence-criteria.json",
-          "version": "0.20261011a",
+          "version": "0.20261011b",
           "nodeId": "Q591"
         }
       }
@@ -1452,7 +1214,7 @@
       "extensions": {
         "tensor:evidenceCriteria": {
           "document": "entry-evidence-criteria.json",
-          "version": "0.20261011a",
+          "version": "0.20261011b",
           "nodeId": "Q592"
         }
       }
@@ -1466,7 +1228,7 @@
       "extensions": {
         "tensor:evidenceCriteria": {
           "document": "entry-evidence-criteria.json",
-          "version": "0.20261011a",
+          "version": "0.20261011b",
           "nodeId": "Q593"
         }
       }
@@ -1480,7 +1242,7 @@
       "extensions": {
         "tensor:evidenceCriteria": {
           "document": "entry-evidence-criteria.json",
-          "version": "0.20261011a",
+          "version": "0.20261011b",
           "nodeId": "Q594"
         }
       }
@@ -1494,7 +1256,7 @@
       "extensions": {
         "tensor:evidenceCriteria": {
           "document": "entry-evidence-criteria.json",
-          "version": "0.20261011a",
+          "version": "0.20261011b",
           "nodeId": "Q595"
         }
       }
@@ -1508,7 +1270,7 @@
       "extensions": {
         "tensor:evidenceCriteria": {
           "document": "entry-evidence-criteria.json",
-          "version": "0.20261011a",
+          "version": "0.20261011b",
           "nodeId": "Q596"
         }
       }
@@ -1522,7 +1284,7 @@
       "extensions": {
         "tensor:evidenceCriteria": {
           "document": "entry-evidence-criteria.json",
-          "version": "0.20261011a",
+          "version": "0.20261011b",
           "nodeId": "Q597"
         }
       }
@@ -1536,7 +1298,7 @@
       "extensions": {
         "tensor:evidenceCriteria": {
           "document": "entry-evidence-criteria.json",
-          "version": "0.20261011a",
+          "version": "0.20261011b",
           "nodeId": "Q598"
         }
       }
@@ -1550,7 +1312,7 @@
       "extensions": {
         "tensor:evidenceCriteria": {
           "document": "entry-evidence-criteria.json",
-          "version": "0.20261011a",
+          "version": "0.20261011b",
           "nodeId": "Q599"
         }
       }
@@ -1564,7 +1326,7 @@
       "extensions": {
         "tensor:evidenceCriteria": {
           "document": "entry-evidence-criteria.json",
-          "version": "0.20261011a",
+          "version": "0.20261011b",
           "nodeId": "Q600"
         }
       }
@@ -1578,7 +1340,7 @@
       "extensions": {
         "tensor:evidenceCriteria": {
           "document": "entry-evidence-criteria.json",
-          "version": "0.20261011a",
+          "version": "0.20261011b",
           "nodeId": "Q601"
         }
       }
@@ -1592,8 +1354,106 @@
       "extensions": {
         "tensor:evidenceCriteria": {
           "document": "entry-evidence-criteria.json",
-          "version": "0.20261011a",
+          "version": "0.20261011b",
           "nodeId": "Q602"
+        }
+      }
+    },
+    {
+      "id": "Q603",
+      "text": "Is the declared technical hypothesis for the bound identity action by the bound principal contradicted by the retained discriminating evidence within the bound interval?",
+      "label": "Identity: refuted assessment",
+      "category": "Identity",
+      "archetype": "terminal",
+      "extensions": {
+        "tensor:evidenceCriteria": {
+          "document": "entry-evidence-criteria.json",
+          "version": "0.20261011b",
+          "nodeId": "Q603"
+        }
+      }
+    },
+    {
+      "id": "Q604",
+      "text": "Is the declared technical hypothesis for execution of the bound process on the bound host contradicted by the retained discriminating evidence within the bound interval?",
+      "label": "Host: refuted assessment",
+      "category": "Host",
+      "archetype": "terminal",
+      "extensions": {
+        "tensor:evidenceCriteria": {
+          "document": "entry-evidence-criteria.json",
+          "version": "0.20261011b",
+          "nodeId": "Q604"
+        }
+      }
+    },
+    {
+      "id": "Q605",
+      "text": "Is the declared technical hypothesis for the bound communication between the bound endpoints contradicted by the retained discriminating evidence within the bound interval?",
+      "label": "Network: refuted assessment",
+      "category": "Network",
+      "archetype": "terminal",
+      "extensions": {
+        "tensor:evidenceCriteria": {
+          "document": "entry-evidence-criteria.json",
+          "version": "0.20261011b",
+          "nodeId": "Q605"
+        }
+      }
+    },
+    {
+      "id": "Q606",
+      "text": "Is the declared technical hypothesis for the bound control-plane operation on the bound cloud resource contradicted by the retained discriminating evidence within the bound interval?",
+      "label": "Cloud: refuted assessment",
+      "category": "Cloud",
+      "archetype": "terminal",
+      "extensions": {
+        "tensor:evidenceCriteria": {
+          "document": "entry-evidence-criteria.json",
+          "version": "0.20261011b",
+          "nodeId": "Q606"
+        }
+      }
+    },
+    {
+      "id": "Q607",
+      "text": "Is the declared technical hypothesis for delivery of the bound message to the bound mailbox contradicted by the retained discriminating evidence within the bound interval?",
+      "label": "Email: refuted assessment",
+      "category": "Email",
+      "archetype": "terminal",
+      "extensions": {
+        "tensor:evidenceCriteria": {
+          "document": "entry-evidence-criteria.json",
+          "version": "0.20261011b",
+          "nodeId": "Q607"
+        }
+      }
+    },
+    {
+      "id": "Q608",
+      "text": "Is the declared technical hypothesis for handling of the bound request by the bound application contradicted by the retained discriminating evidence within the bound interval?",
+      "label": "Application: refuted assessment",
+      "category": "Application",
+      "archetype": "terminal",
+      "extensions": {
+        "tensor:evidenceCriteria": {
+          "document": "entry-evidence-criteria.json",
+          "version": "0.20261011b",
+          "nodeId": "Q608"
+        }
+      }
+    },
+    {
+      "id": "Q609",
+      "text": "Is the declared technical hypothesis for presence of the bound file on the bound system contradicted by the retained discriminating evidence within the bound interval?",
+      "label": "File: refuted assessment",
+      "category": "File",
+      "archetype": "terminal",
+      "extensions": {
+        "tensor:evidenceCriteria": {
+          "document": "entry-evidence-criteria.json",
+          "version": "0.20261011b",
+          "nodeId": "Q609"
         }
       }
     }
@@ -2110,15 +1970,15 @@
       "decision": "yes"
     },
     {
-      "id": "Q159-no-Q441",
+      "id": "Q159-no-Q605",
       "source": "Q159",
-      "target": "Q441",
+      "target": "Q605",
       "decision": "no"
     },
     {
-      "id": "Q159-unknown-Q352",
+      "id": "Q159-unknown-Q598",
       "source": "Q159",
-      "target": "Q352",
+      "target": "Q598",
       "decision": "unknown"
     },
     {
@@ -2128,15 +1988,15 @@
       "decision": "yes"
     },
     {
-      "id": "Q161-no-Q412",
+      "id": "Q161-no-Q607",
       "source": "Q161",
-      "target": "Q412",
+      "target": "Q607",
       "decision": "no"
     },
     {
-      "id": "Q161-unknown-Q347",
+      "id": "Q161-unknown-Q600",
       "source": "Q161",
-      "target": "Q347",
+      "target": "Q600",
       "decision": "unknown"
     },
     {
@@ -2146,15 +2006,15 @@
       "decision": "yes"
     },
     {
-      "id": "Q184-no-Q439",
+      "id": "Q184-no-Q609",
       "source": "Q184",
-      "target": "Q439",
+      "target": "Q609",
       "decision": "no"
     },
     {
-      "id": "Q184-unknown-Q379",
+      "id": "Q184-unknown-Q602",
       "source": "Q184",
-      "target": "Q379",
+      "target": "Q602",
       "decision": "unknown"
     },
     {
@@ -2164,15 +2024,15 @@
       "decision": "yes"
     },
     {
-      "id": "Q187-no-Q381",
+      "id": "Q187-no-Q605",
       "source": "Q187",
-      "target": "Q381",
+      "target": "Q605",
       "decision": "no"
     },
     {
-      "id": "Q187-unknown-Q317",
+      "id": "Q187-unknown-Q598",
       "source": "Q187",
-      "target": "Q317",
+      "target": "Q598",
       "decision": "unknown"
     },
     {
@@ -2182,15 +2042,15 @@
       "decision": "yes"
     },
     {
-      "id": "Q188-no-Q437",
+      "id": "Q188-no-Q606",
       "source": "Q188",
-      "target": "Q437",
+      "target": "Q606",
       "decision": "no"
     },
     {
-      "id": "Q188-unknown-Q315",
+      "id": "Q188-unknown-Q599",
       "source": "Q188",
-      "target": "Q315",
+      "target": "Q599",
       "decision": "unknown"
     },
     {
@@ -2200,15 +2060,15 @@
       "decision": "yes"
     },
     {
-      "id": "Q190-no-Q432",
+      "id": "Q190-no-Q608",
       "source": "Q190",
-      "target": "Q432",
+      "target": "Q608",
       "decision": "no"
     },
     {
-      "id": "Q190-unknown-Q313",
+      "id": "Q190-unknown-Q601",
       "source": "Q190",
-      "target": "Q313",
+      "target": "Q601",
       "decision": "unknown"
     },
     {
@@ -2218,15 +2078,15 @@
       "decision": "yes"
     },
     {
-      "id": "Q214-no-Q409",
+      "id": "Q214-no-Q604",
       "source": "Q214",
-      "target": "Q409",
+      "target": "Q604",
       "decision": "no"
     },
     {
-      "id": "Q214-unknown-Q344",
+      "id": "Q214-unknown-Q597",
       "source": "Q214",
-      "target": "Q344",
+      "target": "Q597",
       "decision": "unknown"
     },
     {
@@ -2236,15 +2096,15 @@
       "decision": "yes"
     },
     {
-      "id": "Q219-no-Q440",
+      "id": "Q219-no-Q609",
       "source": "Q219",
-      "target": "Q440",
+      "target": "Q609",
       "decision": "no"
     },
     {
-      "id": "Q219-unknown-Q378",
+      "id": "Q219-unknown-Q602",
       "source": "Q219",
-      "target": "Q378",
+      "target": "Q602",
       "decision": "unknown"
     },
     {
@@ -2254,15 +2114,15 @@
       "decision": "yes"
     },
     {
-      "id": "Q221-no-Q402",
+      "id": "Q221-no-Q604",
       "source": "Q221",
-      "target": "Q402",
+      "target": "Q604",
       "decision": "no"
     },
     {
-      "id": "Q221-unknown-Q337",
+      "id": "Q221-unknown-Q597",
       "source": "Q221",
-      "target": "Q337",
+      "target": "Q597",
       "decision": "unknown"
     },
     {
@@ -2272,15 +2132,15 @@
       "decision": "yes"
     },
     {
-      "id": "Q223-no-Q449",
+      "id": "Q223-no-Q606",
       "source": "Q223",
-      "target": "Q449",
+      "target": "Q606",
       "decision": "no"
     },
     {
-      "id": "Q223-unknown-Q318",
+      "id": "Q223-unknown-Q599",
       "source": "Q223",
-      "target": "Q318",
+      "target": "Q599",
       "decision": "unknown"
     },
     {
@@ -2290,15 +2150,15 @@
       "decision": "yes"
     },
     {
-      "id": "Q224-no-Q391",
+      "id": "Q224-no-Q607",
       "source": "Q224",
-      "target": "Q391",
+      "target": "Q607",
       "decision": "no"
     },
     {
-      "id": "Q224-unknown-Q338",
+      "id": "Q224-unknown-Q600",
       "source": "Q224",
-      "target": "Q338",
+      "target": "Q600",
       "decision": "unknown"
     },
     {
@@ -2308,15 +2168,15 @@
       "decision": "yes"
     },
     {
-      "id": "Q225-no-Q397",
+      "id": "Q225-no-Q608",
       "source": "Q225",
-      "target": "Q397",
+      "target": "Q608",
       "decision": "no"
     },
     {
-      "id": "Q225-unknown-Q333",
+      "id": "Q225-unknown-Q601",
       "source": "Q225",
-      "target": "Q333",
+      "target": "Q601",
       "decision": "unknown"
     },
     {
@@ -2326,33 +2186,33 @@
       "decision": "yes"
     },
     {
-      "id": "Q233-no-Q401",
+      "id": "Q233-no-Q603",
       "source": "Q233",
-      "target": "Q401",
+      "target": "Q603",
       "decision": "no"
     },
     {
-      "id": "Q233-unknown-Q357",
+      "id": "Q233-unknown-Q596",
       "source": "Q233",
-      "target": "Q357",
+      "target": "Q596",
       "decision": "unknown"
     },
     {
-      "id": "Q245-yes-Q339",
+      "id": "Q245-yes-Q346",
       "source": "Q245",
-      "target": "Q339",
+      "target": "Q346",
       "decision": "yes"
     },
     {
-      "id": "Q245-no-Q513",
+      "id": "Q245-no-Q602",
       "source": "Q245",
-      "target": "Q513",
+      "target": "Q602",
       "decision": "no"
     },
     {
-      "id": "Q245-unknown-Q385",
+      "id": "Q245-unknown-Q602",
       "source": "Q245",
-      "target": "Q385",
+      "target": "Q602",
       "decision": "unknown"
     },
     {
@@ -2362,33 +2222,33 @@
       "decision": "yes"
     },
     {
-      "id": "Q253-no-Q507",
+      "id": "Q253-no-Q596",
       "source": "Q253",
-      "target": "Q507",
+      "target": "Q596",
       "decision": "no"
     },
     {
-      "id": "Q253-unknown-Q419",
+      "id": "Q253-unknown-Q596",
       "source": "Q253",
-      "target": "Q419",
+      "target": "Q596",
       "decision": "unknown"
     },
     {
-      "id": "Q256-yes-Q322",
+      "id": "Q256-yes-Q364",
       "source": "Q256",
-      "target": "Q322",
+      "target": "Q364",
       "decision": "yes"
     },
     {
-      "id": "Q256-no-Q581",
+      "id": "Q256-no-Q599",
       "source": "Q256",
-      "target": "Q581",
+      "target": "Q599",
       "decision": "no"
     },
     {
-      "id": "Q256-unknown-Q415",
+      "id": "Q256-unknown-Q599",
       "source": "Q256",
-      "target": "Q415",
+      "target": "Q599",
       "decision": "unknown"
     },
     {
@@ -2398,15 +2258,15 @@
       "decision": "yes"
     },
     {
-      "id": "Q257-no-Q493",
+      "id": "Q257-no-Q600",
       "source": "Q257",
-      "target": "Q493",
+      "target": "Q600",
       "decision": "no"
     },
     {
-      "id": "Q257-unknown-Q418",
+      "id": "Q257-unknown-Q600",
       "source": "Q257",
-      "target": "Q418",
+      "target": "Q600",
       "decision": "unknown"
     },
     {
@@ -2416,15 +2276,15 @@
       "decision": "yes"
     },
     {
-      "id": "Q258-no-Q492",
+      "id": "Q258-no-Q601",
       "source": "Q258",
-      "target": "Q492",
+      "target": "Q601",
       "decision": "no"
     },
     {
-      "id": "Q258-unknown-Q417",
+      "id": "Q258-unknown-Q601",
       "source": "Q258",
-      "target": "Q417",
+      "target": "Q601",
       "decision": "unknown"
     },
     {
@@ -2434,33 +2294,33 @@
       "decision": "yes"
     },
     {
-      "id": "Q259-no-Q494",
+      "id": "Q259-no-Q602",
       "source": "Q259",
-      "target": "Q494",
+      "target": "Q602",
       "decision": "no"
     },
     {
-      "id": "Q259-unknown-Q413",
+      "id": "Q259-unknown-Q602",
       "source": "Q259",
-      "target": "Q413",
+      "target": "Q602",
       "decision": "unknown"
     },
     {
-      "id": "Q261-yes-Q320",
+      "id": "Q261-yes-Q348",
       "source": "Q261",
-      "target": "Q320",
+      "target": "Q348",
       "decision": "yes"
     },
     {
-      "id": "Q261-no-Q509",
+      "id": "Q261-no-Q597",
       "source": "Q261",
-      "target": "Q509",
+      "target": "Q597",
       "decision": "no"
     },
     {
-      "id": "Q261-unknown-Q414",
+      "id": "Q261-unknown-Q597",
       "source": "Q261",
-      "target": "Q414",
+      "target": "Q597",
       "decision": "unknown"
     },
     {
@@ -2470,33 +2330,33 @@
       "decision": "yes"
     },
     {
-      "id": "Q268-no-Q497",
+      "id": "Q268-no-Q597",
       "source": "Q268",
-      "target": "Q497",
+      "target": "Q597",
       "decision": "no"
     },
     {
-      "id": "Q268-unknown-Q412",
+      "id": "Q268-unknown-Q597",
       "source": "Q268",
-      "target": "Q412",
+      "target": "Q597",
       "decision": "unknown"
     },
     {
-      "id": "Q279-yes-Q366",
+      "id": "Q279-yes-Q345",
       "source": "Q279",
-      "target": "Q366",
+      "target": "Q345",
       "decision": "yes"
     },
     {
-      "id": "Q279-no-Q510",
+      "id": "Q279-no-Q601",
       "source": "Q279",
-      "target": "Q510",
+      "target": "Q601",
       "decision": "no"
     },
     {
-      "id": "Q279-unknown-Q448",
+      "id": "Q279-unknown-Q601",
       "source": "Q279",
-      "target": "Q448",
+      "target": "Q601",
       "decision": "unknown"
     },
     {
@@ -2506,15 +2366,15 @@
       "decision": "yes"
     },
     {
-      "id": "Q283-no-Q491",
+      "id": "Q283-no-Q598",
       "source": "Q283",
-      "target": "Q491",
+      "target": "Q598",
       "decision": "no"
     },
     {
-      "id": "Q283-unknown-Q386",
+      "id": "Q283-unknown-Q598",
       "source": "Q283",
-      "target": "Q386",
+      "target": "Q598",
       "decision": "unknown"
     },
     {
@@ -2524,159 +2384,51 @@
       "decision": "yes"
     },
     {
-      "id": "Q284-no-Q510",
+      "id": "Q284-no-Q599",
       "source": "Q284",
-      "target": "Q510",
+      "target": "Q599",
       "decision": "no"
     },
     {
-      "id": "Q284-unknown-Q435",
+      "id": "Q284-unknown-Q599",
       "source": "Q284",
-      "target": "Q435",
+      "target": "Q599",
       "decision": "unknown"
     },
     {
-      "id": "Q299-yes-Q372",
+      "id": "Q299-yes-Q323",
       "source": "Q299",
-      "target": "Q372",
+      "target": "Q323",
       "decision": "yes"
     },
     {
-      "id": "Q299-no-Q511",
+      "id": "Q299-no-Q600",
       "source": "Q299",
-      "target": "Q511",
+      "target": "Q600",
       "decision": "no"
     },
     {
-      "id": "Q299-unknown-Q442",
+      "id": "Q299-unknown-Q600",
       "source": "Q299",
-      "target": "Q442",
+      "target": "Q600",
       "decision": "unknown"
     },
     {
-      "id": "Q303-yes-Q370",
+      "id": "Q303-yes-Q356",
       "source": "Q303",
-      "target": "Q370",
+      "target": "Q356",
       "decision": "yes"
     },
     {
-      "id": "Q303-no-Q508",
+      "id": "Q303-no-Q598",
       "source": "Q303",
-      "target": "Q508",
+      "target": "Q598",
       "decision": "no"
     },
     {
-      "id": "Q303-unknown-Q422",
+      "id": "Q303-unknown-Q598",
       "source": "Q303",
-      "target": "Q422",
-      "decision": "unknown"
-    },
-    {
-      "id": "Q313-yes-Q448",
-      "source": "Q313",
-      "target": "Q448",
-      "decision": "yes"
-    },
-    {
-      "id": "Q313-no-Q557",
-      "source": "Q313",
-      "target": "Q557",
-      "decision": "no"
-    },
-    {
-      "id": "Q313-unknown-Q508",
-      "source": "Q313",
-      "target": "Q508",
-      "decision": "unknown"
-    },
-    {
-      "id": "Q315-yes-Q445",
-      "source": "Q315",
-      "target": "Q445",
-      "decision": "yes"
-    },
-    {
-      "id": "Q315-no-Q545",
-      "source": "Q315",
-      "target": "Q545",
-      "decision": "no"
-    },
-    {
-      "id": "Q315-unknown-Q507",
-      "source": "Q315",
-      "target": "Q507",
-      "decision": "unknown"
-    },
-    {
-      "id": "Q317-yes-Q388",
-      "source": "Q317",
-      "target": "Q388",
-      "decision": "yes"
-    },
-    {
-      "id": "Q317-no-Q554",
-      "source": "Q317",
-      "target": "Q554",
-      "decision": "no"
-    },
-    {
-      "id": "Q317-unknown-Q467",
-      "source": "Q317",
-      "target": "Q467",
-      "decision": "unknown"
-    },
-    {
-      "id": "Q318-yes-Q389",
-      "source": "Q318",
-      "target": "Q389",
-      "decision": "yes"
-    },
-    {
-      "id": "Q318-no-Q553",
-      "source": "Q318",
-      "target": "Q553",
-      "decision": "no"
-    },
-    {
-      "id": "Q318-unknown-Q506",
-      "source": "Q318",
-      "target": "Q506",
-      "decision": "unknown"
-    },
-    {
-      "id": "Q320-yes-Q443",
-      "source": "Q320",
-      "target": "Q443",
-      "decision": "yes"
-    },
-    {
-      "id": "Q320-no-Q550",
-      "source": "Q320",
-      "target": "Q550",
-      "decision": "no"
-    },
-    {
-      "id": "Q320-unknown-Q495",
-      "source": "Q320",
-      "target": "Q495",
-      "decision": "unknown"
-    },
-    {
-      "id": "Q322-yes-Q440",
-      "source": "Q322",
-      "target": "Q440",
-      "decision": "yes"
-    },
-    {
-      "id": "Q322-no-Q584",
-      "source": "Q322",
-      "target": "Q584",
-      "decision": "no"
-    },
-    {
-      "id": "Q322-unknown-Q581",
-      "source": "Q322",
-      "target": "Q581",
+      "target": "Q598",
       "decision": "unknown"
     },
     {
@@ -2686,123 +2438,33 @@
       "decision": "yes"
     },
     {
-      "id": "Q323-no-Q576",
+      "id": "Q323-no-Q441",
       "source": "Q323",
-      "target": "Q576",
+      "target": "Q441",
       "decision": "no"
     },
     {
-      "id": "Q323-unknown-Q492",
+      "id": "Q323-unknown-Q441",
       "source": "Q323",
-      "target": "Q492",
+      "target": "Q441",
       "decision": "unknown"
     },
     {
-      "id": "Q333-yes-Q449",
-      "source": "Q333",
-      "target": "Q449",
-      "decision": "yes"
-    },
-    {
-      "id": "Q333-no-Q547",
-      "source": "Q333",
-      "target": "Q547",
-      "decision": "no"
-    },
-    {
-      "id": "Q333-unknown-Q507",
-      "source": "Q333",
-      "target": "Q507",
-      "decision": "unknown"
-    },
-    {
-      "id": "Q337-yes-Q394",
-      "source": "Q337",
-      "target": "Q394",
-      "decision": "yes"
-    },
-    {
-      "id": "Q337-no-Q545",
-      "source": "Q337",
-      "target": "Q545",
-      "decision": "no"
-    },
-    {
-      "id": "Q337-unknown-Q509",
-      "source": "Q337",
-      "target": "Q509",
-      "decision": "unknown"
-    },
-    {
-      "id": "Q338-yes-Q430",
-      "source": "Q338",
+      "id": "Q345-yes-Q430",
+      "source": "Q345",
       "target": "Q430",
       "decision": "yes"
     },
     {
-      "id": "Q338-no-Q560",
-      "source": "Q338",
-      "target": "Q560",
-      "decision": "no"
-    },
-    {
-      "id": "Q338-unknown-Q511",
-      "source": "Q338",
-      "target": "Q511",
-      "decision": "unknown"
-    },
-    {
-      "id": "Q339-yes-Q410",
-      "source": "Q339",
-      "target": "Q410",
-      "decision": "yes"
-    },
-    {
-      "id": "Q339-no-Q559",
-      "source": "Q339",
-      "target": "Q559",
-      "decision": "no"
-    },
-    {
-      "id": "Q339-unknown-Q499",
-      "source": "Q339",
-      "target": "Q499",
-      "decision": "unknown"
-    },
-    {
-      "id": "Q344-yes-Q429",
-      "source": "Q344",
-      "target": "Q429",
-      "decision": "yes"
-    },
-    {
-      "id": "Q344-no-Q553",
-      "source": "Q344",
-      "target": "Q553",
-      "decision": "no"
-    },
-    {
-      "id": "Q344-unknown-Q510",
-      "source": "Q344",
-      "target": "Q510",
-      "decision": "unknown"
-    },
-    {
-      "id": "Q345-yes-Q402",
+      "id": "Q345-no-Q430",
       "source": "Q345",
-      "target": "Q402",
-      "decision": "yes"
-    },
-    {
-      "id": "Q345-no-Q552",
-      "source": "Q345",
-      "target": "Q552",
+      "target": "Q430",
       "decision": "no"
     },
     {
-      "id": "Q345-unknown-Q466",
+      "id": "Q345-unknown-Q430",
       "source": "Q345",
-      "target": "Q466",
+      "target": "Q430",
       "decision": "unknown"
     },
     {
@@ -2812,33 +2474,15 @@
       "decision": "yes"
     },
     {
-      "id": "Q346-no-Q554",
+      "id": "Q346-no-Q417",
       "source": "Q346",
-      "target": "Q554",
+      "target": "Q417",
       "decision": "no"
     },
     {
-      "id": "Q346-unknown-Q494",
+      "id": "Q346-unknown-Q417",
       "source": "Q346",
-      "target": "Q494",
-      "decision": "unknown"
-    },
-    {
-      "id": "Q347-yes-Q425",
-      "source": "Q347",
-      "target": "Q425",
-      "decision": "yes"
-    },
-    {
-      "id": "Q347-no-Q556",
-      "source": "Q347",
-      "target": "Q556",
-      "decision": "no"
-    },
-    {
-      "id": "Q347-unknown-Q516",
-      "source": "Q347",
-      "target": "Q516",
+      "target": "Q417",
       "decision": "unknown"
     },
     {
@@ -2848,591 +2492,87 @@
       "decision": "yes"
     },
     {
-      "id": "Q348-no-Q550",
+      "id": "Q348-no-Q426",
       "source": "Q348",
-      "target": "Q550",
+      "target": "Q426",
       "decision": "no"
     },
     {
-      "id": "Q348-unknown-Q490",
+      "id": "Q348-unknown-Q426",
       "source": "Q348",
-      "target": "Q490",
+      "target": "Q426",
       "decision": "unknown"
     },
     {
-      "id": "Q352-yes-Q423",
-      "source": "Q352",
-      "target": "Q423",
-      "decision": "yes"
-    },
-    {
-      "id": "Q352-no-Q547",
-      "source": "Q352",
-      "target": "Q547",
-      "decision": "no"
-    },
-    {
-      "id": "Q352-unknown-Q493",
-      "source": "Q352",
-      "target": "Q493",
-      "decision": "unknown"
-    },
-    {
-      "id": "Q356-yes-Q420",
+      "id": "Q356-yes-Q439",
       "source": "Q356",
-      "target": "Q420",
-      "decision": "yes"
-    },
-    {
-      "id": "Q356-no-Q586",
-      "source": "Q356",
-      "target": "Q586",
-      "decision": "no"
-    },
-    {
-      "id": "Q356-unknown-Q497",
-      "source": "Q356",
-      "target": "Q497",
-      "decision": "unknown"
-    },
-    {
-      "id": "Q357-yes-Q421",
-      "source": "Q357",
-      "target": "Q421",
-      "decision": "yes"
-    },
-    {
-      "id": "Q357-no-Q545",
-      "source": "Q357",
-      "target": "Q545",
-      "decision": "no"
-    },
-    {
-      "id": "Q357-unknown-Q497",
-      "source": "Q357",
-      "target": "Q497",
-      "decision": "unknown"
-    },
-    {
-      "id": "Q364-yes-Q414",
-      "source": "Q364",
-      "target": "Q414",
-      "decision": "yes"
-    },
-    {
-      "id": "Q364-no-Q552",
-      "source": "Q364",
-      "target": "Q552",
-      "decision": "no"
-    },
-    {
-      "id": "Q364-unknown-Q472",
-      "source": "Q364",
-      "target": "Q472",
-      "decision": "unknown"
-    },
-    {
-      "id": "Q366-yes-Q413",
-      "source": "Q366",
-      "target": "Q413",
-      "decision": "yes"
-    },
-    {
-      "id": "Q366-no-Q547",
-      "source": "Q366",
-      "target": "Q547",
-      "decision": "no"
-    },
-    {
-      "id": "Q366-unknown-Q493",
-      "source": "Q366",
-      "target": "Q493",
-      "decision": "unknown"
-    },
-    {
-      "id": "Q370-yes-Q439",
-      "source": "Q370",
       "target": "Q439",
       "decision": "yes"
     },
     {
-      "id": "Q370-no-Q557",
-      "source": "Q370",
-      "target": "Q557",
+      "id": "Q356-no-Q439",
+      "source": "Q356",
+      "target": "Q439",
       "decision": "no"
     },
     {
-      "id": "Q370-unknown-Q494",
-      "source": "Q370",
-      "target": "Q494",
+      "id": "Q356-unknown-Q439",
+      "source": "Q356",
+      "target": "Q439",
       "decision": "unknown"
     },
     {
-      "id": "Q372-yes-Q441",
-      "source": "Q372",
-      "target": "Q441",
+      "id": "Q364-yes-Q440",
+      "source": "Q364",
+      "target": "Q440",
       "decision": "yes"
     },
     {
-      "id": "Q372-no-Q546",
-      "source": "Q372",
-      "target": "Q546",
+      "id": "Q364-no-Q440",
+      "source": "Q364",
+      "target": "Q440",
       "decision": "no"
     },
     {
-      "id": "Q372-unknown-Q497",
-      "source": "Q372",
-      "target": "Q497",
+      "id": "Q364-unknown-Q440",
+      "source": "Q364",
+      "target": "Q440",
       "decision": "unknown"
     },
     {
-      "id": "Q378-yes-Q448",
-      "source": "Q378",
-      "target": "Q448",
-      "decision": "yes"
-    },
-    {
-      "id": "Q378-no-Q578",
-      "source": "Q378",
-      "target": "Q578",
-      "decision": "no"
-    },
-    {
-      "id": "Q378-unknown-Q508",
-      "source": "Q378",
-      "target": "Q508",
-      "decision": "unknown"
-    },
-    {
-      "id": "Q379-yes-Q448",
+      "id": "Q379-yes-Q425",
       "source": "Q379",
-      "target": "Q448",
+      "target": "Q425",
       "decision": "yes"
     },
     {
-      "id": "Q379-no-Q578",
+      "id": "Q379-no-Q425",
       "source": "Q379",
-      "target": "Q578",
+      "target": "Q425",
       "decision": "no"
     },
     {
-      "id": "Q379-unknown-Q513",
+      "id": "Q379-unknown-Q425",
       "source": "Q379",
-      "target": "Q513",
+      "target": "Q425",
       "decision": "unknown"
     },
     {
-      "id": "Q381-yes-Q491",
-      "source": "Q381",
-      "target": "Q491",
-      "decision": "yes"
-    },
-    {
-      "id": "Q381-no-Q575",
-      "source": "Q381",
-      "target": "Q575",
-      "decision": "no"
-    },
-    {
-      "id": "Q381-unknown-Q510",
-      "source": "Q381",
-      "target": "Q510",
-      "decision": "unknown"
-    },
-    {
-      "id": "Q385-yes-Q512",
-      "source": "Q385",
-      "target": "Q512",
-      "decision": "yes"
-    },
-    {
-      "id": "Q385-no-Q550",
-      "source": "Q385",
-      "target": "Q550",
-      "decision": "no"
-    },
-    {
-      "id": "Q385-unknown-Q506",
-      "source": "Q385",
-      "target": "Q506",
-      "decision": "unknown"
-    },
-    {
-      "id": "Q386-yes-Q507",
-      "source": "Q386",
-      "target": "Q507",
-      "decision": "yes"
-    },
-    {
-      "id": "Q386-no-Q575",
-      "source": "Q386",
-      "target": "Q575",
-      "decision": "no"
-    },
-    {
-      "id": "Q386-unknown-Q509",
-      "source": "Q386",
-      "target": "Q509",
-      "decision": "unknown"
-    },
-    {
-      "id": "Q388-yes-Q509",
-      "source": "Q388",
-      "target": "Q509",
-      "decision": "yes"
-    },
-    {
-      "id": "Q388-no-Q546",
-      "source": "Q388",
-      "target": "Q546",
-      "decision": "no"
-    },
-    {
-      "id": "Q388-unknown-Q493",
-      "source": "Q388",
-      "target": "Q493",
-      "decision": "unknown"
-    },
-    {
-      "id": "Q389-yes-Q472",
-      "source": "Q389",
-      "target": "Q472",
-      "decision": "yes"
-    },
-    {
-      "id": "Q389-no-Q561",
-      "source": "Q389",
-      "target": "Q561",
-      "decision": "no"
-    },
-    {
-      "id": "Q389-unknown-Q506",
-      "source": "Q389",
-      "target": "Q506",
-      "decision": "unknown"
-    },
-    {
-      "id": "Q391-yes-Q467",
-      "source": "Q391",
-      "target": "Q467",
-      "decision": "yes"
-    },
-    {
-      "id": "Q391-no-Q562",
-      "source": "Q391",
-      "target": "Q562",
-      "decision": "no"
-    },
-    {
-      "id": "Q391-unknown-Q502",
-      "source": "Q391",
-      "target": "Q502",
-      "decision": "unknown"
-    },
-    {
-      "id": "Q394-yes-Q490",
-      "source": "Q394",
-      "target": "Q490",
-      "decision": "yes"
-    },
-    {
-      "id": "Q394-no-Q558",
-      "source": "Q394",
-      "target": "Q558",
-      "decision": "no"
-    },
-    {
-      "id": "Q394-unknown-Q498",
-      "source": "Q394",
-      "target": "Q498",
-      "decision": "unknown"
-    },
-    {
-      "id": "Q397-yes-Q492",
-      "source": "Q397",
-      "target": "Q492",
-      "decision": "yes"
-    },
-    {
-      "id": "Q397-no-Q556",
-      "source": "Q397",
-      "target": "Q556",
-      "decision": "no"
-    },
-    {
-      "id": "Q397-unknown-Q493",
-      "source": "Q397",
-      "target": "Q493",
-      "decision": "unknown"
-    },
-    {
-      "id": "Q401-yes-Q496",
-      "source": "Q401",
-      "target": "Q496",
-      "decision": "yes"
-    },
-    {
-      "id": "Q401-no-Q553",
-      "source": "Q401",
-      "target": "Q553",
-      "decision": "no"
-    },
-    {
-      "id": "Q401-unknown-Q492",
-      "source": "Q401",
-      "target": "Q492",
-      "decision": "unknown"
-    },
-    {
-      "id": "Q402-yes-Q497",
-      "source": "Q402",
-      "target": "Q497",
-      "decision": "yes"
-    },
-    {
-      "id": "Q402-no-Q547",
-      "source": "Q402",
-      "target": "Q547",
-      "decision": "no"
-    },
-    {
-      "id": "Q402-unknown-Q511",
-      "source": "Q402",
-      "target": "Q511",
-      "decision": "unknown"
-    },
-    {
-      "id": "Q409-yes-Q509",
-      "source": "Q409",
-      "target": "Q509",
-      "decision": "yes"
-    },
-    {
-      "id": "Q409-no-Q553",
-      "source": "Q409",
-      "target": "Q553",
-      "decision": "no"
-    },
-    {
-      "id": "Q409-unknown-Q581",
-      "source": "Q409",
-      "target": "Q581",
-      "decision": "unknown"
-    },
-    {
-      "id": "Q410-yes-Q581",
-      "source": "Q410",
+      "id": "Q417-yes-Q581",
+      "source": "Q417",
       "target": "Q581",
       "decision": "yes"
     },
     {
-      "id": "Q410-no-Q555",
-      "source": "Q410",
-      "target": "Q555",
-      "decision": "no"
-    },
-    {
-      "id": "Q410-unknown-Q467",
-      "source": "Q410",
-      "target": "Q467",
-      "decision": "unknown"
-    },
-    {
-      "id": "Q412-yes-Q467",
-      "source": "Q412",
-      "target": "Q467",
-      "decision": "yes"
-    },
-    {
-      "id": "Q412-no-Q556",
-      "source": "Q412",
-      "target": "Q556",
-      "decision": "no"
-    },
-    {
-      "id": "Q412-unknown-Q508",
-      "source": "Q412",
-      "target": "Q508",
-      "decision": "unknown"
-    },
-    {
-      "id": "Q413-yes-Q506",
-      "source": "Q413",
-      "target": "Q506",
-      "decision": "yes"
-    },
-    {
-      "id": "Q413-no-Q584",
-      "source": "Q413",
-      "target": "Q584",
-      "decision": "no"
-    },
-    {
-      "id": "Q413-unknown-Q509",
-      "source": "Q413",
-      "target": "Q509",
-      "decision": "unknown"
-    },
-    {
-      "id": "Q414-yes-Q507",
-      "source": "Q414",
-      "target": "Q507",
-      "decision": "yes"
-    },
-    {
-      "id": "Q414-no-Q552",
-      "source": "Q414",
-      "target": "Q552",
-      "decision": "no"
-    },
-    {
-      "id": "Q414-unknown-Q490",
-      "source": "Q414",
-      "target": "Q490",
-      "decision": "unknown"
-    },
-    {
-      "id": "Q415-yes-Q496",
-      "source": "Q415",
-      "target": "Q496",
-      "decision": "yes"
-    },
-    {
-      "id": "Q415-no-Q546",
-      "source": "Q415",
-      "target": "Q546",
-      "decision": "no"
-    },
-    {
-      "id": "Q415-unknown-Q472",
-      "source": "Q415",
-      "target": "Q472",
-      "decision": "unknown"
-    },
-    {
-      "id": "Q417-yes-Q496",
+      "id": "Q417-no-Q581",
       "source": "Q417",
-      "target": "Q496",
-      "decision": "yes"
+      "target": "Q581",
+      "decision": "no"
     },
     {
-      "id": "Q417-no-Q548",
+      "id": "Q417-unknown-Q581",
       "source": "Q417",
-      "target": "Q548",
-      "decision": "no"
-    },
-    {
-      "id": "Q417-unknown-Q494",
-      "source": "Q417",
-      "target": "Q494",
-      "decision": "unknown"
-    },
-    {
-      "id": "Q418-yes-Q466",
-      "source": "Q418",
-      "target": "Q466",
-      "decision": "yes"
-    },
-    {
-      "id": "Q418-no-Q574",
-      "source": "Q418",
-      "target": "Q574",
-      "decision": "no"
-    },
-    {
-      "id": "Q418-unknown-Q516",
-      "source": "Q418",
-      "target": "Q516",
-      "decision": "unknown"
-    },
-    {
-      "id": "Q419-yes-Q499",
-      "source": "Q419",
-      "target": "Q499",
-      "decision": "yes"
-    },
-    {
-      "id": "Q419-no-Q557",
-      "source": "Q419",
-      "target": "Q557",
-      "decision": "no"
-    },
-    {
-      "id": "Q419-unknown-Q508",
-      "source": "Q419",
-      "target": "Q508",
-      "decision": "unknown"
-    },
-    {
-      "id": "Q420-yes-Q500",
-      "source": "Q420",
-      "target": "Q500",
-      "decision": "yes"
-    },
-    {
-      "id": "Q420-no-Q586",
-      "source": "Q420",
-      "target": "Q586",
-      "decision": "no"
-    },
-    {
-      "id": "Q420-unknown-Q506",
-      "source": "Q420",
-      "target": "Q506",
-      "decision": "unknown"
-    },
-    {
-      "id": "Q421-yes-Q495",
-      "source": "Q421",
-      "target": "Q495",
-      "decision": "yes"
-    },
-    {
-      "id": "Q421-no-Q545",
-      "source": "Q421",
-      "target": "Q545",
-      "decision": "no"
-    },
-    {
-      "id": "Q421-unknown-Q502",
-      "source": "Q421",
-      "target": "Q502",
-      "decision": "unknown"
-    },
-    {
-      "id": "Q422-yes-Q502",
-      "source": "Q422",
-      "target": "Q502",
-      "decision": "yes"
-    },
-    {
-      "id": "Q422-no-Q553",
-      "source": "Q422",
-      "target": "Q553",
-      "decision": "no"
-    },
-    {
-      "id": "Q422-unknown-Q466",
-      "source": "Q422",
-      "target": "Q466",
-      "decision": "unknown"
-    },
-    {
-      "id": "Q423-yes-Q503",
-      "source": "Q423",
-      "target": "Q503",
-      "decision": "yes"
-    },
-    {
-      "id": "Q423-no-Q554",
-      "source": "Q423",
-      "target": "Q554",
-      "decision": "no"
-    },
-    {
-      "id": "Q423-unknown-Q467",
-      "source": "Q423",
-      "target": "Q467",
+      "target": "Q581",
       "decision": "unknown"
     },
     {
@@ -3442,15 +2582,15 @@
       "decision": "yes"
     },
     {
-      "id": "Q425-no-Q549",
+      "id": "Q425-no-Q492",
       "source": "Q425",
-      "target": "Q549",
+      "target": "Q492",
       "decision": "no"
     },
     {
-      "id": "Q425-unknown-Q510",
+      "id": "Q425-unknown-Q492",
       "source": "Q425",
-      "target": "Q510",
+      "target": "Q492",
       "decision": "unknown"
     },
     {
@@ -3460,33 +2600,15 @@
       "decision": "yes"
     },
     {
-      "id": "Q426-no-Q548",
+      "id": "Q426-no-Q493",
       "source": "Q426",
-      "target": "Q548",
+      "target": "Q493",
       "decision": "no"
     },
     {
-      "id": "Q426-unknown-Q494",
+      "id": "Q426-unknown-Q493",
       "source": "Q426",
-      "target": "Q494",
-      "decision": "unknown"
-    },
-    {
-      "id": "Q429-yes-Q508",
-      "source": "Q429",
-      "target": "Q508",
-      "decision": "yes"
-    },
-    {
-      "id": "Q429-no-Q576",
-      "source": "Q429",
-      "target": "Q576",
-      "decision": "no"
-    },
-    {
-      "id": "Q429-unknown-Q492",
-      "source": "Q429",
-      "target": "Q492",
+      "target": "Q493",
       "decision": "unknown"
     },
     {
@@ -3496,69 +2618,15 @@
       "decision": "yes"
     },
     {
-      "id": "Q430-no-Q546",
+      "id": "Q430-no-Q509",
       "source": "Q430",
-      "target": "Q546",
+      "target": "Q509",
       "decision": "no"
     },
     {
-      "id": "Q430-unknown-Q510",
+      "id": "Q430-unknown-Q509",
       "source": "Q430",
-      "target": "Q510",
-      "decision": "unknown"
-    },
-    {
-      "id": "Q432-yes-Q511",
-      "source": "Q432",
-      "target": "Q511",
-      "decision": "yes"
-    },
-    {
-      "id": "Q432-no-Q555",
-      "source": "Q432",
-      "target": "Q555",
-      "decision": "no"
-    },
-    {
-      "id": "Q432-unknown-Q512",
-      "source": "Q432",
-      "target": "Q512",
-      "decision": "unknown"
-    },
-    {
-      "id": "Q435-yes-Q508",
-      "source": "Q435",
-      "target": "Q508",
-      "decision": "yes"
-    },
-    {
-      "id": "Q435-no-Q576",
-      "source": "Q435",
-      "target": "Q576",
-      "decision": "no"
-    },
-    {
-      "id": "Q435-unknown-Q508",
-      "source": "Q435",
-      "target": "Q508",
-      "decision": "unknown"
-    },
-    {
-      "id": "Q437-yes-Q466",
-      "source": "Q437",
-      "target": "Q466",
-      "decision": "yes"
-    },
-    {
-      "id": "Q437-no-Q549",
-      "source": "Q437",
-      "target": "Q549",
-      "decision": "no"
-    },
-    {
-      "id": "Q437-unknown-Q507",
-      "source": "Q437",
-      "target": "Q507",
+      "target": "Q509",
       "decision": "unknown"
     },
     {
@@ -3568,15 +2636,15 @@
       "decision": "yes"
     },
     {
-      "id": "Q439-no-Q550",
+      "id": "Q439-no-Q506",
       "source": "Q439",
-      "target": "Q550",
+      "target": "Q506",
       "decision": "no"
     },
     {
-      "id": "Q439-unknown-Q509",
+      "id": "Q439-unknown-Q506",
       "source": "Q439",
-      "target": "Q509",
+      "target": "Q506",
       "decision": "unknown"
     },
     {
@@ -3586,213 +2654,33 @@
       "decision": "yes"
     },
     {
-      "id": "Q440-no-Q545",
+      "id": "Q440-no-Q507",
       "source": "Q440",
-      "target": "Q545",
+      "target": "Q507",
       "decision": "no"
     },
     {
-      "id": "Q440-unknown-Q503",
+      "id": "Q440-unknown-Q507",
       "source": "Q440",
-      "target": "Q503",
+      "target": "Q507",
       "decision": "unknown"
     },
     {
-      "id": "Q441-yes-Q511",
+      "id": "Q441-yes-Q508",
       "source": "Q441",
-      "target": "Q511",
+      "target": "Q508",
       "decision": "yes"
     },
     {
-      "id": "Q441-no-Q559",
+      "id": "Q441-no-Q508",
       "source": "Q441",
-      "target": "Q559",
+      "target": "Q508",
       "decision": "no"
     },
     {
-      "id": "Q441-unknown-Q466",
+      "id": "Q441-unknown-Q508",
       "source": "Q441",
-      "target": "Q466",
-      "decision": "unknown"
-    },
-    {
-      "id": "Q442-yes-Q492",
-      "source": "Q442",
-      "target": "Q492",
-      "decision": "yes"
-    },
-    {
-      "id": "Q442-no-Q561",
-      "source": "Q442",
-      "target": "Q561",
-      "decision": "no"
-    },
-    {
-      "id": "Q442-unknown-Q516",
-      "source": "Q442",
-      "target": "Q516",
-      "decision": "unknown"
-    },
-    {
-      "id": "Q443-yes-Q467",
-      "source": "Q443",
-      "target": "Q467",
-      "decision": "yes"
-    },
-    {
-      "id": "Q443-no-Q563",
-      "source": "Q443",
-      "target": "Q563",
-      "decision": "no"
-    },
-    {
-      "id": "Q443-unknown-Q502",
-      "source": "Q443",
-      "target": "Q502",
-      "decision": "unknown"
-    },
-    {
-      "id": "Q445-yes-Q513",
-      "source": "Q445",
-      "target": "Q513",
-      "decision": "yes"
-    },
-    {
-      "id": "Q445-no-Q558",
-      "source": "Q445",
-      "target": "Q558",
-      "decision": "no"
-    },
-    {
-      "id": "Q445-unknown-Q497",
-      "source": "Q445",
-      "target": "Q497",
-      "decision": "unknown"
-    },
-    {
-      "id": "Q448-yes-Q466",
-      "source": "Q448",
-      "target": "Q466",
-      "decision": "yes"
-    },
-    {
-      "id": "Q448-no-Q556",
-      "source": "Q448",
-      "target": "Q556",
-      "decision": "no"
-    },
-    {
-      "id": "Q448-unknown-Q496",
-      "source": "Q448",
-      "target": "Q496",
-      "decision": "unknown"
-    },
-    {
-      "id": "Q449-yes-Q467",
-      "source": "Q449",
-      "target": "Q467",
-      "decision": "yes"
-    },
-    {
-      "id": "Q449-no-Q556",
-      "source": "Q449",
-      "target": "Q556",
-      "decision": "no"
-    },
-    {
-      "id": "Q449-unknown-Q516",
-      "source": "Q449",
-      "target": "Q516",
-      "decision": "unknown"
-    },
-    {
-      "id": "Q466-yes-Q545",
-      "source": "Q466",
-      "target": "Q545",
-      "decision": "yes"
-    },
-    {
-      "id": "Q466-no-Q548",
-      "source": "Q466",
-      "target": "Q548",
-      "decision": "no"
-    },
-    {
-      "id": "Q466-unknown-Q548",
-      "source": "Q466",
-      "target": "Q548",
-      "decision": "unknown"
-    },
-    {
-      "id": "Q467-yes-Q546",
-      "source": "Q467",
-      "target": "Q546",
-      "decision": "yes"
-    },
-    {
-      "id": "Q467-no-Q550",
-      "source": "Q467",
-      "target": "Q550",
-      "decision": "no"
-    },
-    {
-      "id": "Q467-unknown-Q549",
-      "source": "Q467",
-      "target": "Q549",
-      "decision": "unknown"
-    },
-    {
-      "id": "Q472-yes-Q581",
-      "source": "Q472",
-      "target": "Q581",
-      "decision": "yes"
-    },
-    {
-      "id": "Q472-no-Q555",
-      "source": "Q472",
-      "target": "Q555",
-      "decision": "no"
-    },
-    {
-      "id": "Q472-unknown-Q554",
-      "source": "Q472",
-      "target": "Q554",
-      "decision": "unknown"
-    },
-    {
-      "id": "Q490-yes-Q556",
-      "source": "Q490",
-      "target": "Q556",
-      "decision": "yes"
-    },
-    {
-      "id": "Q490-no-Q576",
-      "source": "Q490",
-      "target": "Q576",
-      "decision": "no"
-    },
-    {
-      "id": "Q490-unknown-Q562",
-      "source": "Q490",
-      "target": "Q562",
-      "decision": "unknown"
-    },
-    {
-      "id": "Q491-yes-Q557",
-      "source": "Q491",
-      "target": "Q557",
-      "decision": "yes"
-    },
-    {
-      "id": "Q491-no-Q547",
-      "source": "Q491",
-      "target": "Q547",
-      "decision": "no"
-    },
-    {
-      "id": "Q491-unknown-Q546",
-      "source": "Q491",
-      "target": "Q546",
+      "target": "Q508",
       "decision": "unknown"
     },
     {
@@ -3802,375 +2690,123 @@
       "decision": "yes"
     },
     {
-      "id": "Q492-no-Q547",
+      "id": "Q492-no-Q558",
       "source": "Q492",
-      "target": "Q547",
+      "target": "Q558",
       "decision": "no"
     },
     {
-      "id": "Q492-unknown-Q548",
+      "id": "Q492-unknown-Q558",
       "source": "Q492",
-      "target": "Q548",
+      "target": "Q558",
       "decision": "unknown"
     },
     {
-      "id": "Q493-yes-Q576",
+      "id": "Q493-yes-Q559",
       "source": "Q493",
-      "target": "Q576",
+      "target": "Q559",
       "decision": "yes"
     },
     {
-      "id": "Q493-no-Q563",
+      "id": "Q493-no-Q559",
       "source": "Q493",
-      "target": "Q563",
+      "target": "Q559",
       "decision": "no"
     },
     {
-      "id": "Q493-unknown-Q554",
+      "id": "Q493-unknown-Q559",
       "source": "Q493",
-      "target": "Q554",
+      "target": "Q559",
       "decision": "unknown"
     },
     {
-      "id": "Q494-yes-Q577",
-      "source": "Q494",
-      "target": "Q577",
+      "id": "Q506-yes-Q560",
+      "source": "Q506",
+      "target": "Q560",
       "decision": "yes"
     },
     {
-      "id": "Q494-no-Q584",
-      "source": "Q494",
-      "target": "Q584",
+      "id": "Q506-no-Q560",
+      "source": "Q506",
+      "target": "Q560",
       "decision": "no"
     },
     {
-      "id": "Q494-unknown-Q562",
-      "source": "Q494",
-      "target": "Q562",
+      "id": "Q506-unknown-Q560",
+      "source": "Q506",
+      "target": "Q560",
       "decision": "unknown"
     },
     {
-      "id": "Q495-yes-Q555",
-      "source": "Q495",
-      "target": "Q555",
+      "id": "Q507-yes-Q561",
+      "source": "Q507",
+      "target": "Q561",
       "decision": "yes"
     },
     {
-      "id": "Q495-no-Q545",
-      "source": "Q495",
-      "target": "Q545",
+      "id": "Q507-no-Q561",
+      "source": "Q507",
+      "target": "Q561",
       "decision": "no"
     },
     {
-      "id": "Q495-unknown-Q561",
-      "source": "Q495",
+      "id": "Q507-unknown-Q561",
+      "source": "Q507",
       "target": "Q561",
       "decision": "unknown"
     },
     {
-      "id": "Q496-yes-Q574",
-      "source": "Q496",
-      "target": "Q574",
-      "decision": "yes"
-    },
-    {
-      "id": "Q496-no-Q559",
-      "source": "Q496",
-      "target": "Q559",
-      "decision": "no"
-    },
-    {
-      "id": "Q496-unknown-Q558",
-      "source": "Q496",
-      "target": "Q558",
-      "decision": "unknown"
-    },
-    {
-      "id": "Q497-yes-Q563",
-      "source": "Q497",
-      "target": "Q563",
-      "decision": "yes"
-    },
-    {
-      "id": "Q497-no-Q560",
-      "source": "Q497",
-      "target": "Q560",
-      "decision": "no"
-    },
-    {
-      "id": "Q497-unknown-Q546",
-      "source": "Q497",
-      "target": "Q546",
-      "decision": "unknown"
-    },
-    {
-      "id": "Q498-yes-Q575",
-      "source": "Q498",
-      "target": "Q575",
-      "decision": "yes"
-    },
-    {
-      "id": "Q498-no-Q547",
-      "source": "Q498",
-      "target": "Q547",
-      "decision": "no"
-    },
-    {
-      "id": "Q498-unknown-Q555",
-      "source": "Q498",
-      "target": "Q555",
-      "decision": "unknown"
-    },
-    {
-      "id": "Q499-yes-Q553",
-      "source": "Q499",
-      "target": "Q553",
-      "decision": "yes"
-    },
-    {
-      "id": "Q499-no-Q556",
-      "source": "Q499",
-      "target": "Q556",
-      "decision": "no"
-    },
-    {
-      "id": "Q499-unknown-Q554",
-      "source": "Q499",
-      "target": "Q554",
-      "decision": "unknown"
-    },
-    {
-      "id": "Q500-yes-Q584",
-      "source": "Q500",
-      "target": "Q584",
-      "decision": "yes"
-    },
-    {
-      "id": "Q500-no-Q586",
-      "source": "Q500",
-      "target": "Q586",
-      "decision": "no"
-    },
-    {
-      "id": "Q500-unknown-Q554",
-      "source": "Q500",
-      "target": "Q554",
-      "decision": "unknown"
-    },
-    {
-      "id": "Q502-yes-Q562",
-      "source": "Q502",
+      "id": "Q508-yes-Q562",
+      "source": "Q508",
       "target": "Q562",
       "decision": "yes"
     },
     {
-      "id": "Q502-no-Q552",
-      "source": "Q502",
-      "target": "Q552",
+      "id": "Q508-no-Q562",
+      "source": "Q508",
+      "target": "Q562",
       "decision": "no"
     },
     {
-      "id": "Q502-unknown-Q545",
-      "source": "Q502",
-      "target": "Q545",
+      "id": "Q508-unknown-Q562",
+      "source": "Q508",
+      "target": "Q562",
       "decision": "unknown"
     },
     {
-      "id": "Q503-yes-Q586",
-      "source": "Q503",
-      "target": "Q586",
+      "id": "Q509-yes-Q563",
+      "source": "Q509",
+      "target": "Q563",
       "decision": "yes"
     },
     {
-      "id": "Q503-no-Q547",
-      "source": "Q503",
-      "target": "Q547",
+      "id": "Q509-no-Q563",
+      "source": "Q509",
+      "target": "Q563",
       "decision": "no"
     },
     {
-      "id": "Q503-unknown-Q553",
-      "source": "Q503",
-      "target": "Q553",
-      "decision": "unknown"
-    },
-    {
-      "id": "Q506-yes-Q586",
-      "source": "Q506",
-      "target": "Q586",
-      "decision": "yes"
-    },
-    {
-      "id": "Q506-no-Q584",
-      "source": "Q506",
-      "target": "Q584",
-      "decision": "no"
-    },
-    {
-      "id": "Q506-unknown-Q550",
-      "source": "Q506",
-      "target": "Q550",
-      "decision": "unknown"
-    },
-    {
-      "id": "Q507-yes-Q548",
-      "source": "Q507",
-      "target": "Q548",
-      "decision": "yes"
-    },
-    {
-      "id": "Q507-no-Q552",
-      "source": "Q507",
-      "target": "Q552",
-      "decision": "no"
-    },
-    {
-      "id": "Q507-unknown-Q563",
-      "source": "Q507",
+      "id": "Q509-unknown-Q563",
+      "source": "Q509",
       "target": "Q563",
       "decision": "unknown"
     },
     {
-      "id": "Q508-yes-Q549",
-      "source": "Q508",
-      "target": "Q549",
-      "decision": "yes"
-    },
-    {
-      "id": "Q508-no-Q546",
-      "source": "Q508",
-      "target": "Q546",
-      "decision": "no"
-    },
-    {
-      "id": "Q508-unknown-Q545",
-      "source": "Q508",
-      "target": "Q545",
-      "decision": "unknown"
-    },
-    {
-      "id": "Q509-yes-Q547",
-      "source": "Q509",
-      "target": "Q547",
-      "decision": "yes"
-    },
-    {
-      "id": "Q509-no-Q547",
-      "source": "Q509",
-      "target": "Q547",
-      "decision": "no"
-    },
-    {
-      "id": "Q509-unknown-Q559",
-      "source": "Q509",
-      "target": "Q559",
-      "decision": "unknown"
-    },
-    {
-      "id": "Q510-yes-Q587",
-      "source": "Q510",
-      "target": "Q587",
-      "decision": "yes"
-    },
-    {
-      "id": "Q510-no-Q560",
-      "source": "Q510",
-      "target": "Q560",
-      "decision": "no"
-    },
-    {
-      "id": "Q510-unknown-Q558",
-      "source": "Q510",
-      "target": "Q558",
-      "decision": "unknown"
-    },
-    {
-      "id": "Q511-yes-Q546",
-      "source": "Q511",
-      "target": "Q546",
-      "decision": "yes"
-    },
-    {
-      "id": "Q511-no-Q556",
-      "source": "Q511",
-      "target": "Q556",
-      "decision": "no"
-    },
-    {
-      "id": "Q511-unknown-Q547",
-      "source": "Q511",
-      "target": "Q547",
-      "decision": "unknown"
-    },
-    {
-      "id": "Q512-yes-Q588",
-      "source": "Q512",
+      "id": "Q581-yes-Q588",
+      "source": "Q581",
       "target": "Q588",
       "decision": "yes"
     },
     {
-      "id": "Q512-no-Q586",
-      "source": "Q512",
-      "target": "Q586",
-      "decision": "no"
-    },
-    {
-      "id": "Q512-unknown-Q557",
-      "source": "Q512",
-      "target": "Q557",
-      "decision": "unknown"
-    },
-    {
-      "id": "Q513-yes-Q561",
-      "source": "Q513",
-      "target": "Q561",
-      "decision": "yes"
-    },
-    {
-      "id": "Q513-no-Q545",
-      "source": "Q513",
-      "target": "Q545",
-      "decision": "no"
-    },
-    {
-      "id": "Q513-unknown-Q550",
-      "source": "Q513",
-      "target": "Q550",
-      "decision": "unknown"
-    },
-    {
-      "id": "Q516-yes-Q561",
-      "source": "Q516",
-      "target": "Q561",
-      "decision": "yes"
-    },
-    {
-      "id": "Q516-no-Q552",
-      "source": "Q516",
-      "target": "Q552",
-      "decision": "no"
-    },
-    {
-      "id": "Q516-unknown-Q549",
-      "source": "Q516",
-      "target": "Q549",
-      "decision": "unknown"
-    },
-    {
-      "id": "Q581-yes-Q584",
+      "id": "Q581-no-Q588",
       "source": "Q581",
-      "target": "Q584",
-      "decision": "yes"
-    },
-    {
-      "id": "Q581-no-Q584",
-      "source": "Q581",
-      "target": "Q584",
+      "target": "Q588",
       "decision": "no"
     },
     {
-      "id": "Q581-unknown-Q586",
+      "id": "Q581-unknown-Q588",
       "source": "Q581",
-      "target": "Q586",
+      "target": "Q588",
       "decision": "unknown"
     }
   ]

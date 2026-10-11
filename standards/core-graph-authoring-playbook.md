@@ -37,9 +37,9 @@ Quality reports use an explicit input and an output directory outside `releases/
 python3 scripts/lint_core_graph_quality.py --graph-path drafts/core/tensor.core.graph.json --entry-path drafts/core/source/entry_nodes.json --output-dir /tmp/tensor-draft-quality
 ```
 
-The linter emits graph-quality, coverage-matrix, and math-assurance reports labeled with the exact source and digest. By default strict gates fail when thresholds are missed. Explicit `--draft-review` is restricted to the canonical unpromoted graph: synthetic robustness, centralization, information-gain and composite-score failures become warnings while failed gate results remain in math-assurance. Authoring and structural failures remain fatal. This is not publication approval. The [entry review](../drafts/core/ENTRY-REVIEW.md) explains why meaningful routes must not be distorted to optimize synthetic scores.
+The linter emits graph-quality, coverage-matrix, and math-assurance reports labeled with exact graph, evidence and policy implementation digests. Default validation follows [graph assurance policy `tensor-graph-assurance/1`](graph-assurance-policy.md): structural invariants, digest-bound evidence cards, safe transitions and scenario agreement/coverage are blocking. Historical topology thresholds retain their original values and formulas as diagnostics. `--draft-review` is a compatibility alias restricted to the canonical draft; it waives no checks and applies the same policy. This is not publication approval.
 
-The linter never refreshes stable pointers or historical reports. To lint JSONL directly, provide `--nodes-path`, `--edges-path`, `--entry-path`, an expected `--version`, and `--output-dir`; draft-review mode requires the exact generated canonical graph.
+The linter never refreshes stable pointers or historical reports. The canonical graph automatically selects its adjacent public criteria and scenarios. For any other graph artifact, provide `--criteria-path` and `--scenarios-path` for its exact evidence package. JSONL inputs still permit structural inspection with `--nodes-path`, `--edges-path`, `--entry-path`, `--version` and `--output-dir`, but full authoring acceptance fails closed until the generated graph artifact and its evidence package are assessed.
 
 The builder defaults to writing only the working draft; `--draft-only` remains an explicit compatible spelling. `--prepare-release` instead writes a new versioned graph directory, refuses an existing version, and does not update the draft, latest pointers, manifest, or checksums. It is mutually exclusive with `--draft-only`. A prepared graph is unpromoted and still needs complete reviewed release packaging.
 
@@ -115,7 +115,9 @@ Allowed decisions:
 - Node and edge counts are intentionally not fixed.
 - Expand the graph to the size needed for investigation quality and breadth.
 - Keep all seven domains represented with meaningful coverage.
-- Cross-domain edge ratio: >= 25%
+- Cross-domain relationships require explicit subject/time bindings and supported discriminators; no minimum control-flow edge ratio is required by the current policy.
+
+The historical 25% ratio remains a diagnostic reference with its original formula and threshold. A relation between domains can be declared and tested as evidence while the hypothesis route retains its original context; do not invent a pivot to improve a topology score. The [recorded policy decision](graph-assurance-policy.md) separates authoring acceptance from uncalibrated diagnostic thresholds. The builder checks structure and prepares unpromoted content; it does not perform evidence acceptance or move stable pointers.
 
 ## Fan-In Constraints
 - Default max fan-in (non-terminal nodes): 8
@@ -176,12 +178,9 @@ Math assurance includes release-level publish gates under:
 - `monitoring.publishGates.failedGateIds`
 - `monitoring.publishGates.gates[]`
 
-Current gate families include:
-- Structural invariants (DAG, reachability, branch totality)
-- Routing quality (cross-domain pivots, centralization)
-- Robustness (targeted reachability under node removal)
-- Information quality (no negative information gain)
-- Composite optimization score floor
+Current blocking gates cover graph authoring, DAG/reachability/branch totality, declared domain/archetype scope, evidence cards, every evidence-profile transition, scenario agreement and scenario coverage. Missing evidence checks remain `notRun` and block acceptance. Current `monitoring.publishGates` is scoped to author-side acceptance, not release authorization.
+
+Historical topology thresholds are retained under `monitoring.legacyReferenceThresholds`. They do not measure evidentiary truth or permit bypassing a prerequisite. All published reports retain their original fields, policy and meaning; future generated reports carry the new policy identity. The release-contract validator continues checking the exact historical artifacts without alteration.
 
 Gate outcomes are tracked per release in:
 - `releases/core/reports/history/math-assurance-history.json`

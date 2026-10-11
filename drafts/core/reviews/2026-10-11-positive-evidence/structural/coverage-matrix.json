@@ -1,0 +1,142 @@
+{
+  "version": "0.20261011b",
+  "generatedAt": "2026-10-11T17:05:34Z",
+  "dimensions": [
+    "Domain",
+    "Archetype",
+    "Entry Coverage",
+    "Reachability",
+    "Branch Completeness",
+    "Cross-domain Pivots"
+  ],
+  "overall": {
+    "nodeCount": 103,
+    "edgeCount": 225,
+    "crossDomainRatio": 0.0,
+    "allNodesReachable": true,
+    "branchViolations": 0
+  },
+  "domains": [
+    {
+      "domain": "Application",
+      "nodeCount": 15,
+      "entryCoverage": true,
+      "archetypes": {
+        "detect": 2,
+        "validate": 2,
+        "classify": 2,
+        "scope": 2,
+        "correlate": 1,
+        "attribute": 1,
+        "impact": 1,
+        "terminal": 4
+      }
+    },
+    {
+      "domain": "Cloud",
+      "nodeCount": 15,
+      "entryCoverage": true,
+      "archetypes": {
+        "detect": 2,
+        "validate": 2,
+        "classify": 2,
+        "scope": 2,
+        "correlate": 1,
+        "attribute": 1,
+        "impact": 1,
+        "terminal": 4
+      }
+    },
+    {
+      "domain": "Email",
+      "nodeCount": 15,
+      "entryCoverage": true,
+      "archetypes": {
+        "detect": 2,
+        "validate": 2,
+        "classify": 2,
+        "scope": 2,
+        "correlate": 1,
+        "attribute": 1,
+        "impact": 1,
+        "terminal": 4
+      }
+    },
+    {
+      "domain": "File",
+      "nodeCount": 15,
+      "entryCoverage": true,
+      "archetypes": {
+        "detect": 2,
+        "validate": 2,
+        "classify": 2,
+        "scope": 2,
+        "correlate": 1,
+        "attribute": 1,
+        "impact": 1,
+        "terminal": 4
+      }
+    },
+    {
+      "domain": "Host",
+      "nodeCount": 15,
+      "entryCoverage": true,
+      "archetypes": {
+        "detect": 2,
+        "validate": 2,
+        "classify": 2,
+        "scope": 2,
+        "correlate": 1,
+        "attribute": 1,
+        "impact": 1,
+        "terminal": 4
+      }
+    },
+    {
+      "domain": "Identity",
+      "nodeCount": 13,
+      "entryCoverage": true,
+      "archetypes": {
+        "detect": 2,
+        "validate": 2,
+        "classify": 1,
+        "scope": 1,
+        "correlate": 1,
+        "attribute": 1,
+        "impact": 1,
+        "terminal": 4
+      }
+    },
+    {
+      "domain": "Network",
+      "nodeCount": 15,
+      "entryCoverage": true,
+      "archetypes": {
+        "detect": 2,
+        "validate": 2,
+        "classify": 2,
+        "scope": 2,
+        "correlate": 1,
+        "attribute": 1,
+        "impact": 1,
+        "terminal": 4
+      }
+    }
+  ],
+  "provenance": {
+    "inputMode": "graph-artifact",
+    "inputs": [
+      {
+        "path": "drafts/core/tensor.core.graph.json",
+        "sha256": "8b83f19f83d7d796c96b404d37f4ae093d36415b35123602133f34cad5c172be"
+      },
+      {
+        "path": "drafts/core/source/entry_nodes.json",
+        "sha256": "f4c50d88d48478047a25fd8bda7a3897b9b9a2cde8344a5590f025d3ab06625a"
+      }
+    ],
+    "policy": "current-legacy-graph-authoring-policy",
+    "scope": "Structural and simulated authoring checks; not release conformance or investigative effectiveness.",
+    "assessmentMode": "unpromoted-draft-review"
+  }
+}

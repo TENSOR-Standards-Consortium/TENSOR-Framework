@@ -48,12 +48,11 @@ jobs:
       - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
           python-version: '3.11'
-      - name: Assess draft structure and retain synthetic score diagnostics
+      - name: Validate graph structure, evidence profile and scenarios
         run: >-
           python3 scripts/lint_core_graph_quality.py
           --graph-path drafts/core/tensor.core.graph.json
           --entry-path drafts/core/source/entry_nodes.json
-          --draft-review
           --output-dir "${{ runner.temp }}/tensor-draft-quality"
       - name: Retain digest-bound draft reports
         if: always()
