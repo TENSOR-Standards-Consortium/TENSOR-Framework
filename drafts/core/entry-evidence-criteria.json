@@ -1153,7 +1153,7 @@
         "alternatives",
         "limitations"
       ],
-      "predicate": "Does the validated primary record of the bound identity action by the bound principal satisfy the declared falsifiable criterion for the named technical hypothesis within the bound time interval?"
+      "predicate": "Does the validated selected record of the bound identity action by the bound principal satisfy the declared falsifiable criterion for the named technical hypothesis within the bound time interval?"
     },
     "Q253": {
       "domain": "Identity",
@@ -1178,7 +1178,7 @@
         "alternatives",
         "limitations"
       ],
-      "predicate": "Is the primary hypothesis assessment of the bound identity action by the bound principal bounded to explicit subjects and time with evidenced entity inclusions, exclusions and unknown scope recorded?"
+      "predicate": "Is the selected hypothesis assessment of the bound identity action by the bound principal bounded to explicit subjects and time with evidenced entity inclusions, exclusions and unknown scope recorded?"
     },
     "Q379": {
       "domain": "Identity",
@@ -2674,5 +2674,5 @@
       "predicate": "Is the declared technical hypothesis for presence of the bound file on the bound system contradicted by the retained discriminating evidence within the bound interval?"
     }
   },
-  "graphSha256": "7d64a8fdf2d33861e6a06cfcb7daea8435cb5ed74acbb1df8b55ee60588b7101"
+  "graphSha256": "8b83f19f83d7d796c96b404d37f4ae093d36415b35123602133f34cad5c172be"
 }

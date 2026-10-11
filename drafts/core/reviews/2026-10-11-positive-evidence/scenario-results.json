@@ -4,11 +4,11 @@
   "inputs": [
     {
       "path": "drafts/core/tensor.core.graph.json",
-      "sha256": "7d64a8fdf2d33861e6a06cfcb7daea8435cb5ed74acbb1df8b55ee60588b7101"
+      "sha256": "8b83f19f83d7d796c96b404d37f4ae093d36415b35123602133f34cad5c172be"
     },
     {
       "path": "drafts/core/entry-evidence-criteria.json",
-      "sha256": "07b8bd7ad81af7b811d20becba42247a69957a6de13f3daa606560ef03850335"
+      "sha256": "0595cdd6a27c44ca87839981a2b4b93d51452a234a7af8d400da68c900cf1e49"
     },
     {
       "path": "drafts/core/scenarios/entry-evidence-cases.json",

@@ -24,5 +24,5 @@
 
 Structural and simulated authoring checks; not release conformance or investigative effectiveness.
 
-- `drafts/core/tensor.core.graph.json`: SHA-256 `7d64a8fdf2d33861e6a06cfcb7daea8435cb5ed74acbb1df8b55ee60588b7101`
+- `drafts/core/tensor.core.graph.json`: SHA-256 `8b83f19f83d7d796c96b404d37f4ae093d36415b35123602133f34cad5c172be`
 - `drafts/core/source/entry_nodes.json`: SHA-256 `f4c50d88d48478047a25fd8bda7a3897b9b9a2cde8344a5590f025d3ab06625a`

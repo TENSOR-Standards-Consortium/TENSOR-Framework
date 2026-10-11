@@ -577,8 +577,8 @@
     },
     {
       "id": "Q233",
-      "text": "Does the validated primary record of the bound identity action by the bound principal satisfy the declared falsifiable criterion for the named technical hypothesis within the bound time interval?",
-      "label": "Identity: primary classification assessment",
+      "text": "Does the validated selected record of the bound identity action by the bound principal satisfy the declared falsifiable criterion for the named technical hypothesis within the bound time interval?",
+      "label": "Identity: selected classification assessment",
       "category": "Identity",
       "archetype": "classify",
       "extensions": {
@@ -605,8 +605,8 @@
     },
     {
       "id": "Q253",
-      "text": "Is the primary hypothesis assessment of the bound identity action by the bound principal bounded to explicit subjects and time with evidenced entity inclusions, exclusions and unknown scope recorded?",
-      "label": "Identity: primary scope assessment",
+      "text": "Is the selected hypothesis assessment of the bound identity action by the bound principal bounded to explicit subjects and time with evidenced entity inclusions, exclusions and unknown scope recorded?",
+      "label": "Identity: selected scope assessment",
       "category": "Identity",
       "archetype": "scope",
       "extensions": {
