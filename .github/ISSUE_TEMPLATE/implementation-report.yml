@@ -1,0 +1,42 @@
+name: Implementation report
+description: Report reproducible candidate validation, exchange, or review results.
+title: "Implementation report: "
+body:
+  - type: markdown
+    attributes:
+      value: "Reports are public. Use synthetic data, retain negative results, and distinguish author testing from independent review."
+  - type: textarea
+    id: identity
+    attributes:
+      label: Implementation and artifact identity
+      description: Give exact commit, binding/proposal/profile versions, fixture digests, environment, and implementation role.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction and observed results
+      description: Include commands, expected/actual results, relevant TC IDs, and complete scoped reports where safe.
+    validations:
+      required: true
+  - type: textarea
+    id: exchange
+    attributes:
+      label: Exchange, losses, and limitations
+      description: Identify directions, semantic comparison, unsupported dependencies, losses, and checks not run. State if no exchange was attempted.
+    validations:
+      required: true
+  - type: textarea
+    id: independence
+    attributes:
+      label: Authorship, affiliations, and independence
+      description: Describe shared code, generated dependencies, reviewer relationships, and conflicts. An API wrapper around this runtime is not an independent implementation.
+    validations:
+      required: true
+  - type: textarea
+    id: recommendation
+    attributes:
+      label: Findings and proposed resolution
+      description: Distinguish blocking ambiguity, implementation defects, enhancements, and unassessed areas.
+    validations:
+      required: true

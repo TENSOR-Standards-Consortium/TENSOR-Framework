@@ -1,0 +1,19 @@
+{
+  "name": "@tensor-framework/core-reference",
+  "version": "0.1.0-draft.1",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "test": "node --test tests/core/*.test.mjs",
+    "check:schemas": "node core/v0.1.0-draft.1/scripts/write-schemas.mjs --check",
+    "validate:examples": "node core/v0.1.0-draft.1/scripts/validate-examples.mjs",
+    "check": "npm run check:schemas && npm test && npm run validate:examples"
+  },
+  "devDependencies": {
+    "ajv": "^8.20.0",
+    "ajv-formats": "^3.0.1"
+  }
+}

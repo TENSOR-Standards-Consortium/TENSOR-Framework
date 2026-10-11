@@ -1,7 +1,7 @@
 # TENSOR Core Graph Authoring Playbook
 
 ## Purpose
-This playbook defines how to author and review the Core graph as an investigation backbone.
+This playbook covers the existing dated graph track, not the separately versioned investigation-record candidate. It defines how to author and review the Core graph as an investigation backbone. Published graph releases remain immutable.
 
 Core remains investigation-semantic only:
 - No business workflow state
@@ -27,13 +27,17 @@ Core graph content is authored from structured source files:
 - `drafts/core/source/entry_nodes.json`
 
 Build output is generated via:
-- `python3 scripts/build_core_graph_from_source.py --version <VER>`
+- `python3 scripts/build_core_graph_from_source.py --version <VER> --draft-only`
 
-Quality reports are generated via:
-- `python3 scripts/lint_core_graph_quality.py --version <VER>`
-  - Emits graph-quality, coverage-matrix, and math-assurance reports.
-  - Refreshes latest pointer and history artifacts for math assurance.
-  - Evaluates publish gates and fails when release thresholds are missed.
+Quality reports use an explicit input and an output directory outside `releases/`:
+
+```sh
+python3 scripts/lint_core_graph_quality.py --graph-path drafts/core/tensor.core.graph.json --entry-path drafts/core/source/entry_nodes.json --output-dir /tmp/tensor-draft-quality
+```
+
+The linter emits graph-quality, coverage-matrix, and math-assurance reports labeled with the exact source and digest. It evaluates the graph quality gates and fails when their thresholds are missed. It never refreshes stable pointers or historical reports. To lint JSONL directly, provide `--nodes-path`, `--edges-path`, `--entry-path`, an expected `--version`, and `--output-dir`.
+
+The builder defaults to writing only the working draft; `--draft-only` remains an explicit compatible spelling. `--prepare-release` instead writes a new versioned graph directory, refuses an existing version, and does not update the draft, latest pointers, manifest, or checksums. It is mutually exclusive with `--draft-only`. A prepared graph is unpromoted and still needs complete reviewed release packaging.
 
 ## Node Authoring Model
 Required node fields:
@@ -134,13 +138,15 @@ Forbidden examples in Core text:
 - `click dashboard`
 
 ## Release Workflow
-1. Author source files under `drafts/core/source/`.
-2. Build graph artifacts.
-3. Run quality lint and generate reports.
-4. Update schema snapshot/version when required changes are introduced.
-5. Update `releases/manifest.json` and latest pointers.
-6. Regenerate checksums.
-7. Run release contract validator.
+1. Author source files under `drafts/core/source/` and choose a new version when preparing a release.
+2. Build the working graph with `--draft-only`.
+3. Run explicit-source quality lint and retain its input identity and digest.
+4. Review the candidate graph, schema changes, compatibility, and reports. Never overwrite an existing versioned release.
+5. After a recorded release decision, use `--prepare-release` only for a new graph version and add the corresponding reviewed schema snapshots and reports. Update manifest-selected latest pointers together; do not derive stable identity from the working draft.
+6. Regenerate checksums for the reviewed release changes and confirm historical bytes have not changed.
+7. Run `python3 scripts/validate_release_contract.py` and `python3 -m unittest discover -s tests/legacy -v`.
+
+The `update-latest` workflow checks the existing release contract; it does not publish new draft content. The investigation-record candidate follows its own [release checklist](../docs/release-checklist.md).
 
 ## Artifacts Required Per Release
 - Graph artifact:

@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "Cite the exact commit and candidate binding version used. This work is a proposal and reference implementation, not a ratified standard."
+type: software
+title: "TENSOR Framework: public investigation contract and reference implementation"
+authors:
+  - name: "TENSOR contributors"
+version: "0.1.0-draft.1"
+repository-code: "https://github.com/TENSOR-Standards-Consortium/TENSOR-Framework"
+url: "https://tensor-website.pages.dev"
+license: Apache-2.0
+keywords:
+  - cyber investigations
+  - interoperability
+  - evidence provenance
+  - human and agent investigations
+abstract: "A candidate public investigative contract, schemas, and reference tooling for humans and agents, preserving versioned legacy question graphs. Vendor integrations and business policies build above a shared investigative layer."

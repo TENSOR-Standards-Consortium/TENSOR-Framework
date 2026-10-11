@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-"""Build canonical TENSOR Core graph artifacts from JSONL sources."""
+"""Build a legacy draft graph, or explicitly prepare a new unpromoted release graph."""
 
 from __future__ import annotations
 
 import argparse
+import json
 import sys
 from pathlib import Path
 
@@ -23,12 +24,18 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--version",
         required=True,
-        help="Release version in <MAJOR>.<YYYYMMDD>[REV] format (for example: 0.20260206c).",
+        help="Graph version in <MAJOR>.<YYYYMMDD>[REV] format (for example: 0.20260206c).",
     )
-    parser.add_argument(
+    outputs = parser.add_mutually_exclusive_group()
+    outputs.add_argument(
         "--draft-only",
         action="store_true",
-        help="Write only drafts/core/tensor.core.graph.json (do not touch releases/).",
+        help="Compatibility alias for the default: write only the draft graph.",
+    )
+    outputs.add_argument(
+        "--prepare-release",
+        action="store_true",
+        help="Prepare a NEW versioned graph only; refuse existing versions and leave latest, manifest and checksums unchanged.",
     )
     parser.add_argument(
         "--repo-root",
@@ -95,25 +102,38 @@ def main() -> int:
         )
 
         draft_graph_path = repo_root / "drafts/core/tensor.core.graph.json"
-
-        write_json(draft_graph_path, payload)
-        if not args.draft_only:
-            release_graph_path = repo_root / f"releases/core/graphs/v{args.version}/tensor.core.graph.json"
-            latest_graph_path = repo_root / "releases/core/graphs/latest/tensor.core.graph.json"
-            write_json(release_graph_path, payload)
-            write_json(latest_graph_path, payload)
+        if args.prepare_release:
+            release_dir = repo_root / f"releases/core/graphs/v{args.version}"
+            manifest_path = repo_root / "releases/manifest.json"
+            if manifest_path.exists():
+                manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+                if any(release.get("graphVersion") == args.version for release in manifest.get("releases", [])):
+                    raise ValidationError(f"Graph version {args.version} is already recorded in the release manifest.")
+            # Exclusive directory creation rejects files, symlinks and even empty
+            # existing version directories before any graph or pointer is changed.
+            release_dir.mkdir(parents=True, exist_ok=False)
+            release_graph_path = release_dir / "tensor.core.graph.json"
+            with release_graph_path.open("x", encoding="utf-8") as handle:
+                json.dump(payload, handle, indent=2, ensure_ascii=True)
+                handle.write("\n")
+        else:
+            releases_dir = (repo_root / "releases").resolve()
+            if releases_dir in draft_graph_path.resolve().parents:
+                raise ValidationError("Draft output resolves into releases; refusing to modify a released artifact.")
+            write_json(draft_graph_path, payload)
 
         print(f"Built graph version: {args.version}")
         print(f"Generated at: {canonical_generated_at(args.version)}")
         print(f"Nodes: {metrics['nodeCount']} | Edges: {metrics['edgeCount']}")
         print(f"Entry nodes: {metrics['entryCount']} | Cross-domain ratio: {metrics['crossDomainRatio']:.4f}")
-        print(f"Draft output: {draft_graph_path.relative_to(repo_root)}")
-        if not args.draft_only:
-            print(f"Release output: {release_graph_path.relative_to(repo_root)}")
-            print(f"Latest output: {latest_graph_path.relative_to(repo_root)}")
+        if args.prepare_release:
+            print(f"Unpromoted release graph: {release_graph_path.relative_to(repo_root)}")
+            print("Complete and review the schema, reports, manifest, latest pointers and checksums before promotion.")
+        else:
+            print(f"Draft output: {draft_graph_path.relative_to(repo_root)}")
         return 0
 
-    except ValidationError as exc:
+    except (ValidationError, OSError, ValueError, TypeError, AttributeError) as exc:
         print(f"ERROR: {exc}", file=sys.stderr)
         return 1
 

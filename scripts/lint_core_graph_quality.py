@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import sys
 from pathlib import Path
@@ -19,8 +20,6 @@ from core_graph_pipeline import (
     write_json,
 )
 from core_graph_math_assurance import (
-    build_math_assurance_history_markdown,
-    build_math_assurance_history_payload,
     build_math_assurance_markdown,
     build_math_assurance_payload,
 )
@@ -28,67 +27,81 @@ from core_graph_math_assurance import (
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--version", help="Expected graph version; required with JSONL sources.")
+    parser.add_argument("--repo-root", default=Path(__file__).resolve().parent.parent, type=Path)
+    parser.add_argument("--graph-path", type=Path, help="Exact graph JSON to assess.")
+    parser.add_argument("--nodes-path", type=Path, help="Explicit nodes JSONL source path.")
+    parser.add_argument("--edges-path", type=Path, help="Explicit edges JSONL source path.")
+    parser.add_argument("--entry-path", type=Path, help="Entry configuration and fan-in exceptions.")
     parser.add_argument(
-        "--version",
-        required=True,
-        help="Release version in <MAJOR>.<YYYYMMDD>[REV] format (for example: 0.20260206c).",
+        "--output-dir", type=Path, required=True,
+        help="Report directory outside releases; never updates published reports or latest pointers.",
     )
-    parser.add_argument(
-        "--repo-root",
-        default=Path(__file__).resolve().parent.parent,
-        type=Path,
-        help="Repository root path.",
-    )
-    parser.add_argument(
-        "--nodes-path",
-        default=Path("drafts/core/source/nodes.jsonl"),
-        type=Path,
-        help="Path to nodes JSONL, relative to repo root.",
-    )
-    parser.add_argument(
-        "--edges-path",
-        default=Path("drafts/core/source/edges.jsonl"),
-        type=Path,
-        help="Path to edges JSONL, relative to repo root.",
-    )
-    parser.add_argument(
-        "--entry-path",
-        default=Path("drafts/core/source/entry_nodes.json"),
-        type=Path,
-        help="Path to entry config JSON, relative to repo root.",
-    )
-    parser.add_argument(
-        "--output-dir",
-        type=Path,
-        help="Output directory for reports. Defaults to releases/core/reports/v<version>/.",
-    )
-    return parser.parse_args()
+    args = parser.parse_args()
+    if args.graph_path:
+        if args.nodes_path or args.edges_path:
+            parser.error("--graph-path cannot be mixed with JSONL source paths")
+    elif not all((args.nodes_path, args.edges_path, args.entry_path, args.version)):
+        parser.error("provide --graph-path, or all of --nodes-path, --edges-path, --entry-path and --version")
+    return args
+
+
+def load_inputs(args: argparse.Namespace, repo_root: Path):
+    """Load only explicit artifacts; bind the report to their exact bytes."""
+    inputs = []
+
+    def resolved(path: Path) -> Path:
+        target = (repo_root / path).resolve()
+        inputs.append({"path": str(path), "sha256": hashlib.sha256(target.read_bytes()).hexdigest()})
+        return target
+
+    fanin_exception_ids = set()
+    if args.graph_path:
+        graph = json.loads(resolved(args.graph_path).read_text(encoding="utf-8"))
+        version = graph.get("version")
+        if not isinstance(version, str) or not version:
+            raise ValidationError("Input graph must declare its version.")
+        if args.version is not None and args.version != version:
+            raise ValidationError(f"Expected version {args.version!r}, but exact graph declares {version!r}.")
+        nodes = [item.get("data", item) for item in graph["nodes"]]
+        edges = [item.get("data", item) for item in graph["edges"]]
+        entry_node_ids = graph["entryNodeIds"]
+        if args.entry_path:
+            configured_entries, fanin_exception_ids = load_entry_config(resolved(args.entry_path))
+            if configured_entries != entry_node_ids:
+                raise ValidationError("Entry configuration does not match the exact graph's entryNodeIds.")
+        mode = "graph-artifact"
+    else:
+        nodes = load_jsonl(resolved(args.nodes_path))
+        edges = load_jsonl(resolved(args.edges_path))
+        entry_node_ids, fanin_exception_ids = load_entry_config(resolved(args.entry_path))
+        version = args.version
+        mode = "authoring-sources"
+    return version, nodes, edges, entry_node_ids, fanin_exception_ids, {
+        "inputMode": mode,
+        "inputs": inputs,
+        "policy": "current-legacy-graph-authoring-policy",
+        "scope": "Structural and simulated authoring checks; not release conformance or investigative effectiveness.",
+    }
 
 
 def main() -> int:
     args = parse_args()
     repo_root: Path = args.repo_root.resolve()
-    nodes_path = (repo_root / args.nodes_path).resolve()
-    edges_path = (repo_root / args.edges_path).resolve()
-    entry_path = (repo_root / args.entry_path).resolve()
-
-    output_dir = (
-        (repo_root / f"releases/core/reports/v{args.version}").resolve()
-        if args.output_dir is None
-        else (repo_root / args.output_dir).resolve()
-    )
+    output_dir = (repo_root / args.output_dir).resolve()
+    releases_dir = (repo_root / "releases").resolve()
+    if output_dir == releases_dir or releases_dir in output_dir.parents:
+        print("ERROR: Reports must be written outside releases; published artifacts are preserved.", file=sys.stderr)
+        return 1
 
     try:
-        nodes = load_jsonl(nodes_path)
-        edges = load_jsonl(edges_path)
-        entry_node_ids, fanin_exception_ids = load_entry_config(entry_path)
+        version, nodes, edges, entry_node_ids, fanin_exception_ids, provenance = load_inputs(args, repo_root)
         errors, warnings, metrics = validate_and_measure(
             nodes=nodes,
             edges=edges,
             entry_node_ids=entry_node_ids,
             fanin_exception_node_ids=fanin_exception_ids,
         )
-
         output_dir.mkdir(parents=True, exist_ok=True)
 
         quality_json_path = output_dir / "graph-quality.json"
@@ -99,26 +112,22 @@ def main() -> int:
         math_md_path = output_dir / "math-assurance.md"
 
         quality_json_payload = {
-            "version": args.version,
+            "version": version,
+            "provenance": provenance,
             "errors": errors,
             "warnings": warnings,
             "metrics": metrics,
         }
-        write_json(quality_json_path, quality_json_payload)
-        quality_md_path.write_text(
-            build_quality_report_markdown(args.version, errors, warnings, metrics),
-            encoding="utf-8",
-        )
-
-        coverage_payload = build_coverage_matrix_payload(args.version, metrics)
+        coverage_payload = build_coverage_matrix_payload(version, metrics)
+        coverage_payload["provenance"] = provenance
         write_json(coverage_json_path, coverage_payload)
         coverage_md_path.write_text(
-            build_coverage_matrix_markdown(args.version, metrics),
+            build_coverage_matrix_markdown(version, metrics),
             encoding="utf-8",
         )
 
         math_payload = build_math_assurance_payload(
-            version=args.version,
+            version=version,
             nodes=nodes,
             edges=edges,
             entry_node_ids=entry_node_ids,
@@ -142,43 +151,23 @@ def main() -> int:
             if isinstance(all_passed, bool) and not all_passed:
                 rendered = ", ".join(str(gate_id) for gate_id in failed_gate_ids) or "unknown"
                 errors.append(f"Publish gates failed: {rendered}")
+        math_payload["provenance"] = provenance
         write_json(math_json_path, math_payload)
+        # Include authoring and simulated gate failures in the same quality report.
+        write_json(quality_json_path, quality_json_payload)
+        quality_md_path.write_text(build_quality_report_markdown(version, errors, warnings, metrics), encoding="utf-8")
         math_md_path.write_text(
             build_math_assurance_markdown(math_payload),
             encoding="utf-8",
         )
 
-        latest_reports_dir = (repo_root / "releases/core/reports/latest").resolve()
-        latest_reports_dir.mkdir(parents=True, exist_ok=True)
-        latest_math_json_path = latest_reports_dir / "math-assurance.json"
-        latest_math_md_path = latest_reports_dir / "math-assurance.md"
-        write_json(latest_math_json_path, math_payload)
-        latest_math_md_path.write_text(
-            build_math_assurance_markdown(math_payload),
-            encoding="utf-8",
-        )
-
-        history_reports_dir = (repo_root / "releases/core/reports/history").resolve()
-        history_reports_dir.mkdir(parents=True, exist_ok=True)
-        history_payload = build_math_assurance_history_payload(repo_root / "releases/core/reports")
-        history_json_path = history_reports_dir / "math-assurance-history.json"
-        history_md_path = history_reports_dir / "math-assurance-history.md"
-        write_json(history_json_path, history_payload)
-        history_md_path.write_text(
-            build_math_assurance_history_markdown(history_payload),
-            encoding="utf-8",
-        )
-
-        print(f"Wrote {quality_json_path.relative_to(repo_root)}")
-        print(f"Wrote {quality_md_path.relative_to(repo_root)}")
-        print(f"Wrote {coverage_json_path.relative_to(repo_root)}")
-        print(f"Wrote {coverage_md_path.relative_to(repo_root)}")
-        print(f"Wrote {math_json_path.relative_to(repo_root)}")
-        print(f"Wrote {math_md_path.relative_to(repo_root)}")
-        print(f"Wrote {latest_math_json_path.relative_to(repo_root)}")
-        print(f"Wrote {latest_math_md_path.relative_to(repo_root)}")
-        print(f"Wrote {history_json_path.relative_to(repo_root)}")
-        print(f"Wrote {history_md_path.relative_to(repo_root)}")
+        provenance_text = "\n\n## Assessment boundary\n\n" + provenance["scope"] + "\n\n"
+        provenance_text += "\n".join(f"- `{item['path']}`: SHA-256 `{item['sha256']}`" for item in provenance["inputs"]) + "\n"
+        for report in (quality_md_path, coverage_md_path, math_md_path):
+            with report.open("a", encoding="utf-8") as handle:
+                handle.write(provenance_text)
+        for report in (quality_json_path, quality_md_path, coverage_json_path, coverage_md_path, math_json_path, math_md_path):
+            print(f"Wrote {report}")
 
         if errors:
             print("Graph quality validation failed:", file=sys.stderr)
@@ -194,7 +183,7 @@ def main() -> int:
         print("Graph quality validation passed.")
         return 0
 
-    except ValidationError as exc:
+    except (ValidationError, OSError, ValueError, KeyError, TypeError, AttributeError) as exc:
         print(f"ERROR: {exc}", file=sys.stderr)
         return 1
 
