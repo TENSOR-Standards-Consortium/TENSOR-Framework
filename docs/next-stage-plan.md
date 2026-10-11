@@ -16,6 +16,10 @@ The candidate contract, executable reference implementation, synthetic cases, pu
 | P3: scoped partnerships, weeks 6–10 | Owner/convenor and consenting counterpart: agree a contribution such as an independent parser, case evaluation, mapping or coauthored study | Written scope, named accepted owners, public deliverable, timeline and agreed attribution. No exclusive Core access, paid influence on requirements or unsupported partner logos |
 | P4: publish results and choose the next candidate, weeks 8–12 | Editors and consenting coauthors: publish reproducible findings, respond to objections, issue a revised candidate where needed, and assess a stewardship/standards venue | Public technical report, objection dispositions, maintenance plan and recorded decision to remain draft or open the required stable-release review. Publication is not ratification |
 
+## October 11 review-preparation update
+
+PR #9 is merged. [Review 2026-10-11.1](../review/2026-10-11.1/README.md) freezes its merged technical source, byte pins, validation baseline, walkthrough and review form. The owner accepted the bootstrap steward/convenor, editor and conformance roles; see [the current record](stewardship.md). Independent reviews, exchange, partnerships and external references remain unverified. Conflict disclosure, recovery/billing confirmation, a consenting second administrator and token replacement remain pending. No invitations or formal review window were initiated. The earlier table records proposed work windows rather than completed outcomes.
+
 ## The first review brief
 
 Prepare a short, citable brief that answers these questions before asking anyone to invest time:

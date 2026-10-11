@@ -8,13 +8,17 @@ TENSOR's long-term identity, domains, infrastructure, and stewardship must be in
 
 Read the [full governance proposal](proposals/founding-core-v0.1.0/02-governance.md) and [founding charter](proposals/founding-core-v0.1.0/00-charter.md). They propose public decisions, disclosed affiliations and conflicts, review windows, independent review, appeals, and a later representative council. They do not appoint people or create contractual duties.
 
+## Accepted bootstrap responsibilities
+
+On October 11, 2026, John Schieferle Uhlenbrock accepted bootstrap stewardship, convenor, Core editor and conformance maintainer responsibilities under the TENSOR Standards Consortium project identity. See the [dated stewardship record](docs/stewardship.md), disclosures, contact channels and pending infrastructure confirmations. These appointments do not adopt the full governance proposal or create independent oversight.
+
 ## Current and proposed responsibilities
 
 | Responsibility | Current evidence/status |
 | --- | --- |
 | Repository maintenance | Performed through existing GitHub permissions and review history |
-| Core specification editor | Bootstrap appointment and acceptance not recorded by this package |
-| Conformance maintainer | Bootstrap appointment and acceptance not recorded by this package |
+| Core specification editor | John Schieferle Uhlenbrock; accepted October 11, 2026 |
+| Conformance maintainer | John Schieferle Uhlenbrock; accepted October 11, 2026 |
 | Independent standards reviewers | Open participation; no named appointments or approvals claimed |
 | Council or legal steward | Not established by these documents |
 

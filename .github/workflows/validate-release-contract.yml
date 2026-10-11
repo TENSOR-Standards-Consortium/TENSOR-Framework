@@ -3,6 +3,7 @@ name: Validate Legacy Release and Draft
 on:
   pull_request:
     paths:
+      - 'review/**'
       - 'releases/**'
       - 'drafts/core/**'
       - 'scripts/**'
@@ -13,6 +14,7 @@ on:
   push:
     branches: [ main ]
     paths:
+      - 'review/**'
       - 'releases/**'
       - 'drafts/core/**'
       - 'scripts/**'
@@ -36,6 +38,8 @@ jobs:
           python-version: '3.11'
       - name: Validate exact published artifacts against their legacy release contract
         run: python3 scripts/validate_release_contract.py
+      - name: Verify frozen institutional review snapshot
+        run: python3 review/2026-10-11.1/verify-snapshot.py
       - name: Run legacy preservation and input-binding regressions
         run: python3 -m unittest discover -s tests/legacy -v
 

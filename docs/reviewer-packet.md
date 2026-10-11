@@ -1,5 +1,7 @@
 # Core candidate reviewer packet
 
+Start with **[frozen institutional review 2026-10-11.1](../review/2026-10-11.1/README.md)**: exact source commit, downloadable archive, all source-file hashes, first-hour walkthrough, review form and observed validation. The [accepted bootstrap steward](stewardship.md) coordinates the [public finding process](review-process.md). No invitations have been sent and no formal closing date is set.
+
 Review target: proposal `0.1.0` and candidate binding `0.1.0-draft.1`. This is an invitation package, not evidence that invitations have been sent, roles accepted, or reviews performed.
 
 ## What to review
