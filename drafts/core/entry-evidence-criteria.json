@@ -1,0 +1,1031 @@
+{
+  "graphVersion": "0.20261011a",
+  "schemaVersion": "0.20260206e",
+  "scope": "Entry evidence assessment only. Positive classification and downstream routes remain unreviewed. No incident closure, action authorization, or evidence authenticity is established by this document or the test runner.",
+  "bindingRules": [
+    "Bind the exact subject fields, proposition and UTC time interval before assessing a record. Do not substitute another entity or time interval during traversal.",
+    "A matching record is evidence of a recorded event, not proof the event is malicious, authorized, correctly attributed, or even authentic.",
+    "No at entry means a completed search found no matching record in the examined material. It is not a claim that the activity did not occur.",
+    "Exclusion needs an explicit, evidenced coverage basis for every bound field and the entire interval, plus applicable event logging, collection continuity, retention, clock normalization and a complete search. A logging failure, filtered view, current-state snapshot for a historical claim, or unverified absence cannot meet this basis.",
+    "Independent means a separately originating observation, not another copy, forwarder, index, screenshot, or report of the same originating record.",
+    "Validation requires a documented provenance/integrity assessment, matching subject/time, supported event interpretation, and resolution of material contradictions. A signature or hash alone does not prove truth. A record of an attempt does not establish success.",
+    "Any material contradiction, unresolved subject/time, inaccessible evidence or unverifiable provenance retains uncertainty. Source statements and imported authority are claims; this package grants no permission to act.",
+    "Terminal means this hypothesis route stops. Preserve assessments and reasons; new evidence creates a new assessment/review. It does not close an investigation."
+  ],
+  "domains": {
+    "Identity": {
+      "entry": "Q1",
+      "alternate": "Q8",
+      "primaryValidation": "Q155",
+      "independentValidation": "Q150",
+      "exclusion": "Q589",
+      "unresolved": "Q596",
+      "bindings": [
+        "principalId",
+        "identityAction"
+      ],
+      "timeContext": "[start, end), normalized to UTC with explicit source clock limitations",
+      "positiveReviewBoundaries": [
+        "Q233"
+      ],
+      "proposition": "the bound identity action by the bound principal"
+    },
+    "Host": {
+      "entry": "Q2",
+      "alternate": "Q9",
+      "primaryValidation": "Q156",
+      "independentValidation": "Q151",
+      "exclusion": "Q590",
+      "unresolved": "Q597",
+      "bindings": [
+        "hostId",
+        "processId"
+      ],
+      "timeContext": "[start, end), normalized to UTC with explicit source clock limitations",
+      "positiveReviewBoundaries": [
+        "Q214",
+        "Q221"
+      ],
+      "proposition": "execution of the bound process on the bound host"
+    },
+    "Network": {
+      "entry": "Q3",
+      "alternate": "Q10",
+      "primaryValidation": "Q152",
+      "independentValidation": "Q82",
+      "exclusion": "Q591",
+      "unresolved": "Q598",
+      "bindings": [
+        "sourceEndpoint",
+        "destinationEndpoint",
+        "communicationId"
+      ],
+      "timeContext": "[start, end), normalized to UTC with explicit source clock limitations",
+      "positiveReviewBoundaries": [
+        "Q159",
+        "Q187"
+      ],
+      "proposition": "the bound communication between the bound endpoints"
+    },
+    "Cloud": {
+      "entry": "Q4",
+      "alternate": "Q11",
+      "primaryValidation": "Q153",
+      "independentValidation": "Q83",
+      "exclusion": "Q592",
+      "unresolved": "Q599",
+      "bindings": [
+        "tenantId",
+        "resourceId",
+        "operationId"
+      ],
+      "timeContext": "[start, end), normalized to UTC with explicit source clock limitations",
+      "positiveReviewBoundaries": [
+        "Q188",
+        "Q223"
+      ],
+      "proposition": "the bound control-plane operation on the bound cloud resource"
+    },
+    "Email": {
+      "entry": "Q5",
+      "alternate": "Q12",
+      "primaryValidation": "Q154",
+      "independentValidation": "Q147",
+      "exclusion": "Q593",
+      "unresolved": "Q600",
+      "bindings": [
+        "messageId",
+        "mailboxId"
+      ],
+      "timeContext": "[start, end), normalized to UTC with explicit source clock limitations",
+      "positiveReviewBoundaries": [
+        "Q161",
+        "Q224"
+      ],
+      "proposition": "delivery of the bound message to the bound mailbox"
+    },
+    "Application": {
+      "entry": "Q6",
+      "alternate": "Q13",
+      "primaryValidation": "Q85",
+      "independentValidation": "Q148",
+      "exclusion": "Q594",
+      "unresolved": "Q601",
+      "bindings": [
+        "applicationId",
+        "requestId"
+      ],
+      "timeContext": "[start, end), normalized to UTC with explicit source clock limitations",
+      "positiveReviewBoundaries": [
+        "Q190",
+        "Q225"
+      ],
+      "proposition": "handling of the bound request by the bound application"
+    },
+    "File": {
+      "entry": "Q7",
+      "alternate": "Q14",
+      "primaryValidation": "Q86",
+      "independentValidation": "Q149",
+      "exclusion": "Q595",
+      "unresolved": "Q602",
+      "bindings": [
+        "fileId",
+        "systemId"
+      ],
+      "timeContext": "[start, end), normalized to UTC with explicit source clock limitations",
+      "positiveReviewBoundaries": [
+        "Q184",
+        "Q219"
+      ],
+      "proposition": "presence of the bound file on the bound system"
+    }
+  },
+  "rules": {
+    "primary-match": {
+      "yes": "Examined material contains a record matching every bound subject field and the time interval; retain its identifier and event interpretation.",
+      "no": "The search of available examined material completed with no matching record; disclose its coverage limitations.",
+      "unknown": "Material cannot be examined or searched completely, required bindings or time are unresolved, or conflicting records prevent a determinate match."
+    },
+    "independent-match": {
+      "yes": "A separately originating record matches the same bound proposition, subjects and interval; retain source lineage and record reference.",
+      "no": "A completed search of available independent material found no matching independent record; this is not event exclusion.",
+      "unknown": "Independent evidence is unavailable, copied from the primary origin, redacted, conflicting, or cannot be matched to the bound context."
+    },
+    "primary-validation": {
+      "yes": "The selected primary matching record has a documented acceptable provenance/integrity basis and supports the bound event interpretation with no unresolved material contradiction.",
+      "no": "The provenance or interpretation assessment establishes that the selected record cannot support this proposition. Do not infer that the event never occurred.",
+      "unknown": "Provenance, interpretation, integrity, or a material contradiction remains unresolved."
+    },
+    "independent-validation": {
+      "yes": "The selected independent matching record has a documented acceptable provenance/integrity basis and supports the same bound event interpretation with no unresolved material contradiction.",
+      "no": "The independent record is demonstrated unsuitable to support the proposition. Do not infer event absence.",
+      "unknown": "The independent record cannot be validated, or material contradictions remain unresolved."
+    },
+    "bounded-exclusion": {
+      "yes": "No matching record plus an evidenced, applicable, continuous and complete coverage/search basis excludes this specific event only within the bound context.",
+      "no": "A known coverage gap, unsuitable event logging or counterevidence prevents exclusion. Preserve the event hypothesis as unresolved.",
+      "unknown": "The coverage/search basis cannot be assessed or necessary bounds are unresolved. Preserve uncertainty."
+    },
+    "unresolved-stop": {
+      "yes": "At least one recorded material gap, unresolved contradiction, missing bound value or unverified source prevents resolving the event proposition.",
+      "no": "The current evidence resolves the proposition; the previous uncertain route needs an attributed reassessment rather than silent continuation.",
+      "unknown": "The evidence basis for characterizing the unresolved state itself is unavailable; record that limit and stop without a resolved finding."
+    }
+  },
+  "nodes": {
+    "Q1": {
+      "domain": "Identity",
+      "role": "entry",
+      "rule": "primary-match",
+      "boundSubjectFields": [
+        "principalId",
+        "identityAction"
+      ],
+      "requiredAssessmentRecord": [
+        "questionId",
+        "boundSubjects",
+        "timeInterval",
+        "evidenceReferences",
+        "method",
+        "answer",
+        "rationale",
+        "limitations"
+      ],
+      "predicate": "Does the examined evidence contain a record of the bound principal performing the bound identity action within the bound time interval?"
+    },
+    "Q8": {
+      "domain": "Identity",
+      "role": "alternate",
+      "rule": "independent-match",
+      "boundSubjectFields": [
+        "principalId",
+        "identityAction"
+      ],
+      "requiredAssessmentRecord": [
+        "questionId",
+        "boundSubjects",
+        "timeInterval",
+        "evidenceReferences",
+        "method",
+        "answer",
+        "rationale",
+        "limitations"
+      ],
+      "predicate": "Does an independent evidence source contain a record of the bound principal performing the bound identity action within the same bound time interval?"
+    },
+    "Q155": {
+      "domain": "Identity",
+      "role": "primaryValidation",
+      "rule": "primary-validation",
+      "boundSubjectFields": [
+        "principalId",
+        "identityAction"
+      ],
+      "requiredAssessmentRecord": [
+        "questionId",
+        "boundSubjects",
+        "timeInterval",
+        "evidenceReferences",
+        "method",
+        "answer",
+        "rationale",
+        "limitations"
+      ],
+      "predicate": "Is the primary record of the bound identity action by the bound principal within the bound time interval supported by verifiable provenance and event interpretation?"
+    },
+    "Q150": {
+      "domain": "Identity",
+      "role": "independentValidation",
+      "rule": "independent-validation",
+      "boundSubjectFields": [
+        "principalId",
+        "identityAction"
+      ],
+      "requiredAssessmentRecord": [
+        "questionId",
+        "boundSubjects",
+        "timeInterval",
+        "evidenceReferences",
+        "method",
+        "answer",
+        "rationale",
+        "limitations"
+      ],
+      "predicate": "Is the independent record of the bound identity action by the bound principal within the same bound time interval supported by verifiable provenance and event interpretation?"
+    },
+    "Q589": {
+      "domain": "Identity",
+      "role": "exclusion",
+      "rule": "bounded-exclusion",
+      "boundSubjectFields": [
+        "principalId",
+        "identityAction"
+      ],
+      "requiredAssessmentRecord": [
+        "questionId",
+        "boundSubjects",
+        "timeInterval",
+        "evidenceReferences",
+        "method",
+        "answer",
+        "rationale",
+        "limitations"
+      ],
+      "predicate": "Does the examined evidence support excluding the bound identity action by the bound principal within the bound time interval?"
+    },
+    "Q596": {
+      "domain": "Identity",
+      "role": "unresolved",
+      "rule": "unresolved-stop",
+      "boundSubjectFields": [
+        "principalId",
+        "identityAction"
+      ],
+      "requiredAssessmentRecord": [
+        "questionId",
+        "boundSubjects",
+        "timeInterval",
+        "evidenceReferences",
+        "method",
+        "answer",
+        "rationale",
+        "limitations"
+      ],
+      "predicate": "Is the bound identity action by the bound principal within the bound time interval unresolved because the evidence is incomplete, conflicting, or unverified?"
+    },
+    "Q2": {
+      "domain": "Host",
+      "role": "entry",
+      "rule": "primary-match",
+      "boundSubjectFields": [
+        "hostId",
+        "processId"
+      ],
+      "requiredAssessmentRecord": [
+        "questionId",
+        "boundSubjects",
+        "timeInterval",
+        "evidenceReferences",
+        "method",
+        "answer",
+        "rationale",
+        "limitations"
+      ],
+      "predicate": "Does the examined evidence contain a record of the bound process executing on the bound host within the bound time interval?"
+    },
+    "Q9": {
+      "domain": "Host",
+      "role": "alternate",
+      "rule": "independent-match",
+      "boundSubjectFields": [
+        "hostId",
+        "processId"
+      ],
+      "requiredAssessmentRecord": [
+        "questionId",
+        "boundSubjects",
+        "timeInterval",
+        "evidenceReferences",
+        "method",
+        "answer",
+        "rationale",
+        "limitations"
+      ],
+      "predicate": "Does an independent evidence source contain a record of the bound process executing on the bound host within the same bound time interval?"
+    },
+    "Q156": {
+      "domain": "Host",
+      "role": "primaryValidation",
+      "rule": "primary-validation",
+      "boundSubjectFields": [
+        "hostId",
+        "processId"
+      ],
+      "requiredAssessmentRecord": [
+        "questionId",
+        "boundSubjects",
+        "timeInterval",
+        "evidenceReferences",
+        "method",
+        "answer",
+        "rationale",
+        "limitations"
+      ],
+      "predicate": "Is the primary record of execution of the bound process on the bound host within the bound time interval supported by verifiable provenance and event interpretation?"
+    },
+    "Q151": {
+      "domain": "Host",
+      "role": "independentValidation",
+      "rule": "independent-validation",
+      "boundSubjectFields": [
+        "hostId",
+        "processId"
+      ],
+      "requiredAssessmentRecord": [
+        "questionId",
+        "boundSubjects",
+        "timeInterval",
+        "evidenceReferences",
+        "method",
+        "answer",
+        "rationale",
+        "limitations"
+      ],
+      "predicate": "Is the independent record of execution of the bound process on the bound host within the same bound time interval supported by verifiable provenance and event interpretation?"
+    },
+    "Q590": {
+      "domain": "Host",
+      "role": "exclusion",
+      "rule": "bounded-exclusion",
+      "boundSubjectFields": [
+        "hostId",
+        "processId"
+      ],
+      "requiredAssessmentRecord": [
+        "questionId",
+        "boundSubjects",
+        "timeInterval",
+        "evidenceReferences",
+        "method",
+        "answer",
+        "rationale",
+        "limitations"
+      ],
+      "predicate": "Does the examined evidence support excluding execution of the bound process on the bound host within the bound time interval?"
+    },
+    "Q597": {
+      "domain": "Host",
+      "role": "unresolved",
+      "rule": "unresolved-stop",
+      "boundSubjectFields": [
+        "hostId",
+        "processId"
+      ],
+      "requiredAssessmentRecord": [
+        "questionId",
+        "boundSubjects",
+        "timeInterval",
+        "evidenceReferences",
+        "method",
+        "answer",
+        "rationale",
+        "limitations"
+      ],
+      "predicate": "Is execution of the bound process on the bound host within the bound time interval unresolved because the evidence is incomplete, conflicting, or unverified?"
+    },
+    "Q3": {
+      "domain": "Network",
+      "role": "entry",
+      "rule": "primary-match",
+      "boundSubjectFields": [
+        "sourceEndpoint",
+        "destinationEndpoint",
+        "communicationId"
+      ],
+      "requiredAssessmentRecord": [
+        "questionId",
+        "boundSubjects",
+        "timeInterval",
+        "evidenceReferences",
+        "method",
+        "answer",
+        "rationale",
+        "limitations"
+      ],
+      "predicate": "Does the examined evidence contain a record of the bound communication between the bound endpoints within the bound time interval?"
+    },
+    "Q10": {
+      "domain": "Network",
+      "role": "alternate",
+      "rule": "independent-match",
+      "boundSubjectFields": [
+        "sourceEndpoint",
+        "destinationEndpoint",
+        "communicationId"
+      ],
+      "requiredAssessmentRecord": [
+        "questionId",
+        "boundSubjects",
+        "timeInterval",
+        "evidenceReferences",
+        "method",
+        "answer",
+        "rationale",
+        "limitations"
+      ],
+      "predicate": "Does an independent evidence source contain a record of the bound communication between the bound endpoints within the same bound time interval?"
+    },
+    "Q152": {
+      "domain": "Network",
+      "role": "primaryValidation",
+      "rule": "primary-validation",
+      "boundSubjectFields": [
+        "sourceEndpoint",
+        "destinationEndpoint",
+        "communicationId"
+      ],
+      "requiredAssessmentRecord": [
+        "questionId",
+        "boundSubjects",
+        "timeInterval",
+        "evidenceReferences",
+        "method",
+        "answer",
+        "rationale",
+        "limitations"
+      ],
+      "predicate": "Is the primary record of the bound communication between the bound endpoints within the bound time interval supported by verifiable provenance and event interpretation?"
+    },
+    "Q82": {
+      "domain": "Network",
+      "role": "independentValidation",
+      "rule": "independent-validation",
+      "boundSubjectFields": [
+        "sourceEndpoint",
+        "destinationEndpoint",
+        "communicationId"
+      ],
+      "requiredAssessmentRecord": [
+        "questionId",
+        "boundSubjects",
+        "timeInterval",
+        "evidenceReferences",
+        "method",
+        "answer",
+        "rationale",
+        "limitations"
+      ],
+      "predicate": "Is the independent record of the bound communication between the bound endpoints within the same bound time interval supported by verifiable provenance and event interpretation?"
+    },
+    "Q591": {
+      "domain": "Network",
+      "role": "exclusion",
+      "rule": "bounded-exclusion",
+      "boundSubjectFields": [
+        "sourceEndpoint",
+        "destinationEndpoint",
+        "communicationId"
+      ],
+      "requiredAssessmentRecord": [
+        "questionId",
+        "boundSubjects",
+        "timeInterval",
+        "evidenceReferences",
+        "method",
+        "answer",
+        "rationale",
+        "limitations"
+      ],
+      "predicate": "Does the examined evidence support excluding the bound communication between the bound endpoints within the bound time interval?"
+    },
+    "Q598": {
+      "domain": "Network",
+      "role": "unresolved",
+      "rule": "unresolved-stop",
+      "boundSubjectFields": [
+        "sourceEndpoint",
+        "destinationEndpoint",
+        "communicationId"
+      ],
+      "requiredAssessmentRecord": [
+        "questionId",
+        "boundSubjects",
+        "timeInterval",
+        "evidenceReferences",
+        "method",
+        "answer",
+        "rationale",
+        "limitations"
+      ],
+      "predicate": "Is the bound communication between the bound endpoints within the bound time interval unresolved because the evidence is incomplete, conflicting, or unverified?"
+    },
+    "Q4": {
+      "domain": "Cloud",
+      "role": "entry",
+      "rule": "primary-match",
+      "boundSubjectFields": [
+        "tenantId",
+        "resourceId",
+        "operationId"
+      ],
+      "requiredAssessmentRecord": [
+        "questionId",
+        "boundSubjects",
+        "timeInterval",
+        "evidenceReferences",
+        "method",
+        "answer",
+        "rationale",
+        "limitations"
+      ],
+      "predicate": "Does the examined evidence contain a record of the bound control-plane operation on the bound cloud resource within the bound time interval?"
+    },
+    "Q11": {
+      "domain": "Cloud",
+      "role": "alternate",
+      "rule": "independent-match",
+      "boundSubjectFields": [
+        "tenantId",
+        "resourceId",
+        "operationId"
+      ],
+      "requiredAssessmentRecord": [
+        "questionId",
+        "boundSubjects",
+        "timeInterval",
+        "evidenceReferences",
+        "method",
+        "answer",
+        "rationale",
+        "limitations"
+      ],
+      "predicate": "Does an independent evidence source contain a record of the bound control-plane operation on the bound cloud resource within the same bound time interval?"
+    },
+    "Q153": {
+      "domain": "Cloud",
+      "role": "primaryValidation",
+      "rule": "primary-validation",
+      "boundSubjectFields": [
+        "tenantId",
+        "resourceId",
+        "operationId"
+      ],
+      "requiredAssessmentRecord": [
+        "questionId",
+        "boundSubjects",
+        "timeInterval",
+        "evidenceReferences",
+        "method",
+        "answer",
+        "rationale",
+        "limitations"
+      ],
+      "predicate": "Is the primary record of the bound control-plane operation on the bound cloud resource within the bound time interval supported by verifiable provenance and event interpretation?"
+    },
+    "Q83": {
+      "domain": "Cloud",
+      "role": "independentValidation",
+      "rule": "independent-validation",
+      "boundSubjectFields": [
+        "tenantId",
+        "resourceId",
+        "operationId"
+      ],
+      "requiredAssessmentRecord": [
+        "questionId",
+        "boundSubjects",
+        "timeInterval",
+        "evidenceReferences",
+        "method",
+        "answer",
+        "rationale",
+        "limitations"
+      ],
+      "predicate": "Is the independent record of the bound control-plane operation on the bound cloud resource within the same bound time interval supported by verifiable provenance and event interpretation?"
+    },
+    "Q592": {
+      "domain": "Cloud",
+      "role": "exclusion",
+      "rule": "bounded-exclusion",
+      "boundSubjectFields": [
+        "tenantId",
+        "resourceId",
+        "operationId"
+      ],
+      "requiredAssessmentRecord": [
+        "questionId",
+        "boundSubjects",
+        "timeInterval",
+        "evidenceReferences",
+        "method",
+        "answer",
+        "rationale",
+        "limitations"
+      ],
+      "predicate": "Does the examined evidence support excluding the bound control-plane operation on the bound cloud resource within the bound time interval?"
+    },
+    "Q599": {
+      "domain": "Cloud",
+      "role": "unresolved",
+      "rule": "unresolved-stop",
+      "boundSubjectFields": [
+        "tenantId",
+        "resourceId",
+        "operationId"
+      ],
+      "requiredAssessmentRecord": [
+        "questionId",
+        "boundSubjects",
+        "timeInterval",
+        "evidenceReferences",
+        "method",
+        "answer",
+        "rationale",
+        "limitations"
+      ],
+      "predicate": "Is the bound control-plane operation on the bound cloud resource within the bound time interval unresolved because the evidence is incomplete, conflicting, or unverified?"
+    },
+    "Q5": {
+      "domain": "Email",
+      "role": "entry",
+      "rule": "primary-match",
+      "boundSubjectFields": [
+        "messageId",
+        "mailboxId"
+      ],
+      "requiredAssessmentRecord": [
+        "questionId",
+        "boundSubjects",
+        "timeInterval",
+        "evidenceReferences",
+        "method",
+        "answer",
+        "rationale",
+        "limitations"
+      ],
+      "predicate": "Does the examined evidence contain a record of the bound message being delivered to the bound mailbox within the bound time interval?"
+    },
+    "Q12": {
+      "domain": "Email",
+      "role": "alternate",
+      "rule": "independent-match",
+      "boundSubjectFields": [
+        "messageId",
+        "mailboxId"
+      ],
+      "requiredAssessmentRecord": [
+        "questionId",
+        "boundSubjects",
+        "timeInterval",
+        "evidenceReferences",
+        "method",
+        "answer",
+        "rationale",
+        "limitations"
+      ],
+      "predicate": "Does an independent evidence source contain a record of the bound message being delivered to the bound mailbox within the same bound time interval?"
+    },
+    "Q154": {
+      "domain": "Email",
+      "role": "primaryValidation",
+      "rule": "primary-validation",
+      "boundSubjectFields": [
+        "messageId",
+        "mailboxId"
+      ],
+      "requiredAssessmentRecord": [
+        "questionId",
+        "boundSubjects",
+        "timeInterval",
+        "evidenceReferences",
+        "method",
+        "answer",
+        "rationale",
+        "limitations"
+      ],
+      "predicate": "Is the primary record of delivery of the bound message to the bound mailbox within the bound time interval supported by verifiable provenance and event interpretation?"
+    },
+    "Q147": {
+      "domain": "Email",
+      "role": "independentValidation",
+      "rule": "independent-validation",
+      "boundSubjectFields": [
+        "messageId",
+        "mailboxId"
+      ],
+      "requiredAssessmentRecord": [
+        "questionId",
+        "boundSubjects",
+        "timeInterval",
+        "evidenceReferences",
+        "method",
+        "answer",
+        "rationale",
+        "limitations"
+      ],
+      "predicate": "Is the independent record of delivery of the bound message to the bound mailbox within the same bound time interval supported by verifiable provenance and event interpretation?"
+    },
+    "Q593": {
+      "domain": "Email",
+      "role": "exclusion",
+      "rule": "bounded-exclusion",
+      "boundSubjectFields": [
+        "messageId",
+        "mailboxId"
+      ],
+      "requiredAssessmentRecord": [
+        "questionId",
+        "boundSubjects",
+        "timeInterval",
+        "evidenceReferences",
+        "method",
+        "answer",
+        "rationale",
+        "limitations"
+      ],
+      "predicate": "Does the examined evidence support excluding delivery of the bound message to the bound mailbox within the bound time interval?"
+    },
+    "Q600": {
+      "domain": "Email",
+      "role": "unresolved",
+      "rule": "unresolved-stop",
+      "boundSubjectFields": [
+        "messageId",
+        "mailboxId"
+      ],
+      "requiredAssessmentRecord": [
+        "questionId",
+        "boundSubjects",
+        "timeInterval",
+        "evidenceReferences",
+        "method",
+        "answer",
+        "rationale",
+        "limitations"
+      ],
+      "predicate": "Is delivery of the bound message to the bound mailbox within the bound time interval unresolved because the evidence is incomplete, conflicting, or unverified?"
+    },
+    "Q6": {
+      "domain": "Application",
+      "role": "entry",
+      "rule": "primary-match",
+      "boundSubjectFields": [
+        "applicationId",
+        "requestId"
+      ],
+      "requiredAssessmentRecord": [
+        "questionId",
+        "boundSubjects",
+        "timeInterval",
+        "evidenceReferences",
+        "method",
+        "answer",
+        "rationale",
+        "limitations"
+      ],
+      "predicate": "Does the examined evidence contain a record of the bound application handling the bound request within the bound time interval?"
+    },
+    "Q13": {
+      "domain": "Application",
+      "role": "alternate",
+      "rule": "independent-match",
+      "boundSubjectFields": [
+        "applicationId",
+        "requestId"
+      ],
+      "requiredAssessmentRecord": [
+        "questionId",
+        "boundSubjects",
+        "timeInterval",
+        "evidenceReferences",
+        "method",
+        "answer",
+        "rationale",
+        "limitations"
+      ],
+      "predicate": "Does an independent evidence source contain a record of the bound application handling the bound request within the same bound time interval?"
+    },
+    "Q85": {
+      "domain": "Application",
+      "role": "primaryValidation",
+      "rule": "primary-validation",
+      "boundSubjectFields": [
+        "applicationId",
+        "requestId"
+      ],
+      "requiredAssessmentRecord": [
+        "questionId",
+        "boundSubjects",
+        "timeInterval",
+        "evidenceReferences",
+        "method",
+        "answer",
+        "rationale",
+        "limitations"
+      ],
+      "predicate": "Is the primary record of handling of the bound request by the bound application within the bound time interval supported by verifiable provenance and event interpretation?"
+    },
+    "Q148": {
+      "domain": "Application",
+      "role": "independentValidation",
+      "rule": "independent-validation",
+      "boundSubjectFields": [
+        "applicationId",
+        "requestId"
+      ],
+      "requiredAssessmentRecord": [
+        "questionId",
+        "boundSubjects",
+        "timeInterval",
+        "evidenceReferences",
+        "method",
+        "answer",
+        "rationale",
+        "limitations"
+      ],
+      "predicate": "Is the independent record of handling of the bound request by the bound application within the same bound time interval supported by verifiable provenance and event interpretation?"
+    },
+    "Q594": {
+      "domain": "Application",
+      "role": "exclusion",
+      "rule": "bounded-exclusion",
+      "boundSubjectFields": [
+        "applicationId",
+        "requestId"
+      ],
+      "requiredAssessmentRecord": [
+        "questionId",
+        "boundSubjects",
+        "timeInterval",
+        "evidenceReferences",
+        "method",
+        "answer",
+        "rationale",
+        "limitations"
+      ],
+      "predicate": "Does the examined evidence support excluding handling of the bound request by the bound application within the bound time interval?"
+    },
+    "Q601": {
+      "domain": "Application",
+      "role": "unresolved",
+      "rule": "unresolved-stop",
+      "boundSubjectFields": [
+        "applicationId",
+        "requestId"
+      ],
+      "requiredAssessmentRecord": [
+        "questionId",
+        "boundSubjects",
+        "timeInterval",
+        "evidenceReferences",
+        "method",
+        "answer",
+        "rationale",
+        "limitations"
+      ],
+      "predicate": "Is handling of the bound request by the bound application within the bound time interval unresolved because the evidence is incomplete, conflicting, or unverified?"
+    },
+    "Q7": {
+      "domain": "File",
+      "role": "entry",
+      "rule": "primary-match",
+      "boundSubjectFields": [
+        "fileId",
+        "systemId"
+      ],
+      "requiredAssessmentRecord": [
+        "questionId",
+        "boundSubjects",
+        "timeInterval",
+        "evidenceReferences",
+        "method",
+        "answer",
+        "rationale",
+        "limitations"
+      ],
+      "predicate": "Does the examined evidence contain a record of the bound file being present on the bound system within the bound time interval?"
+    },
+    "Q14": {
+      "domain": "File",
+      "role": "alternate",
+      "rule": "independent-match",
+      "boundSubjectFields": [
+        "fileId",
+        "systemId"
+      ],
+      "requiredAssessmentRecord": [
+        "questionId",
+        "boundSubjects",
+        "timeInterval",
+        "evidenceReferences",
+        "method",
+        "answer",
+        "rationale",
+        "limitations"
+      ],
+      "predicate": "Does an independent evidence source contain a record of the bound file being present on the bound system within the same bound time interval?"
+    },
+    "Q86": {
+      "domain": "File",
+      "role": "primaryValidation",
+      "rule": "primary-validation",
+      "boundSubjectFields": [
+        "fileId",
+        "systemId"
+      ],
+      "requiredAssessmentRecord": [
+        "questionId",
+        "boundSubjects",
+        "timeInterval",
+        "evidenceReferences",
+        "method",
+        "answer",
+        "rationale",
+        "limitations"
+      ],
+      "predicate": "Is the primary record of presence of the bound file on the bound system within the bound time interval supported by verifiable provenance and event interpretation?"
+    },
+    "Q149": {
+      "domain": "File",
+      "role": "independentValidation",
+      "rule": "independent-validation",
+      "boundSubjectFields": [
+        "fileId",
+        "systemId"
+      ],
+      "requiredAssessmentRecord": [
+        "questionId",
+        "boundSubjects",
+        "timeInterval",
+        "evidenceReferences",
+        "method",
+        "answer",
+        "rationale",
+        "limitations"
+      ],
+      "predicate": "Is the independent record of presence of the bound file on the bound system within the same bound time interval supported by verifiable provenance and event interpretation?"
+    },
+    "Q595": {
+      "domain": "File",
+      "role": "exclusion",
+      "rule": "bounded-exclusion",
+      "boundSubjectFields": [
+        "fileId",
+        "systemId"
+      ],
+      "requiredAssessmentRecord": [
+        "questionId",
+        "boundSubjects",
+        "timeInterval",
+        "evidenceReferences",
+        "method",
+        "answer",
+        "rationale",
+        "limitations"
+      ],
+      "predicate": "Does the examined evidence support excluding presence of the bound file on the bound system within the bound time interval?"
+    },
+    "Q602": {
+      "domain": "File",
+      "role": "unresolved",
+      "rule": "unresolved-stop",
+      "boundSubjectFields": [
+        "fileId",
+        "systemId"
+      ],
+      "requiredAssessmentRecord": [
+        "questionId",
+        "boundSubjects",
+        "timeInterval",
+        "evidenceReferences",
+        "method",
+        "answer",
+        "rationale",
+        "limitations"
+      ],
+      "predicate": "Is presence of the bound file on the bound system within the bound time interval unresolved because the evidence is incomplete, conflicting, or unverified?"
+    }
+  },
+  "graphSha256": "ed390a26b887e560f2224bbd577ba282e2fc331bb5c1293f6002413da7a72a0d"
+}

@@ -583,15 +583,17 @@ def build_graph_payload(
     nodes: list[dict[str, Any]],
     edges: list[dict[str, Any]],
     entry_node_ids: list[str],
+    schema_version: str | None = None,
 ) -> dict[str, Any]:
     parse_version(version)
+    parse_version(schema_version or version)
 
     return {
         "generatedAt": canonical_generated_at(version),
         "namespace": "tensor",
         "product": "core",
         "version": version,
-        "schemaVersion": version,
+        "schemaVersion": schema_version or version,
         "locale": "en-US",
         "entryNodeIds": sorted(dict.fromkeys(entry_node_ids), key=node_numeric_id),
         "nodes": normalize_nodes(nodes),

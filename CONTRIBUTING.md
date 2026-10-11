@@ -36,7 +36,8 @@ python3 scripts/validate_release_contract.py
 For legacy graph changes, also run:
 
 ```sh
-python3 scripts/lint_core_graph_quality.py --graph-path drafts/core/tensor.core.graph.json --entry-path drafts/core/source/entry_nodes.json --output-dir /tmp/tensor-draft-quality
+python3 scripts/evaluate_entry_scenarios.py
+python3 scripts/lint_core_graph_quality.py --graph-path drafts/core/tensor.core.graph.json --entry-path drafts/core/source/entry_nodes.json --draft-review --output-dir /tmp/tensor-draft-quality
 ```
 
 Generated candidate schemas must match `schemas.mjs`. Regenerate with `node core/v0.1.0-draft.1/scripts/write-schemas.mjs` and include source plus generated changes. Do not modify existing versioned release artifacts to make a test pass. Do not regenerate stable checksums after changing historical bytes.
