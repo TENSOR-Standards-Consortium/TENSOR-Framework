@@ -10,7 +10,7 @@ The project preserves its existing question graphs and introduces a **Core inves
 - **Implementers:** use the [candidate binding and API](core/v0.1.0-draft.1/README.md), [schemas](core/v0.1.0-draft.1/schemas/), and [check coverage](core/v0.1.0-draft.1/coverage.md).
 - **Reviewers:** use the [review packet](docs/reviewer-packet.md), [38 proposed requirements](proposals/founding-core-v0.1.0/01-core-contract.md), and [standards crosswalk](proposals/founding-core-v0.1.0/03-standards-crosswalk.md).
 - **Contributors:** see [CONTRIBUTING](CONTRIBUTING.md), [governance status](GOVERNANCE.md), and the [90-day adoption work plan](docs/adoption-plan.md).
-- **Institutional reviewers and prospective collaborators:** see the [prioritized next-stage plan](docs/next-stage-plan.md) for review gates, bounded participation and current limitations.
+- **Institutional reviewers and prospective collaborators:** start with [frozen review 2026-10-11.1](review/2026-10-11.1/README.md), its first-hour walkthrough, source archive and review form. See [accepted bootstrap stewardship](docs/stewardship.md) and the [next-stage plan](docs/next-stage-plan.md).
 
 The [public website](https://tensor-standards.pages.dev) is live in the dedicated TENSOR Cloudflare account, with automatic publication from the website repository's `main` branch. This repository holds specification source and immutable graph releases. A branch or a passing local test is not proof that a later change has been deployed.
 
