@@ -14,8 +14,12 @@ class CoverageInventoryTests(unittest.TestCase):
         self.assertEqual(json.loads((ROOT / 'drafts/core/coverage-inventory.json').read_text()), data)
         rows = data['originalQuestions']
         self.assertEqual(len({r['sourceId'] for r in rows}), 588)
-        self.assertEqual(data['summary']['lineage'], {'entry-evidence-repair': 49, 'positive-evidence-repair': 88, 'same-id-rewritten': 82, 'technical-reduction': 369})
+        self.assertEqual(data['summary']['lineage'], {'restored-with-evidence-repair': 506, 'same-id-rewritten': 82})
+        from collections import Counter
+        self.assertEqual(Counter(r['firstRemovedAt'] for r in rows), {None: 82, 'entry-evidence-repair': 49, 'positive-evidence-repair': 88, 'technical-reduction': 369})
         self.assertEqual(len(data['newQuestionIds']), 21)
-        self.assertEqual(sum(data['summary']['absentByDomain'].values()), 506)
-        self.assertTrue(all(r['semanticReview'] == 'pending' and r['disposition'] is None for r in rows))
+        self.assertEqual(sum(data['summary']['absentByDomain'].values()), 0)
+        self.assertEqual(data['summary']['authorReviewedDispositions'], 588)
+        self.assertEqual(data['summary']['approvedSemanticDispositions'], 0)
+        self.assertTrue(all(r['semanticReview'] == 'author-reviewed-independent-review-pending' and r['disposition'] and r['issues'] and r['scenarioRefs'] for r in rows))
         self.assertTrue(all(r['textChanged'] for r in rows if r['activeId']))

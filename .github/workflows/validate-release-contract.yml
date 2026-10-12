@@ -62,6 +62,11 @@ jobs:
           --graph-path drafts/core/tensor.core.graph.json
           --entry-path drafts/core/source/entry_nodes.json
           --output-dir "${{ runner.temp }}/tensor-draft-quality"
+      - name: Verify reproducible author review and complete coverage ledger
+        run: |
+          python3 scripts/restore_original_questions.py --check
+          python3 scripts/audit_graph_coverage.py --check
+          python3 scripts/evaluate_entry_scenarios.py
       - name: Retain digest-bound draft reports
         if: always()
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2

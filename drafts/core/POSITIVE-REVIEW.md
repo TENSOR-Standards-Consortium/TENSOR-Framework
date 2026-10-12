@@ -1,5 +1,7 @@
 # Evidence-bound positive routes
 
+Historical review of the 2026-10-11 repair. The current draft adds the [2026-10-12 original-question restoration](reviews/2026-10-12-restoration/README.md) while preserving these repaired paths. Counts below describe the earlier revision.
+
 Policy update, 2026-10-11: this records the positive-route repair before the topology-gate decision. The graph, criteria and scenario suite remain unchanged. [Graph assurance policy `tensor-graph-assurance/1`](../../standards/graph-assurance-policy.md) supersedes the historical strict-gate discussion below; default lint now blocks on structure and evidence-profile checks while retaining the old numeric thresholds as diagnostics. The [topology review](reviews/2026-10-11-topology-policy/README.md) preserves the original document.
 
 Working graph **0.20261011b** contains **103 questions and 225 edges**, using unchanged schema **0.20260206e**. Every active question now has a card in the digest-pinned [public evidence criteria](entry-evidence-criteria.json). This is an unpromoted content revision, not a schema change or published standard release. The separate investigation-record candidate remains unchanged.

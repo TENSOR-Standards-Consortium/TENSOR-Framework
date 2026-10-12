@@ -34,7 +34,7 @@ The runtime is usable in Node and browsers without third-party runtime dependenc
 | Track | Current artifacts | Meaning |
 | --- | --- | --- |
 | Existing graph releases | Stable graph/schema `0.20260206e`; 588 questions and 1,554 edges | Reusable investigative question definitions under their original release contract |
-| Existing graph drafts | `0.20261011b`; 103 questions and 225 edges, unchanged schema `0.20260206e` | [Evidence-bound entry foundation](drafts/core/ENTRY-REVIEW.md) and [positive-route review](drafts/core/POSITIVE-REVIEW.md); 252 author-side scenarios |
+| Existing graph drafts | `0.20261012a`; 609 questions and 1,554 edges, unchanged schema `0.20260206e` | [Original-node analysis and restoration](drafts/core/reviews/2026-10-12-restoration/README.md); 1,791 author-side scenarios; independent semantic review pending |
 | Founding proposal | `proposals/founding-core-v0.1.0/`; proposal `0.1.0` | Public purpose, logical contract, and proposed governance |
 | Core implementation candidate | `core/v0.1.0-draft.1/`; binding `0.1.0-draft.1` | Trial JSON representation, validator, CLI, schemas, and synthetic records |
 
