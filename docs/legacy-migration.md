@@ -1,6 +1,8 @@
 # Legacy graph preservation and migration inventory
 
-TENSOR keeps the existing graph work. The release catalog currently selects graph/schema `0.20260206e` (588 questions, 1,554 edges); the separate working graph is `0.20260212e` (219 questions, 576 edges). Those artifacts retain their original contracts and identifiers.
+TENSOR keeps the existing graph work. The release catalog currently selects graph/schema `0.20260206e` (588 questions, 1,554 edges); the separate working graph is `0.20261011b` (103 questions, 225 edges). Those artifacts retain their original contracts and identifiers.
+
+The active draft includes 82 rewritten original IDs and 21 new questions; 506 original questions are absent. The earlier 219-question draft was an intermediate reduction, not the current graph. See the [coverage inventory and migration roadmap](graph-coverage-roadmap.md). Preservation does not establish equivalent coverage.
 
 The new candidate adds portable records of actual investigative reasoning. It does not automatically migrate the graphs or fabricate completed investigations from reusable questions.
 
