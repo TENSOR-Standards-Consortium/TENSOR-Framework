@@ -80,3 +80,21 @@ class IndependentRouteTests(unittest.TestCase):
             'basis':'Explicit same-domain context adapters; target prerequisites are re-evaluated'}
         errors, _, _ = validate_and_measure(graph['nodes'], graph['edges'], graph['entryNodeIds'], set())
         self.assertTrue(any('unrecognized generic evidence hub' in e for e in errors))
+
+    def test_pattern_cannot_substitute_a_separate_technical_source_assessment(self):
+        from test_independent_investigations import investigation, retained_row
+        from restored_evidence import answer
+        for domain, bindings in self.criteria['domains'].items():
+            pattern_id, pattern = next((nid, c) for nid, c in self.criteria['nodes'].items()
+                                       if c['domain'] == domain and c.get('assessmentKind') == 'behavior-pattern')
+            case = investigation(domain, pattern, self.criteria)
+            case['analysis'].pop('attribution')
+            case['retention']['assessments'] = [retained_row(nid, case) for nid in
+                (bindings['classification'][0], bindings['scope'][0], bindings['correlation'], pattern_id, bindings['impact'])]
+            terminal = self.criteria['nodes'][bindings['assessed']]
+            with self.subTest(domain=domain):
+                self.assertEqual('unknown', answer(terminal, case, self.criteria)[0])
+                source_unknown = retained_row(bindings['attribution'], case, 'unknown')
+                source_unknown['limitations'] = ['No technical-source discriminator; pattern does not identify its source']
+                case['retention']['assessments'].append(source_unknown)
+                self.assertEqual('yes', answer(terminal, case, self.criteria)[0])

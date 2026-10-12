@@ -287,8 +287,8 @@ def base_resumption_answer(card, case, criteria):
         retained = {}
         for row in case["retention"]["assessments"] + case["retention"].get("prerequisiteAssessments", []):
             previous = criteria["nodes"][row["nodeId"]]
-            if previous.get("assessmentKind") in ("additional-entities", "dependencies"):
-                continue  # Optional scope questions do not assert the mandatory scope-bound answer.
+            if previous.get("assessmentKind") in ("additional-entities", "dependencies", "behavior-pattern", "additional-impact"):
+                continue  # Distinct assessment families cannot substitute mandatory findings.
             stage = previous.get("stage", stages.get(previous["role"], previous["role"]))
             retained.setdefault(stage, []).append(row["answer"])
         if ("yes" not in retained.get("classify", []) or "yes" not in retained.get("scope", [])

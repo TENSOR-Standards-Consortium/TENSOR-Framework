@@ -320,7 +320,7 @@
     },
     {
       "path": "scripts/restored_evidence.py",
-      "sha256": "a9b2ebbbd514c8d09da6acf92d337d30439ad06e4693ad8e8c2ca0d2a1277995"
+      "sha256": "d6ef56ab778f2f472484603c5be39c22b0c986603a62b706f5a000c83d0882a0"
     },
     {
       "path": "scripts/evaluate_entry_scenarios.py",
@@ -344,7 +344,7 @@
     },
     {
       "path": "tests/legacy/test_independent_routes.py",
-      "sha256": "fa7980af443b31905496133cdedc731e7d8498b93b400c363fd4b23a4340c100"
+      "sha256": "80d52f6ae3880ef58ab4fa8cd552647fc55668546e91ddadea4cd671f935d4ec"
     }
   ],
   "eventProfileLimitations": {
