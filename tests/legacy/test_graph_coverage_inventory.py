@@ -21,5 +21,6 @@ class CoverageInventoryTests(unittest.TestCase):
         self.assertEqual(sum(data['summary']['absentByDomain'].values()), 0)
         self.assertEqual(data['summary']['authorReviewedDispositions'], 588)
         self.assertEqual(data['summary']['approvedSemanticDispositions'], 0)
-        self.assertTrue(all(r['semanticReview'] == 'author-reviewed-independent-review-pending' and r['disposition'] and r['issues'] and r['scenarioRefs'] for r in rows))
+        self.assertTrue(all(r['semanticReview'] == 'author-reviewed-agent-audit-external-review-pending' and r['disposition'] and r['issues'] and r['scenarioRefs']
+                            and r['applicabilityLimitations'] and r['agentReviewRef'] for r in rows))
         self.assertTrue(all(r['textChanged'] for r in rows if r['activeId']))

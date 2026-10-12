@@ -42,6 +42,18 @@ FANIN_EXCEPTION_LIMIT = 12
 # Terminal (sink) nodes can tolerate higher fan-in because they do not introduce new branching
 # options for investigators; consolidating terminal nodes reduces graph surface area.
 FANIN_TERMINAL_LIMIT = 24
+# Versioned, identity-specific capacities for the general evidence questions.
+# These hubs replace semantically unrelated load-balanced facet routes. They
+# require explicit context adapters and independent target prerequisites, checked
+# by restoration_assurance. No other node receives these prospective capacities.
+GENERIC_HUB_LIMITS = {
+    "Q85": 9, "Q86": 9, "Q152": 11, "Q153": 10, "Q154": 10, "Q156": 12,
+    "Q159": 20, "Q161": 18, "Q184": 17, "Q190": 17, "Q223": 20, "Q233": 26,
+    "Q245": 9, "Q256": 10, "Q279": 9, "Q299": 9, "Q323": 16,
+    "Q345": 18, "Q346": 13, "Q348": 23, "Q356": 26, "Q379": 22,
+    "Q417": 27, "Q425": 27, "Q426": 27, "Q430": 24, "Q439": 30, "Q440": 27,
+    "Q492": 21, "Q493": 21, "Q506": 18, "Q507": 15, "Q508": 21, "Q509": 12, "Q581": 18,
+}
 
 NODE_ID_RE = re.compile(r"^Q[1-9]\d*$")
 EDGE_ID_RE = re.compile(r"^(Q[1-9]\d*)-(yes|no|unknown)-(Q[1-9]\d*)$")
@@ -490,6 +502,14 @@ def validate_and_measure(
             limit = FANIN_TERMINAL_LIMIT
         else:
             limit = FANIN_EXCEPTION_LIMIT if node_id in fanin_exception_set else FANIN_DEFAULT_LIMIT
+            hub = node_by_id[node_id].get("extensions", {}).get("tensor:genericEvidenceHub")
+            if hub is not None:
+                expected = {"profile": "tensor-restored-evidence/2", "maxFanIn": GENERIC_HUB_LIMITS.get(node_id),
+                            "basis": "Explicit same-domain context adapters; target prerequisites are re-evaluated"}
+                if node_id not in GENERIC_HUB_LIMITS or hub != expected:
+                    errors.append(f"{node_id}: unrecognized generic evidence hub capacity")
+                else:
+                    limit = GENERIC_HUB_LIMITS[node_id]
             if node_id in fanin_exception_set and fanin > FANIN_DEFAULT_LIMIT:
                 fanin_exception_nodes_used.append(node_id)
         if fanin > limit:
@@ -527,6 +547,8 @@ def validate_and_measure(
         "maxFanIn": max_fanin,
         "fanInExceptionNodeIds": sorted(fanin_exception_set, key=node_numeric_id),
         "fanInExceptionNodesUsed": sorted(fanin_exception_nodes_used, key=node_numeric_id),
+        "genericEvidenceHubLimits": {nid: GENERIC_HUB_LIMITS[nid] for nid in GENERIC_HUB_LIMITS
+                                    if node_by_id.get(nid, {}).get("extensions", {}).get("tensor:genericEvidenceHub")},
         "branchDeterminism": {
             "requiredDecisions": DECISIONS,
             "violations": branch_failures,

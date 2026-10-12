@@ -117,6 +117,11 @@ def bound_assessment(assessment, case, hypothesis_id):
             and assessment.get("hypothesisId") == hypothesis_id)
 
 
+def subject_identity(criteria, domain, subjects):
+    """Identity is the declared field projection; arbitrary metadata adds no entity."""
+    return tuple(subjects.get(field) for field in criteria["domains"][domain]["bindings"])
+
+
 def fact(record, name):
     """Return a supplied assessed fact; never coerce unknown values or types."""
     if not isinstance(name, str) or not name.strip() or not isinstance(record, dict):
@@ -180,8 +185,26 @@ def downstream_answer(role, case, selected, criteria):
                 return "unknown", "An entity scope disposition is incomplete"
             if entity["disposition"] != "unknown" and not references(entity.get("evidenceRefs")):
                 return "unknown", "A scope inclusion or exclusion has no supporting reference"
+            if "subjects" in entity:
+                fields = criteria["domains"][entity["domain"]]["bindings"]
+                if (not isinstance(entity["subjects"], dict) or not all(named(entity["subjects"].get(k)) for k in fields)
+                        or entity["subjects"][fields[0]] != entity["subjectId"]):
+                    return "unknown", "A composite scope identity must retain all declared endpoint fields"
+        dispositions = {}
+        partial_identities = {}
+        for entity in entities:
+            identity = (entity["domain"], subject_identity(criteria, entity["domain"], entity["subjects"]) if "subjects" in entity else entity["subjectId"])
+            if identity in dispositions and dispositions[identity] != entity["disposition"]:
+                return "unknown", "Conflicting dispositions for one entity require reassessment"
+            dispositions[identity] = entity["disposition"]
+            partial_id = (entity["domain"], entity["subjectId"])
+            previous = partial_identities.setdefault(partial_id, [])
+            if any(e["disposition"] != entity["disposition"] and ("subjects" not in e or "subjects" not in entity) for e in previous):
+                return "unknown", "Conflicting partial and composite identities overlap; disambiguate the scope records"
+            previous.append(entity)
         source_subject = case["bindings"][criteria["domains"][case["domain"]]["bindings"][0]]
-        source_entities = [e for e in entities if e["domain"] == case["domain"] and e["subjectId"] == source_subject]
+        source_entities = [e for e in entities if e["domain"] == case["domain"] and e["subjectId"] == source_subject
+                           and ("subjects" not in e or subject_identity(criteria, case["domain"], e["subjects"]) == subject_identity(criteria, case["domain"], case["bindings"]))]
         if any(e["disposition"] == "excluded" for e in source_entities):
             return "no", "The proposed scope excludes the source subject of the retained hypothesis"
         if not any(e["disposition"] == "included" for e in source_entities):
