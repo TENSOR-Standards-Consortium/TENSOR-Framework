@@ -14,13 +14,22 @@ import json
 from pathlib import Path
 import sys
 
-from core_graph_pipeline import build_graph_payload, validate_and_measure
+from core_graph_pipeline import build_graph_payload, validate_and_measure, GENERIC_HUB_LIMITS
 from evaluate_entry_scenarios import expand_suite
 from restored_evidence import STAGES
 
 ROOT = Path(__file__).resolve().parents[1]
 REVIEW = ROOT / "drafts/core/reviews/2026-10-12-restoration"
-VERSION = "0.20261012a"
+VERSION = "0.20261012b"
+APPLICABILITY = {
+    "Identity": "A named principal/action and bounded record; credential ownership, authorization and human intent require separate evidence/profiles.",
+    "Host": "A named host/process event; state-only changes without a process binding need an additional public event profile.",
+    "Network": "A named endpoint pair and communication; configuration-only or sensor-coverage claims need an additional public event profile.",
+    "Cloud": "A named tenant/resource/operation; the base path describes control-plane activity. Data-plane access and state-only events need a separately reviewed public event profile.",
+    "Email": "A named message/mailbox delivery context; mailbox-rule creation, mailbox access and collaboration actions without a message need an additional public event profile.",
+    "Application": "A named application/request context; background configuration, session-only and autonomous state changes without a request need an additional public event profile.",
+    "File": "A named file/system presence context; deletion, historical lineage and unavailable-content propositions need an additional public event profile. Same file on another system is a distinct declared context.",
+}
 PRIOR_PINS = {"prior-draft.graph.json": "8b83f19f83d7d796c96b404d37f4ae093d36415b35123602133f34cad5c172be",
               "prior-criteria.json": "0595cdd6a27c44ca87839981a2b4b93d51452a234a7af8d400da68c900cf1e49",
               "prior-scenarios.json": "13541a42427aa3b61a1bd2ae58e1913dbd04d40049085c1826ef503dc4026f69"}
@@ -118,20 +127,20 @@ PREDICATES = {
 }
 RULES = {
     "event-match": ("A record matches all bound subject fields and interval in the examined facet material.", "The declared available-material search completed without a matching record; event absence remains unproved.", "Bindings, search, time or material counterevidence remain unresolved."),
-    "baseline": ("Accepted event provenance plus an applicable named operational comparator and assessed discriminator satisfy the criterion.", "The validated discriminator contradicts the named comparator, or a cited provenance/interpretation assessment rejects the record; distinguish these reasons.", "Record, comparator applicability, method, fact or its assessment basis is incomplete."),
-    "corroboration": ("Two matching validated records with distinct origins and IDs have equal assessed event discriminators.", "Assessed independent discriminators contradict this event corroboration, or the selected record is rejected; this is not event exclusion.", "Independent material is missing, copied, unvalidated, context-mismatched or lacks a discriminator."),
+    "baseline": ("Accepted event provenance plus an applicable named operational comparator and assessed discriminator satisfy the criterion.", "The validated discriminator contradicts the named comparator; this can motivate investigation and does not refute the event.", "Record, comparator applicability, method, fact or its assessment basis is incomplete; rejected event provenance cannot test the comparator."),
+    "corroboration": ("Matching independently originating validated records agree on assessed event discriminators; rejected copies cannot hide a valid witness.", "All assessed eligible independent discriminators contradict this event corroboration; this is not event exclusion.", "Independent material is missing, copied, unvalidated, context-mismatched, lacks a discriminator, or accepted witnesses disagree."),
     "provenance": ("The matching selected record has accepted provenance and interpretation assessments with origin and cited basis.", "A cited provenance or interpretation assessment rejects the record for this proposition; the event may still have occurred.", "Matching context, assessment basis or material contradiction is unresolved."),
     "hypothesis": ("The validated event satisfies one explicit technical hypothesis criterion; assessed alternatives are retained.", "The assessed discriminator contradicts that exact hypothesis; no alternative or benignness is implied.", "Hypothesis, operational criterion, alternatives, validation or bound context is incomplete."),
     "scope-bound": ("Source entity inclusion, evidence-backed dispositions and unknowns are recorded; population completeness is not asserted.", "The proposed scope explicitly excludes the retained hypothesis source subject.", "Inclusions, exclusions, evidence, bounds or supported hypothesis are missing, or completeness is asserted."),
     "additional-entities": ("A valid bounded scope includes at least one evidenced entity other than the source subject.", "The valid proposed scope includes no additional entity, or explicitly excludes the source subject.", "Entity dispositions, evidence or prerequisite hypothesis/scope cannot be assessed."),
-    "dependencies": ("Named separately validated endpoints, assessed endpoint discriminators and cited dependency direction support the documented relation.", "Assessed dependency endpoint discriminators contradict the named relation, or the scope excludes its source subject.", "Dependency evidence, direction, endpoint validation, bounds or prerequisite scope is incomplete; coincidence alone is insufficient."),
-    "temporal": ("The largest possible timestamp separation under both finite nonnegative clock bounds is within the declared tolerance.", "The smallest possible timestamp separation exceeds the declared tolerance.", "Clock bounds overlap the threshold, or endpoint provenance/context, tolerance or prerequisites are incomplete."),
+    "dependencies": ("Full validated endpoint bindings, a shared assessed dependency-relation ID, assessed direction on both endpoints and evidenced target inclusion support the documented relation.", "Assessed full endpoints, relation ID or direction contradict the proposed dependency, or its source/target is excluded from scope.", "Dependency relation, direction, full endpoint validation/inclusion, bounds or prerequisite scope is incomplete; endpoint identities or coincidence alone are insufficient."),
+    "temporal": ("Both clock intervals lie wholly within the bound investigation interval and their largest timestamp separation is within the declared tolerance.", "Both clock intervals lie within the investigation interval and their smallest separation exceeds the declared tolerance.", "Clock bounds cross the investigation boundary or overlap the coincidence threshold; endpoint provenance/context, tolerance or prerequisites may be incomplete."),
     "identifier-relation": ("Separately validated endpoints share a typed assessed identifier; causation remains separate.", "Typed assessed identifiers contradict this declared relation only.", "Endpoint provenance, context, discriminator, method or prerequisite scope is incomplete; copied records cannot corroborate."),
     "technical-source": ("A typed assessed discriminator satisfies the named technical-source criterion with alternatives retained; actor identity/intent is separate.", "The discriminator contradicts this technical source only.", "Source criterion, validation, alternatives, context or prerequisite scope is incomplete."),
     "behavior-pattern": ("The assessed event discriminator satisfies the named technical behavior-pattern criterion with alternatives retained.", "The discriminator contradicts that named technical pattern only.", "Pattern identity, operational criterion, alternatives, event validation or prerequisite scope is incomplete."),
     "metric-change": ("Assessed numeric observations differ on the same metric, units and ordered times within the bound effect context; no cause/loss is inferred.", "Comparable assessed observations are unchanged on this named metric only.", "Comparable baseline, observed value, metric, units, provenance, effect subject or prerequisite scope is incomplete."),
     "additional-impact": ("A validated explicitly linked additional subject has its own bound comparable observations showing a metric change.", "That additional subject's bound comparable observations show no change on the named metric.", "The additional subject, assessed link, own metric baseline, units, context or provenance is unresolved."),
-    "retention": ("Every retained answer has a versioned question, method, rationale, references and limitations; preceding answers are preserved and this focus is assessed or explicitly open.", "A required assessment is known missing or a preceding answer is dropped/changed.", "Retention bounds, version, evidence basis or open-focus disposition is unresolved, or closure is asserted."),
+    "retention": ("Every retained answer preserves the exact subjects, interval and hypothesis with question, method, rationale, references and limitations; preceding answers remain separate and focus is evidenced as assessed or explicitly open.", "A required assessment in this bound record is known missing or a preceding answer is dropped/changed.", "Retention bounds, version, row context, evidence basis or focus disposition is unresolved, answers conflict, or closure is asserted."),
 }
 
 
@@ -157,7 +166,7 @@ def fixture(domain, facet, kind, seeds):
     case["independent"] = {"accessible": True, "searched": True, "records": [other]}
     target = a["correlation"]["targetRecord"]
     target["clockUncertaintySeconds"] = 1
-    if kind in ("additional-entities", "additional-impact"):
+    if kind in ("additional-entities", "additional-impact", "dependencies"):
         first_field = next(iter(a["correlation"]["targetSubjects"]))
         a["correlation"]["targetSubjects"][first_field] += ":additional"
         target["subjects"] = deepcopy(a["correlation"]["targetSubjects"])
@@ -166,11 +175,20 @@ def fixture(domain, facet, kind, seeds):
         a["correlation"].update(relationKind="bounded-time-coincidence", toleranceSeconds=5)
     source_subject = case["bindings"][case["bindingFields"][0]] if "bindingFields" in case else next(iter(case["bindings"].values()))
     target_subject = next(iter(a["correlation"]["targetSubjects"].values()))
-    a["scope"]["entities"].append({"domain": a["correlation"]["targetDomain"], "subjectId": target_subject,
-        "disposition": "included", "evidenceRefs": [target["id"]]})
+    a["scope"]["entities"][0]["subjects"] = deepcopy(case["bindings"])
+    if a["correlation"]["targetDomain"] != domain or a["correlation"]["targetSubjects"] != case["bindings"]:
+        a["scope"]["entities"].append({"domain": a["correlation"]["targetDomain"], "subjectId": target_subject,
+            "subjects": deepcopy(a["correlation"]["targetSubjects"]), "disposition": "included", "evidenceRefs": [target["id"]]})
     a["dependency"] = {**deepcopy(a["correlation"]), "claimKind": "documented-dependency", "direction": "upstream"}
     setfact(record, "dependency.source", source_subject)
     setfact(a["dependency"]["targetRecord"], "dependency.target", target_subject)
+    for endpoint in (record, a["dependency"]["targetRecord"]):
+        for field, value in case["bindings"].items():
+            setfact(endpoint, "dependency.source."+field, value)
+        for field, value in a["dependency"]["targetSubjects"].items():
+            setfact(endpoint, "dependency.target."+field, value)
+        setfact(endpoint, "dependency.relationId", "authored:documented-dependency:42")
+        setfact(endpoint, "dependency.direction", "upstream")
     a["pattern"] = {**deepcopy(a["hypothesis"]), "patternId": "authored-pattern:42", "claimKind": "technical-behavior-pattern",
         "evidenceRefs": [record["id"]], "criterion": {"fact": "pattern.id", "equals": "authored-pattern:42", "method": "compare declared technical pattern discriminator"}}
     additional = deepcopy(case)
@@ -188,6 +206,7 @@ def fixture(domain, facet, kind, seeds):
     case["retention"] = {"subjects": deepcopy(case["bindings"]), "interval": deepcopy(case["interval"]),
         "graphVersion": VERSION, "closesInvestigation": False, "focusDispositions": {f: "open" for f in FACETS},
         "assessments": [{"nodeId": seeds[domain]["expectedTrace"][0][0], "answer": "unknown", "method": "retain authored observation", "evidenceRefs": [record["id"]],
+            "subjects": deepcopy(case["bindings"]), "interval": deepcopy(case["interval"]), "hypothesisId": a["hypothesis"]["hypothesisId"],
             "rationale": "Source observation remains bounded", "limitations": ["Authored fixture, not independently obtained incident evidence"]}]}
     return case
 
@@ -277,7 +296,9 @@ def build():
         changed = n["text"] != active["text"]
         rows.append({"sourceId": n["id"], "sourceCategory": n["category"], "sourceArchetype": n["archetype"], "sourceText": n["text"],
             "sourceFacet": facet, "assessmentKind": kind, "sourceDuplicateIds": duplicates[n["text"]], "issues": issues,
-            "disposition": "retain-existing-evidence-repair" if retained else "restore-with-evidence-repair", "semanticReview": "author-reviewed-independent-review-pending",
+            "disposition": "retain-existing-evidence-repair" if retained else "restore-with-evidence-repair", "semanticReview": "author-reviewed-agent-audit-external-review-pending",
+            "applicabilityLimitations": [APPLICABILITY[n["category"]]],
+            "agentReviewRef": "reviews/2026-10-12-independent-review/README.md",
             "targetId": n["id"], "targetText": active["text"], "textChanged": changed,
             "meaningChange": "The retained parameterized question is broader than the original facet wording. Bind this original facet when exercising its source capability; ID retention alone is not equivalence." if retained else
                 "Replace implicit context, confidence, policy/intent or closure claims with the declared bounded technical assessment. This is an editorially revised capability, not an equivalence assertion.",
@@ -291,39 +312,55 @@ def build():
     inbound = Counter(e["target"] for e in edges)
     terminals = {d: [n["id"] for n in nodes if n["category"] == d and n["archetype"] == "terminal" and n["id"] in restored_ids] for d in criteria["domains"]}
     by_id = {n["id"]: n for n in nodes}
-    def ending(n):
+    # The base questions explicitly parameterize event/hypothesis evidence. They
+    # are valid adapters; an unrelated fixed source facet is not a substitute.
+    generic_roles = {"validate": "primaryValidation", "classify": "classification", "scope": "scope",
+                     "correlate": "correlation", "attribute": "attribution", "impact": "impact"}
+    optional = {"baseline", "corroboration", "additional-entities", "dependencies"}
+    def ending(n, cost=1):
         # All supplementary terminal predicates retain qualified records, with focus gaps explicit.
-        candidates = [x for x in terminals[n["category"]] if inbound[x] < 22]
+        candidates = [x for x in terminals[n["category"]] if inbound[x] <= 24-cost]
         same = [x for x in candidates if cards[x]["sourceFacet"] == cards[n["id"]]["sourceFacet"]]
         chosen = min(same or candidates, key=lambda x: (inbound[x], int(x[1:])))
         return chosen
     for n in sorted((n for n in nodes if n["id"] in restored_ids and n["archetype"] != "terminal"), key=lambda n: (STAGES.index(n["archetype"]), int(n["id"][1:]))):
         stage, facet = n["archetype"], cards[n["id"]]["sourceFacet"]
         next_stage = STAGES[STAGES.index(stage)+1]
-        candidates = [x for x in groups.get((n["category"], facet, next_stage), []) if inbound[x] < (24 if next_stage == "terminal" else 8)]
-        if not candidates:
-            candidates = [x for x in restored_ids if by_id[x]["category"] == n["category"] and by_id[x]["archetype"] == next_stage
-                          and inbound[x] < (24 if next_stage == "terminal" else 8)]
+        common = stage in ("correlate", "attribute", "impact") or cards[n["id"]]["assessmentKind"] in optional
+        cost = 3 if common else 1
+        candidates = [x for x in groups.get((n["category"], facet, next_stage), []) if inbound[x]+cost <= (24 if next_stage == "terminal" else 8)]
         successor = min(candidates, key=lambda x: (inbound[x], int(x[1:]))) if candidates else None
+        if successor is None and next_stage == "terminal":
+            successor = ending(n, cost)
+        if successor is None and next_stage != "terminal":
+            successor = criteria["domains"][n["category"]][generic_roles[next_stage]]
+            if isinstance(successor, list):
+                successor = successor[0]
         for decision in ("yes", "no", "unknown"):
-            target = successor if successor and (decision == "yes" or stage in ("correlate", "attribute", "impact")) else ending(n)
-            if inbound[target] >= (24 if by_id[target]["archetype"] == "terminal" else 8):
+            target = successor if successor and (decision == "yes" or common) else ending(n)
+            if target in restored_ids and inbound[target] >= (24 if by_id[target]["archetype"] == "terminal" else 8):
                 target = ending(n)
             inbound[target] += 1
+            adapter = target in base_ids
             edges.append({"id": f"{n['id']}-{decision}-{target}", "source": n["id"], "target": target, "decision": decision,
-                "extensions": {"tensor:routeBasis": "Assess the next proposition independently using its own explicit evidence-facet binding and prerequisites; no target answer is inherited" if by_id[target]["archetype"] != "terminal" else
-                    "Retain separate source answers and limitations; explicitly record any terminal-focus question still open. This ends this route only"}})
+                "extensions": {"tensor:routeBasis": "Resume the parameterized base question with the unchanged source facet, complete subjects, interval and hypothesis; recheck target prerequisites and retain all source answers" if adapter else
+                    "Assess the same-facet next proposition independently; retain exact subjects, interval and hypothesis, with no inherited target answer" if by_id[target]["archetype"] != "terminal" else
+                    "Retain separate source answers and limitations; explicitly record any terminal-focus question still open. This ends this route only",
+                    **({"tensor:contextAdapter": {"profile": "tensor-restored-evidence/2", "focus": facet, "preserve": ["domain", "bindings", "interval", "hypothesisId", "priorAnswers"], "recheckPrerequisites": True}} if adapter else {})}})
     entries = base["entryNodeIds"] + sorted(restored_ids - {e["target"] for e in edges}, key=lambda s: int(s[1:]))
+    for nid, capacity in GENERIC_HUB_LIMITS.items():
+        by_id[nid]["extensions"]["tensor:genericEvidenceHub"] = {"profile": "tensor-restored-evidence/2", "maxFanIn": capacity,
+            "basis": "Explicit same-domain context adapters; target prerequisites are re-evaluated"}
     graph = build_graph_payload(VERSION, sorted(nodes, key=lambda n: int(n["id"][1:])), edges, entries, base["schemaVersion"])
     errors, _, _ = validate_and_measure(graph["nodes"], edges, entries, set())
     if errors:
         raise ValueError(errors)
     criteria["graphSha256"] = sha256(encoded(graph)).hexdigest()
-    criteria["restoration"] = {"profile": "tensor-restored-evidence/1", "baseNodeIds": sorted(base_ids, key=lambda s: int(s[1:])),
+    criteria["restoration"] = {"profile": "tensor-restored-evidence/2", "baseNodeIds": sorted(base_ids, key=lambda s: int(s[1:])),
         "restoredNodeIds": sorted(restored_ids, key=lambda s: int(s[1:])), "resumeEntryIds": entries[7:],
         "sourceVersion": original["version"], "sourceSha256": source_sha,
         "reviewDocument": "reviews/2026-10-12-restoration/analysis.json", "sourceQuestionCount": 588,
-        "scope": "Author-reviewed source-family repairs. Independent semantic approval and equivalent investigative coverage remain unproved. Resumption rechecks prerequisites; adjacency never inherits a finding."}
+        "scope": "Author-reviewed source-family repairs with separate AI-assisted routing and evidence challenge. External semantic approval and equivalent investigative coverage remain unproved. Explicit general-question adapters preserve focus, hypothesis and full context; target prerequisites are rechecked.", "eventProfileLimitations": APPLICABILITY}
     suite["restoredCases"], suite["restoredPaths"], suite["restoredFixtures"] = [], [], {}
     def delta(base, changed, path=None):
         path = path or []
@@ -357,16 +394,37 @@ def build():
             while True:
                 outcome = initial if current == entry else "yes"
                 trace.append([current, outcome])
-                if cards[current]["stage"] == "terminal":
+                if by_id[current]["archetype"] == "terminal":
                     break
                 current = successors[current, outcome]
             evidence_by_node = {}
             for nid, outcome in trace:
-                c = deepcopy(cases[f"{nid}-{outcome}"])
-                if cards[nid]["stage"] == "terminal":
+                # Use a single source focus throughout; adapters never replace it
+                # with the base node's historical source facet.
+                facet = cards[entry]["sourceFacet"]
+                if nid in restored_ids:
+                    c = deepcopy(cases[f"{nid}-{outcome}"])
+                else:
+                    kind = {"primaryValidation": "provenance", "classification": "hypothesis", "scope": "scope-bound",
+                            "correlation": "identifier-relation", "attribution": "technical-source", "impact": "metric-change",
+                            "assessed": "retention", "unresolved": "retention", "refuted": "retention"}[cards[nid]["role"]]
+                    example = fixture(domain, facet, kind, seeds)
+                    ref = domain+":base:"+kind
+                    suite["restoredFixtures"].setdefault(ref, deepcopy(example))
+                    c = {"nodeId": nid, "evidenceRef": ref, "evidenceEdits": delta(suite["restoredFixtures"][ref], example)}
+                if by_id[nid]["archetype"] == "terminal":
+                    c["evidenceEdits"].append({"op": "set", "path": ["focus"], "value": facet})
                     retained = [{"nodeId": source, "answer": a, "method": "retain independent supplied assessment", "evidenceRefs": ["authored:route-observation"],
+                        "subjects": deepcopy(seeds[domain]["bindings"]), "interval": deepcopy(seeds[domain]["interval"]), "hypothesisId": seeds[domain]["analysis"]["hypothesis"]["hypothesisId"],
                         "rationale": "Retain the declared bounded assessment and its limitation", "limitations": ["Author-side example; no verified incident evidence"]} for source, a in trace[:-1]]
                     c["evidenceEdits"].append({"op": "set", "path": ["retention", "assessments"], "value": retained})
+                    if cards[nid]["role"] == "assessed":
+                        prerequisites = []
+                        for prerequisite in (criteria["domains"][domain]["classification"][0], criteria["domains"][domain]["scope"][0]):
+                            prerequisites.append({**deepcopy(retained[0]), "nodeId": prerequisite, "answer": "yes",
+                                "method": "Separately rechecked supplied matching record, accepted provenance, explicit hypothesis and bounded scope",
+                                "rationale": "A prerequisite assessment, distinct from the optional question's retained answer"})
+                        c["evidenceEdits"].append({"op": "set", "path": ["retention", "prerequisiteAssessments"], "value": prerequisites})
                 evidence_by_node[nid] = c
             suite["restoredPaths"].append({"id": f"{domain.lower()}-restored-route-{initial}", "domain": domain, "entry": entry,
                 "evidenceKind": "authored-normalized-fixture", "evidenceByNode": evidence_by_node, "expectedTrace": trace})
@@ -388,7 +446,7 @@ def build():
         if nid in restored_ids:
             row["scenarioRefs"] += [c["id"] for c in suite["restoredPaths"] if any(s[0] == nid for s in c["expectedTrace"])]
     analysis = {"format": "tensor-original-question-author-review", "version": 1, "graphVersion": VERSION, "graphSha256": criteria["graphSha256"],
-        "author": "TENSOR Standards Consortium authoring workstream", "reviewDate": "2026-10-12", "method": "Explicit source-family analysis and per-ID predicate, route, duplicate and scenario accounting; automated reproducibility and author-side assessment tests. No external reviewer sign-off.",
+        "author": "TENSOR Standards Consortium authoring workstream", "reviewDate": "2026-10-12", "method": "Explicit source-family analysis and per-ID accounting, followed by separate AI-assisted route review and independently authored seven-domain evidence tests. No external reviewer sign-off.", "challengeReview": "reviews/2026-10-12-independent-review/README.md",
         "source": {"path": str(original_path.relative_to(ROOT)), "sha256": source_sha, "version": original["version"]},
         "scope": "All 588 original IDs reviewed against explicit source prompt families. These are author editorial dispositions, not independent approval or an equivalence proof. No original bytes or schema changed.",
         "summary": {"originalQuestions": len(rows), "distinctSourcePrompts": len(duplicates), "repeatedPromptGroups": sum(len(v)>1 for v in duplicates.values()),

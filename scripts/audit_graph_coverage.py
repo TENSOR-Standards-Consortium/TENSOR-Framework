@@ -41,7 +41,7 @@ def build():
         rows.append(dict(sourceId=node['id'], category=node['category'], archetype=node['archetype'], sourceLabel=node['label'], sourceText=node['text'], lineageStatus='restored-with-evidence-repair' if remaining and removed and disposition else 'same-id-rewritten' if remaining else removed,
             firstRemovedAt=removed, activeId=node['id'] if remaining else None, textChanged=active[node['id']]['text'] != node['text'] if remaining else None,
             semanticReview=disposition.get('semanticReview', 'pending'), disposition=disposition.get('disposition'), rationale=disposition.get('meaningChange'),
-            sourceFacet=disposition.get('sourceFacet'), assessmentKind=disposition.get('assessmentKind'), issues=disposition.get('issues', []),
+            applicabilityLimitations=disposition.get('applicabilityLimitations', []), agentReviewRef=disposition.get('agentReviewRef'), sourceFacet=disposition.get('sourceFacet'), assessmentKind=disposition.get('assessmentKind'), issues=disposition.get('issues', []),
             sourceDuplicateIds=disposition.get('sourceDuplicateIds', []), targetDefinitionRefs=disposition.get('targetDefinitionRefs', []), scenarioRefs=disposition.get('scenarioRefs', [])))
     absent = [r for r in rows if r['activeId'] is None]
     originals = {n['id'] for n in original['nodes']}
