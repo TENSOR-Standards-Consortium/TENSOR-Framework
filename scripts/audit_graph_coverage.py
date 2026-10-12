@@ -28,15 +28,25 @@ def build():
         snapshots.append({n['id'] for n in graph['nodes']})
         sources.append(dict(stage=name, commit=commit, path=GRAPH, sha256=sha256(data).hexdigest(), version=graph['version'], questions=len(graph['nodes']), routes=len(graph['edges'])))
     active = {n['id']: n for n in current['nodes']}
+    review_path = ROOT / 'drafts/core/reviews/2026-10-12-restoration/analysis.json'
+    review = json.loads(review_path.read_text()) if review_path.exists() else {}
+    reviewed = {r['sourceId']: r for r in review.get('questions', [])} if review.get('graphVersion') == current['version'] else {}
     rows = []
     for node in original['nodes']:
         remaining = node['id'] in active
         removed = next((name for (name, _), ids in zip(STAGES, snapshots) if node['id'] not in ids), None)
-        rows.append(dict(sourceId=node['id'], category=node['category'], archetype=node['archetype'], sourceLabel=node['label'], sourceText=node['text'], lineageStatus='same-id-rewritten' if remaining else removed, activeId=node['id'] if remaining else None, textChanged=active[node['id']]['text'] != node['text'] if remaining else None, semanticReview='pending', disposition=None, rationale=None, targetDefinitionRefs=[], scenarioRefs=[]))
+        disposition = reviewed.get(node['id'], {})
+        if disposition and (disposition['sourceText'] != node['text'] or not remaining or disposition['targetText'] != active[node['id']]['text']):
+            raise ValueError(f"{node['id']}: review no longer matches the source and target predicates")
+        rows.append(dict(sourceId=node['id'], category=node['category'], archetype=node['archetype'], sourceLabel=node['label'], sourceText=node['text'], lineageStatus='restored-with-evidence-repair' if remaining and removed and disposition else 'same-id-rewritten' if remaining else removed,
+            firstRemovedAt=removed, activeId=node['id'] if remaining else None, textChanged=active[node['id']]['text'] != node['text'] if remaining else None,
+            semanticReview=disposition.get('semanticReview', 'pending'), disposition=disposition.get('disposition'), rationale=disposition.get('meaningChange'),
+            sourceFacet=disposition.get('sourceFacet'), assessmentKind=disposition.get('assessmentKind'), issues=disposition.get('issues', []),
+            sourceDuplicateIds=disposition.get('sourceDuplicateIds', []), targetDefinitionRefs=disposition.get('targetDefinitionRefs', []), scenarioRefs=disposition.get('scenarioRefs', [])))
     absent = [r for r in rows if r['activeId'] is None]
     originals = {n['id'] for n in original['nodes']}
     added = [n['id'] for n in current['nodes'] if n['id'] not in originals]
-    return dict(format='tensor-graph-coverage-inventory', inventoryVersion=1, meaning='ID lineage only. No semantic equivalence, approved consolidation, or full investigative coverage is asserted. Every original question requires a reviewed disposition.', published=dict(path=released_path, version=original['version'], sha256=sha256(released_bytes).hexdigest(), questions=len(original['nodes']), routes=len(original['edges'])), history=sources, working=dict(path=GRAPH, version=current['version'], sha256=sha256(current_bytes).hexdigest(), questions=len(current['nodes']), routes=len(current['edges'])), summary=dict(sameIdRewritten=len(rows)-len(absent), absentOriginal=len(absent), newQuestions=len(added), approvedSemanticDispositions=0, absentByDomain=dict(sorted(Counter(r['category'] for r in absent).items())), lineage=dict(sorted(Counter(r['lineageStatus'] for r in rows).items()))), originalQuestions=rows, newQuestionIds=added)
+    return dict(format='tensor-graph-coverage-inventory', inventoryVersion=2, meaning='Every original ID has an author-reviewed disposition where recorded. Independent semantic approval, source/target equivalence and full investigative coverage remain unproved. Duplicate prompts are retained explicitly; no consolidation is approved.', published=dict(path=released_path, version=original['version'], sha256=sha256(released_bytes).hexdigest(), questions=len(original['nodes']), routes=len(original['edges'])), history=sources, working=dict(path=GRAPH, version=current['version'], sha256=sha256(current_bytes).hexdigest(), questions=len(current['nodes']), routes=len(current['edges'])), summary=dict(sameIdRewritten=len(rows)-len(absent), restoredOriginal=sum(r['lineageStatus']=='restored-with-evidence-repair' for r in rows), authorReviewedDispositions=len(reviewed), absentOriginal=len(absent), newQuestions=len(added), approvedSemanticDispositions=0, absentByDomain=dict(sorted(Counter(r['category'] for r in absent).items())), lineage=dict(sorted(Counter(r['lineageStatus'] for r in rows).items()))), originalQuestions=rows, newQuestionIds=added)
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
@@ -50,7 +60,7 @@ def main():
         print('Coverage inventory verified against published, historical, and working graph bytes.')
     else:
         output.write_text(data)
-        print(f'Wrote {output.relative_to(ROOT)}; all 588 semantic dispositions remain pending.')
+        print(f'Wrote {output.relative_to(ROOT)}; independent semantic approval remains pending.')
 
 if __name__ == '__main__':
     main()

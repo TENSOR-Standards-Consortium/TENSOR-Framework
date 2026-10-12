@@ -353,6 +353,9 @@ def main():
     if hashlib.sha256(paths[0].read_bytes()).hexdigest() != criteria.get("graphSha256"):
         parser.error("The exact graph bytes do not match the public evidence-criteria pin")
     results = run_cases(graph, criteria, suite)
+    if "restoration" in criteria:
+        from restored_evidence import run_cases as run_restored_cases
+        results += run_restored_cases(graph, criteria, suite)
     receipt = {"scope": "Offline author-side scenario evaluation; source reports and supplied evidence assessments are not independently verified",
                "graphVersion": graph["version"], "inputs": [{"path": str(p.relative_to(ROOT)), "sha256": hashlib.sha256(p.read_bytes()).hexdigest()} for p in paths],
                "caseCount": len(results), "passed": sum(r["passed"] for r in results), "results": results}

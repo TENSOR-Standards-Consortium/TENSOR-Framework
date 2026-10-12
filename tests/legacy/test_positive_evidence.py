@@ -123,7 +123,8 @@ class PositiveEvidenceTests(unittest.TestCase):
         raw = (folder / manifest["snapshot"]).read_bytes()
         self.assertEqual(manifest["sourceSha256"], hashlib.sha256(raw).hexdigest())
         old = json.loads(raw)
-        before, after = {n["id"] for n in old["nodes"]}, {n["id"] for n in self.graph["nodes"]}
+        repaired = json.loads((ROOT / "drafts/core/reviews/2026-10-12-restoration/prior-draft.graph.json").read_text())
+        before, after = {n["id"] for n in old["nodes"]}, {n["id"] for n in repaired["nodes"]}
         self.assertEqual(before - after, set(manifest["detachedNodeIds"]))
         self.assertEqual(88, len(before - after))
         old_by_id = {n["id"]: n for n in old["nodes"]}

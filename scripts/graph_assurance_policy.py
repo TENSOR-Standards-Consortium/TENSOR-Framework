@@ -6,6 +6,9 @@ contract. Passing is author-side evidence; it never authorizes publication.
 from __future__ import annotations
 
 from collections import defaultdict
+from copy import deepcopy
+from hashlib import sha256
+import json
 
 from core_graph_pipeline import DOMAINS
 from evaluate_entry_scenarios import expand_suite, references, run_cases
@@ -51,6 +54,28 @@ def build_acceptance(authoring_errors, reference, evidence_gates=None):
 
 
 def assess_evidence(graph, graph_sha256, criteria, suite):
+    if "restoration" not in criteria:
+        return _assess_base(graph, graph_sha256, criteria, suite)
+    try:
+        from restoration_assurance import assess
+        base_ids = set(criteria["restoration"]["baseNodeIds"])
+        projection = {**graph, "nodes": [n for n in graph["nodes"] if n["id"] in base_ids],
+                      "edges": [e for e in graph["edges"] if e["source"] in base_ids],
+                      "entryNodeIds": [d["entry"] for d in criteria["domains"].values()]}
+        # This digest identifies the in-memory projection, never the full graph.
+        projection_sha = sha256(json.dumps(projection, sort_keys=True).encode()).hexdigest()
+        projected_criteria = {**criteria, "nodes": {nid: c for nid, c in criteria["nodes"].items() if nid in base_ids}, "graphSha256": projection_sha}
+        base_gates = _assess_base(projection, projection_sha, projected_criteria, suite)
+        errors = assess(graph, criteria, suite)
+        if (criteria.get("graphSha256") != graph_sha256 or criteria.get("graphVersion") != graph["version"]
+                or criteria.get("schemaVersion") != graph["schemaVersion"] or set(criteria["nodes"]) != {n["id"] for n in graph["nodes"]}):
+            errors[0].append("Full evidence package does not pin the exact graph bytes/version/schema and every question")
+        return [gate(gid, ([] if base_gates[i]["passed"] else base_gates[i]["evidence"])+errors[i]) for i, gid in enumerate(EVIDENCE_IDS)]
+    except (ValueError, KeyError, TypeError, AttributeError, IndexError) as exc:
+        return [gate(gid, [f"Composite evidence package cannot be evaluated: {exc}"]) for gid in EVIDENCE_IDS]
+
+
+def _assess_base(graph, graph_sha256, criteria, suite):
     """Check the actual evidence cards, every transition, and supplied scenarios."""
     card_errors, route_errors, scenario_errors, coverage_errors = [], [], [], []
     try:

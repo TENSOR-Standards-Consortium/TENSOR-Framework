@@ -164,7 +164,9 @@ def main() -> int:
             except (OSError, ValueError, KeyError, TypeError) as exc:
                 evidence_gates = [gate(gid, [f"Evidence input could not be loaded: {exc}"], "notRun") for gid in EVIDENCE_IDS]
         for relative in ("standards/graph-assurance-policy.md", "scripts/graph_assurance_policy.py", "scripts/core_graph_pipeline.py",
-                         "scripts/core_graph_math_assurance.py", "scripts/evaluate_entry_scenarios.py", "scripts/lint_core_graph_quality.py"):
+                         "scripts/core_graph_math_assurance.py", "scripts/evaluate_entry_scenarios.py", "scripts/lint_core_graph_quality.py",
+                         "scripts/restored_evidence.py", "scripts/restoration_assurance.py", "scripts/restore_original_questions.py",
+                         "drafts/core/reviews/2026-10-12-restoration/analysis.json"):
             provenance["inputs"].append({"path": relative, "sha256": hashlib.sha256((repo_root / relative).read_bytes()).hexdigest()})
         reference = math_payload["monitoring"]["legacyReferenceThresholds"]
         acceptance = build_acceptance(errors, reference, evidence_gates)

@@ -1,5 +1,7 @@
 # Evidence-bound entry routes
 
+Historical review of the 2026-10-11 repair. The current draft adds the [2026-10-12 original-question restoration](reviews/2026-10-12-restoration/README.md) while preserving these repaired paths. Counts below describe the earlier revision.
+
 Policy update, 2026-10-11: the graph and evidence content described here are unchanged. Current acceptance follows [graph assurance policy `tensor-graph-assurance/1`](../../standards/graph-assurance-policy.md), which supersedes the score-gating discussion below. The [topology review](reviews/2026-10-11-topology-policy/README.md) retains the original document and explains the decision.
 
 The entry foundation was merged in **0.20261011a**. Current working draft **0.20261011b** extends it through [evidence-bound positive routes](POSITIVE-REVIEW.md), using the unchanged schema **0.20260206e**. Neither draft is a published release. All published releases and the separate investigation-record candidate remain unchanged.
