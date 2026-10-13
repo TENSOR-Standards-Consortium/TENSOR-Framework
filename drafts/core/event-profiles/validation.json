@@ -9,9 +9,9 @@
   "scenarioCount": 144,
   "passed": 144,
   "artifactPins": {
-    "catalog.json": "05a7d6789071c27edef2f85f736c802f2f2be89604df6e2f16bb7ae3943895d8",
+    "catalog.json": "78ba233e3e0bc90f81532276cab24c68940a12bed647faf4acf300978043b6a6",
     "definitions.json": "ec2af6603af8580a782f756e7daeb735a488ca5fa23406cd49947f41dcb2cf0d",
-    "scenarios.json": "06a1957ed8eff3f5f0e24fec3452d3bc57c455c21b1bac3fcff3fa96a3de0f30"
+    "scenarios.json": "501f1c0f6258e723075f2794f6982eed2af171edecea69494b6168242e508444"
   },
   "preservedArtifacts": {
     "releases/manifest.json": "713c94d5b066a1f6b2725cbdd8fc1c27956e95f3aa4d58b39f7d744f883174d8",

@@ -8,14 +8,14 @@ import unittest
 
 ROOT=Path(__file__).resolve().parents[2]
 sys.path.insert(0,str(ROOT/'scripts'))
-from event_profiles import (load_package,answer_profile,evaluate_route,definition_id,definitions,VERSION)
+from event_profiles import (load_package,answer_profile,evaluate_route,definition_id,definitions,VERSION,expand_scenarios)
 
 
 class EventProfileTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.graph,cls.criteria,cls.catalog=load_package()
-        cls.scenarios=json.loads((ROOT/'drafts/core/event-profiles/scenarios.json').read_text())['cases']
+        cls.scenarios=expand_scenarios(json.loads((ROOT/'drafts/core/event-profiles/scenarios.json').read_text()))
         cls.positive={c['eventProfile']:c for c in cls.scenarios if c['id'].endswith('-supported')}
 
     def card(self,case,role):

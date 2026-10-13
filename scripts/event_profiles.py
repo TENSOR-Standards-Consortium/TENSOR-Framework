@@ -8,7 +8,7 @@ import math
 import json
 from pathlib import Path
 
-from evaluate_entry_scenarios import (context_ready, matches, fact, named, references,
+from evaluate_entry_scenarios import (context_ready, fact, named, references,
     validation_answer, bound_assessment, equality_answer, downstream_answer, instant, exclusion_answer)
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -460,3 +460,24 @@ def evaluate_route(graph,criteria,catalog,case):
             supplied['_selectedGroup'] = 'independent' if cards[current]['role']=='alternate' else 'primary'
         current = edges[(current,outcome)]
     raise ValueError('Profile route did not terminate')
+
+
+def expand_scenarios(suite):
+    """Expand bounded, explicit evidence edits; never execute case content."""
+    cases=[]
+    for item in suite['cases']:
+        case=deepcopy(suite['fixtures'][item['evidenceRef']])
+        for edit in item['evidenceEdits']:
+            path=edit['path']
+            if (not isinstance(path,list) or not 1<=len(path)<=20
+                    or any(type(p) not in (str,int) or p in ('__proto__','constructor','prototype') for p in path)
+                    or edit['op'] not in ('set','remove')):
+                raise ValueError('Invalid public profile evidence edit')
+            parent=case
+            for part in path[:-1]:parent=parent[part]
+            if edit['op']=='set':parent[path[-1]]=deepcopy(edit['value'])
+            else:del parent[path[-1]]
+        case['id']=item['id']
+        case['expectedTrace']=deepcopy(item['expectedTrace'])
+        cases.append(case)
+    return cases

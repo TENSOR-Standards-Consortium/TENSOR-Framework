@@ -153,6 +153,33 @@ def build():
     return graph,criteria,catalog,defs,scenarios
 
 
+
+def evidence_edits(base,value,path=()):
+    if type(base) is not type(value):return [{'op':'set','path':list(path),'value':deepcopy(value)}]
+    if isinstance(base,dict):
+        edits=[]
+        for key in sorted(base.keys()-value.keys()):edits.append({'op':'remove','path':list(path)+( [key] )})
+        for key in sorted(value):
+            if key not in base:edits.append({'op':'set','path':list(path)+[key],'value':deepcopy(value[key])})
+            else:edits.extend(evidence_edits(base[key],value[key],(*path,key)))
+        return edits
+    if isinstance(base,list) and len(base)==len(value):
+        return [edit for i,(left,right) in enumerate(zip(base,value)) for edit in evidence_edits(left,right,(*path,i))]
+    return [] if base==value else [{'op':'set','path':list(path),'value':deepcopy(value)}]
+
+
+def compact_scenarios(suite):
+    fixtures={case['eventProfile']:deepcopy(case) for case in suite['cases'] if case['id'].endswith('-supported')}
+    fixtures=json.loads(json.dumps(fixtures))  # JSON has no shared object identity.
+    rows=[]
+    for case in suite['cases']:
+        base=deepcopy(fixtures[case['eventProfile']]);value=deepcopy(case)
+        for field in ('id','expectedTrace'):base.pop(field);value.pop(field)
+        rows.append({'id':case['id'],'eventProfile':case['eventProfile'],'evidenceRef':case['eventProfile'],
+            'expectedTrace':case['expectedTrace'],'evidenceEdits':evidence_edits(base,value)})
+    return {**suite,'encoding':'shared-fixtures-and-explicit-edits/1','fixtures':fixtures,'cases':rows}
+
+
 def main():
     graph,criteria,catalog,defs,scenarios = build()
     failures=[]
@@ -170,7 +197,10 @@ def main():
         'drafts/core/event-profiles/scenarios.source.json','drafts/core/tensor.core.graph.json','drafts/core/entry-evidence-criteria.json',
         'scripts/evaluate_event_profiles.py','scripts/evaluate_entry_scenarios.py','tests/legacy/test_event_profiles.py']
     catalog['inputPins']={p:sha256((ROOT/p).read_bytes()).hexdigest() for p in inputs}
-    outputs={'catalog.json':catalog,'definitions.json':defs,'scenarios.json':scenarios}
+    packed=compact_scenarios(scenarios)
+    from event_profiles import expand_scenarios
+    if expand_scenarios(packed)!=scenarios['cases']:raise SystemExit('Scenario compaction changed evidence')
+    outputs={'catalog.json':catalog,'definitions.json':defs,'scenarios.json':packed}
     previous = json.loads((ROOT/'drafts/core/reviews/2026-10-12-independent-review/review.json').read_text())
     outputs['validation.json']={'format':'tensor-public-event-profile-validation','version':VERSION,
         'reviewKind':'author-side-scenario-and-counterexample-review','independentInstitutionalApproval':False,

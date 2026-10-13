@@ -4,7 +4,7 @@ import argparse
 from hashlib import sha256
 import json
 from pathlib import Path
-from event_profiles import ROOT,load_package,evaluate_route
+from event_profiles import ROOT,load_package,evaluate_route,expand_scenarios
 
 
 def main():
@@ -17,7 +17,7 @@ def main():
             raise SystemExit(f'Input pin differs: {path}; rebuild/review the profile package')
     suite=json.loads((ROOT/'drafts/core/event-profiles/scenarios.json').read_text())
     results=[]
-    for case in suite['cases']:
+    for case in expand_scenarios(suite):
         result=evaluate_route(graph,criteria,catalog,case)
         result['passed']=[[r['nodeId'],r['answer']] for r in result['trace']]==case['expectedTrace']
         results.append(result)
