@@ -258,7 +258,10 @@ def downstream_answer(role, case, selected, criteria):
 def evaluate_case(graph, criteria, case):
     domain = criteria["domains"][case["domain"]]
     nodes = {n["id"]: n for n in graph["nodes"]}
-    edges = {(e["source"], e["decision"]): e["target"] for e in graph["edges"]}
+    # These retained fixtures explicitly select the original continuation. New
+    # branching scenarios select edge IDs; never let a dictionary choose a lead.
+    from investigative_routing import continuation_edges
+    edges = {(e["source"], e["decision"]): e["target"] for e in continuation_edges(graph)}
     current, selected = domain["entry"], None
     trace = []
     seen = set()

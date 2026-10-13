@@ -12,7 +12,7 @@
 - Core releases must provide explicit investigation entry points (`entryNodeIds`), and Core nodes must be reachable from at least one entry point.
 - Core is a routing/semantic backplane; concrete vendor investigative workflows are overlay responsibilities.
 - Extension metadata keys in Core (`extensions`) must be namespaced (`<namespace>:<field>`). Non-namespaced business/process fields belong in overlays.
-- Core graph structure remains investigation-first: deterministic `yes/no/unknown` branching for non-terminal nodes, terminal nodes with no outgoing edges, and an acyclic (DAG) topology.
+- Published graph versions retain their original topology and validation contract. The working draft supports several targets per `yes/no/unknown` outcome, cross-domain leads, convergence and cycles with fresh question instances. A decision records explicit selections; matching guards do not automatically traverse every route. Terminal questions have no outgoing routes.
 - Core node archetype taxonomy is fixed for v0.20260206c+ and evolves per release notes (v0.20260206e+: `detect`, `validate`, `classify`, `scope`, `correlate`, `attribute`, `impact`, `terminal`).
 - In Core, `terminal` denotes path termination semantics, not case workflow closure semantics.
 
@@ -23,6 +23,7 @@
 - Release metadata is published in `releases/manifest.json`; `latest*` pointers identify the default client target.
 
 ## Compatibility expectations
+- The routing repair is an unpublished draft behavior change using the unchanged graph schema. Consumers that assume one target per outcome or an acyclic graph must adapt before adopting it. A schema-valid file alone does not establish behavioral compatibility. No `latest` pointer or released artifact is advanced by this repair; release versioning and migration remain subject to review.
 - Clients that pin explicit versions (`graphVersion`, `schemaVersion`) must receive immutable artifacts.
 - `latest/` files are convenience pointers and always mirror the versions declared by `releases/manifest.json`.
 - Backward-compatible fields should be additive and optional whenever possible.

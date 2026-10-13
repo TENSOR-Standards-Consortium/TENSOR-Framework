@@ -51,8 +51,8 @@ class AssurancePolicyTests(unittest.TestCase):
         self.assertIn("policy_catalog", build_acceptance([], reference, self.assess())["failedGateIds"])
         self.assertIn("graph_authoring", build_acceptance(["Invalid reference"], self.reference, self.assess())["failedGateIds"])
         reference = copy.deepcopy(self.reference)
-        next(g for g in reference["gates"] if g["id"] == "dag_pass")["passed"] = False
-        self.assertIn("dag_pass", build_acceptance([], reference, self.assess())["failedGateIds"])
+        next(g for g in reference["gates"] if g["id"] == "full_reachability")["passed"] = False
+        self.assertIn("full_reachability", build_acceptance([], reference, self.assess())["failedGateIds"])
 
     def test_hash_predicate_rule_and_role_edits_are_rejected(self):
         for fault in ("hash", "predicate", "rules", "role", "bindings", "missing-card", "annotation"):
@@ -112,7 +112,8 @@ class AssurancePolicyTests(unittest.TestCase):
         old = json.loads((ROOT / "drafts/core/reviews/2026-10-11-positive-evidence/structural/math-assurance.json").read_bytes())
         snapshot_raw = (ROOT / "drafts/core/reviews/2026-10-11-topology-policy/reviewed-graph.graph.json").read_bytes()
         self.assertEqual(old["provenance"]["inputs"][0]["sha256"], hashlib.sha256(snapshot_raw).hexdigest())
-        self.assertEqual(old["monitoring"]["publishGates"], self.experiments["baseline"]["reference"])
+        self.assertEqual({g["id"]:(g["passed"],g["value"]) for g in old["monitoring"]["publishGates"]["gates"]},
+                         {g["id"]:(g["passed"],g["value"]) for g in self.experiments["baseline"]["reference"]["gates"]})
         for key, value in self.experiments["baseline"]["scores"].items():
             self.assertEqual(old["summary"][key], value)
 

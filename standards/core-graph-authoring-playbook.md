@@ -17,7 +17,7 @@ business process and product/tool execution detail on top of Core.
 Authoring and review MUST follow: `standards/core-vs-overlay-contract.md`.
 
 Core is a neutral backplane:
-- Core standardizes investigation semantics and deterministic routing primitives.
+- Core standardizes investigation semantics, outcome guards and explicit route selections.
 - Overlays (vendor/org/extension layers) define concrete investigative execution detail.
 
 ## Canonical Sources
@@ -96,20 +96,26 @@ Allowed decisions:
 - `no`
 - `unknown`
 
-## Backbone Rules
-- Core graph must be a DAG (acyclic).
-- Every non-terminal node has exactly three outgoing edges:
-  - one `yes`
-  - one `no`
-  - one `unknown`
+## Working graph routing rules
+These rules govern the working draft. Published artifacts and their historical release checks remain unchanged.
+
+- A nonterminal question has at least one declared route for each outcome: `yes`, `no`, and `unknown`. Each outcome may have several target questions.
+- An assessment records one outcome for one bound question instance. A decision explicitly selects eligible transition/target-instance pairs. Eligibility does not select every route or assert a target answer.
+- Routes can cross domains and return to an earlier question. A question ID or archetype is not a chronological constraint. Revisiting a question uses a fresh instance with its own context and evidence; retained answers are never overwritten.
+- Every cross-domain lead identifies its discovery basis, separately bound target subjects and interval, and target evidence requirements. Source negatives and unknowns can coexist with independent leads; they cannot supply missing discovery evidence or establish the target proposition.
+- Independent evidence validation may run alongside primary validation. Separate sources require independent provenance, not copies of one record.
+- Convergence is permitted when the follow-up remains relevant for each answer. Record the rationale; do not generate three identical routes merely to satisfy a shape or count.
 - Terminal nodes have zero outgoing edges.
-- For each non-terminal node, each decision maps to exactly one target.
 - Every node must be reachable from at least one entry node.
 - `entryNodeIds` must include at least one valid entry node.
 - Entry sets are intentionally flexible; overlays may define additional/dynamic entry signals.
-- Semantic routing guardrails:
-  - `yes` edges must preserve forward investigative logic (`same archetype` or `next archetype` only).
-  - `yes` edges from `detect` and `validate` must stay within the same domain (no early-stage domain jumps on positive assertions).
+- There is no required cross-domain percentage or maximum fan-in. These topology diagnostics do not establish semantic validity. References, unique identities, outcome coverage, independent evidence criteria and explicit selections remain blocking checks.
+- Clients must bound automatic traversal. A cycle in a definition never instructs a human or agent to recursively follow every route. The Lab replays retained decisions; it does not execute the graph.
+
+The optional `tensor:investigativeLead` profile in the working draft documents additional readiness conditions. It is authoring metadata, not a new schema or a condition evaluated by the Core guard interpreter. A consumer must explicitly implement the profile or present it for assessment. See [the routing repair](../drafts/core/reviews/2026-10-13-routing/README.md).
+
+The published v0.20260206e graph was authored as an acyclic graph with exactly one route per outcome. Those historical constraints remain part of its preserved release validation; they do not limit the new working draft.
+- Evidence prerequisites remain explicit in question criteria and route context. A stage label alone neither supplies nor blocks a prerequisite. Early cross-domain leads are legal when target discovery and bindings are separately supported.
 
 ## Coverage and Scale Guidance
 - Node and edge counts are intentionally not fixed.
@@ -119,11 +125,8 @@ Allowed decisions:
 
 The historical 25% ratio remains a diagnostic reference with its original formula and threshold. A relation between domains can be declared and tested as evidence while the hypothesis route retains its original context; do not invent a pivot to improve a topology score. The [recorded policy decision](graph-assurance-policy.md) separates authoring acceptance from uncalibrated diagnostic thresholds. The builder checks structure and prepares unpromoted content; it does not perform evidence acceptance or move stable pointers.
 
-## Fan-In Constraints
-- Default max fan-in (non-terminal nodes): 8
-- Exception max fan-in (non-terminal nodes): 12
-- Terminal max fan-in (sink nodes): 24
-- Non-terminal exceptions must be listed in `entry_nodes.json` under `fanInExceptionNodeIds`
+## Fan-in diagnostics
+The historical default (8), exception (12), and terminal (24) limits remain diagnostic references for the working draft. They do not justify redirecting a route to an unrelated question or prohibit a useful shared entry. Published release checks retain their historical limits.
 
 ## Text Quality Rules
 Node labels must:
@@ -178,7 +181,7 @@ Math assurance includes release-level publish gates under:
 - `monitoring.publishGates.failedGateIds`
 - `monitoring.publishGates.gates[]`
 
-Current blocking gates cover graph authoring, DAG/reachability/branch totality, declared domain/archetype scope, evidence cards, every evidence-profile transition, scenario agreement and scenario coverage. Missing evidence checks remain `notRun` and block acceptance. Current `monitoring.publishGates` is scoped to author-side acceptance, not release authorization.
+Current blocking gates cover graph authoring, reachability/outcome coverage, declared domain/archetype scope, evidence cards, every evidence-profile transition, scenario agreement and scenario coverage. Missing evidence checks remain `notRun` and block acceptance. Current `monitoring.publishGates` is scoped to author-side acceptance, not release authorization.
 
 Historical topology thresholds are retained under `monitoring.legacyReferenceThresholds`. They do not measure evidentiary truth or permit bypassing a prerequisite. All published reports retain their original fields, policy and meaning; future generated reports carry the new policy identity. The release-contract validator continues checking the exact historical artifacts without alteration.
 

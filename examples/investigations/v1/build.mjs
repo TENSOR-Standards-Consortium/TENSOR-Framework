@@ -1,9 +1,10 @@
 import { createHash } from 'node:crypto';
 import { readFile, writeFile } from 'node:fs/promises';
 import { scenarios } from './scenarios.mjs';
+import { routing } from './routes.mjs';
 import { validateBundle } from '../../../core/v0.1.0-draft.1/index.mjs';
 const root = new URL('./', import.meta.url);
-const version = '1.0.0';
+const version = '1.1.0';
 const contractRef = { proposal: '0.1.0', bindingVersion: '0.1.0-draft.1', status: 'candidate; unratified' };
 const layers = [
   { id: 'public', label: 'Public investigation questions', owner: 'TENSOR Standards Consortium', version },
@@ -23,6 +24,7 @@ async function artifact(name, value) {
 }
 const catalog = [];
 for (const scenario of scenarios) {
+  const plan = routing[scenario.id];
   const base = `urn:tensor:example:${scenario.id}:`;
   const id = suffix => base + suffix;
   const window = { status: 'bounded', start: '2026-10-13T08:35:00Z', end: '2026-10-13T09:00:00Z' };
@@ -37,21 +39,56 @@ for (const scenario of scenarios) {
   }));
   const definition = {
     id: id('composed-definition'), version, publicationStatus: 'draft', title: scenario.title, contractRef,
-    questions, transitions: scenario.steps.slice(0, -1).flatMap((s, i) => ['yes', 'no', 'unknown'].map(outcome => ({
-      id: id(`route-${i + 1}-${outcome}`), sourceQuestionId: questions[i].id, targetQuestionId: questions[i + 1].id, guardOutcome: outcome,
-      metadata: { meaning: 'Continue the next independently assessed proposition while retaining this outcome; no target answer, causality, or response permission is implied.' },
-    }))), entryQuestionIds: [questions[0].id], dependencies: [],
+    questions, transitions: plan.routes.map(([source,outcome,target]) => ({
+      id: id(`route-${source}-${target}-${outcome}`), sourceQuestionId: questions[source-1].id, targetQuestionId: questions[target-1].id, guardOutcome: outcome,
+      metadata: { meaning: `The ${outcome} source assessment permits opening this separate question: ${questions[target-1].prompt} Bind its own subject and evidence; no target answer, causal relationship or response permission is inherited.`,
+        selection: 'A human or agent explicitly selects one or several eligible routes. An eligible option is not a recorded selection.' },
+    })), entryQuestionIds: [questions[0].id], dependencies: [],
     metadata: { illustrative: true, layers, composition: 'Case-specific questions composed in one pinned artifact. These are additional example definitions, not routes added to the public working or published graph.' },
   };
   const definitionName = `${scenario.id}.definition.json`;
   const definitionContent = await artifact(definitionName, definition);
   const pin = { id: definition.id, version, sha256: hash(definitionContent), artifact: definitionName };
   const entries = [], frames = [];
+  const instances = new Map();
   let clock = 0;
   const entry = (type, suffix, actor, fields) => {
     const value = { id: id(suffix), type, recordedAt: new Date(Date.UTC(2026, 9, 13, 9, 0, clock++)).toISOString(), attribution: { actorId: id(`actor-${actor}`) }, ...fields };
     entries.push(value); return value;
   };
+  function ensureInstance(n, originDecisionId) {
+    if(instances.has(n)) {
+      const previous=instances.get(n);
+      if(originDecisionId&&previous.origin.originDecisionId!==originDecisionId) throw new Error('A second selection must create a separate target instance.');
+      return previous;
+    }
+    const s=scenario.steps[n-1];
+    const instance=entry('QuestionInstance', `instance-${n}`, s.actor, {definitionRef:pin,questionId:questions[n-1].id,
+      subjectBindings:{subject:id(s.subject)},timeContext:window,parameterBindings:{subject:id(s.subject),window},
+      origin: originDecisionId?{kind:'transition',rationale:'Explicitly selected investigative lead; target evidence and subject remain separate.',originDecisionId}:
+        n===1?{kind:'entry',rationale:'Open the bounded example investigation.'}:{kind:'newLead',rationale:'A separately documented review lead; timeline adjacency supplies no route.'}});
+    instances.set(n,instance);return instance;
+  }
+  function decide(n,s,assessment,early=false) {
+    const targets=(early?plan.earlySelected?.[n]:plan.selected[n])||[];
+    const suffix=early?`early-decision-${n}`:`decision-${n}`;
+    const selections=targets.map(target=>{
+      if(!plan.routes.some(([source,outcome,destination])=>source===n&&outcome===assessment.outcome&&destination===target)) throw new Error('Selected route is not explicitly declared.');
+      return {transitionId:id(`route-${n}-${target}-${assessment.outcome}`),targetInstanceId:id(`instance-${target}`)};
+    });
+    const final=n===scenario.steps.length;
+    const decision=entry('Decision',suffix,s.response?'responder':'analyst',{
+      targetInstanceId:id(`instance-${n}`),selectedAssessmentId:assessment.id,
+      selectedInputIds: final?entries.filter(e=>e.type==='Assessment').map(e=>e.id):[assessment.id],
+      disposition:selections.length?'transition':final?'handoff':'retain',
+      rationale:s.response?scenario.operation:selections.length?`Open ${selections.length} independently assessed lead${selections.length===1?'':'s'}; retain this ${assessment.outcome} answer and the unselected alternatives.`:final?'Hand off the separate findings, retained revisions, open evidence gaps and planned response.':'Retain this assessment and its limitations; no additional route is selected by this decision.',
+      policyStatus:s.policyBound?{status:'referenced',policyRefIds:[id('policy')]}:{status:'notApplicable'},
+      authorityStatus:s.response?{status:'referenced',authorityRefIds:[id('authority')]}:{status:'notApplicable'},
+      limitations:[s.limitation],...(selections.length?{selections}:{}),
+    });
+    for(const target of targets) ensureInstance(target,decision.id);
+    return decision;
+  }
   for (const [actor, kind, label] of [['analyst','human','SOC analyst'],['agent','agent','Assisting investigation agent'],['responder','human','On-duty response lead']]) {
     entry('Actor', `actor-${actor}`, actor, { kind, label, identityStatus: 'selfDeclared' });
   }
@@ -59,10 +96,10 @@ for (const scenario of scenarios) {
   entry('AuthorityAssertion', 'authority', 'responder', { issuerId: id('actor-responder'), granteeId: id('actor-responder'), permittedOperation: scenario.operation, scope: scenario.purpose, validityStatus: { status: 'claimedValid', reason: 'The example asserts this actor is the designated on-duty responder.' }, basisReferences: [id('policy')], receiverLocalVerification: 'notPerformed' });
   for (const [i, s] of scenario.steps.entries()) {
     const n = i + 1;
-    entry('QuestionInstance', `instance-${n}`, s.actor, { definitionRef: pin, questionId: questions[i].id, subjectBindings: { subject: id(s.subject) }, timeContext: window, parameterBindings: { subject: id(s.subject), window }, origin: i === 0 ? { kind: 'entry', rationale: 'Open the bounded example investigation.' } : { kind: 'transition', rationale: 'Continue a separately assessed question with the prior answer retained.', originDecisionId: id(`decision-${i}`) } });
+    ensureInstance(n);
     const assess = (outcome, suffix, observationId, rationale, supersedes) => entry('Assessment', suffix, s.actor, {
       targetInstanceId: id(`instance-${n}`), applicability: { status: 'applicable', rationale: 'The declared subject, interval, and required parameters are resolved.' }, outcome,
-      rationale, inputs: [{ entryId: observationId, role: outcome === 'yes' ? 'supports' : outcome === 'no' ? 'contradicts' : 'context' }], method: 'Authored example applies the pinned question criteria to retained illustrative observations.',
+      rationale, inputs: [{ entryId: observationId, role: outcome === 'yes' ? 'supports' : outcome === 'no' ? 'contradicts' : 'context' },...(plan.context[n]||[]).filter(k=>entries.some(e=>e.id===id(`assessment-${k}`))).map(k=>({entryId:id(`assessment-${k}`),role:'context'}))], method: 'Authored example applies the pinned question criteria to retained illustrative observations.',
       ...(outcome === 'unknown' ? { unknownReasons: [{ code: 'insufficient', explanation: rationale }] } : {}),
       ...(s.policyBound ? { policyBinding: { policyRefId: id('policy'), parameterBindings: {} } } : {}), ...(supersedes ? { supersedes } : {}),
     });
@@ -70,19 +107,13 @@ for (const scenario of scenarios) {
       entry('EvidenceReference', `early-evidence-${n}`, s.actor, { description: s.initialUnknown, source: { label: 'Initial example tool metadata', provenanceStatus: 'Authored fictional evidence' }, availability: 'unavailable', locatorAbsentReason: 'No real source system or source bytes exist.' });
       const early = entry('Observation', `early-observation-${n}`, s.actor, { statement: s.initialUnknown, evidenceRefIds: [id(`early-evidence-${n}`)], method: 'Illustrative initial collection with a declared gap.', eventTime: window });
       const previous = assess('unknown', `early-assessment-${n}`, early.id, s.initialUnknown);
-      frames.push({ title: 'Content is initially unresolved', assessmentId: previous.id, through: entries.length, limitation: s.limitation });
+      const earlyDecision=decide(n,s,previous,true);
+      frames.push({ title: 'Content is initially unresolved', assessmentId: previous.id, decisionId:earlyDecision.id, through: entries.length, limitation: s.limitation });
     }
     entry('EvidenceReference', `evidence-${n}`, s.actor, { description: s.evidence, source: { label: `${s.domain} example evidence`, provenanceStatus: 'Authored fictional evidence; no real incident source is authenticated' }, availability: 'unavailable', locatorAbsentReason: 'The example supplies observations and references, not real source evidence bytes.' });
     const observation = entry('Observation', `observation-${n}`, s.actor, { statement: s.evidence, evidenceRefIds: [id(`evidence-${n}`)], method: 'Authored observation; discriminator and collection limits are described in the statement.', eventTime: window });
     const assessment = assess(s.outcome, `assessment-${n}`, observation.id, `${s.criteria[s.outcome]} ${s.limitation}`, s.initialUnknown ? { entryId: id(`early-assessment-${n}`), reason: 'A later request-body receipt supplies the formerly missing content and destination discriminators.' } : undefined);
-    entry('Decision', `decision-${n}`, s.response ? 'responder' : 'analyst', {
-      targetInstanceId: id(`instance-${n}`), selectedAssessmentId: assessment.id, selectedInputIds: [assessment.id],
-      disposition: i === scenario.steps.length - 1 ? 'handoff' : 'transition',
-      rationale: s.response ? scenario.operation : 'Retain this assessment and its limitations while continuing the next separately assessed question.',
-      policyStatus: s.policyBound ? { status: 'referenced', policyRefIds: [id('policy')] } : { status: 'notApplicable' },
-      authorityStatus: s.response ? { status: 'referenced', authorityRefIds: [id('authority')] } : { status: 'notApplicable' },
-      limitations: [s.limitation], ...(i < scenario.steps.length - 1 ? { selections: [{ transitionId: id(`route-${n}-${s.outcome}`), targetInstanceId: id(`instance-${n + 1}`) }] } : {}),
-    });
+    decide(n,s,assessment);
     if (s.response) entry('ActionRecord', `action-${n}`, 'responder', { operationDescription: scenario.operation, operationSubject: id(s.subject), stage: 'planned', decisionId: id(`decision-${n}`), eventTime: { status: 'unknown', reason: 'No action is executed in this example.' } });
     frames.push({ title: s.title, assessmentId: assessment.id, decisionId: id(`decision-${n}`), through: entries.length, limitation: s.limitation });
   }

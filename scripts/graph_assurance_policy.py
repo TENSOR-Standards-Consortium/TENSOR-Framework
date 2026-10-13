@@ -13,9 +13,9 @@ import json
 from core_graph_pipeline import DOMAINS
 from evaluate_entry_scenarios import expand_suite, references, run_cases
 
-POLICY_ID = "tensor-graph-assurance/1"
-STRUCTURAL_IDS = {"dag_pass", "full_reachability", "branch_totality", "coverage_score"}
-DIAGNOSTIC_IDS = {"cross_domain_pivots", "routing_score", "robustness_score", "targeted_resilience",
+POLICY_ID = "tensor-graph-assurance/2"
+STRUCTURAL_IDS = {"full_reachability", "branch_totality", "coverage_score"}
+DIAGNOSTIC_IDS = {"dag_pass", "cross_domain_pivots", "routing_score", "robustness_score", "targeted_resilience",
                   "routing_centralization", "information_gain", "overall_score"}
 EVIDENCE_IDS = ("evidence_cards", "evidence_transitions", "scenario_agreement", "scenario_coverage")
 ROLE_RULES = {
@@ -54,6 +54,21 @@ def build_acceptance(authoring_errors, reference, evidence_gates=None):
 
 
 def assess_evidence(graph, graph_sha256, criteria, suite):
+    if "routingProfile" in criteria:
+        from investigative_routing import continuation_edges, assess_routes
+        projection = {**graph, "edges": continuation_edges(graph)}
+        old_criteria = {k: v for k, v in criteria.items() if k != "routingProfile"}
+        projected_sha = sha256(json.dumps(projection, sort_keys=True).encode()).hexdigest()
+        old_criteria["graphSha256"] = projected_sha
+        gates = assess_evidence(projection, projected_sha, old_criteria, suite)
+        route_errors = assess_routes(graph, criteria)
+        if (criteria.get("graphSha256") != graph_sha256 or criteria.get("graphVersion") != graph["version"]):
+            route_errors.append("Routing profile does not pin the exact active graph bytes and version")
+            next(g for g in gates if g["id"] == "evidence_cards").update(passed=False, status="fail", evidence=["Evidence criteria must pin the exact active graph bytes and version"])
+        target = next(g for g in gates if g["id"] == "evidence_transitions")
+        if route_errors:
+            target.update(passed=False, status="fail", evidence=route_errors+target["evidence"])
+        return gates
     if "restoration" not in criteria:
         return _assess_base(graph, graph_sha256, criteria, suite)
     try:

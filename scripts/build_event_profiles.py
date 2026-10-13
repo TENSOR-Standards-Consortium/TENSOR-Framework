@@ -77,7 +77,8 @@ def retained_row(case,node,answer):
 
 def declare_expected(case,criteria,graph,overrides=None):
     overrides = overrides or {}
-    edges = {(e['source'],e['decision']):e['target'] for e in graph['edges']}
+    from investigative_routing import continuation_edges
+    edges = {(e['source'],e['decision']):e['target'] for e in continuation_edges(graph)}
     current = case.get('entry',criteria['domains'][case['domain']]['entry'])
     trace = []
     for _ in range(len(graph['nodes'])):
@@ -101,7 +102,7 @@ def build():
     criteria_raw = (ROOT/'drafts/core/entry-evidence-criteria.json').read_bytes()
     graph,criteria = json.loads(graph_raw),json.loads(criteria_raw)
     catalog = json.loads((DIRECTORY/'catalog.source.json').read_text())
-    catalog.update(graphSha256=sha256(graph_raw).hexdigest(),criteriaSha256=sha256(criteria_raw).hexdigest(),
+    catalog.update(graphVersion=graph['version'],graphSha256=sha256(graph_raw).hexdigest(),criteriaSha256=sha256(criteria_raw).hexdigest(),
         baselineCommit='78a275b127d2f24933c3ec16d9a2b0b1c38fb0af')
     seeds = json.loads((DIRECTORY/'scenarios.source.json').read_text())['cases']
     cases = []

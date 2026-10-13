@@ -308,7 +308,8 @@ def run_cases(graph, criteria, suite):
         results.append({"caseId": case["id"], "nodeId": case["nodeId"], "answer": actual,
                         "reason": reason, "passed": actual == case["expectedAnswer"]})
     for case in suite.get("restoredPaths", []):
-        edges = {(e["source"], e["decision"]): e["target"] for e in graph["edges"]}
+        from investigative_routing import continuation_edges
+        edges = {(e["source"], e["decision"]): e["target"] for e in continuation_edges(graph)}
         current, trace = case["entry"], []
         initial_bounds = None
         seen = set()

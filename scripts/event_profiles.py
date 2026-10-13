@@ -441,7 +441,8 @@ def evaluate_route(graph,criteria,catalog,case):
     if not profile:
         raise ValueError('Unknown domain/event profile')
     current = case.get('entry',criteria['domains'][case['domain']]['entry'])
-    edges = {(e['source'],e['decision']):e['target'] for e in graph['edges']}
+    from investigative_routing import continuation_edges
+    edges = {(e['source'],e['decision']):e['target'] for e in continuation_edges(graph)}
     cards = criteria['nodes']
     trace,seen = [],set()
     supplied = deepcopy(case)
