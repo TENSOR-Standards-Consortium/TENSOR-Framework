@@ -4,7 +4,7 @@ import { scenarios } from './scenarios.mjs';
 import { routing } from './routes.mjs';
 import { validateBundle } from '../../../core/v0.1.0-draft.1/index.mjs';
 const root = new URL('./', import.meta.url);
-const version = '1.1.0';
+const version = '1.2.0';
 const contractRef = { proposal: '0.1.0', bindingVersion: '0.1.0-draft.1', status: 'candidate; unratified' };
 const layers = [
   { id: 'public', label: 'Public investigation questions', owner: 'TENSOR Standards Consortium', version },
@@ -35,7 +35,7 @@ for (const scenario of scenarios) {
     applicabilityCriteria: 'Applies only to the declared subject and interval with resolved parameters and the named evidence and policy context.',
     assessmentCriteria: s.criteria,
     evidenceRequirements: ['Retained source provenance and interpretation basis; exact subject and interval; falsifiable discriminators and alternatives.', 'Negative findings require authoritative observation or register coverage. Unknowns and separate policy, intent, execution, and delivery propositions remain explicit.'],
-    metadata: { displayId: `S${i + 1}`, domain: s.domain, layerId: s.layer, layerVersion: version, archetype: i === 0 ? 'detect' : i === scenario.steps.length - 1 ? 'terminal' : s.policyBound ? 'classify' : 'correlate' },
+    metadata: { title: s.title, displayId: `S${i + 1}`, domain: s.domain, layerId: s.layer, layerVersion: version, archetype: i === 0 ? 'detect' : i === scenario.steps.length - 1 ? 'terminal' : s.policyBound ? 'classify' : 'correlate' },
   }));
   const definition = {
     id: id('composed-definition'), version, publicationStatus: 'draft', title: scenario.title, contractRef,
@@ -64,6 +64,7 @@ for (const scenario of scenarios) {
     }
     const s=scenario.steps[n-1];
     const instance=entry('QuestionInstance', `instance-${n}`, s.actor, {definitionRef:pin,questionId:questions[n-1].id,
+      metadata:{subjectLabels:{[id(s.subject)]:scenario.subjectLabels[s.subject]}},
       subjectBindings:{subject:id(s.subject)},timeContext:window,parameterBindings:{subject:id(s.subject),window},
       origin: originDecisionId?{kind:'transition',rationale:'Explicitly selected investigative lead; target evidence and subject remain separate.',originDecisionId}:
         n===1?{kind:'entry',rationale:'Open the bounded example investigation.'}:{kind:'newLead',rationale:'A separately documented review lead; timeline adjacency supplies no route.'}});

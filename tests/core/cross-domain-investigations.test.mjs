@@ -73,3 +73,25 @@ test('examples record actual multiple selections under yes, no and unknown answe
   }
   assert.deepEqual(found,new Set(['yes','no','unknown']));
 });
+
+
+test('example subjects have declared readable properties while stable IDs remain distinct', () => {
+  const opaque = /\b(?:s-42|r-7|job-17|tx-71|obj-[89]|f-8|m-31|f-31|h-17|p-204|req-42)\b/;
+  for (const bundle of bundles) {
+    const definition = JSON.parse(bundle.definitions[0].content);
+    for (const q of definition.questions) {
+      assert.doesNotMatch(q.prompt, opaque);
+      for (const criterion of Object.values(q.assessmentCriteria)) assert.doesNotMatch(criterion, opaque);
+    }
+    for (const e of bundle.record.entries) {
+      if (e.type === 'QuestionInstance') {
+        assert.match(e.subjectBindings.subject, /^urn:tensor:example:/);
+        assert.ok(e.metadata.subjectLabels[e.subjectBindings.subject]);
+        assert.doesNotMatch(e.metadata.subjectLabels[e.subjectBindings.subject], opaque);
+      }
+      for (const key of ['statement', 'description', 'rationale', 'operationDescription']) {
+        if (typeof e[key] === 'string') assert.doesNotMatch(e[key], opaque);
+      }
+    }
+  }
+});
