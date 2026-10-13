@@ -10,7 +10,8 @@
     "test": "node --test tests/core/*.test.mjs",
     "check:schemas": "node core/v0.1.0-draft.1/scripts/write-schemas.mjs --check",
     "validate:examples": "node core/v0.1.0-draft.1/scripts/validate-examples.mjs",
-    "check": "npm run check:schemas && npm test && npm run validate:examples"
+    "check:investigations": "node examples/investigations/v1/build.mjs --check",
+    "check": "npm run check:schemas && npm test && npm run validate:examples && npm run check:investigations"
   },
   "devDependencies": {
     "ajv": "^8.20.0",
