@@ -36,6 +36,7 @@
         "Negative findings require authoritative observation or register coverage. Unknowns and separate policy, intent, execution, and delivery propositions remain explicit."
       ],
       "metadata": {
+        "title": "Establish the message",
         "displayId": "S1",
         "domain": "Email",
         "layerId": "public",
@@ -70,6 +71,7 @@
         "Negative findings require authoritative observation or register coverage. Unknowns and separate policy, intent, execution, and delivery propositions remain explicit."
       ],
       "metadata": {
+        "title": "Identify the attachment bytes",
         "displayId": "S2",
         "domain": "File",
         "layerId": "vendor",
@@ -104,6 +106,7 @@
         "Negative findings require authoritative observation or register coverage. Unknowns and separate policy, intent, execution, and delivery propositions remain explicit."
       ],
       "metadata": {
+        "title": "Bind execution to the file",
         "displayId": "S3",
         "domain": "Host",
         "layerId": "vendor",
@@ -138,6 +141,7 @@
         "Negative findings require authoritative observation or register coverage. Unknowns and separate policy, intent, execution, and delivery propositions remain explicit."
       ],
       "metadata": {
+        "title": "Test the application pivot",
         "displayId": "S4",
         "domain": "Application",
         "layerId": "vendor",
@@ -172,6 +176,7 @@
         "Negative findings require authoritative observation or register coverage. Unknowns and separate policy, intent, execution, and delivery propositions remain explicit."
       ],
       "metadata": {
+        "title": "Assess the requested content",
         "displayId": "S5",
         "domain": "Application",
         "layerId": "public",
@@ -206,6 +211,7 @@
         "Negative findings require authoritative observation or register coverage. Unknowns and separate policy, intent, execution, and delivery propositions remain explicit."
       ],
       "metadata": {
+        "title": "Apply the organization’s approval test",
         "displayId": "S6",
         "domain": "Application",
         "layerId": "company",
@@ -240,6 +246,7 @@
         "Negative findings require authoritative observation or register coverage. Unknowns and separate policy, intent, execution, and delivery propositions remain explicit."
       ],
       "metadata": {
+        "title": "Keep delivery unresolved",
         "displayId": "S7",
         "domain": "Application",
         "layerId": "public",
@@ -274,6 +281,7 @@
         "Negative findings require authoritative observation or register coverage. Unknowns and separate policy, intent, execution, and delivery propositions remain explicit."
       ],
       "metadata": {
+        "title": "Approve scoped containment",
         "displayId": "S8",
         "domain": "Host",
         "layerId": "company",
@@ -308,6 +316,7 @@
         "Negative findings require authoritative observation or register coverage. Unknowns and separate policy, intent, execution, and delivery propositions remain explicit."
       ],
       "metadata": {
+        "title": "Hand off the retained revision",
         "displayId": "S9",
         "domain": "Application",
         "layerId": "public",

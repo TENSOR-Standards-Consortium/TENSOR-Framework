@@ -36,6 +36,7 @@
         "Negative findings require authoritative observation or register coverage. Unknowns and separate policy, intent, execution, and delivery propositions remain explicit."
       ],
       "metadata": {
+        "title": "Establish the sign-in",
         "displayId": "S1",
         "domain": "Identity",
         "layerId": "public",
@@ -70,6 +71,7 @@
         "Negative findings require authoritative observation or register coverage. Unknowns and separate policy, intent, execution, and delivery propositions remain explicit."
       ],
       "metadata": {
+        "title": "Keep the controller unresolved",
         "displayId": "S2",
         "domain": "Identity",
         "layerId": "public",
@@ -104,6 +106,7 @@
         "Negative findings require authoritative observation or register coverage. Unknowns and separate policy, intent, execution, and delivery propositions remain explicit."
       ],
       "metadata": {
+        "title": "Link the mailbox change",
         "displayId": "S3",
         "domain": "Email",
         "layerId": "vendor",
@@ -138,6 +141,7 @@
         "Negative findings require authoritative observation or register coverage. Unknowns and separate policy, intent, execution, and delivery propositions remain explicit."
       ],
       "metadata": {
+        "title": "Check company approval",
         "displayId": "S4",
         "domain": "Email",
         "layerId": "company",
@@ -172,6 +176,7 @@
         "Negative findings require authoritative observation or register coverage. Unknowns and separate policy, intent, execution, and delivery propositions remain explicit."
       ],
       "metadata": {
+        "title": "Retain the delivery gap",
         "displayId": "S5",
         "domain": "Email",
         "layerId": "public",
@@ -206,6 +211,7 @@
         "Negative findings require authoritative observation or register coverage. Unknowns and separate policy, intent, execution, and delivery propositions remain explicit."
       ],
       "metadata": {
+        "title": "Record the scoped response",
         "displayId": "S6",
         "domain": "Email",
         "layerId": "company",
@@ -240,6 +246,7 @@
         "Negative findings require authoritative observation or register coverage. Unknowns and separate policy, intent, execution, and delivery propositions remain explicit."
       ],
       "metadata": {
+        "title": "Hand off the bounded findings",
         "displayId": "S7",
         "domain": "Email",
         "layerId": "public",
