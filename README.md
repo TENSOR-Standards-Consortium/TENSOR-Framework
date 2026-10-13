@@ -4,6 +4,10 @@ TENSOR is being developed as a public standard for **all cyber investigations**,
 
 The project preserves its existing question graphs and introduces a **Core investigation-record candidate, `0.1.0-draft.1`**, for public review. The candidate connects questions, evidence references, observations, assessments, decisions, and revisions in a portable record. It is not a ratified standard or a certification program.
 
+## Public event profiles
+
+[Sixteen draft event profiles](drafts/core/event-profiles/README.md) add credential/workload state, host/network/cloud state, cloud data access, mailbox and collaboration activity, autonomous application actions, file deletion and historical lineage across all seven domains. Their explicitly qualified definitions and 144 authored route scenarios sit above the unchanged working graph and schema. These are author-tested drafts; institutional review and independent exchange remain open.
+
 ## Start here
 
 - **Investigators:** read the [founding charter](proposals/founding-core-v0.1.0/00-charter.md) and [two synthetic cases](core/v0.1.0-draft.1/examples/README.md).

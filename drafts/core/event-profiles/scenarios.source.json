@@ -1,0 +1,493 @@
+{
+  "format": "tensor-event-profile-authored-scenarios",
+  "version": "0.1.0-draft.1",
+  "cases": [
+    {
+      "id": "identity-credential-state-supported",
+      "domain": "Identity",
+      "eventProfile": "identity-credential-state",
+      "profileVersion": "0.1.0-draft.1",
+      "title": "A suspended service-account credential remains active in the credential inventory.",
+      "bindings": {
+        "principalId": "principal-payroll",
+        "credentialId": "credential-key-07"
+      },
+      "interval": {
+        "start": "2026-10-12T09:00:00Z",
+        "end": "2026-10-12T10:00:00Z"
+      },
+      "hypothesisFact": "credential.status",
+      "hypothesisValue": "active",
+      "requiredFactValues": {
+        "credential.status": "active"
+      },
+      "technicalSource": "collector-identity-credential-state",
+      "metricId": "active-credential-count",
+      "baseline": 0,
+      "observed": 1,
+      "limitations": [
+        "Credential state does not establish ownership, use, authorization or human intent.",
+        "Fictitious authored investigation; not authenticated incident evidence."
+      ],
+      "metricUnit": "count",
+      "hypothesisStatement": "The selected bounded observation assesses credential.status as active; broader interpretations remain separate."
+    },
+    {
+      "id": "identity-workload-binding-supported",
+      "domain": "Identity",
+      "eventProfile": "identity-workload-binding",
+      "profileVersion": "0.1.0-draft.1",
+      "title": "A build workload is bound to a deployment principal outside its expected pool.",
+      "bindings": {
+        "principalId": "principal-deploy",
+        "workloadId": "workload-build-19"
+      },
+      "interval": {
+        "start": "2026-10-12T09:00:00Z",
+        "end": "2026-10-12T10:00:00Z"
+      },
+      "hypothesisFact": "binding.status",
+      "hypothesisValue": "bound",
+      "requiredFactValues": {
+        "binding.status": "bound"
+      },
+      "technicalSource": "collector-identity-workload-binding",
+      "metricId": "bound-workload-count",
+      "baseline": 0,
+      "observed": 1,
+      "limitations": [
+        "A workload/principal binding does not establish who controlled the workload or permission to act.",
+        "Fictitious authored investigation; not authenticated incident evidence."
+      ],
+      "metricUnit": "count",
+      "hypothesisStatement": "The selected bounded observation assesses binding.status as bound; broader interpretations remain separate."
+    },
+    {
+      "id": "host-state-supported",
+      "domain": "Host",
+      "eventProfile": "host-state",
+      "profileVersion": "0.1.0-draft.1",
+      "title": "A configuration snapshot shows the endpoint sensor disabled, without a process record.",
+      "bindings": {
+        "hostId": "host-build-04",
+        "stateKey": "endpoint-sensor-enabled"
+      },
+      "interval": {
+        "start": "2026-10-12T09:00:00Z",
+        "end": "2026-10-12T10:00:00Z"
+      },
+      "hypothesisFact": "state.value",
+      "hypothesisValue": "disabled",
+      "requiredFactValues": {
+        "state.value": "disabled"
+      },
+      "technicalSource": "collector-host-state",
+      "metricId": "enabled-sensor-count",
+      "baseline": 1,
+      "observed": 0,
+      "limitations": [
+        "A state observation establishes its observation time only. A change or historical absence needs separate baseline and collection evidence.",
+        "Fictitious authored investigation; not authenticated incident evidence."
+      ],
+      "metricUnit": "count",
+      "hypothesisStatement": "The selected bounded observation assesses state.value as disabled; broader interpretations remain separate."
+    },
+    {
+      "id": "network-configuration-supported",
+      "domain": "Network",
+      "eventProfile": "network-configuration",
+      "profileVersion": "0.1.0-draft.1",
+      "title": "A firewall configuration export contains an unrestricted egress rule.",
+      "bindings": {
+        "deviceId": "firewall-west",
+        "configurationId": "rule-egress-42"
+      },
+      "interval": {
+        "start": "2026-10-12T09:00:00Z",
+        "end": "2026-10-12T10:00:00Z"
+      },
+      "hypothesisFact": "configuration.value",
+      "hypothesisValue": "allow-any-egress",
+      "requiredFactValues": {
+        "configuration.value": "allow-any-egress"
+      },
+      "technicalSource": "collector-network-configuration",
+      "metricId": "unrestricted-egress-rule-count",
+      "baseline": 0,
+      "observed": 1,
+      "limitations": [
+        "Configuration does not establish that any packet traversed the device or that a historical configuration was identical.",
+        "Fictitious authored investigation; not authenticated incident evidence."
+      ],
+      "metricUnit": "count",
+      "hypothesisStatement": "The selected bounded observation assesses configuration.value as allow-any-egress; broader interpretations remain separate."
+    },
+    {
+      "id": "network-sensor-coverage-supported",
+      "domain": "Network",
+      "eventProfile": "network-sensor-coverage",
+      "profileVersion": "0.1.0-draft.1",
+      "title": "A network sensor health record reports a stopped capture stream during a disputed session.",
+      "bindings": {
+        "sensorId": "sensor-west",
+        "collectionId": "capture-20261012"
+      },
+      "interval": {
+        "start": "2026-10-12T09:00:00Z",
+        "end": "2026-10-12T10:00:00Z"
+      },
+      "hypothesisFact": "collection.status",
+      "hypothesisValue": "stopped",
+      "requiredFactValues": {
+        "collection.status": "stopped"
+      },
+      "technicalSource": "collector-network-sensor-coverage",
+      "metricId": "active-capture-stream-count",
+      "baseline": 1,
+      "observed": 0,
+      "limitations": [
+        "A health record does not prove comprehensive logging. Exclusion still requires a separately evidenced full-interval coverage assessment.",
+        "Fictitious authored investigation; not authenticated incident evidence."
+      ],
+      "metricUnit": "count",
+      "hypothesisStatement": "The selected bounded observation assesses collection.status as stopped; broader interpretations remain separate."
+    },
+    {
+      "id": "cloud-data-access-supported",
+      "domain": "Cloud",
+      "eventProfile": "cloud-data-access",
+      "profileVersion": "0.1.0-draft.1",
+      "title": "A storage data-plane record reports an anonymous object read returning content.",
+      "bindings": {
+        "tenantId": "tenant-research",
+        "resourceId": "bucket-payroll/object-7",
+        "operationId": "read-operation-17"
+      },
+      "interval": {
+        "start": "2026-10-12T09:00:00Z",
+        "end": "2026-10-12T10:00:00Z"
+      },
+      "hypothesisFact": "access.outcome",
+      "hypothesisValue": "content-returned",
+      "requiredFactValues": {
+        "access.outcome": "content-returned"
+      },
+      "technicalSource": "collector-cloud-data-access",
+      "metricId": "returned-object-bytes",
+      "baseline": 0,
+      "observed": 4096,
+      "limitations": [
+        "Control-plane permissions or attempted access do not prove that content was returned; outcome needs its own assessed fact.",
+        "Fictitious authored investigation; not authenticated incident evidence."
+      ],
+      "metricUnit": "bytes",
+      "hypothesisStatement": "The selected bounded observation assesses access.outcome as content-returned; broader interpretations remain separate."
+    },
+    {
+      "id": "cloud-resource-state-supported",
+      "domain": "Cloud",
+      "eventProfile": "cloud-resource-state",
+      "profileVersion": "0.1.0-draft.1",
+      "title": "A resource inventory snapshot shows public access enabled without a control-plane operation ID.",
+      "bindings": {
+        "tenantId": "tenant-research",
+        "resourceId": "bucket-payroll",
+        "stateKey": "public-access"
+      },
+      "interval": {
+        "start": "2026-10-12T09:00:00Z",
+        "end": "2026-10-12T10:00:00Z"
+      },
+      "hypothesisFact": "state.value",
+      "hypothesisValue": "public-enabled",
+      "requiredFactValues": {
+        "state.value": "public-enabled"
+      },
+      "technicalSource": "collector-cloud-resource-state",
+      "metricId": "public-resource-count",
+      "baseline": 0,
+      "observed": 1,
+      "limitations": [
+        "A resource snapshot does not prove who changed it, when it changed or whether anyone accessed data.",
+        "Fictitious authored investigation; not authenticated incident evidence."
+      ],
+      "metricUnit": "count",
+      "hypothesisStatement": "The selected bounded observation assesses state.value as public-enabled; broader interpretations remain separate."
+    },
+    {
+      "id": "email-mailbox-rule-supported",
+      "domain": "Email",
+      "eventProfile": "email-mailbox-rule",
+      "profileVersion": "0.1.0-draft.1",
+      "title": "A mailbox audit record reports successful creation of a forwarding rule, without a message ID.",
+      "bindings": {
+        "mailboxId": "mailbox-finance",
+        "ruleId": "rule-forward-09"
+      },
+      "interval": {
+        "start": "2026-10-12T09:00:00Z",
+        "end": "2026-10-12T10:00:00Z"
+      },
+      "hypothesisFact": "rule.outcome",
+      "hypothesisValue": "succeeded",
+      "requiredFactValues": {
+        "rule.outcome": "succeeded",
+        "rule.operation": "create"
+      },
+      "technicalSource": "collector-email-mailbox-rule",
+      "metricId": "external-forwarding-rule-count",
+      "baseline": 0,
+      "observed": 1,
+      "limitations": [
+        "A rule operation does not prove that any message was forwarded. Message delivery requires separately bound evidence.",
+        "Fictitious authored investigation; not authenticated incident evidence."
+      ],
+      "metricUnit": "count",
+      "hypothesisStatement": "The selected bounded observation assesses rule.outcome as succeeded; broader interpretations remain separate."
+    },
+    {
+      "id": "email-mailbox-access-supported",
+      "domain": "Email",
+      "eventProfile": "email-mailbox-access",
+      "profileVersion": "0.1.0-draft.1",
+      "title": "A delegated principal opens the finance mailbox using a separately logged access operation.",
+      "bindings": {
+        "mailboxId": "mailbox-finance",
+        "principalId": "principal-delegate",
+        "operationId": "access-operation-8"
+      },
+      "interval": {
+        "start": "2026-10-12T09:00:00Z",
+        "end": "2026-10-12T10:00:00Z"
+      },
+      "hypothesisFact": "access.outcome",
+      "hypothesisValue": "opened",
+      "requiredFactValues": {
+        "access.outcome": "opened"
+      },
+      "technicalSource": "collector-email-mailbox-access",
+      "metricId": "opened-mailbox-count",
+      "baseline": 0,
+      "observed": 1,
+      "limitations": [
+        "Mailbox access does not prove message reading, exfiltration, human identity or authorization.",
+        "Fictitious authored investigation; not authenticated incident evidence."
+      ],
+      "metricUnit": "count",
+      "hypothesisStatement": "The selected bounded observation assesses access.outcome as opened; broader interpretations remain separate."
+    },
+    {
+      "id": "email-collaboration-artifact-supported",
+      "domain": "Email",
+      "eventProfile": "email-collaboration-artifact",
+      "profileVersion": "0.1.0-draft.1",
+      "title": "A collaboration export records a finance document shared with an external workspace, without mail delivery.",
+      "bindings": {
+        "workspaceId": "workspace-finance",
+        "artifactId": "document-payroll",
+        "operationId": "share-operation-12"
+      },
+      "interval": {
+        "start": "2026-10-12T09:00:00Z",
+        "end": "2026-10-12T10:00:00Z"
+      },
+      "hypothesisFact": "artifact.operation",
+      "hypothesisValue": "shared-external",
+      "requiredFactValues": {
+        "artifact.operation": "shared-external"
+      },
+      "technicalSource": "collector-email-collaboration-artifact",
+      "metricId": "externally-shared-artifact-count",
+      "baseline": 0,
+      "observed": 1,
+      "limitations": [
+        "This domain profile covers messaging-adjacent collaboration evidence. Sharing permission does not establish recipient access or realized loss.",
+        "Fictitious authored investigation; not authenticated incident evidence."
+      ],
+      "metricUnit": "count",
+      "hypothesisStatement": "The selected bounded observation assesses artifact.operation as shared-external; broader interpretations remain separate."
+    },
+    {
+      "id": "application-state-supported",
+      "domain": "Application",
+      "eventProfile": "application-state",
+      "profileVersion": "0.1.0-draft.1",
+      "title": "A background configuration snapshot shows public export mode enabled without a request ID.",
+      "bindings": {
+        "applicationId": "application-reporting",
+        "stateKey": "export-mode"
+      },
+      "interval": {
+        "start": "2026-10-12T09:00:00Z",
+        "end": "2026-10-12T10:00:00Z"
+      },
+      "hypothesisFact": "state.value",
+      "hypothesisValue": "public-export-enabled",
+      "requiredFactValues": {
+        "state.value": "public-export-enabled"
+      },
+      "technicalSource": "collector-application-state",
+      "metricId": "enabled-public-export-count",
+      "baseline": 0,
+      "observed": 1,
+      "limitations": [
+        "Background state does not prove a request, execution, prior state or causal actor.",
+        "Fictitious authored investigation; not authenticated incident evidence."
+      ],
+      "metricUnit": "count",
+      "hypothesisStatement": "The selected bounded observation assesses state.value as public-export-enabled; broader interpretations remain separate."
+    },
+    {
+      "id": "application-session-supported",
+      "domain": "Application",
+      "eventProfile": "application-session",
+      "profileVersion": "0.1.0-draft.1",
+      "title": "A session registry shows a revoked session still active without a request record.",
+      "bindings": {
+        "applicationId": "application-reporting",
+        "sessionId": "session-revoked-11"
+      },
+      "interval": {
+        "start": "2026-10-12T09:00:00Z",
+        "end": "2026-10-12T10:00:00Z"
+      },
+      "hypothesisFact": "session.status",
+      "hypothesisValue": "active",
+      "requiredFactValues": {
+        "session.status": "active"
+      },
+      "technicalSource": "collector-application-session",
+      "metricId": "active-session-count",
+      "baseline": 0,
+      "observed": 1,
+      "limitations": [
+        "Session state does not prove requests, their effects or the human behind a session.",
+        "Fictitious authored investigation; not authenticated incident evidence."
+      ],
+      "metricUnit": "count",
+      "hypothesisStatement": "The selected bounded observation assesses session.status as active; broader interpretations remain separate."
+    },
+    {
+      "id": "application-agent-action-supported",
+      "domain": "Application",
+      "eventProfile": "application-agent-action",
+      "profileVersion": "0.1.0-draft.1",
+      "title": "A scheduler and worker record an agent export action completing without an inbound application request.",
+      "bindings": {
+        "applicationId": "application-agent-runner",
+        "agentId": "agent-exporter",
+        "actionId": "action-export-23"
+      },
+      "interval": {
+        "start": "2026-10-12T09:00:00Z",
+        "end": "2026-10-12T10:00:00Z"
+      },
+      "hypothesisFact": "action.outcome",
+      "hypothesisValue": "completed",
+      "requiredFactValues": {
+        "action.outcome": "completed"
+      },
+      "technicalSource": "collector-application-agent-action",
+      "metricId": "exported-record-count",
+      "baseline": 0,
+      "observed": 200,
+      "limitations": [
+        "A requested or queued action does not prove execution. A completed technical action does not grant authority or establish intent.",
+        "Fictitious authored investigation; not authenticated incident evidence."
+      ],
+      "metricUnit": "count",
+      "hypothesisStatement": "The selected bounded observation assesses action.outcome as completed; broader interpretations remain separate."
+    },
+    {
+      "id": "file-deletion-supported",
+      "domain": "File",
+      "eventProfile": "file-deletion",
+      "profileVersion": "0.1.0-draft.1",
+      "title": "A filesystem journal reports unlink of the payroll export; a current directory listing alone is insufficient.",
+      "bindings": {
+        "fileId": "file-payroll-export",
+        "systemId": "system-staging-3"
+      },
+      "interval": {
+        "start": "2026-10-12T09:00:00Z",
+        "end": "2026-10-12T10:00:00Z"
+      },
+      "hypothesisFact": "deletion.outcome",
+      "hypothesisValue": "unlinked",
+      "requiredFactValues": {
+        "deletion.outcome": "unlinked"
+      },
+      "technicalSource": "collector-file-deletion",
+      "metricId": "linked-file-count",
+      "baseline": 1,
+      "observed": 0,
+      "limitations": [
+        "An unlink record does not prove secure erasure or absence of other copies. A missing current file does not establish a deletion event.",
+        "Fictitious authored investigation; not authenticated incident evidence."
+      ],
+      "metricUnit": "count",
+      "hypothesisStatement": "The selected bounded observation assesses deletion.outcome as unlinked; broader interpretations remain separate."
+    },
+    {
+      "id": "file-historical-lineage-supported",
+      "domain": "File",
+      "eventProfile": "file-historical-lineage",
+      "profileVersion": "0.1.0-draft.1",
+      "title": "A version-store manifest links payroll revision 7 to revision 6 even though current content is unavailable.",
+      "bindings": {
+        "fileId": "file-payroll-export",
+        "systemId": "system-version-store",
+        "revisionId": "revision-7"
+      },
+      "interval": {
+        "start": "2026-10-12T09:00:00Z",
+        "end": "2026-10-12T10:00:00Z"
+      },
+      "hypothesisFact": "lineage.parentRevisionId",
+      "hypothesisValue": "revision-6",
+      "requiredFactValues": {
+        "lineage.parentRevisionId": "revision-6"
+      },
+      "technicalSource": "collector-file-historical-lineage",
+      "metricId": "manifest-parent-link-count",
+      "baseline": 0,
+      "observed": 1,
+      "limitations": [
+        "A manifest relation is an assessed lineage claim, not proof of identical bytes, authorship or historical content. Self-parent links are unresolved.",
+        "Fictitious authored investigation; not authenticated incident evidence."
+      ],
+      "metricUnit": "count",
+      "hypothesisStatement": "The selected bounded observation assesses lineage.parentRevisionId as revision-6; broader interpretations remain separate."
+    },
+    {
+      "id": "file-unavailable-content-supported",
+      "domain": "File",
+      "eventProfile": "file-unavailable-content",
+      "profileVersion": "0.1.0-draft.1",
+      "title": "An acquisition manifest identifies the payroll export, but encrypted content cannot be examined.",
+      "bindings": {
+        "fileId": "file-payroll-export",
+        "systemId": "system-evidence-store"
+      },
+      "interval": {
+        "start": "2026-10-12T09:00:00Z",
+        "end": "2026-10-12T10:00:00Z"
+      },
+      "hypothesisFact": "content.availability",
+      "hypothesisValue": "encrypted",
+      "requiredFactValues": {
+        "content.availability": "encrypted"
+      },
+      "technicalSource": "collector-file-unavailable-content",
+      "metricId": "acquired-readable-byte-count",
+      "baseline": 4096,
+      "observed": 0,
+      "limitations": [
+        "Unavailable, withheld, missing or encrypted content cannot support payload/content facts or content-derived hypotheses. Metadata can still be assessed.",
+        "Fictitious authored investigation; not authenticated incident evidence."
+      ],
+      "metricUnit": "bytes",
+      "hypothesisStatement": "The selected bounded observation assesses content.availability as encrypted; broader interpretations remain separate."
+    }
+  ]
+}
