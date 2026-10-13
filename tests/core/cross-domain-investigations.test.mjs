@@ -50,5 +50,26 @@ test('the attachment case retains a content revision without turning unknown del
   assert.equal(entries.find(e=>e.id===revised.supersedes.entryId).outcome,'unknown');
   assert.notDeepEqual(revised.inputs,entries.find(e=>e.id===revised.supersedes.entryId).inputs);
   assert.equal(entries.find(e=>e.id.endsWith(':assessment-7')).outcome,'unknown');
-  assert.ok(entries.filter(e=>e.type==='Decision').every(e=>e.selectedAssessmentId!==revised.supersedes.entryId));
+  const earlier=entries.find(e=>e.type==='Decision'&&e.selectedAssessmentId===revised.supersedes.entryId);
+  assert.equal(earlier.selections.length,2);
+  const definition=JSON.parse(bundle.definitions[0].content);
+  assert.ok(earlier.selections.every(s=>definition.transitions.find(t=>t.id===s.transitionId).guardOutcome==='unknown'));
+  assert.equal(entries.find(e=>e.type==='Decision'&&e.selectedAssessmentId===revised.id).disposition,'retain');
+});
+
+test('examples record actual multiple selections under yes, no and unknown answers',async()=>{
+  const found=new Set();
+  for(const bundle of bundles) {
+    const report=await validateBundle(bundle), entries=new Map(bundle.record.entries.map(e=>[e.id,e]));
+    for(const route of report.transitions) {
+      const decision=entries.get(route.decisionId),assessment=entries.get(decision.selectedAssessmentId);
+      assert.ok(route.selectedPairs.every(p=>route.eligibleTransitionIds.includes(p.transitionId)));
+      if(route.selectedPairs.length>1)found.add(assessment.outcome);
+    }
+    assert.ok(bundle.record.entries.some(e=>e.type==='Decision'&&e.disposition==='retain'&&!e.selections),'No automatic route selection for every assessment');
+    const def=JSON.parse(bundle.definitions[0].content);
+    const selected=new Set(bundle.record.entries.flatMap(e=>(e.selections||[]).map(s=>s.transitionId)));
+    assert.ok(def.transitions.some(t=>!selected.has(t.id)),'Eligible and other-outcome alternatives remain unselected');
+  }
+  assert.deepEqual(found,new Set(['yes','no','unknown']));
 });

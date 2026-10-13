@@ -381,8 +381,10 @@ class EventProfileTests(unittest.TestCase):
         receipt=json.loads((ROOT/'drafts/core/reviews/2026-10-12-independent-review/review.json').read_text())
         for path,digest in receipt['preservedArtifacts'].items():
             self.assertEqual(digest,sha256((ROOT/path).read_bytes()).hexdigest(),path)
-        self.assertEqual('1a32d33c3ffbc6068b64a19c102ec4a85ca2914b206d96eb78cafd4173e169d0',sha256((ROOT/'drafts/core/tensor.core.graph.json').read_bytes()).hexdigest())
+        self.assertEqual('1a32d33c3ffbc6068b64a19c102ec4a85ca2914b206d96eb78cafd4173e169d0',sha256((ROOT/'drafts/core/reviews/2026-10-13-routing/prior-draft.graph.json').read_bytes()).hexdigest())
         self.assertEqual(609,len(self.graph['nodes']))
-        self.assertEqual(1554,len(self.graph['edges']))
+        from investigative_routing import continuation_edges
+        self.assertEqual(1554,len(continuation_edges(self.graph)))
+        self.assertGreater(len(self.graph['edges']),1554)
 
 if __name__=='__main__':unittest.main()

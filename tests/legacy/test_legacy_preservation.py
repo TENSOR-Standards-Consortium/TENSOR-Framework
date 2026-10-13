@@ -57,7 +57,7 @@ class LegacyPreservationTests(unittest.TestCase):
         source = ROOT / "drafts/core/source"
         entries, _ = load_entry_config(source / "entry_nodes.json")
         rebuilt = build_graph_payload(graph["version"], load_jsonl(source / "nodes.jsonl"), load_jsonl(source / "edges.jsonl"), entries, graph["schemaVersion"])
-        self.assertEqual(graph, rebuilt)
+        self.assertEqual(graph,rebuilt)
 
     def test_quality_run_does_not_rewrite_releases(self):
         before = {str(p): sha(p) for p in (ROOT / "releases").rglob("*") if p.is_file()}

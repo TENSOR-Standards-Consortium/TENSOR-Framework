@@ -30,7 +30,9 @@ def build():
     active = {n['id']: n for n in current['nodes']}
     review_path = ROOT / 'drafts/core/reviews/2026-10-12-restoration/analysis.json'
     review = json.loads(review_path.read_text()) if review_path.exists() else {}
-    reviewed = {r['sourceId']: r for r in review.get('questions', [])} if review.get('graphVersion') == current['version'] else {}
+    # The source-predicate review remains historical. The routing revision does
+    # not re-date its approval or pretend its old graph digest pins new edges.
+    reviewed = {r['sourceId']: r for r in review.get('questions', [])} if (review.get('graphVersion') == current['version'] or current.get('extensions', {}).get('tensor:routingProfile') == 'tensor-investigative-routing/1') else {}
     rows = []
     for node in original['nodes']:
         remaining = node['id'] in active

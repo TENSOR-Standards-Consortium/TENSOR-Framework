@@ -7,7 +7,7 @@ import json
 import math
 import random
 from collections import Counter, defaultdict, deque
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -108,7 +108,7 @@ def _topological_order(node_ids: list[str], adjacency: dict[str, list[str]], ind
                 queue.append(target)
 
     if len(order) != len(node_ids):
-        # Fallback if any edge inconsistencies appear; quality validation already enforces DAG.
+        # Cyclic definitions have no topological order; bounded diagnostics use stable ID order.
         return sorted(node_ids, key=_node_num)
 
     return order
@@ -344,7 +344,7 @@ def _evaluate_publish_gates(
         },
         {
             "id": "branch_totality",
-            "description": "Every non-terminal preserves yes/no/unknown determinism.",
+            "description": "Every non-terminal covers yes/no/unknown; multiple targets per outcome are allowed.",
             "metric": "graph_theory.branchCompletenessRatio",
             "operator": ">=",
             "threshold": 1.0,
@@ -450,7 +450,7 @@ def build_math_assurance_payload(
     node_ids = sorted(node_by_id.keys(), key=_node_num)
     all_nodes = set(node_ids)
 
-    outgoing_decisions: dict[str, dict[str, str]] = defaultdict(dict)
+    outgoing_decisions: dict[str, dict[str, list[str]]] = defaultdict(lambda: defaultdict(list))
     adjacency: dict[str, list[str]] = defaultdict(list)
     reverse_adjacency: dict[str, list[str]] = defaultdict(list)
     indegree: dict[str, int] = {node_id: 0 for node_id in node_ids}
@@ -459,7 +459,7 @@ def build_math_assurance_payload(
         source = edge["source"]
         target = edge["target"]
         decision = edge["decision"]
-        outgoing_decisions[source][decision] = target
+        outgoing_decisions[source][decision].append(target)
         adjacency[source].append(target)
         reverse_adjacency[target].append(source)
         indegree[target] = indegree.get(target, 0) + 1
@@ -580,38 +580,34 @@ def build_math_assurance_payload(
     # 4) Markov chain analysis (uniform branch probabilities)
     decision_probability = {"yes": 1.0 / 3.0, "no": 1.0 / 3.0, "unknown": 1.0 / 3.0}
 
-    expected_steps: dict[str, float] = {}
-    terminal_domain_distribution: dict[str, list[float]] = {}
-
-    for node_id in reversed(topological_order):
-        node = node_by_id[node_id]
-        if node_id in terminals:
-            expected_steps[node_id] = 0.0
-            distribution = [0.0 for _ in DOMAINS]
-            distribution[domain_index[node["category"]]] = 1.0
+    expected_steps = {node_id: 0.0 for node_id in node_ids}
+    terminal_domain_distribution = {node_id: [0.0 for _ in DOMAINS] for node_id in node_ids}
+    for node_id in terminals:
+        terminal_domain_distribution[node_id][domain_index[node_by_id[node_id]["category"]]] = 1.0
+    # Exact DAG diagnostic; for cyclic definitions this is an explicitly bounded
+    # 64-step random-walk proxy, not a termination or investigation claim.
+    rounds = 1 if quality_metrics.get("dagPass") else 64
+    for _ in range(rounds):
+        previous_steps = dict(expected_steps)
+        previous_distributions = {nid: list(d) for nid, d in terminal_domain_distribution.items()}
+        for node_id in reversed(topological_order):
+            if node_id in terminals:
+                continue
+            decisions = outgoing_decisions[node_id]
+            available = [decision for decision in DECISIONS if decision in decisions]
+            total_weight = sum(decision_probability[decision] for decision in available)
+            if not total_weight:
+                continue
+            step_expectation, distribution = 1.0, [0.0 for _ in DOMAINS]
+            for decision in available:
+                targets = decisions[decision]
+                weight = decision_probability[decision] / total_weight / len(targets)
+                for target in targets:
+                    step_expectation += weight * (expected_steps if rounds == 1 else previous_steps)[target]
+                    for idx, value in enumerate((terminal_domain_distribution if rounds == 1 else previous_distributions)[target]):
+                        distribution[idx] += weight * value
+            expected_steps[node_id] = step_expectation
             terminal_domain_distribution[node_id] = distribution
-            continue
-
-        decisions = outgoing_decisions[node_id]
-        available = [decision for decision in DECISIONS if decision in decisions]
-        total_weight = sum(decision_probability[decision] for decision in available)
-        if total_weight == 0:
-            expected_steps[node_id] = 0.0
-            terminal_domain_distribution[node_id] = [0.0 for _ in DOMAINS]
-            continue
-
-        step_expectation = 1.0
-        distribution = [0.0 for _ in DOMAINS]
-        for decision in available:
-            weight = decision_probability[decision] / total_weight
-            target = decisions[decision]
-            step_expectation += weight * expected_steps[target]
-            target_distribution = terminal_domain_distribution[target]
-            for idx, value in enumerate(target_distribution):
-                distribution[idx] += weight * value
-
-        expected_steps[node_id] = step_expectation
-        terminal_domain_distribution[node_id] = distribution
 
     entry_expected_steps = [expected_steps[entry_id] for entry_id in entry_node_ids if entry_id in expected_steps]
     if entry_expected_steps:
@@ -633,6 +629,8 @@ def build_math_assurance_payload(
 
     markov_metrics = {
         "decisionProbabilityModel": decision_probability,
+        "scope": "Topology diagnostic only: uniform outcomes, uniform target choice within an outcome; does not model concurrent selection.",
+        "boundedWalkHorizon": None if rounds == 1 else 64,
         "expectedStepsFromEntriesMean": _round(_safe_div(sum(entry_expected_steps), max(1, len(entry_expected_steps)))),
         "expectedStepsFromEntriesMedian": _round(markov_expected_median),
         "expectedStepsFromEntriesP90": _round(markov_expected_p90),
@@ -656,7 +654,7 @@ def build_math_assurance_payload(
         expected_child_entropy = 0.0
         for decision in available:
             weight = decision_probability[decision] / total_weight
-            expected_child_entropy += weight * node_entropy[decisions[decision]]
+            expected_child_entropy += weight * sum(node_entropy[target] for target in decisions[decision]) / len(decisions[decision])
         info_gain = node_entropy[node_id] - expected_child_entropy
         info_gain_values.append(info_gain)
         if info_gain < -1e-9:
@@ -842,13 +840,14 @@ def build_math_assurance_payload(
     }
     can_reach_terminal: dict[str, bool] = {node_id: False for node_id in node_ids}
 
-    for node_id in reversed(topological_order):
-        if node_id in terminal_archetype_nodes:
-            can_reach_terminal[node_id] = True
-            continue
-        can_reach_terminal[node_id] = any(
-            can_reach_terminal.get(target, False) for target in adjacency.get(node_id, [])
-        )
+    terminal_queue = deque(terminal_archetype_nodes)
+    for node_id in terminal_archetype_nodes: can_reach_terminal[node_id] = True
+    while terminal_queue:
+        target = terminal_queue.popleft()
+        for source in reverse_adjacency.get(target, []):
+            if not can_reach_terminal[source]:
+                can_reach_terminal[source] = True
+                terminal_queue.append(source)
 
     formal_metrics = {
         "AG_branchTotality": graph_theory_metrics["branchCompletenessRatio"] == 1.0,
@@ -878,7 +877,7 @@ def build_math_assurance_payload(
     causal_progression_edges = 0
 
     for node_id in nonterminals:
-        target_domains = {node_by_id[target]["category"] for target in outgoing_decisions[node_id].values()}
+        target_domains = {node_by_id[target]["category"] for targets in outgoing_decisions[node_id].values() for target in targets}
         if len(target_domains) >= 2:
             triangulation_nodes += 1
 
@@ -1018,7 +1017,7 @@ def build_math_assurance_payload(
 
     return {
         "version": version,
-        "generatedAt": datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "generatedAt": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "summary": {
             "overallScore": _round(overall_score),
             "coverageScore": _round(coverage_score),
@@ -1220,7 +1219,7 @@ def build_math_assurance_history_payload(reports_root: Path) -> dict[str, Any]:
         )
 
     return {
-        "generatedAt": datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "generatedAt": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "series": version_entries,
         "deltas": deltas,
     }

@@ -1,5 +1,5 @@
 {
-  "graphVersion": "0.20261012b",
+  "graphVersion": "0.20261013a",
   "scope": "Seven public-report-only cases retain unknown victim evidence. All other cases are author-created synthetic reconstructions testing event matching, explicit hypothesis discrimination and separate scope/relationship/source/effect assessments. No native incident replay or independent evidence validation.",
   "sources": {
     "unc3944": {
@@ -78713,7 +78713,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -79434,7 +79434,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -80204,7 +80204,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -80975,7 +80975,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -81697,7 +81697,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -82418,7 +82418,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -83139,7 +83139,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -83860,7 +83860,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -84581,7 +84581,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -85302,7 +85302,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -86023,7 +86023,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -86793,7 +86793,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -87564,7 +87564,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -88286,7 +88286,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -89007,7 +89007,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -89728,7 +89728,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -90449,7 +90449,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -91219,7 +91219,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -91990,7 +91990,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -92712,7 +92712,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -93433,7 +93433,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -94203,7 +94203,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -94925,7 +94925,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -95646,7 +95646,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -96367,7 +96367,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -97088,7 +97088,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -97858,7 +97858,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -98580,7 +98580,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -99350,7 +99350,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -100072,7 +100072,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -100793,7 +100793,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -101514,7 +101514,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -102247,7 +102247,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -102980,7 +102980,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -103763,7 +103763,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -104547,7 +104547,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -105281,7 +105281,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -106014,7 +106014,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -106747,7 +106747,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -107468,7 +107468,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -108189,7 +108189,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -108922,7 +108922,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -109655,7 +109655,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -110438,7 +110438,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -111160,7 +111160,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -111881,7 +111881,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -112602,7 +112602,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -113325,7 +113325,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -114048,7 +114048,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -114820,7 +114820,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -115593,7 +115593,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -116315,7 +116315,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -117036,7 +117036,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -117806,7 +117806,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -118577,7 +118577,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -119299,7 +119299,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -120020,7 +120020,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -120741,7 +120741,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -121462,7 +121462,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -122232,7 +122232,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -123003,7 +123003,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -123725,7 +123725,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -124446,7 +124446,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -125167,7 +125167,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -125888,7 +125888,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -126609,7 +126609,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -127379,7 +127379,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -128150,7 +128150,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -128872,7 +128872,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -129593,7 +129593,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -130314,7 +130314,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -131035,7 +131035,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -131805,7 +131805,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -132576,7 +132576,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -133298,7 +133298,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -134019,7 +134019,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -134740,7 +134740,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -135461,7 +135461,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -136231,7 +136231,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -137002,7 +137002,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -137724,7 +137724,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -138445,7 +138445,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -139166,7 +139166,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -140702,7 +140702,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -141423,7 +141423,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -142144,7 +142144,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -142865,7 +142865,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -143586,7 +143586,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -144307,7 +144307,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -145028,7 +145028,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -145749,7 +145749,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -146470,7 +146470,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -147191,7 +147191,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -147912,7 +147912,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -148633,7 +148633,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -149403,7 +149403,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -150174,7 +150174,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -150945,7 +150945,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -151716,7 +151716,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -152487,7 +152487,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -153258,7 +153258,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -154029,7 +154029,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -154800,7 +154800,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -155571,7 +155571,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -156342,7 +156342,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -157113,7 +157113,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -157884,7 +157884,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -158655,7 +158655,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -159426,7 +159426,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -160148,7 +160148,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -160869,7 +160869,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -161590,7 +161590,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -162311,7 +162311,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -163032,7 +163032,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -163753,7 +163753,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -164474,7 +164474,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -165195,7 +165195,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -165916,7 +165916,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -166637,7 +166637,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -167358,7 +167358,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -168079,7 +168079,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -168800,7 +168800,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -169521,7 +169521,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -170242,7 +170242,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -170963,7 +170963,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -171684,7 +171684,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -172405,7 +172405,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -173126,7 +173126,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -173847,7 +173847,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",
@@ -174568,7 +174568,7 @@
           "start": "2026-10-01T10:00:00Z",
           "end": "2026-10-01T11:00:00Z"
         },
-        "graphVersion": "0.20261012b",
+        "graphVersion": "0.20261013a",
         "closesInvestigation": false,
         "focusDispositions": {
           "control-plane actions": "open",

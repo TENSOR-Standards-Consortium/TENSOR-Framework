@@ -63,7 +63,8 @@ class EntryEvidenceTests(unittest.TestCase):
     def test_reviewed_routes_never_invent_cross_domain_links(self):
         by_id = {n["id"]: n for n in self.graph["nodes"]}
         cards = self.criteria["nodes"]
-        for edge in self.graph["edges"]:
+        from investigative_routing import continuation_edges
+        for edge in continuation_edges(self.graph):
             if edge["source"] not in cards:
                 continue
             with self.subTest(edge=edge["id"]):
@@ -120,13 +121,14 @@ class EntryEvidenceTests(unittest.TestCase):
             case["primary"]["records"][0]["eventTime"] = when
             self.assertEqual("unknown", evaluator.match_answer(case, domain)[0])
 
-    def test_graph_stays_acyclic_reachable_and_deterministic(self):
+    def test_graph_is_reachable_and_covers_outcomes_without_forcing_a_dag(self):
         config = json.loads((ROOT / "drafts/core/source/entry_nodes.json").read_text())
         errors, warnings, metrics = validate_and_measure(self.graph["nodes"], self.graph["edges"], self.graph["entryNodeIds"], set(config["fanInExceptionNodeIds"]))
         self.assertEqual([], errors)
         self.assertTrue(warnings, "The historical cross-domain quota must remain visible")
         self.assertTrue(metrics["allNodesReachable"])
-        self.assertTrue(metrics["dagPass"])
+        self.assertFalse(metrics["dagPass"], "Bounded cross-domain revisits are legal")
+        self.assertGreater(metrics["branchDeterminism"]["multiRouteSourceCount"],0)
         self.assertEqual(0, metrics["branchDeterminism"]["violations"])
 
     def test_schema_bytes_and_identity_are_preserved(self):
@@ -136,7 +138,7 @@ class EntryEvidenceTests(unittest.TestCase):
         self.assertEqual("0.20260206e", self.graph["schemaVersion"])
         self.assertNotEqual(self.graph["version"], self.graph["schemaVersion"])
         payload = build_graph_payload(self.graph["version"], self.graph["nodes"], self.graph["edges"], self.graph["entryNodeIds"], self.graph["schemaVersion"])
-        self.assertEqual(self.graph, payload)
+        self.assertEqual(self.graph,payload)
 
     def test_detached_archive_is_preserved_when_ids_return_with_repairs(self):
         archive = json.loads((ROOT / "drafts/core/reviews/2026-10-11-entry-evidence/detached-draft-material.json").read_text())
@@ -156,7 +158,7 @@ class EntryEvidenceTests(unittest.TestCase):
                 self.assertTrue(math["monitoring"]["publishGates"]["allPassed"])
                 self.assertFalse(math["monitoring"]["legacyReferenceThresholds"]["allPassed"])
                 self.assertIn("cross_domain_pivots", math["monitoring"]["legacyReferenceThresholds"]["failedGateIds"])
-                self.assertEqual("tensor-graph-assurance/1", math["monitoring"]["publishGates"]["policy"])
+                self.assertEqual("tensor-graph-assurance/2", math["monitoring"]["publishGates"]["policy"])
                 self.assertTrue(quality["warnings"])
                 self.assertFalse(quality["errors"])
 

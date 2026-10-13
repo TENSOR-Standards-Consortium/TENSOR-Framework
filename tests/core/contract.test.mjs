@@ -295,6 +295,23 @@ test('multiple matching routes do not imply every route was selected', async () 
   assert.equal(entry(bundle, 'decision-open-content').selections.length, 1);
 });
 
+test('a selected return route uses a fresh question instance and retains the previous answer',async()=>{
+  const bundle=sample(), source=entry(bundle,'instance-attachment');
+  const assessment=entries(bundle).find(e=>e.type==='Assessment'&&e.targetInstanceId===source.id);
+  const transitionId=urn('return-to-transfer');
+  changeDefinition(bundle,definition=>definition.transitions.push({id:transitionId,sourceQuestionId:definition.questions[1].id,targetQuestionId:definition.questions[0].id,guardOutcome:assessment.outcome}));
+  const target=clone(entry(bundle,'instance-transfer'));target.id=urn('revisited-transfer-instance');
+  const decision=clone(entry(bundle,'decision-open-content'));decision.id=urn('decision-revisit');decision.targetInstanceId=source.id;decision.selectedAssessmentId=assessment.id;
+  decision.selections=[{transitionId,targetInstanceId:target.id}];
+  target.origin={kind:'transition',originDecisionId:decision.id,rationale:'Revisit the transfer question as a distinct instance after new investigation context.'};
+  entries(bundle).push(decision,target);
+  const report=await expect(bundle,'pass');
+  assert.equal(report.transitions.find(t=>t.decisionId===decision.id).selectedPairs[0].targetInstanceId,target.id);
+  assert.notEqual(target.id,entry(bundle,'instance-transfer').id);
+  const invalid=clone(bundle);entry(invalid,'decision-revisit').selections[0].targetInstanceId=entry(invalid,'instance-transfer').id;
+  await expect(invalid,'fail','TC-23');
+});
+
 test('an explicitly declared missing entry makes dependent interpretation indeterminate', async () => {
   const bundle = sample();
   const missing = entry(bundle, 'evidence-egress').id;

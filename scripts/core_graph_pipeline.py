@@ -198,7 +198,10 @@ def validate_and_measure(
     edges: list[dict[str, Any]],
     entry_node_ids: list[str],
     fanin_exception_node_ids: list[str],
+    *, policy: str = "current",
 ) -> tuple[list[str], list[str], dict[str, Any]]:
+    if policy not in ("current", "legacy"):
+        raise ValueError("Unknown graph authoring policy")
     errors: list[str] = []
     warnings: list[str] = []
 
@@ -299,7 +302,7 @@ def validate_and_measure(
             errors.append(f"Graph must contain at least one node in domain '{domain}'.")
 
     edge_by_id: set[str] = set()
-    outgoing: dict[str, dict[str, str]] = defaultdict(dict)
+    outgoing: dict[str, dict[str, list[str]]] = defaultdict(lambda: defaultdict(list))
     incoming_count: Counter[str] = Counter()
     cross_domain_edges = 0
     yes_progression_violations = 0
@@ -346,7 +349,7 @@ def validate_and_measure(
 
         source_number = node_numeric_id(source)
         target_number = node_numeric_id(target)
-        if target_number <= source_number:
+        if policy == "legacy" and target_number <= source_number:
             errors.append(
                 f"{context} must respect DAG ordering (target id must be greater than source id)."
             )
@@ -358,7 +361,7 @@ def validate_and_measure(
         source_category = source_node["category"]
         target_category = target_node["category"]
 
-        if decision == "yes":
+        if policy == "legacy" and decision == "yes":
             source_rank = ARCHETYPE_ORDER[source_archetype]
             target_rank = ARCHETYPE_ORDER[target_archetype]
             if target_rank < source_rank or target_rank > source_rank + 1:
@@ -382,12 +385,12 @@ def validate_and_measure(
                 f"{context} id tuple must match source/decision/target exactly for edge {edge_id}."
             )
 
-        if decision in outgoing[source]:
+        if policy == "legacy" and decision in outgoing[source]:
             errors.append(
                 f"{context} violates deterministic branching: source {source} already has decision {decision}."
             )
             continue
-        outgoing[source][decision] = target
+        outgoing[source][decision].append(target)
         incoming_count[target] += 1
 
         if source_category != target_category:
@@ -403,10 +406,10 @@ def validate_and_measure(
         if decisions:
             nonterminal_nodes.append(node_id)
             decision_keys = set(decisions)
-            if decision_keys != DECISION_SET or len(decisions) != 3:
+            if decision_keys != DECISION_SET:
                 branch_failures += 1
                 errors.append(
-                    f"Node {node_id} must have exactly one outgoing edge for yes/no/unknown; found {sorted(decision_keys)}."
+                    f"Node {node_id} needs at least one route for each of yes/no/unknown; found {sorted(decision_keys)}."
                 )
         else:
             terminal_nodes.append(node_id)
@@ -414,7 +417,13 @@ def validate_and_measure(
     if not terminal_nodes:
         errors.append("Graph must contain terminal nodes with zero outgoing edges.")
 
-    if edge_count != len(nonterminal_nodes) * 3:
+    for node_id, node in node_by_id.items():
+        if node["archetype"] == "terminal" and outgoing.get(node_id):
+            errors.append(f"Terminal question {node_id} cannot have outgoing routes.")
+        if node["archetype"] != "terminal" and not outgoing.get(node_id):
+            errors.append(f"Nonterminal question {node_id} has no declared routes.")
+
+    if policy == "legacy" and edge_count != len(nonterminal_nodes) * 3:
         errors.append(
             "Edge cardinality mismatch: each non-terminal must contribute exactly three edges "
             f"(edges={edge_count}, nonterminals={len(nonterminal_nodes)})."
@@ -445,7 +454,7 @@ def validate_and_measure(
     adjacency: dict[str, list[str]] = defaultdict(list)
     indegree: dict[str, int] = {node_id: 0 for node_id in node_by_id}
     for source, decision_map in outgoing.items():
-        for target in decision_map.values():
+        for target in (target for targets in decision_map.values() for target in targets):
             adjacency[source].append(target)
             indegree[target] += 1
 
@@ -483,7 +492,7 @@ def validate_and_measure(
                 topo_queue.append(nxt)
 
     dag_pass = visited == len(node_by_id)
-    if not dag_pass:
+    if policy == "legacy" and not dag_pass:
         errors.append("Graph must be acyclic (DAG). Cycle detected by topological sort.")
 
     fanin_exception_set = set(fanin_exception_node_ids)
@@ -516,7 +525,7 @@ def validate_and_measure(
             fanin_violations.append(f"{node_id} (fanin={fanin}, limit={limit})")
 
     if fanin_violations:
-        errors.append("Fan-in limit violations: " + ", ".join(fanin_violations[:25]))
+        (errors if policy == "legacy" else warnings).append("Historical fan-in reference exceeded: " + ", ".join(fanin_violations[:25]))
 
     cross_domain_ratio = (cross_domain_edges / edge_count) if edge_count else 0.0
     if cross_domain_ratio < CROSS_DOMAIN_RATIO_MIN:
@@ -552,6 +561,8 @@ def validate_and_measure(
         "branchDeterminism": {
             "requiredDecisions": DECISIONS,
             "violations": branch_failures,
+            "meaning": "Outcome coverage; multiple targets per outcome are allowed. Selection is explicit, never inferred.",
+            "multiRouteSourceCount": sum(any(len(targets) > 1 for targets in decisions.values()) for decisions in outgoing.values()),
         },
         "semanticRouting": {
             "yesProgressionViolations": yes_progression_violations,
@@ -610,7 +621,7 @@ def build_graph_payload(
     parse_version(version)
     parse_version(schema_version or version)
 
-    return {
+    payload = {
         "generatedAt": canonical_generated_at(version),
         "namespace": "tensor",
         "product": "core",
@@ -621,6 +632,13 @@ def build_graph_payload(
         "nodes": normalize_nodes(nodes),
         "edges": normalize_edges(edges),
     }
+    profiles = {edge.get("extensions", {}).get("tensor:investigativeLead", {}).get("profile") for edge in edges}
+    profiles.discard(None)
+    if profiles:
+        if profiles != {"tensor-investigative-routing/1"}:
+            raise ValidationError("Unrecognized or mixed investigative routing profiles")
+        payload["extensions"] = {"tensor:routingProfile": "tensor-investigative-routing/1"}
+    return payload
 
 
 def build_quality_report_markdown(version: str, errors: list[str], warnings: list[str], metrics: dict[str, Any]) -> str:

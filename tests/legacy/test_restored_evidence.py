@@ -30,7 +30,9 @@ class RestoredEvidenceTests(unittest.TestCase):
     def test_every_source_and_repair_id_is_active_and_source_is_immutable(self):
         original = json.loads((ROOT / "releases/core/graphs/v0.20260206e/tensor.core.graph.json").read_bytes())
         self.assertEqual({n["id"] for n in self.graph["nodes"]}, {n["id"] for n in original["nodes"]} | {f"Q{i}" for i in range(589, 610)})
-        self.assertEqual((609, 1554), (len(self.graph["nodes"]), len(self.graph["edges"])))
+        from investigative_routing import continuation_edges
+        self.assertEqual((609, 1554), (len(self.graph["nodes"]), len(continuation_edges(self.graph))))
+        self.assertGreater(len(self.graph["edges"]),1554)
         self.assertEqual(506, len(self.ids))
         analysis = json.loads((ROOT / "drafts/core/reviews/2026-10-12-restoration/analysis.json").read_bytes())
         self.assertEqual(588, len(analysis["questions"]))

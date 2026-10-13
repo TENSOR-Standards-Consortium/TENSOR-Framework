@@ -8,6 +8,7 @@ import unittest
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / 'scripts'))
 from graph_assurance_policy import assess_evidence
+from investigative_routing import continuation_edges, PRIOR_SHA
 from core_graph_pipeline import validate_and_measure, GENERIC_HUB_LIMITS
 
 class IndependentRouteTests(unittest.TestCase):
@@ -21,7 +22,7 @@ class IndependentRouteTests(unittest.TestCase):
 
     def test_all_routes_preserve_facet_or_declare_parameterized_adapter(self):
         cards = self.criteria['nodes']
-        for e in self.graph['edges']:
+        for e in continuation_edges(self.graph):
             source, target = cards[e['source']], cards[e['target']]
             if source['role'] != 'restored' or self.nodes[e['target']]['archetype'] == 'terminal':
                 continue
@@ -48,11 +49,13 @@ class IndependentRouteTests(unittest.TestCase):
     def test_existing_seven_path_edges_are_unchanged(self):
         prior = json.loads((ROOT/'drafts/core/reviews/2026-10-12-restoration/prior-draft.graph.json').read_text())
         base = {n['id'] for n in prior['nodes']}
-        self.assertEqual(prior['edges'], [e for e in self.graph['edges'] if e['source'] in base])
+        self.assertEqual(prior['edges'], [e for e in continuation_edges(self.graph) if e['source'] in base])
         receipt = json.loads((ROOT/'drafts/core/reviews/2026-10-12-independent-review/review.json').read_text())
-        self.assertEqual(sha256(self.raw).hexdigest(), receipt['graphSha256'])
+        self.assertEqual(PRIOR_SHA, receipt['graphSha256'])
+        import subprocess
         for item in receipt['inputs']:
-            self.assertEqual(item['sha256'], sha256((ROOT/item['path']).read_bytes()).hexdigest(), item['path'])
+            historical = subprocess.check_output(['git','show',f"986841b8d977a80a532a297f36b2aad49afe2cba:{item['path']}"],cwd=ROOT)
+            self.assertEqual(item['sha256'],sha256(historical).hexdigest(),item['path'])
         for path, digest in receipt['preservedArtifacts'].items():
             self.assertEqual(digest, sha256((ROOT/path).read_bytes()).hexdigest(), path)
 

@@ -457,9 +457,12 @@ def build():
 
 def main():
     graph, criteria, suite, analysis = build()
+    from investigative_routing import apply, review_payload, REVIEW as ROUTING_REVIEW
+    graph, criteria, suite = apply(graph, criteria, suite)
     outputs = {ROOT/"drafts/core/tensor.core.graph.json": graph, ROOT/"drafts/core/entry-evidence-criteria.json": criteria,
         ROOT/"drafts/core/scenarios/entry-evidence-cases.json": suite, REVIEW/"analysis.json": analysis,
-        ROOT/"drafts/core/source/entry_nodes.json": {"version": VERSION, "entryNodeIds": graph["entryNodeIds"], "fanInExceptionNodeIds": []}}
+        ROUTING_REVIEW/"review.json": review_payload(graph, criteria),
+        ROOT/"drafts/core/source/entry_nodes.json": {"version": graph["version"], "entryNodeIds": graph["entryNodeIds"], "fanInExceptionNodeIds": []}}
     byte_outputs = {p: encoded(data) for p, data in outputs.items()}
     byte_outputs[ROOT/"drafts/core/source/nodes.jsonl"] = b"".join((json.dumps(n, ensure_ascii=True)+"\n").encode() for n in graph["nodes"])
     byte_outputs[ROOT/"drafts/core/source/edges.jsonl"] = b"".join((json.dumps(e, ensure_ascii=True)+"\n").encode() for e in graph["edges"])
