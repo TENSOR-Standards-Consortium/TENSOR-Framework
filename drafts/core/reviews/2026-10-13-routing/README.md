@@ -19,7 +19,7 @@ The three interactive examples now use authored route lists and explicit recorde
 
 ## Preservation and provenance
 
-`prior-draft.graph.json`, `prior-criteria.json` and `prior-scenarios.json` capture the exact previous draft. Historical reviews retain their original digests and scope. `review.json` pins the active draft. All schema files, the candidate Core binding/runtime, published releases, released reports and the frozen institutional review package remain byte-for-byte unchanged.
+`prior-draft.graph.json` captures the exact previous graph. The prior criteria, scenario suite and implementation remain available at commit `986841b8d977a80a532a297f36b2aad49afe2cba`, verified against the historical review input pins; the large scenario archive is not duplicated. Historical reviews retain their original digests and scope. `review.json` pins the active draft. All schema files, the candidate Core binding/runtime, published releases, released reports and the frozen institutional review package remain byte-for-byte unchanged.
 
 This changes working-draft behavior. A consumer that assumes one target per answer, increasing question IDs or a DAG must adapt. No new release or latest pointer is published. The old institutional package is still a historical snapshot; reviewers of this repair must use the current artifacts and this routing note together. No invitations are sent.
 
