@@ -1,10 +1,10 @@
 {
   "format": "tensor-public-event-profiles",
-  "version": "0.1.0-draft.1",
+  "version": "0.1.0-draft.2",
   "status": "author-tested-public-draft-external-review-pending",
   "graphVersion": "0.20261012b",
   "schemaVersion": "0.20260206e",
-  "interpretation": "Additive, explicitly profile-qualified question definitions above the unchanged graph. Base question meanings and schema are not replaced. Required profile dependencies must survive exchange; an unsupported profile is unresolved, not silently flattened.",
+  "interpretation": "Additive, explicitly profile-qualified question definitions above the unchanged Core binding. Draft.2 adds typed required facts, explicit content evidence dependencies, operation identities and separate fact-led assessments. Required profile dependencies must survive exchange; an unsupported profile is unresolved, not silently flattened.",
   "profiles": {
     "identity-credential-state": {
       "domain": "Identity",
@@ -33,10 +33,18 @@
         "Exact declared subjects, profile identity/version and [start,end) interval",
         "Assessed event-kind and required discriminator facts, each with method and evidence references",
         "Accepted provenance and interpretation basis for downstream assessment",
-        "Separately bound falsifiable hypothesis, alternatives and evidence-backed scope",
+        "Classification requires a separately bound falsifiable hypothesis and its actual answer; independent fact assessments may omit one. Any supplied hypothesis retains its exact meaning and actual answer.",
         "Separate relation, technical-source and metric answers, including unknowns",
         "Profile-qualified retained question identities and complete context; no investigation closure"
-      ]
+      ],
+      "requiredFactTypes": {
+        "event.kind": [
+          "string"
+        ],
+        "credential.status": [
+          "string"
+        ]
+      }
     },
     "identity-workload-binding": {
       "domain": "Identity",
@@ -65,10 +73,18 @@
         "Exact declared subjects, profile identity/version and [start,end) interval",
         "Assessed event-kind and required discriminator facts, each with method and evidence references",
         "Accepted provenance and interpretation basis for downstream assessment",
-        "Separately bound falsifiable hypothesis, alternatives and evidence-backed scope",
+        "Classification requires a separately bound falsifiable hypothesis and its actual answer; independent fact assessments may omit one. Any supplied hypothesis retains its exact meaning and actual answer.",
         "Separate relation, technical-source and metric answers, including unknowns",
         "Profile-qualified retained question identities and complete context; no investigation closure"
-      ]
+      ],
+      "requiredFactTypes": {
+        "event.kind": [
+          "string"
+        ],
+        "binding.status": [
+          "string"
+        ]
+      }
     },
     "host-state": {
       "domain": "Host",
@@ -97,10 +113,21 @@
         "Exact declared subjects, profile identity/version and [start,end) interval",
         "Assessed event-kind and required discriminator facts, each with method and evidence references",
         "Accepted provenance and interpretation basis for downstream assessment",
-        "Separately bound falsifiable hypothesis, alternatives and evidence-backed scope",
+        "Classification requires a separately bound falsifiable hypothesis and its actual answer; independent fact assessments may omit one. Any supplied hypothesis retains its exact meaning and actual answer.",
         "Separate relation, technical-source and metric answers, including unknowns",
         "Profile-qualified retained question identities and complete context; no investigation closure"
-      ]
+      ],
+      "requiredFactTypes": {
+        "event.kind": [
+          "string"
+        ],
+        "state.value": [
+          "string",
+          "boolean",
+          "integer",
+          "number"
+        ]
+      }
     },
     "network-configuration": {
       "domain": "Network",
@@ -129,10 +156,21 @@
         "Exact declared subjects, profile identity/version and [start,end) interval",
         "Assessed event-kind and required discriminator facts, each with method and evidence references",
         "Accepted provenance and interpretation basis for downstream assessment",
-        "Separately bound falsifiable hypothesis, alternatives and evidence-backed scope",
+        "Classification requires a separately bound falsifiable hypothesis and its actual answer; independent fact assessments may omit one. Any supplied hypothesis retains its exact meaning and actual answer.",
         "Separate relation, technical-source and metric answers, including unknowns",
         "Profile-qualified retained question identities and complete context; no investigation closure"
-      ]
+      ],
+      "requiredFactTypes": {
+        "event.kind": [
+          "string"
+        ],
+        "configuration.value": [
+          "string",
+          "boolean",
+          "integer",
+          "number"
+        ]
+      }
     },
     "network-sensor-coverage": {
       "domain": "Network",
@@ -161,10 +199,18 @@
         "Exact declared subjects, profile identity/version and [start,end) interval",
         "Assessed event-kind and required discriminator facts, each with method and evidence references",
         "Accepted provenance and interpretation basis for downstream assessment",
-        "Separately bound falsifiable hypothesis, alternatives and evidence-backed scope",
+        "Classification requires a separately bound falsifiable hypothesis and its actual answer; independent fact assessments may omit one. Any supplied hypothesis retains its exact meaning and actual answer.",
         "Separate relation, technical-source and metric answers, including unknowns",
         "Profile-qualified retained question identities and complete context; no investigation closure"
-      ]
+      ],
+      "requiredFactTypes": {
+        "event.kind": [
+          "string"
+        ],
+        "collection.status": [
+          "string"
+        ]
+      }
     },
     "cloud-data-access": {
       "domain": "Cloud",
@@ -194,10 +240,18 @@
         "Exact declared subjects, profile identity/version and [start,end) interval",
         "Assessed event-kind and required discriminator facts, each with method and evidence references",
         "Accepted provenance and interpretation basis for downstream assessment",
-        "Separately bound falsifiable hypothesis, alternatives and evidence-backed scope",
+        "Classification requires a separately bound falsifiable hypothesis and its actual answer; independent fact assessments may omit one. Any supplied hypothesis retains its exact meaning and actual answer.",
         "Separate relation, technical-source and metric answers, including unknowns",
         "Profile-qualified retained question identities and complete context; no investigation closure"
-      ]
+      ],
+      "requiredFactTypes": {
+        "event.kind": [
+          "string"
+        ],
+        "access.outcome": [
+          "string"
+        ]
+      }
     },
     "cloud-resource-state": {
       "domain": "Cloud",
@@ -227,17 +281,29 @@
         "Exact declared subjects, profile identity/version and [start,end) interval",
         "Assessed event-kind and required discriminator facts, each with method and evidence references",
         "Accepted provenance and interpretation basis for downstream assessment",
-        "Separately bound falsifiable hypothesis, alternatives and evidence-backed scope",
+        "Classification requires a separately bound falsifiable hypothesis and its actual answer; independent fact assessments may omit one. Any supplied hypothesis retains its exact meaning and actual answer.",
         "Separate relation, technical-source and metric answers, including unknowns",
         "Profile-qualified retained question identities and complete context; no investigation closure"
-      ]
+      ],
+      "requiredFactTypes": {
+        "event.kind": [
+          "string"
+        ],
+        "state.value": [
+          "string",
+          "boolean",
+          "integer",
+          "number"
+        ]
+      }
     },
     "email-mailbox-rule": {
       "domain": "Email",
       "title": "Mailbox rule change",
       "bindings": [
         "mailboxId",
-        "ruleId"
+        "ruleId",
+        "operationId"
       ],
       "eventKind": "mailbox-rule-change",
       "proposition": "the named mailbox rule operation",
@@ -260,10 +326,22 @@
         "Exact declared subjects, profile identity/version and [start,end) interval",
         "Assessed event-kind and required discriminator facts, each with method and evidence references",
         "Accepted provenance and interpretation basis for downstream assessment",
-        "Separately bound falsifiable hypothesis, alternatives and evidence-backed scope",
+        "Classification requires a separately bound falsifiable hypothesis and its actual answer; independent fact assessments may omit one. Any supplied hypothesis retains its exact meaning and actual answer.",
         "Separate relation, technical-source and metric answers, including unknowns",
         "Profile-qualified retained question identities and complete context; no investigation closure"
-      ]
+      ],
+      "requiredFactTypes": {
+        "event.kind": [
+          "string"
+        ],
+        "rule.operation": [
+          "string"
+        ],
+        "rule.outcome": [
+          "string"
+        ]
+      },
+      "operationIdentity": "operationId identifies the particular deletion attempt or mailbox-rule operation; records for another operation cannot corroborate this event. A successful outcome is a separate assessed fact."
     },
     "email-mailbox-access": {
       "domain": "Email",
@@ -293,10 +371,18 @@
         "Exact declared subjects, profile identity/version and [start,end) interval",
         "Assessed event-kind and required discriminator facts, each with method and evidence references",
         "Accepted provenance and interpretation basis for downstream assessment",
-        "Separately bound falsifiable hypothesis, alternatives and evidence-backed scope",
+        "Classification requires a separately bound falsifiable hypothesis and its actual answer; independent fact assessments may omit one. Any supplied hypothesis retains its exact meaning and actual answer.",
         "Separate relation, technical-source and metric answers, including unknowns",
         "Profile-qualified retained question identities and complete context; no investigation closure"
-      ]
+      ],
+      "requiredFactTypes": {
+        "event.kind": [
+          "string"
+        ],
+        "access.outcome": [
+          "string"
+        ]
+      }
     },
     "email-collaboration-artifact": {
       "domain": "Email",
@@ -326,10 +412,18 @@
         "Exact declared subjects, profile identity/version and [start,end) interval",
         "Assessed event-kind and required discriminator facts, each with method and evidence references",
         "Accepted provenance and interpretation basis for downstream assessment",
-        "Separately bound falsifiable hypothesis, alternatives and evidence-backed scope",
+        "Classification requires a separately bound falsifiable hypothesis and its actual answer; independent fact assessments may omit one. Any supplied hypothesis retains its exact meaning and actual answer.",
         "Separate relation, technical-source and metric answers, including unknowns",
         "Profile-qualified retained question identities and complete context; no investigation closure"
-      ]
+      ],
+      "requiredFactTypes": {
+        "event.kind": [
+          "string"
+        ],
+        "artifact.operation": [
+          "string"
+        ]
+      }
     },
     "application-state": {
       "domain": "Application",
@@ -358,10 +452,21 @@
         "Exact declared subjects, profile identity/version and [start,end) interval",
         "Assessed event-kind and required discriminator facts, each with method and evidence references",
         "Accepted provenance and interpretation basis for downstream assessment",
-        "Separately bound falsifiable hypothesis, alternatives and evidence-backed scope",
+        "Classification requires a separately bound falsifiable hypothesis and its actual answer; independent fact assessments may omit one. Any supplied hypothesis retains its exact meaning and actual answer.",
         "Separate relation, technical-source and metric answers, including unknowns",
         "Profile-qualified retained question identities and complete context; no investigation closure"
-      ]
+      ],
+      "requiredFactTypes": {
+        "event.kind": [
+          "string"
+        ],
+        "state.value": [
+          "string",
+          "boolean",
+          "integer",
+          "number"
+        ]
+      }
     },
     "application-session": {
       "domain": "Application",
@@ -390,10 +495,18 @@
         "Exact declared subjects, profile identity/version and [start,end) interval",
         "Assessed event-kind and required discriminator facts, each with method and evidence references",
         "Accepted provenance and interpretation basis for downstream assessment",
-        "Separately bound falsifiable hypothesis, alternatives and evidence-backed scope",
+        "Classification requires a separately bound falsifiable hypothesis and its actual answer; independent fact assessments may omit one. Any supplied hypothesis retains its exact meaning and actual answer.",
         "Separate relation, technical-source and metric answers, including unknowns",
         "Profile-qualified retained question identities and complete context; no investigation closure"
-      ]
+      ],
+      "requiredFactTypes": {
+        "event.kind": [
+          "string"
+        ],
+        "session.status": [
+          "string"
+        ]
+      }
     },
     "application-agent-action": {
       "domain": "Application",
@@ -423,17 +536,26 @@
         "Exact declared subjects, profile identity/version and [start,end) interval",
         "Assessed event-kind and required discriminator facts, each with method and evidence references",
         "Accepted provenance and interpretation basis for downstream assessment",
-        "Separately bound falsifiable hypothesis, alternatives and evidence-backed scope",
+        "Classification requires a separately bound falsifiable hypothesis and its actual answer; independent fact assessments may omit one. Any supplied hypothesis retains its exact meaning and actual answer.",
         "Separate relation, technical-source and metric answers, including unknowns",
         "Profile-qualified retained question identities and complete context; no investigation closure"
-      ]
+      ],
+      "requiredFactTypes": {
+        "event.kind": [
+          "string"
+        ],
+        "action.outcome": [
+          "string"
+        ]
+      }
     },
     "file-deletion": {
       "domain": "File",
       "title": "File deletion",
       "bindings": [
         "fileId",
-        "systemId"
+        "systemId",
+        "operationId"
       ],
       "eventKind": "file-deletion",
       "proposition": "the named file deletion operation on a system",
@@ -455,10 +577,19 @@
         "Exact declared subjects, profile identity/version and [start,end) interval",
         "Assessed event-kind and required discriminator facts, each with method and evidence references",
         "Accepted provenance and interpretation basis for downstream assessment",
-        "Separately bound falsifiable hypothesis, alternatives and evidence-backed scope",
+        "Classification requires a separately bound falsifiable hypothesis and its actual answer; independent fact assessments may omit one. Any supplied hypothesis retains its exact meaning and actual answer.",
         "Separate relation, technical-source and metric answers, including unknowns",
         "Profile-qualified retained question identities and complete context; no investigation closure"
-      ]
+      ],
+      "requiredFactTypes": {
+        "event.kind": [
+          "string"
+        ],
+        "deletion.outcome": [
+          "string"
+        ]
+      },
+      "operationIdentity": "operationId identifies the particular deletion attempt or mailbox-rule operation; records for another operation cannot corroborate this event. A successful outcome is a separate assessed fact."
     },
     "file-historical-lineage": {
       "domain": "File",
@@ -488,10 +619,18 @@
         "Exact declared subjects, profile identity/version and [start,end) interval",
         "Assessed event-kind and required discriminator facts, each with method and evidence references",
         "Accepted provenance and interpretation basis for downstream assessment",
-        "Separately bound falsifiable hypothesis, alternatives and evidence-backed scope",
+        "Classification requires a separately bound falsifiable hypothesis and its actual answer; independent fact assessments may omit one. Any supplied hypothesis retains its exact meaning and actual answer.",
         "Separate relation, technical-source and metric answers, including unknowns",
         "Profile-qualified retained question identities and complete context; no investigation closure"
-      ]
+      ],
+      "requiredFactTypes": {
+        "event.kind": [
+          "string"
+        ],
+        "lineage.parentRevisionId": [
+          "string"
+        ]
+      }
     },
     "file-unavailable-content": {
       "domain": "File",
@@ -520,11 +659,38 @@
         "Exact declared subjects, profile identity/version and [start,end) interval",
         "Assessed event-kind and required discriminator facts, each with method and evidence references",
         "Accepted provenance and interpretation basis for downstream assessment",
-        "Separately bound falsifiable hypothesis, alternatives and evidence-backed scope",
+        "Classification requires a separately bound falsifiable hypothesis and its actual answer; independent fact assessments may omit one. Any supplied hypothesis retains its exact meaning and actual answer.",
         "Separate relation, technical-source and metric answers, including unknowns",
-        "Profile-qualified retained question identities and complete context; no investigation closure"
+        "Profile-qualified retained question identities and complete context; no investigation closure",
+        "Per-fact evidenceDependency with metadata/content kind and nonempty evidenceRefs; unavailable content cannot support content-dependent or undeclared facts"
       ],
-      "contentAvailabilityFact": "content.availability"
+      "contentAvailabilityFact": "content.availability",
+      "requiredFactTypes": {
+        "event.kind": [
+          "string"
+        ],
+        "content.availability": [
+          "string"
+        ]
+      },
+      "factEvidenceDependency": {
+        "field": "facts.<fact>.evidenceDependency",
+        "kinds": [
+          "metadata",
+          "content"
+        ],
+        "required": [
+          "kind",
+          "evidenceRefs"
+        ],
+        "interpretation": "Every usable fact declares a metadata or content dependency with evidence references. Unavailable content permits metadata-dependent claims only; field names do not establish dependencies. An available status is a supplied assessed claim and does not itself acquire or authenticate bytes."
+      }
     }
+  },
+  "retentionSemantics": {
+    "focusField": "focus",
+    "genericTerminalHistory": "Each retained terminal row names its supplied source focus. The qualified terminal is generic; its historical unqualified sourceFacet is not its event-profile meaning. Preserve separate (question, focus) histories without changing prior answers.",
+    "focusDisposition": "Every retained focus is explicitly open or assessed. Assessed requires a retained applicable nonterminal question; a generic event match or terminal alone does not assess a fixed evidence facet.",
+    "hypothesisContext": "A supplied hypothesis and its actual answer remain separate. Independent fact-led scope, relation, source and effect may omit a hypothesis; omission is preserved without inventing an identifier."
   }
 }

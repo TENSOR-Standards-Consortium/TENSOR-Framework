@@ -37,46 +37,136 @@ def instant(value):
 
 def context_ready(case, domain):
     interval = case.get("interval", {})
+    if not isinstance(interval, dict) or not isinstance(case.get("bindings", {}), dict):
+        return False
     start, end = instant(interval.get("start")), instant(interval.get("end"))
     return (all(isinstance(case.get("bindings", {}).get(k), str) and case["bindings"][k].strip() for k in domain["bindings"])
             and start is not None and end is not None and start < end)
 
 
-def matches(record, case, domain):
-    if not context_ready(case, domain):
-        return False
+def semantic_case(case, criteria):
+    """Historical snapshots opt into their original missing-clock compatibility."""
+    if criteria.get("semanticReview") and not case.get("semanticReview"):
+        return {**case, "semanticReview": True}
+    return case
+
+
+def finite_nonnegative(value):
+    return (type(value) in (int, float) and value >= 0
+            and (type(value) is int or math.isfinite(value)))
+
+
+def membership(record, case, domain):
+    """Three-valued membership of an entire clock bound in a half-open interval."""
+    if not context_ready(case, domain) or not isinstance(record, dict):
+        return "unknown"
+    subjects = record.get("subjects", {})
+    if not isinstance(subjects, dict):
+        return "unknown"
+    if any(k in subjects and subjects[k] != case["bindings"][k] for k in domain["bindings"]):
+        return "no"
+    if not all(k in subjects for k in domain["bindings"]):
+        return "unknown"
     when = instant(record.get("eventTime"))
-    return (all(record.get("subjects", {}).get(k) == case["bindings"][k] for k in domain["bindings"])
-            and when is not None
-            and instant(case["interval"]["start"]) <= when < instant(case["interval"]["end"]))
+    uncertainty = record.get("clockUncertaintySeconds")
+    if uncertainty is None and "clockUncertaintySeconds" not in record and not case.get("semanticReview"):
+        uncertainty = 0  # Explicit compatibility for the retained pre-review fixture format.
+    if when is None or not finite_nonnegative(uncertainty):
+        return "unknown"
+    start, end = (instant(case["interval"][k]) for k in ("start", "end"))
+    before, after = (when - start).total_seconds(), (end - when).total_seconds()
+    if before < -uncertainty or after <= -uncertainty:
+        return "no"
+    if before < uncertainty or after <= uncertainty:
+        return "unknown"
+    return "yes"
+
+
+def matches(record, case, domain):
+    return membership(record, case, domain) == "yes"
+
+
+def independent_record(record, case):
+    """A copy of any primary observation cannot become an independent witness."""
+    if not isinstance(record, dict) or not named(record.get("id")) or not named(record.get("origin")):
+        return False
+    primary = case.get("primary", {}).get("records", [])
+    if not isinstance(primary, list) or any(not isinstance(r, dict) or not named(r.get("id"))
+                                          or not named(r.get("origin")) for r in primary):
+        return False
+    ids, origins = {r["id"] for r in primary}, {r["origin"] for r in primary}
+    if named(case.get("primaryOrigin")):
+        origins.add(case["primaryOrigin"])  # A supplied known origin can further constrain independence.
+    return record["id"] not in ids and record["origin"] not in origins
+
+
+def record_group(card, case, criteria):
+    """The declared independent question variants retain their witness semantics."""
+    role = card.get("role")
+    if role in ("alternate", "independentValidation"):
+        return "independent"
+    if role in ("classification", "scope"):
+        variants = criteria["domains"][card["domain"]].get(role, [])
+        if isinstance(variants, list):
+            identities = [index for index, node_id in enumerate(variants)
+                          if card is criteria["nodes"].get(node_id) or card.get("nodeId") == node_id]
+            if not identities:
+                identities = [index for index, node_id in enumerate(variants)
+                              if card == criteria["nodes"].get(node_id)]
+            if len(identities) > 1:
+                return "unknown"  # Equal copied cards cannot identify one of two distinct questions.
+            if identities and identities[0] > 0:
+                return "independent"
+            if role == "classification" and len(variants) > 1 and identities == [0]:
+                return "primary"
+    return "primary" if role == "entry" else case.get("_selectedGroup", "primary")
 
 
 def match_answer(case, domain, independent=False):
-    group = case["independent" if independent else "primary"]
+    group_name = "independent" if independent else "primary"
+    group = case.get(group_name, {})
     if not context_ready(case, domain):
         return "unknown", "Subject or time binding is unresolved", None
     if case.get("materialConflict"):
         return "unknown", "Material counterevidence is unresolved", None
     if group.get("accessible") is not True or group.get("searched") is not True:
         return "unknown", "Evidence is unavailable or the search is incomplete", None
-    uncertain = False
-    for record in group.get("records", []):
-        if not instant(record.get("eventTime")):
+    records = group.get("records", [])
+    if not isinstance(records, list):
+        return "unknown", "The examined material is not a declared record list", None
+    selected_id = (case.get("_selectedRecordId") if case.get("_selectedGroup") == group_name
+                   and named(case.get("_selectedRecordId")) else group.get("selectedRecordId"))
+    if selected_id is not None:
+        selected = [r for r in records if isinstance(r, dict) and r.get("id") == selected_id]
+        if not named(selected_id) or len(selected) != 1:
+            return "unknown", "The selected observation must identify exactly one supplied record", None
+        records = selected
+    uncertain, candidates = False, []
+    for record in records:
+        result = membership(record, case, domain)
+        if result == "unknown":
+            uncertain = True
+        if result != "yes":
+            continue
+        if independent and not independent_record(record, case):
             uncertain = True
             continue
-        if not matches(record, case, domain):
-            continue
-        if independent and (not record.get("origin") or record["origin"] == case.get("primaryOrigin")):
-            uncertain = True
-            continue
-        return "yes", "A record matches the exact bound subjects and interval", record
+        candidates.append(record)
+    if len(candidates) > 1 or (candidates and uncertain):
+        return "unknown", "Ambiguous matching observations require an explicit unique selectedRecordId", None
+    if candidates:
+        return "yes", "The selected record's entire clock bound matches the exact subjects and interval", candidates[0]
+    if selected_id is not None:
+        return "unknown", "The explicitly selected observation is not a resolved matching record", None
     return ("unknown", "Record time or independent lineage is unresolved", None) if uncertain else (
         "no", "The completed search found no matching record in the examined material", None)
 
 
-def validation_answer(record, case):
-    if record is None or case.get("materialConflict"):
+def validation_answer(record, case, independent=False):
+    if not isinstance(record, dict) or case.get("materialConflict"):
         return "unknown", "No uncontradicted matching record was selected"
+    if independent and not independent_record(record, case):
+        return "unknown", "Independent validation needs lineage separate from every primary observation"
     assessments = [record.get("provenanceAssessment"), record.get("interpretationAssessment")]
     if "rejected" in assessments:
         return "no", "A supplied provenance or interpretation assessment rejects the selected record"
@@ -95,11 +185,20 @@ def exclusion_answer(case, domain):
         return "unknown", "No coverage assessment is bound to these exact subjects and interval"
     if any(coverage.get(k) is False for k in COVERAGE_FLAGS):
         return "no", "A known logging, collection, retention, clock, search, or integrity gap prevents exclusion"
-    if not coverage.get("evidenceRefs") or any(coverage.get(k) is not True for k in COVERAGE_FLAGS):
+    if not references(coverage.get("evidenceRefs")) or any(coverage.get(k) is not True for k in COVERAGE_FLAGS):
         return "unknown", "Complete applicable evidence coverage has not been established"
-    for group in (case["primary"], case["independent"]):
-        if any(matches(record, case, domain) for record in group.get("records", [])):
+    unresolved = False
+    for name in ("primary", "independent"):
+        group = case.get(name, {})
+        if (group.get("accessible") is not True or group.get("searched") is not True
+                or not isinstance(group.get("records"), list)):
+            return "unknown", "Both declared evidence groups need available, completed searches"
+        answers = [membership(record, case, domain) for record in group["records"]]
+        if "yes" in answers:
             return "no", "A matching record is counterevidence to an absence claim; reassessment is required"
+        unresolved |= "unknown" in answers
+    if unresolved:
+        return "unknown", "Ambiguous subjects, record times or clock bounds prevent an absence finding"
     return "yes", "The supplied applicable coverage/search basis supports this bounded exclusion only"
 
 
@@ -115,6 +214,26 @@ def bound_assessment(assessment, case, hypothesis_id):
     return (isinstance(assessment, dict) and assessment.get("subjects") == case["bindings"]
             and assessment.get("interval") == case["interval"]
             and assessment.get("hypothesisId") == hypothesis_id)
+
+
+def hypothesis_context(case):
+    """An absent hypothesis is valid for fact-led questions; a supplied one stays bound."""
+    analysis = case.get("analysis", {})
+    if not isinstance(analysis, dict):
+        return False, None
+    if "hypothesis" not in analysis:
+        return True, None
+    hypothesis = analysis["hypothesis"]
+    if not isinstance(hypothesis, dict) or not named(hypothesis.get("hypothesisId")):
+        return False, None
+    hid = hypothesis["hypothesisId"]
+    return bound_assessment(hypothesis, case, hid), hid
+
+
+def target_context(case, assessment):
+    return {"bindings": assessment.get("targetSubjects", {}),
+            "interval": assessment.get("targetInterval", case["interval"]),
+            "semanticReview": case.get("semanticReview", False)}
 
 
 def subject_identity(criteria, domain, subjects):
@@ -150,25 +269,27 @@ def equality_answer(record, criterion):
 
 
 def downstream_answer(role, case, selected, criteria):
+    case = semantic_case(case, criteria)
     analysis = case.get("analysis", {})
     if not isinstance(analysis, dict):
         return "unknown", "No structured hypothesis assessment was supplied"
+    domain = criteria["domains"].get(case.get("domain"))
+    if (domain is None or not context_ready(case, domain) or not matches(selected, case, domain)
+            or validation_answer(selected, case)[0] != "yes"):
+        return "unknown", "This assessment needs its own matching, validated event and exact bound context"
     hypothesis = analysis.get("hypothesis", {})
-    if not isinstance(hypothesis, dict):
-        return "unknown", "No explicit hypothesis was supplied"
-    hypothesis_id = hypothesis.get("hypothesisId")
-    if (case.get("materialConflict") or not named(hypothesis_id)
-            or not bound_assessment(hypothesis, case, hypothesis_id)):
-        return "unknown", "The explicit hypothesis, original subject/time bindings, or counterevidence is unresolved"
+    hypothesis_ready, hypothesis_id = hypothesis_context(case)
+    if case.get("materialConflict") or not hypothesis_ready:
+        return "unknown", "The original subject/time or supplied hypothesis context is unresolved"
     if role == "classification":
-        if (not isinstance(hypothesis.get("statement"), str) or not hypothesis["statement"].strip()
+        if (not named(hypothesis_id) or not named(hypothesis.get("statement"))
                 or not references(hypothesis.get("alternatives"))):
             return "unknown", "The single hypothesis and competing explanations are not explicit"
         return equality_answer(selected, hypothesis.get("criterion"))
     assessment = analysis.get(role, {})
     if (not bound_assessment(assessment, case, hypothesis_id)
             or not references(assessment.get("evidenceRefs")) or not named(assessment.get("method"))):
-        return "unknown", "The assessment lacks a bound hypothesis, method, or evidence basis"
+        return "unknown", "The assessment lacks its bound context, method, or evidence basis"
     if role == "scope":
         # This is a documented scope boundary, not proof that all affected entities were found.
         if selected.get("id") not in assessment["evidenceRefs"]:
@@ -185,11 +306,11 @@ def downstream_answer(role, case, selected, criteria):
                 return "unknown", "An entity scope disposition is incomplete"
             if entity["disposition"] != "unknown" and not references(entity.get("evidenceRefs")):
                 return "unknown", "A scope inclusion or exclusion has no supporting reference"
-            if "subjects" in entity:
-                fields = criteria["domains"][entity["domain"]]["bindings"]
-                if (not isinstance(entity["subjects"], dict) or not all(named(entity["subjects"].get(k)) for k in fields)
+            fields = criteria["domains"][entity["domain"]]["bindings"]
+            if entity["disposition"] != "unknown" or "subjects" in entity:
+                if (not isinstance(entity.get("subjects"), dict) or not all(named(entity["subjects"].get(k)) for k in fields)
                         or entity["subjects"][fields[0]] != entity["subjectId"]):
-                    return "unknown", "A composite scope identity must retain all declared endpoint fields"
+                    return "unknown", "A scope inclusion or exclusion must retain all declared endpoint fields"
         dispositions = {}
         partial_identities = {}
         for entity in entities:
@@ -204,23 +325,24 @@ def downstream_answer(role, case, selected, criteria):
             previous.append(entity)
         source_subject = case["bindings"][criteria["domains"][case["domain"]]["bindings"][0]]
         source_entities = [e for e in entities if e["domain"] == case["domain"] and e["subjectId"] == source_subject
-                           and ("subjects" not in e or subject_identity(criteria, case["domain"], e["subjects"]) == subject_identity(criteria, case["domain"], case["bindings"]))]
+                           and "subjects" in e and subject_identity(criteria, case["domain"], e["subjects"]) == subject_identity(criteria, case["domain"], case["bindings"])]
         if any(e["disposition"] == "excluded" for e in source_entities):
-            return "no", "The proposed scope excludes the source subject of the retained hypothesis"
+            return "no", "The proposed scope excludes the bound source event subject"
         if not any(e["disposition"] == "included" for e in source_entities):
-            return "unknown", "The source subject of the hypothesis has no evidenced inclusion"
+            return "unknown", "The bound source subject has no complete evidenced inclusion"
         return "yes", "Bound scope and entity dispositions are documented; completeness is not asserted"
     if role == "correlation":
         target_domain = criteria["domains"].get(assessment.get("targetDomain"))
         target = assessment.get("targetRecord")
-        target_case = {"bindings": assessment.get("targetSubjects", {}), "interval": case["interval"]}
+        target_case = target_context(case, assessment)
         if (target_domain is None or not isinstance(target, dict)
                 or not matches(target, target_case, target_domain)
                 or assessment.get("sourceRecordId") != selected.get("id")):
             return "unknown", "The named relation endpoints are not validated in the bound interval"
         if validation_answer(target, case)[0] != "yes":
             return "unknown", "The target record has no accepted provenance and interpretation basis"
-        if target.get("id") == selected.get("id") or target.get("origin") == selected.get("origin"):
+        if (not named(target.get("id")) or not named(selected.get("id"))
+                or target.get("id") == selected.get("id") or target.get("origin") == selected.get("origin")):
             return "unknown", "A copied or same-origin observation is not separate corroboration for this relation test"
         if assessment.get("relationKind") != "shared-identifier":
             return "unknown", "This evaluator only tests a declared shared identifier, not causation"
@@ -246,16 +368,22 @@ def downstream_answer(role, case, selected, criteria):
         units = [fact(selected, assessment.get(k)) for k in ("baselineUnitFact", "observedUnitFact")]
         metrics = [fact(selected, assessment.get(k)) for k in ("baselineMetricFact", "observedMetricFact")]
         times = [instant(fact(selected, assessment.get(k))) for k in ("baselineTimeFact", "observedTimeFact")]
+        baseline_context = {"bindings": case["bindings"],
+                            "interval": assessment.get("baselineInterval", case["interval"])}
         if (type(baseline) not in (int, float) or type(observed) not in (int, float)
                 or units != [assessment["unit"]] * 2 or metrics != [assessment["metricId"]] * 2
-                or None in times or not instant(case["interval"]["start"]) <= times[0] < times[1] < instant(case["interval"]["end"])):
-            return "unknown", "Comparable metric, units, and ordered baseline/observation times in the bound interval are required"
+                or not context_ready(baseline_context, domain) or None in times
+                or not instant(baseline_context["interval"]["start"]) <= times[0] < instant(baseline_context["interval"]["end"])
+                or not instant(case["interval"]["start"]) <= times[1] < instant(case["interval"]["end"])
+                or not times[0] < times[1]):
+            return "unknown", "Comparable metric and units need ordered measurements in the explicit baseline and observation intervals"
         return ("yes", "The supplied bounded metric changed; attribution and broader impact remain separate") if observed != baseline else (
             "no", "The supplied bounded metric is unchanged; other effects have not been excluded")
     raise ValueError(f"Unimplemented downstream role: {role}")
 
 
 def evaluate_case(graph, criteria, case):
+    case = semantic_case(case, criteria)
     domain = criteria["domains"][case["domain"]]
     nodes = {n["id"]: n for n in graph["nodes"]}
     # These retained fixtures explicitly select the original continuation. New
@@ -276,20 +404,21 @@ def evaluate_case(graph, criteria, case):
         if role in ("entry", "alternate"):
             answer, reason, selected = match_answer(case, domain, role == "alternate")
         elif role in ("primaryValidation", "independentValidation"):
-            answer, reason = validation_answer(selected, case)
+            answer, reason = validation_answer(selected, case, role == "independentValidation")
         elif role == "exclusion":
             answer, reason = exclusion_answer(case, domain)
         elif role == "unresolved":
-            answer, reason = "yes", "The prior assessment retained a material evidence, context, or verification limitation"
+            gaps = [t for t in trace if t["answer"] == "unknown" or (t["answer"] == "no" and
+                    criteria["nodes"][t["nodeId"]]["role"] in ("primaryValidation", "independentValidation", "scope", "exclusion"))]
+            answer = "yes" if gaps else "unknown"
+            reason = "Retain the named unresolved assessment or evidence limitation separately from known event findings"
         elif role in ("classification", "scope", "correlation", "attribution", "impact"):
             answer, reason = downstream_answer(role, case, selected, criteria)
         elif role == "refuted":
             answer = "yes" if any(t["answer"] == "no" and criteria["nodes"][t["nodeId"]]["role"] == "classification" for t in trace) else "unknown"
             reason = "Retain the contradicted explicit hypothesis; the recorded event and competing hypotheses remain separate"
         elif role == "assessed":
-            retained = {criteria["nodes"][t["nodeId"]]["role"]: t["answer"] for t in trace}
-            answer = "yes" if (retained.get("classification") == retained.get("scope") == "yes"
-                               and all(r in retained for r in ("correlation", "attribution", "impact"))) else "unknown"
+            answer = "yes" if trace else "unknown"
             reason = "Retain each separate assessment, including negative and unknown answers; this does not close the investigation"
         else:
             raise ValueError(f"Unimplemented review role: {role}")

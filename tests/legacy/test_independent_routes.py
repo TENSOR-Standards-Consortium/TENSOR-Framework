@@ -84,20 +84,77 @@ class IndependentRouteTests(unittest.TestCase):
         errors, _, _ = validate_and_measure(graph['nodes'], graph['edges'], graph['entryNodeIds'], set())
         self.assertTrue(any('unrecognized generic evidence hub' in e for e in errors))
 
-    def test_pattern_cannot_substitute_a_separate_technical_source_assessment(self):
+    def pattern_retention_cases(self):
         from test_independent_investigations import investigation, retained_row
-        from restored_evidence import answer
         for domain, bindings in self.criteria['domains'].items():
             pattern_id, pattern = next((nid, c) for nid, c in self.criteria['nodes'].items()
                                        if c['domain'] == domain and c.get('assessmentKind') == 'behavior-pattern')
             case = investigation(domain, pattern, self.criteria)
             case['analysis'].pop('attribution')
-            case['retention']['assessments'] = [retained_row(nid, case) for nid in
-                (bindings['classification'][0], bindings['scope'][0], bindings['correlation'], pattern_id, bindings['impact'])]
+            pattern_row = retained_row(pattern_id, case)
+            pattern_row['focus'] = case['focus']
+            source_open = retained_row(bindings['attribution'], case, 'unknown')
+            source_open['focus'] = case['focus']
+            source_open['rationale'] = 'Technical source remains open; a behavior pattern does not identify its source'
+            source_open['limitations'] = ['No technical-source discriminator was supplied']
+            case['retention']['hypothesis'] = deepcopy(case['analysis']['hypothesis'])
+            case['retention']['focusDispositions'][case['focus']] = 'assessed'
+            case['retention']['assessments'] = [pattern_row, source_open]
+            case['retainedTrace'] = [{'nodeId': pattern_id, 'answer': 'yes', 'focus': case['focus']},
+                                     {'nodeId': bindings['attribution'], 'answer': 'unknown', 'focus': case['focus']}]
             terminal = self.criteria['nodes'][bindings['assessed']]
+            yield domain, bindings, pattern_id, pattern, terminal, case
+
+    def test_pattern_and_explicitly_open_source_are_retained_without_a_stage_checklist(self):
+        from restored_evidence import answer
+        for domain, bindings, pattern_id, pattern, terminal, case in self.pattern_retention_cases():
+            with self.subTest(domain=domain):
+                self.assertEqual('yes', answer(pattern, case, self.criteria)[0])
+                self.assertEqual('unknown', answer(self.criteria['nodes'][bindings['attribution']], case, self.criteria)[0])
+                before = deepcopy(case)
+                self.assertEqual('yes', answer(terminal, case, self.criteria)[0])
+                self.assertEqual(before, case, 'Retention must not manufacture or relabel a finding')
+                self.assertEqual({pattern_id: 'yes', bindings['attribution']: 'unknown'},
+                                 {row['nodeId']: row['answer'] for row in case['retention']['assessments']})
+                self.assertNotIn('attribution', case['analysis'])
+
+    def test_handoff_rejects_omitted_or_changed_actual_pattern_and_open_source_answers(self):
+        from restored_evidence import answer
+        for domain, bindings, pattern_id, pattern, terminal, original in self.pattern_retention_cases():
+            for index in (0, 1):
+                for variation in ('omitted', 'changed'):
+                    case = deepcopy(original)
+                    if variation == 'omitted':
+                        case['retention']['assessments'].pop(index)
+                    else:
+                        case['retention']['assessments'][index]['answer'] = 'no' if index == 0 else 'yes'
+                    with self.subTest(domain=domain, question=index, variation=variation):
+                        self.assertEqual('no', answer(terminal, case, self.criteria)[0])
+
+    def test_handoff_rejects_contradictory_retained_pattern_answers(self):
+        from restored_evidence import answer
+        for domain, bindings, pattern_id, pattern, terminal, case in self.pattern_retention_cases():
+            contradictory = deepcopy(case['retention']['assessments'][0])
+            contradictory['answer'] = 'no'
+            case['retention']['assessments'].append(contradictory)
             with self.subTest(domain=domain):
                 self.assertEqual('unknown', answer(terminal, case, self.criteria)[0])
-                source_unknown = retained_row(bindings['attribution'], case, 'unknown')
-                source_unknown['limitations'] = ['No technical-source discriminator; pattern does not identify its source']
-                case['retention']['assessments'].append(source_unknown)
-                self.assertEqual('yes', answer(terminal, case, self.criteria)[0])
+
+    def test_handoff_preserves_exact_hypothesis_subject_time_and_focus(self):
+        from restored_evidence import answer
+        for domain, bindings, pattern_id, pattern, terminal, original in self.pattern_retention_cases():
+            for variation in ('hypothesis', 'subject', 'time', 'focus', 'assessment-focus'):
+                case = deepcopy(original)
+                if variation == 'hypothesis':
+                    case['retention']['hypothesis']['statement'] = 'A different hypothesis under the same identifier'
+                elif variation == 'subject':
+                    field = bindings['bindings'][0]
+                    case['retention']['assessments'][0]['subjects'][field] += ':another-subject'
+                elif variation == 'time':
+                    case['retention']['assessments'][0]['interval']['end'] = '2026-10-12T13:00:00Z'
+                elif variation == 'focus':
+                    case['retention']['focusDispositions'] = {'unrelated evidence facet': 'assessed'}
+                else:
+                    case['retention']['assessments'][0]['focus'] = 'unrelated retained evidence facet'
+                with self.subTest(domain=domain, variation=variation):
+                    self.assertEqual('unknown', answer(terminal, case, self.criteria)[0])

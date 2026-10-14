@@ -24,7 +24,8 @@ class AssurancePolicyTests(unittest.TestCase):
         cls.criteria = json.loads((ROOT / "drafts/core/entry-evidence-criteria.json").read_bytes())
         cls.suite = json.loads((ROOT / "drafts/core/scenarios/entry-evidence-cases.json").read_bytes())
         historical = json.loads((ROOT / "drafts/core/reviews/2026-10-11-topology-policy/reviewed-graph.graph.json").read_bytes())
-        cls.experiments = experiments(historical, cls.criteria, cls.suite)
+        historical_inputs = [json.loads(subprocess.check_output(["git", "show", "3f480af:" + name], cwd=ROOT)) for name in ("drafts/core/entry-evidence-criteria.json", "drafts/core/scenarios/entry-evidence-cases.json")]
+        cls.experiments = experiments(historical, *historical_inputs)
         cls.reference = snapshot(cls.graph)["reference"]
 
     def assess(self, graph=None, criteria=None, suite=None):

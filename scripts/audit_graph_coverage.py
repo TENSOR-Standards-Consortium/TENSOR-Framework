@@ -32,23 +32,25 @@ def build():
     review = json.loads(review_path.read_text()) if review_path.exists() else {}
     # The source-predicate review remains historical. The routing revision does
     # not re-date its approval or pretend its old graph digest pins new edges.
-    reviewed = {r['sourceId']: r for r in review.get('questions', [])} if (review.get('graphVersion') == current['version'] or current.get('extensions', {}).get('tensor:routingProfile') == 'tensor-investigative-routing/1') else {}
+    reviewed = {r['sourceId']: r for r in review.get('questions', [])}
+    historical_bytes = subprocess.check_output(['git', '-C', str(ROOT), 'show', 'e6ced17aeaa1cf1d8be31ba1fbd24bf96d0890e0:' + GRAPH]) if current.get('extensions', {}).get('tensor:semanticReview') else current_bytes
+    historical = {n['id']: n for n in json.loads(historical_bytes)['nodes']}
     rows = []
     for node in original['nodes']:
         remaining = node['id'] in active
         removed = next((name for (name, _), ids in zip(STAGES, snapshots) if node['id'] not in ids), None)
         disposition = reviewed.get(node['id'], {})
-        if disposition and (disposition['sourceText'] != node['text'] or not remaining or disposition['targetText'] != active[node['id']]['text']):
+        if disposition and (disposition['sourceText'] != node['text'] or not remaining or disposition['targetText'] != historical[node['id']]['text']):
             raise ValueError(f"{node['id']}: review no longer matches the source and target predicates")
         rows.append(dict(sourceId=node['id'], category=node['category'], archetype=node['archetype'], sourceLabel=node['label'], sourceText=node['text'], lineageStatus='restored-with-evidence-repair' if remaining and removed and disposition else 'same-id-rewritten' if remaining else removed,
-            firstRemovedAt=removed, activeId=node['id'] if remaining else None, textChanged=active[node['id']]['text'] != node['text'] if remaining else None,
+            firstRemovedAt=removed, activeId=node['id'] if remaining else None, textChanged=active[node['id']]['text'] != node['text'] if remaining else None, historicalReviewedPredicate=historical[node['id']]['text'] if remaining else None, currentPredicate=active[node['id']]['text'] if remaining else None, currentReviewRef='reviews/2026-10-13-semantic/README.md',
             semanticReview=disposition.get('semanticReview', 'pending'), disposition=disposition.get('disposition'), rationale=disposition.get('meaningChange'),
             applicabilityLimitations=disposition.get('applicabilityLimitations', []), agentReviewRef=disposition.get('agentReviewRef'), sourceFacet=disposition.get('sourceFacet'), assessmentKind=disposition.get('assessmentKind'), issues=disposition.get('issues', []),
             sourceDuplicateIds=disposition.get('sourceDuplicateIds', []), targetDefinitionRefs=disposition.get('targetDefinitionRefs', []), scenarioRefs=disposition.get('scenarioRefs', [])))
     absent = [r for r in rows if r['activeId'] is None]
     originals = {n['id'] for n in original['nodes']}
     added = [n['id'] for n in current['nodes'] if n['id'] not in originals]
-    return dict(format='tensor-graph-coverage-inventory', inventoryVersion=2, meaning='Every original ID has an author-reviewed disposition where recorded. Independent semantic approval, source/target equivalence and full investigative coverage remain unproved. Duplicate prompts are retained explicitly; no consolidation is approved.', published=dict(path=released_path, version=original['version'], sha256=sha256(released_bytes).hexdigest(), questions=len(original['nodes']), routes=len(original['edges'])), history=sources, working=dict(path=GRAPH, version=current['version'], sha256=sha256(current_bytes).hexdigest(), questions=len(current['nodes']), routes=len(current['edges'])), summary=dict(sameIdRewritten=len(rows)-len(absent), restoredOriginal=sum(r['lineageStatus']=='restored-with-evidence-repair' for r in rows), authorReviewedDispositions=len(reviewed), absentOriginal=len(absent), newQuestions=len(added), approvedSemanticDispositions=0, absentByDomain=dict(sorted(Counter(r['category'] for r in absent).items())), lineage=dict(sorted(Counter(r['lineageStatus'] for r in rows).items()))), originalQuestions=rows, newQuestionIds=added)
+    return dict(format='tensor-graph-coverage-inventory', inventoryVersion=3, meaning='Every original ID has an author-reviewed disposition where recorded. Historical author dispositions remain pinned to their reviewed revision. Current item-level AI review is recorded separately in reviews/2026-10-13-semantic; institutional approval, equivalence and universal coverage remain unproved. Duplicate prompts are retained explicitly; no consolidation is approved.', published=dict(path=released_path, version=original['version'], sha256=sha256(released_bytes).hexdigest(), questions=len(original['nodes']), routes=len(original['edges'])), history=sources, working=dict(path=GRAPH, version=current['version'], sha256=sha256(current_bytes).hexdigest(), questions=len(current['nodes']), routes=len(current['edges'])), summary=dict(sameIdRewritten=len(rows)-len(absent), restoredOriginal=sum(r['lineageStatus']=='restored-with-evidence-repair' for r in rows), authorReviewedDispositions=len(reviewed), absentOriginal=len(absent), newQuestions=len(added), approvedSemanticDispositions=0, absentByDomain=dict(sorted(Counter(r['category'] for r in absent).items())), lineage=dict(sorted(Counter(r['lineageStatus'] for r in rows).items()))), originalQuestions=rows, newQuestionIds=added)
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)

@@ -62,7 +62,7 @@ class RestoredEvidenceTests(unittest.TestCase):
                     expected = "no" if change == "subject" and card["stage"] == "detect" else "unknown"
                     self.assertEqual(expected, evaluator.answer(card, c, self.criteria)[0])
 
-    def test_resumption_rechecks_record_provenance_hypothesis_and_scope(self):
+    def test_resumption_rechecks_own_evidence_and_preserves_supplied_context(self):
         for stage in ("classify", "scope", "correlate", "attribute", "impact"):
             nid = next(n for n in sorted(self.ids) if self.criteria["nodes"][n]["stage"] == stage)
             card = self.criteria["nodes"][nid]
@@ -87,7 +87,8 @@ class RestoredEvidenceTests(unittest.TestCase):
                 else:
                     c["analysis"].pop(change)
                 with self.subTest(stage=stage, change=change):
-                    self.assertEqual("unknown", evaluator.answer(card, c, self.criteria)[0])
+                    expected = "yes" if change == "scope" else "unknown"
+                    self.assertEqual(expected, evaluator.answer(card, c, self.criteria)[0])
 
     def test_copied_origin_cannot_corroborate(self):
         card, c = self.fixture("corroboration")
