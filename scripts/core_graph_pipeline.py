@@ -635,9 +635,11 @@ def build_graph_payload(
     profiles = {edge.get("extensions", {}).get("tensor:investigativeLead", {}).get("profile") for edge in edges}
     profiles.discard(None)
     if profiles:
-        if profiles != {"tensor-investigative-routing/1"}:
+        if len(profiles) != 1 or not profiles <= {"tensor-investigative-routing/1", "tensor-investigative-routing/2"}:
             raise ValidationError("Unrecognized or mixed investigative routing profiles")
-        payload["extensions"] = {"tensor:routingProfile": "tensor-investigative-routing/1"}
+        payload["extensions"] = {"tensor:routingProfile": next(iter(profiles))}
+        if profiles == {"tensor-investigative-routing/2"}:
+            payload["extensions"]["tensor:semanticReview"] = "tensor-semantic-review/1"
     return payload
 
 

@@ -40,11 +40,16 @@ class InvestigativeRoutingTests(unittest.TestCase):
             source=self.criteria['domains'][domain]['correlation']
             context={self.criteria['domains'][target]['entry']:{'domain':target,'bindings':bindings,
                 'interval':{'start':'2026-10-13T08:35:00Z','end':'2026-10-13T09:00:00Z'},
+                'questionId':self.criteria['domains'][target]['entry'],'graphVersion':self.graph['version'],
                 'discoveryEvidenceRefs':['independent:'+description+':'+target],
                 'discoveryRationale':'Separately acquired endpoint evidence identifies this exact target event, with competing explanations retained.'}
                 for target,bindings in [(left,left_bindings),(right,right_bindings)]}
             for answer in ('yes','no','unknown'):
                 with self.subTest(domain=domain,answer=answer):
+                    context['_source']={'nodeId':source,'answer':answer,'graphVersion':self.graph['version'],'domain':domain,
+                        'bindings':{f:'source:'+f for f in self.criteria['domains'][domain]['bindings']},
+                        'interval':{'start':'2026-10-13T08:00:00Z','end':'2026-10-13T08:30:00Z'},
+                        'evidenceRefs':['source:'+description],'rationale':'Retain the independently assessed source proposition.'}
                     eligible=eligible_leads(self.graph,source,answer,context)
                     self.assertEqual({f'{source}-{answer}-{self.criteria["domains"][d]["entry"]}' for d in (left,right)},set(eligible))
                     # One or both can be explicitly selected. Readiness does not
@@ -53,10 +58,11 @@ class InvestigativeRoutingTests(unittest.TestCase):
                     self.assertEqual(1,len(selected))
                     self.assertEqual(2,len(eligible))
                     self.assertTrue(set(selected)<=set(eligible))
-                    self.assertNotIn('answer',next(iter(context.values())))
+                    self.assertTrue(all('answer' not in v for k,v in context.items() if k!='_source'))
             for fault in ('binding','interval','domain','discovery','rationale'):
                 broken=deepcopy(context)
-                for target in broken.values():
+                for key,target in broken.items():
+                    if key=='_source':continue
                     if fault=='binding':target['bindings'].pop(next(iter(target['bindings'])))
                     if fault=='interval':target['interval']['end']=target['interval']['start']
                     if fault=='domain':target['domain']='unrelated'
@@ -107,6 +113,7 @@ class InvestigativeRoutingTests(unittest.TestCase):
         self.assertEqual({n['id'] for n in original['nodes']}|{f'Q{i}' for i in range(589,610)},set(self.nodes))
         self.assertEqual(1554,len(continuation_edges(self.graph)))
         report=json.loads((ROOT/'drafts/core/reviews/2026-10-13-routing/review.json').read_text())
-        self.assertEqual(sha256(self.raw).hexdigest(),report['graphSha256'])
+        self.assertEqual('4943feee2af28d414fcfd98194e63d196bee529ce8f85117aed4932d977e4d5e',report['graphSha256'])
+        self.assertEqual(subprocess.check_output(['git','show','e6ced17:'+ 'drafts/core/reviews/2026-10-13-routing/review.json'],cwd=ROOT),(ROOT/'drafts/core/reviews/2026-10-13-routing/review.json').read_bytes())
 
 if __name__=='__main__':unittest.main()

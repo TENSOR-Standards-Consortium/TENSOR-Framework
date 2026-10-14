@@ -134,6 +134,7 @@ class EventProfileTests(unittest.TestCase):
             record['facts']['content.availability']['value']=status
             record['facts']['content.hash']=deepcopy(record['facts']['event.id'])
             record['facts']['content.hash']['value']='claimed-content-hash'
+            record['facts']['content.hash']['evidenceDependency']={'kind':'content','evidenceRefs':['authored:byte-examination']}
             case['analysis']['hypothesis']['criterion'].update(fact='content.hash',equals='claimed-content-hash')
             self.assertEqual('unknown',self.answer(case,'classification'))
         case=deepcopy(case)
@@ -188,11 +189,13 @@ class EventProfileTests(unittest.TestCase):
                 elif variation=='profile':case['retention']['eventProfile']='different-profile'
                 elif variation=='subject':rows[0]['subjects']={}
                 elif variation=='hypothesis':rows[0]['hypothesisId']='different-hypothesis'
-                elif variation=='missing-scope':case['retention']['assessments']=[r for r in rows if self.criteria['nodes'][r['nodeId']]['role']!='scope']
+                elif variation=='missing-scope':
+                    case['retainedTrace']=[{'nodeId':r['nodeId'],'answer':r['answer']} for r in rows]
+                    case['retention']['assessments']=[r for r in rows if self.criteria['nodes'][r['nodeId']]['role']!='scope']
                 elif variation=='closure':case['retention']['closesInvestigation']=True
                 elif variation=='hypothesis-definition':case['analysis']['hypothesis']['statement']='A different proposition under the same ID'
                 else:extra=deepcopy(rows[0]);extra['answer']='no';rows.append(extra)
-                self.assertEqual('unknown',self.answer(case,'assessed'))
+                self.assertEqual('no' if variation=='missing-scope' else 'unknown',self.answer(case,'assessed'))
             case=deepcopy(seed);case['retainedTrace']=[{'nodeId':case['retention']['assessments'][0]['nodeId'],'answer':'no'}]
             self.assertEqual('no',self.answer(case,'assessed'))
 
@@ -283,6 +286,7 @@ class EventProfileTests(unittest.TestCase):
             case=deepcopy(seed);card=self.restored_card(case,'corroboration')
             if card is None:continue
             tested+=1;case['focus']=card['sourceFacet'];case['primary']['records'][0]['evidenceFacet']=case['focus']
+            case['independent']['records'][0]['evidenceFacet']=case['focus']
             good=case['independent']['records'][0]
             bad=deepcopy(good);bad.update(id='other-observation',origin='other-origin')
             bad['facts']['event.id']['value']='different-event'

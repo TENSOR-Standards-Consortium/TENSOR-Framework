@@ -158,7 +158,7 @@ class EntryEvidenceTests(unittest.TestCase):
                 self.assertTrue(math["monitoring"]["publishGates"]["allPassed"])
                 self.assertFalse(math["monitoring"]["legacyReferenceThresholds"]["allPassed"])
                 self.assertIn("cross_domain_pivots", math["monitoring"]["legacyReferenceThresholds"]["failedGateIds"])
-                self.assertEqual("tensor-graph-assurance/2", math["monitoring"]["publishGates"]["policy"])
+                self.assertEqual("tensor-graph-assurance/3", math["monitoring"]["publishGates"]["policy"])
                 self.assertTrue(quality["warnings"])
                 self.assertFalse(quality["errors"])
 

@@ -2,6 +2,7 @@
 import copy
 import hashlib
 import json
+import subprocess
 import sys
 import unittest
 from pathlib import Path
@@ -108,14 +109,15 @@ class PositiveEvidenceTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "changed domain"):
             evaluator.evaluate_case(graph, self.criteria, self.case("identity-supported-record"))
 
-    def test_refuted_classification_cannot_be_promoted_by_a_bad_edge(self):
+    def test_fact_led_route_preserves_refuted_classification_without_promoting_it(self):
         graph = copy.deepcopy(self.graph)
         for edge in graph["edges"]:
             if (edge["source"], edge["decision"]) == ("Q233", "no"):
                 edge["target"] = "Q253"
         result = evaluator.evaluate_case(graph, self.criteria, self.case("identity-hypothesis-refuted"))
-        self.assertEqual("unresolved", result["state"])
-        self.assertEqual("unknown", result["trace"][-1]["answer"])
+        self.assertEqual("partial-findings", result["state"])
+        self.assertEqual("no", next(r["answer"] for r in result["trace"] if r["nodeId"] == "Q233"))
+        self.assertEqual("yes", result["trace"][-1]["answer"])  # The named downstream gap is retained without changing the refutation.
 
     def test_exact_prior_draft_and_detached_material_are_retained(self):
         folder = ROOT / "drafts/core/reviews/2026-10-11-positive-evidence"
@@ -128,7 +130,8 @@ class PositiveEvidenceTests(unittest.TestCase):
         self.assertEqual(before - after, set(manifest["detachedNodeIds"]))
         self.assertEqual(88, len(before - after))
         old_by_id = {n["id"]: n for n in old["nodes"]}
-        for node in self.graph["nodes"]:
+        historical = json.loads(subprocess.check_output(["git", "show", "e6ced17:drafts/core/tensor.core.graph.json"], cwd=ROOT))
+        for node in historical["nodes"]:
             if self.criteria["nodes"][node["id"]]["role"] in ("entry", "alternate", "primaryValidation", "independentValidation", "exclusion", "unresolved"):
                 self.assertEqual(old_by_id[node["id"]]["text"], node["text"])
 

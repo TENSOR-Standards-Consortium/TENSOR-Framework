@@ -18,7 +18,8 @@ def encoded(value):
 
 
 def assessed(value,ref):
-    return {'value':value,'assessment':'accepted','method':'Compare the separately cited normalized observation','evidenceRefs':[ref]}
+    return {'value':value,'assessment':'accepted','method':'Compare the separately cited normalized observation',
+        'evidenceRefs':[ref],'evidenceDependency':{'kind':'metadata','evidenceRefs':[ref]}}
 
 
 def fixture(seed,profile,criteria):
@@ -62,6 +63,9 @@ def fixture(seed,profile,criteria):
                 'baselineUnitFact':'baselineUnit','observedUnitFact':'observedUnit','baselineMetricFact':'baselineId',
                 'observedMetricFact':'observedId','baselineTimeFact':'baselineTime','observedTimeFact':'observedTime'}.items()}},
     }
+    case['analysis']['corroboration'] = {**deepcopy(context), 'sourceRecordId': ref,
+        'sourceFact': 'event.id', 'targetFact': 'event.id',
+        'identifierNamespace': 'authored:shared-observation-identifier:' + case['eventProfile']}
     case['coverage'] = {**deepcopy(context),'eventKind':profile['eventKind'],'method':'Review complete applicable event logging and acquisition coverage',
         **{f:True for f in COVERAGE_FLAGS}}
     return case
@@ -70,6 +74,7 @@ def fixture(seed,profile,criteria):
 def retained_row(case,node,answer):
     return {'nodeId':node,'questionId':definition_id(case['eventProfile'],node),'answer':answer,
         'eventProfile':case['eventProfile'],'profileVersion':VERSION,'subjects':deepcopy(case['bindings']),
+        'focus':case['focus'],
         'interval':deepcopy(case['interval']),'hypothesisId':case['analysis']['hypothesis']['hypothesisId'],
         'method':'Retain the separate bounded authored assessment','evidenceRefs':['retained-basis-'+node],
         'rationale':'Retain this exact qualified proposition and its answer','limitations':case['limitations']}
@@ -93,7 +98,10 @@ def declare_expected(case,criteria,graph,overrides=None):
     case['retention'] = {'eventProfile':case['eventProfile'],'profileVersion':VERSION,'graphVersion':graph['version'],
         'subjects':deepcopy(case['bindings']),'interval':deepcopy(case['interval']),'closesInvestigation':False,
         'hypothesis':deepcopy(case['analysis']['hypothesis']),
-        'focusDispositions':{case['focus']:'assessed'},'assessments':[retained_row(case,n,a) for n,a in trace[:-1]]}
+        'focusDispositions':{case['focus']:'assessed' if any(
+            criteria['nodes'][n].get('sourceFacet') == case['focus']
+            and criteria['nodes'][n].get('stage') != 'terminal' for n,_ in trace[:-1]) else 'open'},
+        'assessments':[retained_row(case,n,a) for n,a in trace[:-1]]}
     return case
 
 
@@ -196,7 +204,10 @@ def main():
         raise SystemExit(f'{len(failures)} profile scenarios failed')
     inputs=['scripts/event_profiles.py','scripts/build_event_profiles.py','drafts/core/event-profiles/catalog.source.json',
         'drafts/core/event-profiles/scenarios.source.json','drafts/core/tensor.core.graph.json','drafts/core/entry-evidence-criteria.json',
-        'scripts/evaluate_event_profiles.py','scripts/evaluate_entry_scenarios.py','tests/legacy/test_event_profiles.py']
+        'scripts/evaluate_event_profiles.py','scripts/evaluate_entry_scenarios.py','tests/legacy/test_event_profiles.py',
+        'tests/legacy/test_semantic_profiles.py', 'tests/legacy/test_semantic_base.py',
+        'tests/legacy/test_semantic_routing.py', 'scripts/restored_evidence.py',
+        'scripts/semantic_graph_review.py', 'standards/graph-assurance-policy.md']
     catalog['inputPins']={p:sha256((ROOT/p).read_bytes()).hexdigest() for p in inputs}
     packed=compact_scenarios(scenarios)
     from event_profiles import expand_scenarios

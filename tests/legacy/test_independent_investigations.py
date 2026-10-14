@@ -14,6 +14,7 @@ import unittest
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "scripts"))
 import restored_evidence as evaluator
+from investigative_routing import continuation_edges
 
 
 # A separate bounded investigation in each domain. IDs are fictitious.
@@ -79,6 +80,7 @@ def retained_row(node_id, case, answer="yes"):
     return {"nodeId": node_id, "answer": answer,
             "subjects": deepcopy(case["bindings"]), "interval": deepcopy(case["interval"]),
             "hypothesisId": case["analysis"]["hypothesis"]["hypothesisId"],
+            "hypothesis": deepcopy(case["analysis"]["hypothesis"]), "focus": case["focus"],
             "method": "retain separate normalized analyst assessment", "evidenceRefs": [case["primary"]["records"][0]["id"]],
             "rationale": "Retained bounded technical finding; alternative explanations remain recorded",
             "limitations": ["Supplied assertions; raw exports have not been independently authenticated"]}
@@ -118,15 +120,22 @@ def investigation(domain, card, criteria):
                        "criterion": deepcopy(criterion)},
         "baseline": {**deepcopy(bound), "comparatorId": domain.lower() + ":approved-operating-profile",
                      "evidenceRefs": [primary_id, "analyst:comparator-applicability"], "criterion": deepcopy(criterion)},
+        "corroboration": {**deepcopy(bound), "sourceRecordId": primary_id,
+                          "sourceFact": "event.id", "targetFact": "event.id", "identifierNamespace": domain.lower() + ":event-id",
+                          "method": "compare explicitly named event discriminator in the documented namespace",
+                          "evidenceRefs": [primary_id, independent["id"], "analyst:event-identifier-namespace"]},
         "scope": {**deepcopy(bound), "method": "record individual entity inclusion and unresolved neighbors",
                   "evidenceRefs": [primary_id, target_id], "claimsCompletePopulation": False,
                   "entities": [{"domain": domain, "subjectId": source_subject, "subjects": deepcopy(subjects),
                                 "disposition": "included", "evidenceRefs": [primary_id]},
                                {"domain": domain, "subjectId": target_subject, "subjects": deepcopy(target_subjects),
                                 "disposition": "included", "evidenceRefs": [target_id]},
-                               {"domain": domain, "subjectId": source_subject + ":unresolved-neighbor", "disposition": "unknown"}]},
+                               {"domain": domain, "subjectId": source_subject + ":unresolved-neighbor",
+                                "subjects": {**deepcopy(subjects), first: source_subject + ":unresolved-neighbor"},
+                                "disposition": "unknown"}]},
         "correlation": deepcopy(relation),
         "dependency": {**deepcopy(relation), "claimKind": "documented-dependency", "direction": "upstream",
+                       "relationId": endpoint_facts["dependency.relationId"],
                        "method": "compare documented directed endpoint pair on both normalized sources"},
         "attribution": {**deepcopy(bound), "method": "evaluate technical source discriminator",
                         "evidenceRefs": [primary_id], "claimKind": "technical-source", "sourceEntityId": source,
@@ -146,11 +155,13 @@ def investigation(domain, card, criteria):
     if card["assessmentKind"] == "temporal":
         analysis["correlation"].update(relationKind="bounded-time-coincidence", toleranceSeconds=5)
     case = {"domain": domain, "bindings": deepcopy(subjects), "interval": deepcopy(INTERVAL), "focus": facet,
+            "semanticReview": True,
             "evidenceKind": "independently-authored-normalized-investigation", "primaryOrigin": primary["origin"],
             "primary": {"accessible": True, "searched": True, "records": [primary]},
             "independent": {"accessible": True, "searched": True, "records": [independent]}, "analysis": analysis}
     case["retention"] = {"subjects": deepcopy(subjects), "interval": deepcopy(INTERVAL),
                          "graphVersion": criteria["graphVersion"], "closesInvestigation": False,
+                         "hypothesis": deepcopy(analysis["hypothesis"]),
                          "focusDispositions": {facet: "open"},
                          "assessments": [retained_row(criteria["domains"][domain]["entry"], case)]}
     return case
@@ -227,6 +238,68 @@ class IndependentInvestigationTests(unittest.TestCase):
             case["materialConflict"] = True
             with self.subTest(domain=domain, node=node_id):
                 self.expect("unknown", card, case)
+
+    def test_missing_source_clock_bound_is_unknown_for_every_event_assessment(self):
+        for domain, node_id, card, case in self.cases():
+            if card["assessmentKind"] == "retention":
+                continue  # Retention preserves completed answers; it does not reassert the event's clock precision.
+            case["primary"]["records"][0].pop("clockUncertaintySeconds")
+            with self.subTest(domain=domain, node=node_id):
+                self.expect("unknown", card, case)
+
+    def test_corroboration_needs_its_explicit_discriminator_and_namespace_basis(self):
+        for domain, node_id, card, original in self.cases("corroboration"):
+            for field in ("sourceRecordId", "sourceFact", "targetFact", "identifierNamespace", "method", "evidenceRefs"):
+                case = deepcopy(original)
+                case["analysis"]["corroboration"].pop(field)
+                with self.subTest(domain=domain, node=node_id, field=field):
+                    self.expect("unknown", card, case)
+
+    def test_corroboration_uses_the_declared_discriminator_instead_of_an_implicit_event_id(self):
+        for domain, node_id, card, case in self.cases("corroboration"):
+            source = case["primary"]["records"][0]
+            witness = case["independent"]["records"][0]
+            for observation in (source, witness):
+                observation["facts"]["workflow.event-key"] = assessed(observation["id"], "workflow:42:step:export")
+            witness["facts"]["event.id"]["value"] = "sensor-specific-sequence-number"
+            case["analysis"]["corroboration"].update(sourceFact="workflow.event-key", targetFact="workflow.event-key",
+                                                      identifierNamespace="workflow-event-key")
+            with self.subTest(domain=domain, node=node_id):
+                self.expect("yes", card, case)
+
+    def test_dependency_requires_declared_relation_identity_as_well_as_endpoint_facts(self):
+        for domain, node_id, card, original in self.cases("dependencies"):
+            for variation, expected in (("omitted", "unknown"), ("different", "no")):
+                case = deepcopy(original)
+                if variation == "omitted":
+                    case["analysis"]["dependency"].pop("relationId")
+                else:
+                    case["analysis"]["dependency"]["relationId"] = "a-different-documented-relationship"
+                with self.subTest(domain=domain, node=node_id, variation=variation):
+                    self.expect(expected, card, case)
+
+    def test_fact_led_scope_and_effect_are_not_blocked_by_a_refuted_technical_hypothesis(self):
+        # The b questions assess each proposition's own evidence. Refuting one
+        # technical explanation does not refute a separately documented scope or metric change.
+        for domain, node_id, card, case in self.cases():
+            if card["assessmentKind"] not in ("scope-bound", "metric-change"):
+                continue
+            case["primary"]["records"][0]["facts"]["hypothesis.kind"]["value"] = "Evidence refutes this technical explanation"
+            with self.subTest(domain=domain, node=node_id):
+                self.expect("yes", card, case)
+
+    def test_fact_led_scope_and_effect_need_no_invented_hypothesis(self):
+        # Absent hypotheses differ from malformed or rebound hypotheses: no
+        # hypothesis is needed to compare an observed metric or document entity dispositions.
+        for domain, node_id, card, case in self.cases():
+            if card["assessmentKind"] not in ("scope-bound", "metric-change"):
+                continue
+            case["analysis"].pop("hypothesis")
+            for assessment in case["analysis"].values():
+                if isinstance(assessment, dict) and "hypothesisId" in assessment:
+                    assessment["hypothesisId"] = None
+            with self.subTest(domain=domain, node=node_id):
+                self.expect("yes", card, case)
 
     def test_endpoint_self_identities_do_not_prove_a_dependency_pair(self):
         for domain, node_id, card, case in self.cases("dependencies"):
@@ -342,6 +415,17 @@ class IndependentInvestigationTests(unittest.TestCase):
             with self.subTest(domain=domain, node=node_id):
                 self.expect("unknown", card, case)
 
+    def test_retention_cannot_change_hypothesis_meaning_behind_a_stable_identifier(self):
+        for domain, node_id, card, original in self.cases("retention"):
+            for location in ("ledger", "row"):
+                for field in ("statement", "criterion", "alternatives"):
+                    case = deepcopy(original)
+                    retained = (case["retention"]["hypothesis"] if location == "ledger"
+                                else case["retention"]["assessments"][0]["hypothesis"])
+                    retained[field] = {"changed": True} if field == "criterion" else ["replacement"] if field == "alternatives" else "A different explanation"
+                    with self.subTest(domain=domain, node=node_id, location=location, field=field):
+                        self.expect("unknown", card, case)
+
     def test_additional_subject_needs_its_own_baseline_and_link(self):
         for domain, node_id, card, original in self.cases("additional-impact"):
             for variation in ("missing-own-baseline", "different-link", "different-units", "different-subject"):
@@ -392,15 +476,21 @@ class IndependentInvestigationTests(unittest.TestCase):
         extra["assessment"]["analysis"]["impact"]["subjects"] = deepcopy(alias)
         self.expect("unknown", card, case)
 
-    def test_generic_assessed_terminal_requires_retained_relationship_source_and_effect_answers(self):
+    def test_generic_assessed_terminal_retains_actual_assessments_without_inventing_unperformed_stages(self):
         for domain in INVESTIGATIONS:
             node_id = self.criteria["domains"][domain]["assessed"]
             card = self.criteria["nodes"][node_id]
             focus = self.cards[(domain, "event-match")][1]["sourceFacet"]
             case = investigation(domain, route_card(card, focus, "terminal"), self.criteria)
-            # Only the entry assessment is retained: none of the separate downstream answers is present.
+            # The reviewed b predicate asks whether completed assessments are retained.
+            # It does not assert unperformed relationship/source/effect findings or closure.
+            # Requiring those stages here would revive the obsolete universal pipeline gate.
             with self.subTest(domain=domain, node=node_id):
-                self.expect("unknown", card, case)
+                self.expect("yes", card, case)
+                self.assertEqual([self.criteria["domains"][domain]["entry"]],
+                                 [row["nodeId"] for row in case["retention"]["assessments"]])
+                case["retainedTrace"] = [{"nodeId": self.criteria["domains"][domain]["impact"], "answer": "unknown"}]
+                self.expect("no", card, case)  # A completed but dropped assessment still prevents retention success.
 
     def test_generic_unresolved_terminal_cannot_relabel_an_all_positive_ledger(self):
         for domain in INVESTIGATIONS:
@@ -430,7 +520,9 @@ class IndependentInvestigationTests(unittest.TestCase):
         self.expect("unknown", card, case)
 
     def route_suite(self, domain, entry=None, optional_kind=None, optional_answer=None, singleton=False):
-        edges = {(edge["source"], edge["decision"]): edge["target"] for edge in self.graph["edges"]}
+        # This fixture explicitly follows the retained continuation, never chooses
+        # an investigative lead by overwriting equal source/outcome dictionary keys.
+        edges = {(edge["source"], edge["decision"]): edge["target"] for edge in continuation_edges(self.graph)}
         if entry is None:
             entry = min((node_id for (d, kind), (node_id, _) in self.cards.items() if d == domain and kind == "event-match"),
                         key=lambda value: int(value[1:]))

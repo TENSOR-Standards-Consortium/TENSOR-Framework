@@ -13,7 +13,7 @@ import json
 from core_graph_pipeline import DOMAINS
 from evaluate_entry_scenarios import expand_suite, references, run_cases
 
-POLICY_ID = "tensor-graph-assurance/2"
+POLICY_ID = "tensor-graph-assurance/3"
 STRUCTURAL_IDS = {"full_reachability", "branch_totality", "coverage_score"}
 DIAGNOSTIC_IDS = {"dag_pass", "cross_domain_pivots", "routing_score", "robustness_score", "targeted_resilience",
                   "routing_centralization", "information_gain", "overall_score"}
@@ -54,6 +54,12 @@ def build_acceptance(authoring_errors, reference, evidence_gates=None):
 
 
 def assess_evidence(graph, graph_sha256, criteria, suite):
+    if "semanticReview" in criteria:
+        from semantic_graph_review import assess as semantic_assess
+        try:
+            return semantic_assess(graph, graph_sha256, criteria, suite)
+        except (ValueError, KeyError, TypeError, AttributeError, IndexError, OSError) as exc:
+            return [gate(gid, [f"Reviewed evidence package cannot be evaluated: {exc}"]) for gid in EVIDENCE_IDS]
     if "routingProfile" in criteria:
         from investigative_routing import continuation_edges, assess_routes
         projection = {**graph, "edges": continuation_edges(graph)}

@@ -118,6 +118,9 @@ def eligible_leads(graph, source, outcome, context):
     Missing bindings/clock/provenance leave a declared cross-domain option
     unready. No target event, authorization or evidence truth is inferred.
     """
+    if graph.get('extensions', {}).get('tensor:semanticReview'):
+        from semantic_graph_review import ready_leads
+        return ready_leads(graph, source, outcome, context)
     result = []
     if not isinstance(context, dict): return result
     for edge in graph['edges']:
@@ -144,6 +147,10 @@ def eligible_leads(graph, source, outcome, context):
 
 
 def assess_routes(graph, criteria):
+    if graph.get('extensions', {}).get('tensor:semanticReview'):
+        from semantic_graph_review import REVIEW as SEMANTIC_REVIEW
+        expected = json.loads((SEMANTIC_REVIEW/'reviewed-structure.json').read_text())
+        return [] if graph['nodes'] == expected['nodes'] and graph['edges'] == expected['edges'] else ['Working definitions/routes differ from the independently reviewed semantic snapshot']
     errors = []
     prior_bytes = (REVIEW/'prior-draft.graph.json').read_bytes()
     if sha256(prior_bytes).hexdigest() != PRIOR_SHA:

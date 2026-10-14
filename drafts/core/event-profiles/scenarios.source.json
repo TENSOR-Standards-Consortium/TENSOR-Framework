@@ -1,12 +1,12 @@
 {
   "format": "tensor-event-profile-authored-scenarios",
-  "version": "0.1.0-draft.1",
+  "version": "0.1.0-draft.2",
   "cases": [
     {
       "id": "identity-credential-state-supported",
       "domain": "Identity",
       "eventProfile": "identity-credential-state",
-      "profileVersion": "0.1.0-draft.1",
+      "profileVersion": "0.1.0-draft.2",
       "title": "A suspended service-account credential remains active in the credential inventory.",
       "bindings": {
         "principalId": "principal-payroll",
@@ -36,7 +36,7 @@
       "id": "identity-workload-binding-supported",
       "domain": "Identity",
       "eventProfile": "identity-workload-binding",
-      "profileVersion": "0.1.0-draft.1",
+      "profileVersion": "0.1.0-draft.2",
       "title": "A build workload is bound to a deployment principal outside its expected pool.",
       "bindings": {
         "principalId": "principal-deploy",
@@ -66,7 +66,7 @@
       "id": "host-state-supported",
       "domain": "Host",
       "eventProfile": "host-state",
-      "profileVersion": "0.1.0-draft.1",
+      "profileVersion": "0.1.0-draft.2",
       "title": "A configuration snapshot shows the endpoint sensor disabled, without a process record.",
       "bindings": {
         "hostId": "host-build-04",
@@ -96,7 +96,7 @@
       "id": "network-configuration-supported",
       "domain": "Network",
       "eventProfile": "network-configuration",
-      "profileVersion": "0.1.0-draft.1",
+      "profileVersion": "0.1.0-draft.2",
       "title": "A firewall configuration export contains an unrestricted egress rule.",
       "bindings": {
         "deviceId": "firewall-west",
@@ -126,7 +126,7 @@
       "id": "network-sensor-coverage-supported",
       "domain": "Network",
       "eventProfile": "network-sensor-coverage",
-      "profileVersion": "0.1.0-draft.1",
+      "profileVersion": "0.1.0-draft.2",
       "title": "A network sensor health record reports a stopped capture stream during a disputed session.",
       "bindings": {
         "sensorId": "sensor-west",
@@ -156,7 +156,7 @@
       "id": "cloud-data-access-supported",
       "domain": "Cloud",
       "eventProfile": "cloud-data-access",
-      "profileVersion": "0.1.0-draft.1",
+      "profileVersion": "0.1.0-draft.2",
       "title": "A storage data-plane record reports an anonymous object read returning content.",
       "bindings": {
         "tenantId": "tenant-research",
@@ -187,7 +187,7 @@
       "id": "cloud-resource-state-supported",
       "domain": "Cloud",
       "eventProfile": "cloud-resource-state",
-      "profileVersion": "0.1.0-draft.1",
+      "profileVersion": "0.1.0-draft.2",
       "title": "A resource inventory snapshot shows public access enabled without a control-plane operation ID.",
       "bindings": {
         "tenantId": "tenant-research",
@@ -218,11 +218,12 @@
       "id": "email-mailbox-rule-supported",
       "domain": "Email",
       "eventProfile": "email-mailbox-rule",
-      "profileVersion": "0.1.0-draft.1",
+      "profileVersion": "0.1.0-draft.2",
       "title": "A mailbox audit record reports successful creation of a forwarding rule, without a message ID.",
       "bindings": {
         "mailboxId": "mailbox-finance",
-        "ruleId": "rule-forward-09"
+        "ruleId": "rule-forward-09",
+        "operationId": "rule-create-operation-09"
       },
       "interval": {
         "start": "2026-10-12T09:00:00Z",
@@ -249,7 +250,7 @@
       "id": "email-mailbox-access-supported",
       "domain": "Email",
       "eventProfile": "email-mailbox-access",
-      "profileVersion": "0.1.0-draft.1",
+      "profileVersion": "0.1.0-draft.2",
       "title": "A delegated principal opens the finance mailbox using a separately logged access operation.",
       "bindings": {
         "mailboxId": "mailbox-finance",
@@ -280,7 +281,7 @@
       "id": "email-collaboration-artifact-supported",
       "domain": "Email",
       "eventProfile": "email-collaboration-artifact",
-      "profileVersion": "0.1.0-draft.1",
+      "profileVersion": "0.1.0-draft.2",
       "title": "A collaboration export records a finance document shared with an external workspace, without mail delivery.",
       "bindings": {
         "workspaceId": "workspace-finance",
@@ -311,7 +312,7 @@
       "id": "application-state-supported",
       "domain": "Application",
       "eventProfile": "application-state",
-      "profileVersion": "0.1.0-draft.1",
+      "profileVersion": "0.1.0-draft.2",
       "title": "A background configuration snapshot shows public export mode enabled without a request ID.",
       "bindings": {
         "applicationId": "application-reporting",
@@ -341,7 +342,7 @@
       "id": "application-session-supported",
       "domain": "Application",
       "eventProfile": "application-session",
-      "profileVersion": "0.1.0-draft.1",
+      "profileVersion": "0.1.0-draft.2",
       "title": "A session registry shows a revoked session still active without a request record.",
       "bindings": {
         "applicationId": "application-reporting",
@@ -371,7 +372,7 @@
       "id": "application-agent-action-supported",
       "domain": "Application",
       "eventProfile": "application-agent-action",
-      "profileVersion": "0.1.0-draft.1",
+      "profileVersion": "0.1.0-draft.2",
       "title": "A scheduler and worker record an agent export action completing without an inbound application request.",
       "bindings": {
         "applicationId": "application-agent-runner",
@@ -402,11 +403,12 @@
       "id": "file-deletion-supported",
       "domain": "File",
       "eventProfile": "file-deletion",
-      "profileVersion": "0.1.0-draft.1",
+      "profileVersion": "0.1.0-draft.2",
       "title": "A filesystem journal reports unlink of the payroll export; a current directory listing alone is insufficient.",
       "bindings": {
         "fileId": "file-payroll-export",
-        "systemId": "system-staging-3"
+        "systemId": "system-staging-3",
+        "operationId": "deletion-operation-16"
       },
       "interval": {
         "start": "2026-10-12T09:00:00Z",
@@ -432,7 +434,7 @@
       "id": "file-historical-lineage-supported",
       "domain": "File",
       "eventProfile": "file-historical-lineage",
-      "profileVersion": "0.1.0-draft.1",
+      "profileVersion": "0.1.0-draft.2",
       "title": "A version-store manifest links payroll revision 7 to revision 6 even though current content is unavailable.",
       "bindings": {
         "fileId": "file-payroll-export",
@@ -463,7 +465,7 @@
       "id": "file-unavailable-content-supported",
       "domain": "File",
       "eventProfile": "file-unavailable-content",
-      "profileVersion": "0.1.0-draft.1",
+      "profileVersion": "0.1.0-draft.2",
       "title": "An acquisition manifest identifies the payroll export, but encrypted content cannot be examined.",
       "bindings": {
         "fileId": "file-payroll-export",

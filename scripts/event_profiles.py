@@ -4,15 +4,15 @@ Profile-qualified questions are distinct definitions, never silent replacements
 for the base questions. Supplied assessed observations are not verified truth.
 """
 from copy import deepcopy
-import math
 import json
 from pathlib import Path
 
 from evaluate_entry_scenarios import (context_ready, fact, named, references,
-    validation_answer, bound_assessment, equality_answer, downstream_answer, instant, exclusion_answer)
+    validation_answer, bound_assessment, equality_answer, downstream_answer, instant, exclusion_answer,
+    finite_nonnegative, record_group)
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = '0.1.0-draft.1'
+VERSION = '0.1.0-draft.2'
 BASELINE = '78a275b127d2f24933c3ec16d9a2b0b1c38fb0af'
 ROLE_STAGE = {'entry':'detect','alternate':'detect','primaryValidation':'validate',
     'independentValidation':'validate','classification':'classify','scope':'scope',
@@ -24,14 +24,30 @@ ROLE_PROMPTS = {
     'primaryValidation':'Does the selected record of {event} have a cited acceptable provenance and interpretation basis?',
     'independentValidation':'Does the separately originating record of {event} have a cited acceptable provenance and interpretation basis?',
     'classification':'Does the validated record of {event} satisfy the declared falsifiable technical hypothesis, with alternatives assessed?',
-    'scope':'Does the hypothesis for {event} retain evidenced inclusions, exclusions and unknowns in the exact profile, subjects and interval?',
+    'scope':'Does the exact context of {event} retain evidenced inclusions, exclusions and unknowns alongside any separately declared technical hypothesis?',
     'correlation':'Do separately validated observations of {event} and the named target share the declared assessed identifier?',
     'attribution':'Does the assessed discriminator for {event} support the named technical source, with alternatives retained?',
     'impact':'Does {event} show the named observed technical metric change against a comparable bounded baseline?',
     'exclusion':'Does the explicit logging and search coverage basis exclude {event} within every declared subject and the entire interval?',
     'unresolved':'Were the unresolved or rejected prerequisites for {event} retained separately with their evidence and limitations?',
     'refuted':'Was the contradicted technical hypothesis for {event} retained without refuting the event or proving alternatives?',
-    'assessed':'Were the supported hypothesis and scope for {event}, with separate relation, source and effect answers and limitations, retained without closing the investigation?',
+    'assessed':'Were the actual bounded answers for {event}, including any declared hypothesis answer and open questions, retained with their evidence and limitations without closing the investigation?',
+}
+OBSERVATION_PROMPTS = {
+    'event-match':'Does the examined {facet} material contain a record of {event} matching every declared subject and the bound interval?',
+    'provenance':'Does the selected record of {event}, examined under the {facet} evidence focus, have a cited acceptable provenance and interpretation basis?',
+    'corroboration':'Do separately originating validated records of {event}, examined under the {facet} evidence focus, agree on the explicitly declared discriminator within its assessed namespace or mapping and exact subject/time bounds?',
+    'baseline':'Does the validated record of {event}, examined under the {facet} evidence focus, satisfy the declared operational comparator criterion with its applicability and evidence basis retained?',
+    'hypothesis':'Does the validated record of {event}, examined under the {facet} evidence focus, satisfy the declared criterion for one named technical hypothesis, with competing explanations assessed?',
+    'scope-bound':'Were evidence-backed full entity inclusions, exclusions and unknown dispositions for {event}, examined under the {facet} evidence focus, recorded within exact subject/time bounds without claiming population completeness?',
+    'additional-entities':'Were additional named full entity contexts included in the bounded scope of {event}, examined under the {facet} evidence focus, using cited evidence with exclusions and unknowns retained?',
+    'dependencies':'Does the bounded scope of {event}, examined under the {facet} evidence focus, include an evidenced documented dependency with full named validated endpoints, relation identifier and direction?',
+    'identifier-relation':'Do separately validated records of {event} and the named target, examined under the {facet} evidence focus, share the declared assessed identifier within their explicit endpoint contexts?',
+    'temporal':'Do separately validated records of {event} and the named target, examined under the {facet} evidence focus, meet the declared temporal-coincidence tolerance within their own bounded contexts after accounting for both clock uncertainties?',
+    'technical-source':'Does the assessed discriminator for {event} in the examined {facet} material support the named technical source under its declared criterion, with competing explanations retained?',
+    'behavior-pattern':'Does the validated record of {event}, examined under the {facet} evidence focus, satisfy the declared technical behavior-pattern discriminator with alternative explanations retained?',
+    'metric-change':'Did the named technical metric for the bound effect subjects of {event}, examined under the {facet} evidence focus, change between separately declared comparable baseline and observation contexts with the same metric and units?',
+    'additional-impact':'Did the named technical metric for the explicitly bound additional effect subject related to {event}, examined under the {facet} evidence focus, change between its own separately declared comparable baseline and observation contexts with the same metric and units?',
 }
 
 
@@ -62,8 +78,14 @@ def definitions(graph, criteria, catalog):
             if card['role'] == 'restored' and card.get('stage') != 'terminal' and card['sourceFacet'] not in profile['facets']:
                 continue
             prompt = card['predicate'] if card['role'] == 'restored' else ROLE_PROMPTS[card['role']].format(event=profile['proposition'])
+            if card['role'] == 'classification' and len(criteria['domains'][card['domain']]['classification']) > 1:
+                witness = 'primary' if node['id'] == criteria['domains'][card['domain']]['classification'][0] else 'separately originating'
+                prompt = prompt.replace('validated record', f'validated {witness} record')
             if card['role'] == 'restored' and card.get('stage') == 'terminal':
                 prompt = f"Were the bounded assessments of {profile['proposition']} and open evidence-focus questions retained separately with references and limitations, without investigation closure?"
+            elif card['role'] == 'restored' and profile.get('observationMode') == 'observation':
+                prompt = OBSERVATION_PROMPTS[card['assessmentKind']].format(event=profile['proposition'],facet=card['sourceFacet'])
+                prompt += ' This profile assesses an observation; the evidence-focus label alone does not establish a historical change, action, execution or access.'
             rows[node['id']] = {'id':definition_id(pid,node['id']), 'graphNodeId':node['id'],
                 'profileId':pid, 'profileVersion':VERSION, 'predicate':prompt,
                 'boundSubjectFields':profile['bindings'], 'rule':card['rule'],
@@ -76,6 +98,13 @@ def event_domain(profile):
     return {'bindings':profile['bindings']}
 
 
+def assessment_criteria(criteria, case, profile):
+    """Use this qualified identity for fact checks without changing Core bindings."""
+    domains = dict(criteria.get('domains',{}))
+    domains[case['domain']] = {**domains.get(case['domain'],{}),**event_domain(profile)}
+    return {**criteria,'domains':domains}
+
+
 def exact_context(value, case):
     return (isinstance(value,dict) and value.get('eventProfile') == case.get('eventProfile')
             and value.get('profileVersion') == VERSION and value.get('subjects') == case.get('bindings')
@@ -83,7 +112,11 @@ def exact_context(value, case):
 
 
 def assessed_context(value, case):
-    hid = case.get('analysis',{}).get('hypothesis',{}).get('hypothesisId')
+    hypothesis = case.get('analysis',{}).get('hypothesis')
+    if hypothesis is not None and (not exact_context(hypothesis,case)
+            or not named(hypothesis.get('hypothesisId')) or not named(hypothesis.get('statement'))):
+        return False
+    hid = hypothesis.get('hypothesisId') if isinstance(hypothesis,dict) else None
     return (exact_context(value,case) and bound_assessment(value,case,hid)
             and named(value.get('method')) and references(value.get('evidenceRefs')))
 
@@ -99,14 +132,21 @@ def match_profile(case, profile, group):
         if not isinstance(record,dict):
             unresolved = True
             continue
-        if not all(record.get('subjects',{}).get(f) == case['bindings'][f] for f in profile['bindings']):
+        subjects = record.get('subjects',{})
+        if not isinstance(subjects,dict):
+            unresolved = True
+            continue
+        if any(named(subjects.get(f)) and subjects[f] != case['bindings'][f] for f in profile['bindings']):
+            continue
+        if any(not named(subjects.get(f)) for f in profile['bindings']):
+            unresolved = True
             continue
         when = instant(record.get('eventTime'))
         if not when:
             unresolved = True
             continue
         uncertainty = record.get('clockUncertaintySeconds')
-        if type(uncertainty) not in (int,float) or not math.isfinite(uncertainty) or uncertainty < 0:
+        if not finite_nonnegative(uncertainty):
             unresolved = True
             continue
         # Compare seconds, rather than constructing an unbounded timedelta.
@@ -138,14 +178,18 @@ def match_profile(case, profile, group):
 
 
 def validate_record(record, case, profile):
+    record = safe_record(record,profile) if isinstance(record,dict) else record
     result = validation_answer(record,case)
     if result[0] != 'yes':
         return result
-    if not named(record.get('id')) or not named(record.get('assessmentMethod')):
+    if not named(record.get('id')) or not named(record.get('origin')) or not named(record.get('assessmentMethod')):
         return 'unknown','The selected profile observation needs an identity and cited assessment method'
     for field in profile['requiredFacts']:
-        if fact(record,field) is None:
-            return 'unknown',f'The profile requires an assessed {field} with method and references'
+        value = fact(record,field)
+        types = profile.get('requiredFactTypes',{}).get(field,[])
+        value_type = {str:'string',bool:'boolean',int:'integer',float:'number'}.get(type(value))
+        if value is None or value_type not in types:
+            return 'unknown',f'The profile requires an assessed {field} of its declared value type with method and references'
     if profile.get('observationMode') == 'historical-lineage':
         if fact(record,'lineage.parentRevisionId') == case['bindings']['revisionId']:
             return 'unknown','A revision cannot establish its own historical parent'
@@ -154,9 +198,45 @@ def validate_record(record, case, profile):
 
 def safe_record(record, profile):
     value = deepcopy(record)
-    if profile.get('contentAvailabilityFact') and fact(record,profile['contentAvailabilityFact']) != 'available':
-        value['facts'] = {k:v for k,v in value.get('facts',{}).items() if not k.startswith(('content.', 'payload.')) or k == profile['contentAvailabilityFact']}
+    if profile.get('contentAvailabilityFact'):
+        available = fact(record,profile['contentAvailabilityFact']) == 'available'
+        # Names cannot establish whether a fact was measured from bytes or from
+        # a manifest. Every usable fact in this profile declares that dependency.
+        def usable(item):
+            dependency = item.get('evidenceDependency',{}) if isinstance(item,dict) else {}
+            return (isinstance(dependency,dict) and references(dependency.get('evidenceRefs'))
+                    and (dependency.get('kind') == 'metadata'
+                         or (available and dependency.get('kind') == 'content')))
+        value['facts'] = {k:v for k,v in value.get('facts',{}).items() if usable(v)}
     return value
+
+
+def criterion_basis_ready(record, criterion):
+    """A claim may require a particular declared evidence basis, never infer it."""
+    if not isinstance(criterion,dict) or 'requiredEvidenceDependency' not in criterion:
+        return True
+    required = criterion['requiredEvidenceDependency']
+    item = record.get('facts',{}).get(criterion.get('fact'),{})
+    dependency = item.get('evidenceDependency',{}) if isinstance(item,dict) else {}
+    return (required in ('metadata','content') and isinstance(dependency,dict)
+            and dependency.get('kind') == required and references(dependency.get('evidenceRefs')))
+
+
+def profile_equality_answer(record, criterion):
+    if not criterion_basis_ready(record,criterion):
+        return 'unknown','The criterion needs its explicitly required evidence dependency and cited fact basis'
+    return equality_answer(record,criterion)
+
+
+def independent_record(record, case):
+    """Separation is from every actual primary record, not an optional label."""
+    if not named(record.get('id')) or not named(record.get('origin')):
+        return False
+    for primary in case.get('primary',{}).get('records',[]):
+        if (not isinstance(primary,dict) or not named(primary.get('id')) or not named(primary.get('origin'))
+                or record['id'] == primary['id'] or record['origin'] == primary['origin']):
+            return False
+    return not (named(case.get('primaryOrigin')) and record['origin'] == case['primaryOrigin'])
 
 
 def target_record(assessment, case, selected, catalog):
@@ -165,7 +245,8 @@ def target_record(assessment, case, selected, catalog):
         return None,None,None
     target = assessment.get('targetRecord')
     target_case = {'domain':assessment['targetDomain'],'eventProfile':assessment['targetEventProfile'],
-        'profileVersion':VERSION,'bindings':assessment.get('targetSubjects',{}),'interval':case['interval']}
+        'profileVersion':VERSION,'bindings':assessment.get('targetSubjects',{}),
+        'interval':assessment.get('targetInterval',case['interval'])}
     result,_,_ = match_profile(target_case,profile,{'accessible':True,'searched':True,'records':[target]})
     if (result != 'yes' or validate_record(target,target_case,profile)[0] != 'yes'
             or target.get('id') == selected.get('id') or target.get('origin') == selected.get('origin')):
@@ -216,10 +297,10 @@ def relation_answer(case, selected, catalog, field='correlation', kind='identifi
         tolerance = a.get('toleranceSeconds')
         clocks = [r.get('clockUncertaintySeconds') for r in (selected,target)]
         if (a.get('relationKind') != 'bounded-time-coincidence' or
-                any(type(v) not in (int,float) or not math.isfinite(v) or v < 0 for v in [tolerance,*clocks])):
+                any(not finite_nonnegative(v) for v in [tolerance,*clocks])):
             return 'unknown','A bounded coincidence method and finite nonnegative clock uncertainties are required'
-        start,end = (instant(case['interval'][k]) for k in ('start','end'))
-        for record,uncertainty in zip((selected,target),clocks):
+        for record,uncertainty,record_case in zip((selected,target),clocks,(case,tc)):
+            start,end = (instant(record_case['interval'][k]) for k in ('start','end'))
             when = instant(record['eventTime'])
             if (when-start).total_seconds() < uncertainty or (end-when).total_seconds() <= uncertainty:
                 return 'unknown','A source clock bound crosses the declared interval'
@@ -261,6 +342,8 @@ def relation_answer(case, selected, catalog, field='correlation', kind='identifi
     if kind == 'additional-impact':
         if tc['eventProfile'] == case['eventProfile'] and tc['bindings'] == case['bindings'] and tc['domain'] == case['domain']:
             return 'no','The proposed effect subject is the same complete profile identity'
+        if scope_answer(case,selected,catalog)[0] == 'unknown':
+            return 'unknown','The additional effect subject needs its own bounded evidenced scope disposition'
         dispositions = [e['disposition'] for e in case['analysis']['scope']['entities'] if
             e['domain'] == tc['domain'] and e['eventProfile'] == tc['eventProfile'] and e['subjects'] == tc['bindings']]
         if 'excluded' in dispositions:
@@ -270,10 +353,9 @@ def relation_answer(case, selected, catalog, field='correlation', kind='identifi
         metric_case = deepcopy(tc)
         metric_case['analysis'] = deepcopy(a.get('targetAnalysis',{}))
         metric = metric_case['analysis'].get('impact',{})
-        hypothesis = metric_case['analysis'].get('hypothesis',{})
-        if (not assessed_context(metric,metric_case) or not exact_context(hypothesis,metric_case)):
+        if not assessed_context(metric,metric_case):
             return 'unknown','The additional subject needs its own profile-bound hypothesis and metric assessment'
-        return downstream_answer('impact',metric_case,target,{'domains':{}})
+        return downstream_answer('impact',metric_case,target,assessment_criteria({},metric_case,tp))
     return 'yes','Validated endpoints share the assessed identifier; this does not establish causation'
 
 
@@ -285,39 +367,65 @@ def terminal_answer(card, case, criteria, catalog):
         return 'unknown','Retain the exact profile/version, graph version, subjects and interval without closure'
     if ledger.get('knownMissing') is True:
         return 'no','A required assessment is known missing from this exact retained context'
-    rows = ledger.get('assessments',[])+ledger.get('prerequisiteAssessments',[])
-    if not rows:
+    retained = ledger.get('assessments',[])
+    prerequisites = ledger.get('prerequisiteAssessments',[])
+    if not isinstance(retained,list) or not isinstance(prerequisites,list):
+        return 'unknown','Retained assessments must be structured lists'
+    rows = retained+prerequisites
+    if not rows or any(not isinstance(row,dict) for row in rows):
         return 'unknown','No separate qualified question assessments were retained'
     seen,stages = {},{}
     pid = case['eventProfile']
+    dispositions = ledger.get('focusDispositions',{})
+    if (not isinstance(dispositions,dict) or case.get('focus') not in catalog['profiles'][pid]['facets']
+            or dispositions.get(case['focus']) not in ('open','assessed')):
+        return 'unknown','Retain the supplied source focus as assessed or explicitly open'
+    if any(focus not in catalog['profiles'][pid]['facets'] or disposition not in ('open','assessed')
+            for focus,disposition in dispositions.items()):
+        return 'unknown','Every retained evidence focus needs an applicable profile and explicit disposition'
     for row in rows:
         previous = criteria['nodes'].get(row.get('nodeId'))
+        previous_stage = previous.get('stage',ROLE_STAGE.get(previous['role'])) if previous else None
+        fixed_focus = previous.get('sourceFacet') if previous and previous_stage != 'terminal' else None
+        retained_focus = row.get('focus',fixed_focus or case.get('focus'))
+        hypothesis = case.get('analysis',{}).get('hypothesis')
+        retained_meaning = {'hypothesis':hypothesis,**{'hypothesis'+field.title():
+            hypothesis.get(field) if isinstance(hypothesis,dict) else None
+            for field in ('statement','criterion','alternatives')}}
         if (not previous or previous['domain'] != case['domain'] or not assessed_context(row,case)
                 or row.get('questionId') != definition_id(pid,row['nodeId'])
                 or row.get('answer') not in ('yes','no','unknown') or not named(row.get('rationale'))
                 or not references(row.get('limitations'))
-                or (previous.get('sourceFacet') and previous['sourceFacet'] not in catalog['profiles'][pid]['facets'])):
+                or (fixed_focus and (fixed_focus not in catalog['profiles'][pid]['facets']
+                    or retained_focus != fixed_focus))
+                or (previous_stage == 'terminal' and not named(row.get('focus')))
+                or retained_focus not in dispositions
+                or any(field in row and row[field] != value for field,value in retained_meaning.items())):
             return 'unknown','Every retained row needs its exact qualified question, profile context, method, references and limitations'
-        nid = row['nodeId']
-        if nid in seen and seen[nid] != row['answer']:
+        key = (row['nodeId'],retained_focus)
+        if key in seen and seen[key] != row['answer']:
             return 'unknown','Conflicting qualified question answers require an explicit assessment history'
-        seen[nid] = row['answer']
+        seen[key] = row['answer']
         if previous.get('assessmentKind') not in ('additional-entities','dependencies','behavior-pattern','additional-impact'):
             stages.setdefault(previous.get('stage',ROLE_STAGE.get(previous['role'])),[]).append(row['answer'])
     for prior in case.get('retainedTrace',[]):
-        if seen.get(prior['nodeId']) != prior['answer']:
+        previous = criteria['nodes'].get(prior['nodeId'],{})
+        fixed_focus = previous.get('sourceFacet') if previous.get('stage') != 'terminal' else None
+        focus = prior.get('focus',fixed_focus or case.get('focus'))
+        if seen.get((prior['nodeId'],focus)) != prior['answer']:
             return 'no','The retained record drops or changes a preceding qualified assessment'
     role = card['role']
-    if role == 'assessed' and ('yes' not in stages.get('classify',[]) or 'yes' not in stages.get('scope',[])
-            or not all(s in stages for s in ('correlate','attribute','impact'))):
-        return 'unknown','A handoff needs separate hypothesis, mandatory scope, relation, source and effect answers'
     if role == 'refuted' and 'no' not in stages.get('classify',[]):
         return 'unknown','No retained assessment refutes this exact hypothesis'
     if role == 'unresolved' and not any(r['answer']=='unknown' or (r['answer']=='no' and
             criteria['nodes'][r['nodeId']].get('role') in ('primaryValidation','independentValidation','scope')) for r in rows):
         return 'unknown','An unresolved ending needs an actual retained uncertainty or rejected prerequisite'
-    if role == 'restored' and ledger.get('focusDispositions',{}).get(case.get('focus')) not in ('open','assessed'):
-        return 'unknown','Retain the terminal focus as assessed or explicitly open'
+    for focus,disposition in dispositions.items():
+        if disposition == 'assessed' and not any(
+                row.get('focus',criteria['nodes'][row['nodeId']].get('sourceFacet')) == focus
+                and criteria['nodes'][row['nodeId']].get('stage',ROLE_STAGE.get(
+                    criteria['nodes'][row['nodeId']]['role'])) != 'terminal' for row in rows):
+            return 'unknown','A focus marked assessed needs its own retained applicable nonterminal assessment'
     return 'yes','Separate profile-qualified assessments and limitations are retained; this route does not close the investigation'
 
 
@@ -355,13 +463,16 @@ def answer_profile(card, case, criteria, catalog):
                 examined[name]['records'] = relevant
             return exclusion_answer(examined,event_domain(profile))
         return terminal_answer(card,case,criteria,catalog)
-    group_name = 'independent' if card['role'] in ('alternate','independentValidation') else case.get('_selectedGroup','primary')
+    group_name = record_group(card,case,criteria)
+    if group_name not in ('primary','independent'):
+        return 'unknown','The exact question identity is needed to select its declared witness context'
     group = case.get(group_name,{})
+    if group_name == case.get('_selectedGroup') and named(case.get('_selectedRecordId')):
+        group = {**group,'selectedRecordId':case['_selectedRecordId']}
     matched,reason,record = match_profile(case,profile,group)
+    if group_name == 'independent' and record and not independent_record(record,case):
+        return 'unknown','The independent observation needs an identity and origin separate from every primary record'
     if stage == 'detect':
-        if card['role']=='alternate' and record and (not named(case.get('primaryOrigin')) or record.get('origin')==case['primaryOrigin']
-                or any(record.get('origin')==r.get('origin') for r in case.get('primary',{}).get('records',[]))):
-            return 'unknown','The alternate needs a separately declared origin; a copy is not independent'
         if kind and record and record.get('evidenceFacet') != case.get('focus'):
             return 'unknown','The selected observation is not bound to this evidence facet'
         return matched,reason
@@ -378,19 +489,27 @@ def answer_profile(card, case, criteria, catalog):
             return 'unknown','Comparator and corroboration need accepted profile event provenance'
         if kind == 'baseline':
             a = case.get('analysis',{}).get('baseline',{})
-            return equality_answer(selected,a.get('criterion')) if assessed_context(a,case) and named(a.get('comparatorId')) else (
+            return profile_equality_answer(selected,a.get('criterion')) if assessed_context(a,case) and named(a.get('comparatorId')) else (
                 'unknown','Comparator applicability and evidence must retain the exact profile context')
         if kind == 'corroboration':
             group = case.get('independent',{})
             if group.get('accessible') is not True or group.get('searched') is not True:
                 return 'unknown','Independent examination is incomplete'
+            assessment = case.get('analysis',{}).get('corroboration',{})
+            if (not assessed_context(assessment,case) or assessment.get('sourceRecordId') != selected.get('id')
+                    or not named(assessment.get('sourceFact')) or not named(assessment.get('targetFact'))
+                    or not (named(assessment.get('identifierNamespace')) or references(assessment.get('mappingEvidenceRefs')))):
+                return 'unknown','Corroboration needs its exact profile context, source record, declared fact fields, namespace or mapping, method and evidence basis'
             candidates = []
             for r in group.get('records',[]):
                 matched,_,_ = match_profile(case,profile,{'accessible':True,'searched':True,'records':[r]})
-                if matched == 'yes' and validate_record(r,case,profile)[0]=='yes' and r.get('origin') != selected.get('origin') and r.get('id') != selected.get('id'):
+                if (matched == 'yes' and validate_record(r,case,profile)[0]=='yes'
+                        and independent_record(r,case) and r.get('origin') != selected.get('origin')
+                        and r.get('id') != selected.get('id')
+                        and (not kind or r.get('evidenceFacet') == card['sourceFacet'])):
                     candidates.append(r)
-            values = [fact(r,'event.id') for r in candidates]
-            own = fact(selected,'event.id')
+            values = [fact(safe_record(r,profile),assessment['targetFact']) for r in candidates]
+            own = fact(selected,assessment['sourceFact'])
             if not values or own is None or any(v is None or type(v) is not type(own) for v in values):
                 return 'unknown','Separate accepted origins need an assessed event discriminator'
             agree = [v==own for v in values]
@@ -399,16 +518,18 @@ def answer_profile(card, case, criteria, catalog):
             return ('yes','Separate accepted origins agree on the event discriminator') if all(agree) else ('no','Separate accepted origins contradict corroboration')
     if valid[0] != 'yes':
         return 'unknown','A validated profile event is a prerequisite'
-    hypothesis = case.get('analysis',{}).get('hypothesis',{})
-    if not exact_context(hypothesis,case):
-        return 'unknown','The hypothesis must retain its explicit event profile/version and bounds'
-    classified = downstream_answer('classification',case,selected,criteria)
+    hypothesis = case.get('analysis',{}).get('hypothesis')
+    if hypothesis is not None and (not exact_context(hypothesis,case)
+            or not named(hypothesis.get('hypothesisId')) or not named(hypothesis.get('statement'))):
+        return 'unknown','A supplied hypothesis must retain its explicit event profile/version and bounds'
     if stage == 'classify':
-        return classified
-    if classified[0] != 'yes':
-        return 'unknown','A supported bound technical hypothesis is a prerequisite'
-    scoped = scope_answer(case,selected,catalog)
+        if hypothesis is None:
+            return 'unknown','Classification needs an explicit falsifiable hypothesis and alternatives'
+        if not criterion_basis_ready(selected,hypothesis.get('criterion')):
+            return 'unknown','The hypothesis criterion needs its explicitly required evidence dependency and cited fact basis'
+        return downstream_answer('classification',case,selected,assessment_criteria(criteria,case,profile))
     if stage == 'scope':
+        scoped = scope_answer(case,selected,catalog)
         if scoped[0] != 'yes' or kind in (None,'scope-bound'):
             return scoped
         if kind == 'additional-entities':
@@ -416,8 +537,6 @@ def answer_profile(card, case, criteria, catalog):
                 (e['domain'],e['eventProfile'],e['subjects']) != (case['domain'],case['eventProfile'],case['bindings'])]
             return ('yes','Additional complete profile identities have evidenced inclusions') if extra else ('no','No additional entity is included; source scope remains valid')
         return relation_answer(case,selected,catalog,'dependency','dependencies')
-    if scoped[0] != 'yes':
-        return 'unknown','An evidence-backed profile scope is a prerequisite'
     if stage == 'correlate':
         return relation_answer(case,selected,catalog,kind=kind or 'identifier-relation')
     if stage == 'attribute' and kind == 'behavior-pattern':
@@ -426,13 +545,15 @@ def answer_profile(card, case, criteria, catalog):
                 or not named(a.get('patternId')) or not references(a.get('alternatives'))
                 or a.get('criterion',{}).get('equals') != a['patternId']):
             return 'unknown','A profile-bound technical pattern discriminator and alternatives are required'
-        return equality_answer(selected,a.get('criterion'))
+        return profile_equality_answer(selected,a.get('criterion'))
     if stage == 'impact' and kind == 'additional-impact':
         return relation_answer(case,selected,catalog,'additionalEffect','additional-impact')
     role = 'attribution' if stage=='attribute' else 'impact'
     if not assessed_context(case.get('analysis',{}).get(role,{}),case):
         return 'unknown','The assessment must retain the exact profile context and basis'
-    return downstream_answer(role,case,selected,criteria)
+    if role == 'attribution' and not criterion_basis_ready(selected,case['analysis'][role].get('criterion')):
+        return 'unknown','The source criterion needs its explicitly required evidence dependency and cited fact basis'
+    return downstream_answer(role,case,selected,assessment_criteria(criteria,case,profile))
 
 
 def evaluate_route(graph,criteria,catalog,case):
@@ -447,18 +568,24 @@ def evaluate_route(graph,criteria,catalog,case):
     trace,seen = [],set()
     supplied = deepcopy(case)
     supplied.pop('_selectedGroup',None)
+    supplied.pop('_selectedRecordId',None)
     for _ in range(len(cards)):
         if current in seen or current not in cards or cards[current]['domain'] != case['domain']:
             raise ValueError('Profile route cycled or crossed its domain boundary')
         seen.add(current)
         supplied['retainedTrace'] = trace
         outcome,reason = answer_profile(cards[current],supplied,criteria,catalog)
-        trace.append({'nodeId':current,'questionId':definition_id(case['eventProfile'],current),'answer':outcome,'reason':reason})
+        trace.append({'nodeId':current,'questionId':definition_id(case['eventProfile'],current),
+            'focus':supplied.get('focus'),'answer':outcome,'reason':reason})
         stage = cards[current].get('stage',ROLE_STAGE.get(cards[current]['role']))
         if stage == 'terminal':
             return {'caseId':case['id'],'eventProfile':case['eventProfile'],'profileVersion':VERSION,'trace':trace}
-        if cards[current]['role'] in ('entry','alternate') and outcome == 'yes':
-            supplied['_selectedGroup'] = 'independent' if cards[current]['role']=='alternate' else 'primary'
+        if outcome == 'yes':
+            selected_group = record_group(cards[current],supplied,criteria)
+            _,_,record = match_profile(supplied,profile,supplied.get(selected_group,{}))
+            if record:
+                supplied['_selectedGroup'] = selected_group
+                supplied['_selectedRecordId'] = record['id']
         current = edges[(current,outcome)]
     raise ValueError('Profile route did not terminate')
 
