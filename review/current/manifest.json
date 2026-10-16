@@ -2,7 +2,7 @@
   "format": "tensor-current-review-package",
   "manifestVersion": 1,
   "sourceRepository": "https://github.com/TENSOR-Standards-Consortium/TENSOR-Framework",
-  "sourceCommit": "4d2b319ce62568c8691561fe347431d9b08ea3a8",
+  "sourceCommit": "a1cc5eb9bd72dc014ae95f738e4b5dba31a69d6b",
   "dataset": {
     "id": "urn:tensor:dataset:sha256:48840d95be44369a0d8beb34bd25aefadc21567ad316bfe5b5e295739c5551ad",
     "graphVersion": "0.20261013b",
@@ -19,8 +19,8 @@
   "scope": "The current public dataset, identical for implementers, visitors and reviewers. Generated review/current packaging is excluded from its own source archive.",
   "archive": {
     "path": "source.tar.gz",
-    "bytes": 2843578,
-    "sha256": "0208fa2a348ddcaef5faf5088711e7abc33a53956f7e92bf0cd4091dfbfc00ee"
+    "bytes": 2843652,
+    "sha256": "a7a04e8a0a3a66c138731d7e0020d98b2509847f3fa2fd3d069a0a71f9e22d88"
   },
   "files": [
     {
@@ -105,8 +105,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 8972,
-      "sha256": "709ebae4f1d02abc3bae59080b1c8dedc0e30e29724c86bda2b49e90a19ff0c2"
+      "bytes": 8980,
+      "sha256": "f531dcdc30ab64184606c25b81879085e75ed0e94e093cb0b6e4753147c92724"
     },
     {
       "path": "SECURITY.md",
@@ -240,8 +240,8 @@
     },
     {
       "path": "docs/legacy-migration.md",
-      "bytes": 2882,
-      "sha256": "2a2dcc6d6ca5a76e679d4196cbfcd49701ae5da4b750b8d668bb00ecfeb41540"
+      "bytes": 3225,
+      "sha256": "1b03425c0ca18947082aefd860ac282c59ccfe1b3e9da4b4a0d9b3eaf5292c07"
     },
     {
       "path": "docs/next-stage-plan.md",
