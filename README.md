@@ -14,7 +14,7 @@ The project preserves its existing question graphs and introduces a **Core inves
 - **Implementers:** use the [candidate binding and API](core/v0.1.0-draft.1/README.md), [schemas](core/v0.1.0-draft.1/schemas/), and [check coverage](core/v0.1.0-draft.1/coverage.md).
 - **Reviewers:** use the [review packet](docs/reviewer-packet.md), [38 proposed requirements](proposals/founding-core-v0.1.0/01-core-contract.md), and [standards crosswalk](proposals/founding-core-v0.1.0/03-standards-crosswalk.md).
 - **Contributors:** see [CONTRIBUTING](CONTRIBUTING.md), [governance status](GOVERNANCE.md), and the [90-day adoption work plan](docs/adoption-plan.md).
-- **Institutional reviewers and prospective collaborators:** start with [frozen review 2026-10-11.1](review/2026-10-11.1/README.md), its first-hour walkthrough, source archive and review form. See [accepted bootstrap stewardship](docs/stewardship.md) and the [next-stage plan](docs/next-stage-plan.md).
+- **Everyone exploring, implementing or reviewing TENSOR:** use the [current public dataset](dataset/current.json) and [current review package](review/current/README.md). The graph, profiles, Lab reference cases and review archive use these same exact artifacts. See [accepted bootstrap stewardship](docs/stewardship.md) and the [next-stage plan](docs/next-stage-plan.md). Earlier releases and review snapshots are historical archives.
 
 The [public website](https://tensor-standards.pages.dev) is live in the dedicated TENSOR Cloudflare account, with automatic publication from the website repository's `main` branch. This repository holds specification source and immutable graph releases. A branch or a passing local test is not proof that a later change has been deployed.
 
@@ -81,3 +81,9 @@ AI security teams governing agents and autonomous systems are the first adoption
 The next gate is reproducible review and exchange by independent implementations, with disclosed losses and limitations. No institutional recognition, partnership, independent council, or stable Core approval is claimed. See the [release checklist](docs/release-checklist.md) for evidence required at each stage.
 
 The existing [Apache License 2.0](LICENSE) remains unchanged. Proposed governance does not create a new legal entity, appoint stewards, or impose additional patent or contributor terms. Citations should identify the exact commit and candidate version; [CITATION.cff](CITATION.cff) supplies project metadata.
+
+## Current dataset publication
+
+The canonical active inventory is `dataset/current.json`. It pins one graph, evidence criteria, profiles, schemas and reference records. The website synchronizes these bytes; historical releases remain separate archives.
+
+After editing source, regenerate the dataset with `node scripts/build_dataset.mjs`, run the checks, update the observed `review/templates/validation.json` record, and commit the source. Build `python3 scripts/build_current_review.py` from that committed source, verify with `python3 scripts/build_current_review.py --check`, then commit the generated package. The archive excludes its own `review/current` output directory to avoid recursion. CI rejects source drift or a different packaged dataset. Synchronize the website from the resulting clean Framework commit.

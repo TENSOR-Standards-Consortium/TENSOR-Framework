@@ -1,0 +1,57 @@
+{
+  "format": "tensor-layer.v1",
+  "layer": {
+    "metadata": {
+      "id": "example-organization-cloud-1",
+      "name": "Example organization \u00b7 cloud review v1.1",
+      "owner": "Example organization (fictional)",
+      "type": "business",
+      "description": "Local policy context and a review question above the current public graph.",
+      "source": "Example layer 1.1 \u00b7 current graph 0.20261013b",
+      "enabled": true
+    },
+    "nodes": [
+      {
+        "id": "Q4",
+        "extensions": {
+          "example.organization:policy": {
+            "id": "https://example.org/policies/cloud-change-review",
+            "version": "1.0",
+            "resourceScope": "Example production cloud resources",
+            "reviewOwner": "Example cloud security team",
+            "purpose": "Policy context is separate from the public technical finding."
+          }
+        }
+      },
+      {
+        "id": "Q9002",
+        "label": "Cloud: Organization review",
+        "text": "Does the applicable organization policy require review of this supported cloud resource change?",
+        "category": "Cloud",
+        "archetype": "classify",
+        "extensions": {
+          "example.organization:criteria": {
+            "yes": "The named policy version and bound resource parameters require review.",
+            "no": "The named policy version and bound parameters exclude this change from review.",
+            "unknown": "The applicable policy, resource scope, or required parameters are unresolved."
+          }
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "Q4-yes-Q9002",
+        "source": "Q4",
+        "target": "Q9002",
+        "decision": "yes",
+        "extensions": {
+          "example.organization:purpose": "An organization-layer policy question; it does not change the public technical finding or execute an escalation."
+        }
+      }
+    ]
+  },
+  "metadata": {
+    "baseGraphVersion": "0.20261013b",
+    "baseGraphSha256": "5bbe0573940a20d7efe4cf9b78ae76f4ac79a3771bd92f5b182f3e18961aa874"
+  }
+}
