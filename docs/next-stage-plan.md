@@ -18,7 +18,7 @@ The candidate contract, executable reference implementation, synthetic cases, pu
 
 ## October 11 review-preparation update
 
-PR #9 is merged. [Review 2026-10-11.1](../review/2026-10-11.1/README.md) freezes its merged technical source, byte pins, validation baseline, walkthrough and review form. The owner accepted the bootstrap steward/convenor, editor and conformance roles; see [the current record](stewardship.md). Independent reviews, exchange, partnerships and external references remain unverified. Conflict disclosure, recovery/billing confirmation, a consenting second administrator and token replacement remain pending. No invitations or formal review window were initiated. The earlier table records proposed work windows rather than completed outcomes.
+The [current public dataset](../dataset/current.json) and [current review package](../review/current/README.md) provide one target for the website, graph, Lab examples, implementers and reviewers. The earlier `2026-10-11.1` snapshot remains an unchanged historical archive. The owner accepted the bootstrap steward/convenor, editor and conformance roles; see [the current record](stewardship.md). Independent reviews, exchange, partnerships and external references remain unverified. Conflict disclosure, recovery/billing confirmation, a consenting second administrator and token replacement remain pending. No invitations or formal review window were initiated. The earlier table records proposed work windows rather than completed outcomes.
 
 ## The first review brief
 
