@@ -33,12 +33,12 @@ The CLI emits a scoped JSON report: exit `0` means its bounded checks passed, `1
 
 The runtime is usable in Node and browsers without third-party runtime dependencies or network retrieval. This package is private in npm: the commands above use the repository, not a published registry package.
 
-## Two tracks, explicit identities
+## Current artifacts and historical archives
 
 | Track | Current artifacts | Meaning |
 | --- | --- | --- |
-| Existing graph releases | Stable graph/schema `0.20260206e`; 588 questions and 1,554 edges | Reusable investigative question definitions under their original release contract |
-| Existing graph drafts | `0.20261012b`; 609 questions and 1,554 edges, unchanged schema `0.20260206e` | [Seven-domain agent challenge review](drafts/core/reviews/2026-10-12-independent-review/README.md); 105 graph tests and 1,791 existing scenarios; external domain review and additional event profiles remain open |
+| Current public graph | `0.20261013b`; 609 questions and 2,131 routes, unchanged schema `0.20260206e` | Shared by every public tool and reviewer; [per-item semantic review](drafts/core/reviews/2026-10-13-semantic/README.md), 16 event profiles and 1,791 evidence scenarios. External review and independent exchange remain open |
+| Historical graph release | Graph/schema `0.20260206e`; 588 questions and 1,554 routes | Preserved definitions under their original release contract; archive only |
 | Founding proposal | `proposals/founding-core-v0.1.0/`; proposal `0.1.0` | Public purpose, logical contract, and proposed governance |
 | Core implementation candidate | `core/v0.1.0-draft.1/`; binding `0.1.0-draft.1` | Trial JSON representation, validator, CLI, schemas, and synthetic records |
 
