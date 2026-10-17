@@ -165,6 +165,7 @@ def main() -> int:
                 evidence_gates = [gate(gid, [f"Evidence input could not be loaded: {exc}"], "notRun") for gid in EVIDENCE_IDS]
         for relative in ("standards/graph-assurance-policy.md", "scripts/graph_assurance_policy.py", "scripts/core_graph_pipeline.py",
                          "scripts/core_graph_math_assurance.py", "scripts/evaluate_entry_scenarios.py", "scripts/lint_core_graph_quality.py",
+                         "scripts/contextual_routing.py", "drafts/core/reviews/2026-10-16-contextual-routing/review.json",
                          "scripts/restored_evidence.py", "scripts/restoration_assurance.py", "scripts/restore_original_questions.py",
                          "drafts/core/reviews/2026-10-12-restoration/analysis.json", "drafts/core/reviews/2026-10-12-independent-review/review.json"):
             provenance["inputs"].append({"path": relative, "sha256": hashlib.sha256((repo_root / relative).read_bytes()).hexdigest()})

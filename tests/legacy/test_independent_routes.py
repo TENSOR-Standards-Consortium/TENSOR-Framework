@@ -37,19 +37,23 @@ class IndependentRouteTests(unittest.TestCase):
                     self.assertIs(True, adapter['recheckPrerequisites'])
                     self.assertEqual({'domain','bindings','interval','hypothesisId','priorAnswers'}, set(adapter['preserve']))
 
-    def test_optional_negative_and_unknown_answers_do_not_end_other_assessments(self):
+    def test_optional_answers_retain_their_own_result_and_unknown_goes_to_gap_retention(self):
         for nid, card in self.criteria['nodes'].items():
             if card.get('assessmentKind') not in {'baseline','corroboration','additional-entities','dependencies'}:
                 continue
-            targets = {e['target'] for e in self.graph['edges'] if e['source'] == nid}
+            routes={e['decision']:e['target'] for e in continuation_edges(self.graph) if e['source']==nid}
             with self.subTest(node=nid):
-                self.assertEqual(1, len(targets))
-                self.assertNotEqual('terminal', self.nodes[next(iter(targets))]['archetype'])
+                self.assertEqual(self.criteria['domains'][card['domain']]['unresolved'],routes['unknown'])
+                self.assertNotEqual(routes['yes'],routes['unknown'])
+                if card['assessmentKind']!='baseline':self.assertNotEqual(routes['yes'],routes['no'])
 
     def test_existing_seven_path_edges_are_unchanged(self):
         prior = json.loads((ROOT/'drafts/core/reviews/2026-10-12-restoration/prior-draft.graph.json').read_text())
         base = {n['id'] for n in prior['nodes']}
-        self.assertEqual(prior['edges'], [e for e in continuation_edges(self.graph) if e['source'] in base])
+        from contextual_routing import baseline
+        historical=baseline('drafts/core/tensor.core.graph.json')
+        self.assertEqual(prior['edges'], [e for e in continuation_edges(historical) if e['source'] in base])
+        self.assertNotEqual(prior['edges'], [e for e in continuation_edges(self.graph) if e['source'] in base])
         receipt = json.loads((ROOT/'drafts/core/reviews/2026-10-12-independent-review/review.json').read_text())
         self.assertEqual(PRIOR_SHA, receipt['graphSha256'])
         import subprocess

@@ -14,6 +14,7 @@ import unittest
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / 'scripts'))
 from investigative_routing import eligible_leads
+from contextual_routing import eligible_discoveries
 
 PROFILE_VERSION = '0.1.0-draft.2'
 SOURCE_INTERVAL = {'start': '2026-10-13T08:00:00Z', 'end': '2026-10-13T08:30:00Z'}
@@ -118,7 +119,8 @@ class SemanticRoutingChallenge(unittest.TestCase):
         return source_id, answer, target_id, {'_source': original, target_id: target}
 
     def eligible(self, source, answer, target, context):
-        return f'{source}-{answer}-{target}' in eligible_leads(self.graph, source, answer, context)
+        return (f'{source}-{answer}-{target}' in eligible_leads(self.graph,source,answer,context) or
+                f'{source}-discover-{target}' in eligible_discoveries(self.graph,source,answer,context))
 
     def test_all_seven_domains_support_each_same_domain_lead_kind(self):
         for domain in DOMAINS:

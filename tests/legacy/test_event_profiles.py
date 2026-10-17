@@ -235,8 +235,9 @@ class EventProfileTests(unittest.TestCase):
                 if kind in ('baseline','additional-entities','dependencies'):
                     nid=next(n for n,c in self.criteria['nodes'].items() if c is card)
                     targets={e['target'] for e in self.graph['edges'] if e['source']==nid}
-                    self.assertEqual(1,len(targets))
-                    self.assertNotEqual('terminal',next(n['archetype'] for n in self.graph['nodes'] if n['id']==next(iter(targets))))
+                    self.assertGreater(len(targets),1)
+                    unknown=next(e['target'] for e in self.graph['edges'] if e['source']==nid and e['decision']=='unknown')
+                    self.assertEqual(self.criteria['domains'][card['domain']]['unresolved'],unknown)
                 case['primary']['records'][0]['evidenceFacet']='unrelated-facet'
                 self.assertEqual('unknown',answer_profile(card,case,self.criteria,self.catalog)[0])
 

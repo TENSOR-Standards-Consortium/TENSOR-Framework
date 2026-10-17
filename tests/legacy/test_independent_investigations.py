@@ -587,7 +587,7 @@ class IndependentInvestigationTests(unittest.TestCase):
                 expected = suite["restoredPaths"][0]["expectedTrace"]
                 with self.subTest(domain=domain, node=node_id, optional_answer=optional_answer):
                     self.assertEqual([node_id, optional_answer], expected[0])
-                    self.assertEqual([self.criteria["domains"][domain]["assessed"], "yes"], expected[-1])
+                    self.assertEqual([self.criteria['domains'][domain]['unresolved' if optional_answer=='unknown' else 'assessed'], 'yes'], expected[-1])
                     results = evaluator.run_cases(self.graph, self.criteria, suite)
                     self.assertTrue(results[0]["passed"], results[0])
                     terminal = suite["restoredFixtures"][expected[-1][0]]

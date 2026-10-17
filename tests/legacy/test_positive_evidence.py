@@ -53,8 +53,12 @@ class PositiveEvidenceTests(unittest.TestCase):
                 case["analysis"].pop(role)
                 result = self.result(case)
                 self.assertEqual("unknown", self.answer(result, role))
-                self.assertEqual("yes", self.answer(result, "impact"))
-                self.assertEqual("partial-findings", result["state"])
+                # The unanswered relationship no longer forces an effect route.
+                # Assess the effect as a separate, context-bound question.
+                selected=(case['primary']['records'] or case['independent']['records'])[0]
+                self.assertEqual('yes',evaluator.downstream_answer('impact',case,selected,self.criteria)[0])
+                self.assertFalse(any(self.criteria['nodes'][t['nodeId']]['role']=='impact' for t in result['trace']))
+                self.assertEqual("unresolved", result["state"])
 
     def test_correlation_requires_target_context_and_validated_lineage(self):
         for fault in ("wrong-source", "unknown-provenance", "causation", "missing-fact", "no-ref", "duplicate-record"):
@@ -76,7 +80,11 @@ class PositiveEvidenceTests(unittest.TestCase):
             with self.subTest(fault=fault):
                 result = self.result(case)
                 self.assertEqual("unknown", self.answer(result, "correlation"))
-                self.assertEqual("yes", self.answer(result, "impact"))
+                # The unanswered relationship no longer forces an effect route.
+                # Assess the effect as a separate, context-bound question.
+                selected=(case['primary']['records'] or case['independent']['records'])[0]
+                self.assertEqual('yes',evaluator.downstream_answer('impact',case,selected,self.criteria)[0])
+                self.assertFalse(any(self.criteria['nodes'][t['nodeId']]['role']=='impact' for t in result['trace']))
 
     def test_metric_effect_requires_comparable_units_identity_times_and_numbers(self):
         for fault in ("units", "metric", "reversed-time", "outside-window", "missing-time", "bool", "nan", "unassessed-baseline"):

@@ -147,6 +147,11 @@ def eligible_leads(graph, source, outcome, context):
 
 
 def assess_routes(graph, criteria):
+    if graph.get('extensions', {}).get('tensor:contextualRouting'):
+        from contextual_routing import repair, baseline
+        expected, expected_criteria, _, _ = repair(baseline('drafts/core/tensor.core.graph.json'),
+            baseline('drafts/core/entry-evidence-criteria.json'), baseline('drafts/core/scenarios/entry-evidence-cases.json'))
+        return [] if graph == expected and criteria == expected_criteria else ['Current routes or context contracts differ from the reviewed repair.']
     if graph.get('extensions', {}).get('tensor:semanticReview'):
         from semantic_graph_review import REVIEW as SEMANTIC_REVIEW
         expected = json.loads((SEMANTIC_REVIEW/'reviewed-structure.json').read_text())

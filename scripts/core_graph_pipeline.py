@@ -640,6 +640,10 @@ def build_graph_payload(
         payload["extensions"] = {"tensor:routingProfile": next(iter(profiles))}
         if profiles == {"tensor-investigative-routing/2"}:
             payload["extensions"]["tensor:semanticReview"] = "tensor-semantic-review/1"
+    contexts = {e.get('extensions',{}).get('tensor:routeContext',{}).get('profile') for e in edges} - {None}
+    if contexts:
+        if contexts != {'tensor-contextual-routing/1'}:raise ValidationError('Unrecognized contextual routing profile')
+        payload.setdefault('extensions',{})['tensor:contextualRouting'] = next(iter(contexts))
     return payload
 
 

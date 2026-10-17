@@ -11,6 +11,7 @@ import unittest
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT/'scripts'))
 from core_graph_pipeline import validate_and_measure
+from contextual_routing import eligible_discoveries
 from investigative_routing import eligible_leads, assess_routes, continuation_edges, PROFILE
 
 # SOC chains authored here independently of the route generator. The source
@@ -46,12 +47,12 @@ class InvestigativeRoutingTests(unittest.TestCase):
                 for target,bindings in [(left,left_bindings),(right,right_bindings)]}
             for answer in ('yes','no','unknown'):
                 with self.subTest(domain=domain,answer=answer):
-                    context['_source']={'nodeId':source,'answer':answer,'graphVersion':self.graph['version'],'domain':domain,
+                    context['_source']={'nodeId':source,'questionId':source,'answer':answer,'graphVersion':self.graph['version'],'domain':domain,
                         'bindings':{f:'source:'+f for f in self.criteria['domains'][domain]['bindings']},
                         'interval':{'start':'2026-10-13T08:00:00Z','end':'2026-10-13T08:30:00Z'},
                         'evidenceRefs':['source:'+description],'rationale':'Retain the independently assessed source proposition.'}
-                    eligible=eligible_leads(self.graph,source,answer,context)
-                    self.assertEqual({f'{source}-{answer}-{self.criteria["domains"][d]["entry"]}' for d in (left,right)},set(eligible))
+                    eligible=eligible_leads(self.graph,source,answer,context) if answer=='yes' else eligible_discoveries(self.graph,source,answer,context)
+                    self.assertEqual({(f'{source}-yes-{self.criteria["domains"][d]["entry"]}' if answer=='yes' else f'{source}-discover-{self.criteria["domains"][d]["entry"]}') for d in (left,right)},set(eligible))
                     # One or both can be explicitly selected. Readiness does not
                     # manufacture target answers or require selecting everything.
                     selected=[eligible[0]]
