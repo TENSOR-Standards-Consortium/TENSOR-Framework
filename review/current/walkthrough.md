@@ -1,6 +1,6 @@
 # First-hour technical review
 
-Review the current public dataset at source **6ef89080b4dc765f2cf89e63500f2b84b29ac22b**, graph **0.20261016a**, dataset **urn:tensor:dataset:sha256:277f00e04a84493396c86090fde2c7e0056f2ae7847e7a9ea7bb6a7445d79cda**.
+Review the current public dataset at source **7b3129101f66fd0f9d3d3aaa9a043eddbe0b5b4e**, graph **0.20261016a**, dataset **urn:tensor:dataset:sha256:277f00e04a84493396c86090fde2c7e0056f2ae7847e7a9ea7bb6a7445d79cda**.
 
 1. Read the charter and logical contract in `proposals/founding-core-v0.1.0/`, then the binding and coverage notes in `core/v0.1.0-draft.1/`.
 2. Open the website's five-minute introduction and follow the SOC sign-in case into the graph and Lab. Check how human and agent assessments, vendor evidence mappings and company policy remain distinct. Repeat with workload/cloud/network and attachment/host/tool cases.

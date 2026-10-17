@@ -2,7 +2,7 @@
   "format": "tensor-current-review-package",
   "manifestVersion": 1,
   "sourceRepository": "https://github.com/TENSOR-Standards-Consortium/TENSOR-Framework",
-  "sourceCommit": "6ef89080b4dc765f2cf89e63500f2b84b29ac22b",
+  "sourceCommit": "7b3129101f66fd0f9d3d3aaa9a043eddbe0b5b4e",
   "dataset": {
     "id": "urn:tensor:dataset:sha256:277f00e04a84493396c86090fde2c7e0056f2ae7847e7a9ea7bb6a7445d79cda",
     "graphVersion": "0.20261016a",
@@ -19,8 +19,8 @@
   "scope": "The current public dataset, identical for implementers, visitors and reviewers. Generated review/current packaging is excluded from its own source archive.",
   "archive": {
     "path": "source.tar.gz",
-    "bytes": 3407411,
-    "sha256": "8badef02bea5eb4f38ae3b08a812c6df852c50d134434cd2be0b5c1c3f3a37fb"
+    "bytes": 3407715,
+    "sha256": "a37e391d83b1d0f078374d3a5b0ae5c43d5eace83666595c088960396c367ece"
   },
   "files": [
     {
@@ -850,8 +850,8 @@
     },
     {
       "path": "examples/investigations/v1/README.md",
-      "bytes": 3492,
-      "sha256": "22b77c076c247ce190ab157af8ce1a0dc33756927ac907e360bc61260c05ae05"
+      "bytes": 4165,
+      "sha256": "1c942c5e262ad18a7af44ab98d2f085fbf3e9aa7ca02b2a5281310f31d438571"
     },
     {
       "path": "examples/investigations/v1/attachment-host-tool.bundle.json",
