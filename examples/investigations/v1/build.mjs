@@ -4,7 +4,7 @@ import { scenarios } from './scenarios.mjs';
 import { routing } from './routes.mjs';
 import { validateBundle } from '../../../core/v0.1.0-draft.1/index.mjs';
 const root = new URL('./', import.meta.url);
-const version = '1.2.0';
+const version = '1.3.0';
 const contractRef = { proposal: '0.1.0', bindingVersion: '0.1.0-draft.1', status: 'candidate; unratified' };
 const layers = [
   { id: 'public', label: 'Public investigation questions', owner: 'TENSOR Standards Consortium', version },
@@ -30,16 +30,17 @@ for (const scenario of scenarios) {
   const window = { status: 'bounded', start: '2026-10-13T08:35:00Z', end: '2026-10-13T09:00:00Z' };
   const questions = scenario.steps.map((s, i) => ({
     id: id(`${s.layer}:question-${i + 1}`), prompt: s.question,
-    proposition: `${s.question} Bound subject: ${id(s.subject)}; interval [${window.start}, ${window.end}).`,
+    proposition: `${s.question} Apply only to the resolved subject and interval; a different context requires a separate question instance.`,
     parameters: { subject: { type: 'URI', required: true, bindsTo: 'subject:subject' }, window: { type: 'timeContext', required: true, bindsTo: 'timeContext' } },
     applicabilityCriteria: 'Applies only to the declared subject and interval with resolved parameters and the named evidence and policy context.',
     assessmentCriteria: s.criteria,
     evidenceRequirements: ['Retained source provenance and interpretation basis; exact subject and interval; falsifiable discriminators and alternatives.', 'Negative findings require authoritative observation or register coverage. Unknowns and separate policy, intent, execution, and delivery propositions remain explicit.'],
     metadata: { title: s.title, displayId: `S${i + 1}`, domain: s.domain, layerId: s.layer, layerVersion: version, archetype: i === 0 ? 'detect' : i === scenario.steps.length - 1 ? 'terminal' : s.policyBound ? 'classify' : 'correlate' },
   }));
+  for (const [i,s] of scenario.steps.entries()) if(s.revisit) questions[i]=questions[s.revisit-1];
   const definition = {
     id: id('composed-definition'), version, publicationStatus: 'draft', title: scenario.title, contractRef,
-    questions, transitions: plan.routes.map(([source,outcome,target]) => ({
+    questions: [...new Map(questions.map(q=>[q.id,q])).values()], transitions: plan.routes.map(([source,outcome,target]) => ({
       id: id(`route-${source}-${target}-${outcome}`), sourceQuestionId: questions[source-1].id, targetQuestionId: questions[target-1].id, guardOutcome: outcome,
       metadata: { meaning: `The ${outcome} source assessment permits opening this separate question: ${questions[target-1].prompt} Bind its own subject and evidence; no target answer, causal relationship or response permission is inherited.`,
         selection: 'A human or agent explicitly selects one or several eligible routes. An eligible option is not a recorded selection.' },
@@ -53,7 +54,7 @@ for (const scenario of scenarios) {
   const instances = new Map();
   let clock = 0;
   const entry = (type, suffix, actor, fields) => {
-    const value = { id: id(suffix), type, recordedAt: new Date(Date.UTC(2026, 9, 13, 9, 0, clock++)).toISOString(), attribution: { actorId: id(`actor-${actor}`) }, ...fields };
+    const value = { id: id(suffix), type, recordedAt: new Date(Date.UTC(2026, 9, 13, 9, scenario.id==='parallel-followup'?30:0, clock++)).toISOString(), attribution: { actorId: id(`actor-${actor}`) }, ...fields };
     entries.push(value); return value;
   };
   function ensureInstance(n, originDecisionId) {
@@ -63,9 +64,10 @@ for (const scenario of scenarios) {
       return previous;
     }
     const s=scenario.steps[n-1];
+    const boundWindow=s.window||window;
     const instance=entry('QuestionInstance', `instance-${n}`, s.actor, {definitionRef:pin,questionId:questions[n-1].id,
       metadata:{subjectLabels:{[id(s.subject)]:scenario.subjectLabels[s.subject]}},
-      subjectBindings:{subject:id(s.subject)},timeContext:window,parameterBindings:{subject:id(s.subject),window},
+      subjectBindings:{subject:id(s.subject)},timeContext:boundWindow,parameterBindings:{subject:id(s.subject),window:boundWindow},
       origin: originDecisionId?{kind:'transition',rationale:'Explicitly selected investigative lead; target evidence and subject remain separate.',originDecisionId}:
         n===1?{kind:'entry',rationale:'Open the bounded example investigation.'}:{kind:'newLead',rationale:'A separately documented review lead; timeline adjacency supplies no route.'}});
     instances.set(n,instance);return instance;
@@ -106,13 +108,13 @@ for (const scenario of scenarios) {
     });
     if (s.initialUnknown) {
       entry('EvidenceReference', `early-evidence-${n}`, s.actor, { description: s.initialUnknown, source: { label: 'Initial example tool metadata', provenanceStatus: 'Authored fictional evidence' }, availability: 'unavailable', locatorAbsentReason: 'No real source system or source bytes exist.' });
-      const early = entry('Observation', `early-observation-${n}`, s.actor, { statement: s.initialUnknown, evidenceRefIds: [id(`early-evidence-${n}`)], method: 'Illustrative initial collection with a declared gap.', eventTime: window });
+      const early = entry('Observation', `early-observation-${n}`, s.actor, { statement: s.initialUnknown, evidenceRefIds: [id(`early-evidence-${n}`)], method: 'Illustrative initial collection with a declared gap.', eventTime: s.window||window });
       const previous = assess('unknown', `early-assessment-${n}`, early.id, s.initialUnknown);
       const earlyDecision=decide(n,s,previous,true);
       frames.push({ title: 'Content is initially unresolved', assessmentId: previous.id, decisionId:earlyDecision.id, through: entries.length, limitation: s.limitation });
     }
     entry('EvidenceReference', `evidence-${n}`, s.actor, { description: s.evidence, source: { label: `${s.domain} example evidence`, provenanceStatus: 'Authored fictional evidence; no real incident source is authenticated' }, availability: 'unavailable', locatorAbsentReason: 'The example supplies observations and references, not real source evidence bytes.' });
-    const observation = entry('Observation', `observation-${n}`, s.actor, { statement: s.evidence, evidenceRefIds: [id(`evidence-${n}`)], method: 'Authored observation; discriminator and collection limits are described in the statement.', eventTime: window });
+    const observation = entry('Observation', `observation-${n}`, s.actor, { statement: s.evidence, evidenceRefIds: [id(`evidence-${n}`)], method: 'Authored observation; discriminator and collection limits are described in the statement.', eventTime: s.window||window });
     const assessment = assess(s.outcome, `assessment-${n}`, observation.id, `${s.criteria[s.outcome]} ${s.limitation}`, s.initialUnknown ? { entryId: id(`early-assessment-${n}`), reason: 'A later request-body receipt supplies the formerly missing content and destination discriminators.' } : undefined);
     decide(n,s,assessment);
     if (s.response) entry('ActionRecord', `action-${n}`, 'responder', { operationDescription: scenario.operation, operationSubject: id(s.subject), stage: 'planned', decisionId: id(`decision-${n}`), eventTime: { status: 'unknown', reason: 'No action is executed in this example.' } });
@@ -130,7 +132,7 @@ for (const scenario of scenarios) {
   const report = await validateBundle(bundle);
   if (report.status !== 'pass') throw new Error(`${scenario.id}: ${JSON.stringify(report.checks.filter(c => c.status === 'fail'))}`);
   await artifact(`${scenario.id}.bundle.json`, bundle);
-  catalog.push({ id: scenario.id, title: scenario.title, description: scenario.description, domains: scenario.domains, frames: frames.length, questions: questions.length, bundle: `${scenario.id}.bundle.json`, definition: definitionName });
+  catalog.push({ id: scenario.id, title: scenario.title, description: scenario.description, domains: scenario.domains, frames: frames.length, questions: definition.questions.length, bundle: `${scenario.id}.bundle.json`, definition: definitionName });
 }
 await artifact('catalog.json', { version, bindingVersion: contractRef.bindingVersion, illustrative: true, scenarios: catalog });
 await artifact('manifest.json', { version, files: [...files] });

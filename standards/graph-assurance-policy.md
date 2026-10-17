@@ -1,6 +1,6 @@
 # Graph assurance policy: tensor-graph-assurance/3
 
-Semantic review revision: 2026-10-13 (`tensor-graph-assurance/3`, routing profile 2 and semantic profile 1). Previous routing policy 2 remains historical. Original decision date: 2026-10-11. Applies prospectively to generated reports and authoring tools for the dated investigation graph. It applies to repaired working graph 0.20261013b and changes no graph schema, published artifact, investigation-record Core contract or historical report. Passing these checks is author-side acceptance of a bounded graph/evidence package; publication, independent review and institutional acceptance are separate decisions.
+Semantic review revision: 2026-10-13 (`tensor-graph-assurance/3`, routing profile 2 and semantic profile 1). Previous routing policy 2 remains historical. Original decision date: 2026-10-11. Applies prospectively to generated reports and authoring tools for the dated investigation graph. The October 13 receipt applies to its archived 0.20261013b snapshot. The current answer-route repair is 0.20261016a (`tensor-contextual-routing/1`) and changes no graph schema, published artifact, investigation-record Core contract or historical report. Passing these checks is author-side acceptance of a bounded graph/evidence package; publication, independent review and institutional acceptance are separate decisions.
 
 ## Blocking acceptance
 
@@ -73,3 +73,7 @@ Evidence cards and synthetic expected paths can be authored consistently while s
 The builder checks structure and creates only a working draft or explicitly requested new unpromoted graph directory. Preparation alone cannot satisfy the evidence gates, update a manifest or move stable pointers. Before any future release, assess the exact prepared artifact with its matching evidence package and current policy, then complete the recorded release checklist. Schema and historical artifacts remain immutable.
 
 Review evidence and counterexamples: [topology-gate review](../drafts/core/reviews/2026-10-11-topology-policy/README.md).
+
+## Current contextual routing repair
+
+The [16 October author review](../drafts/core/reviews/2026-10-16-contextual-routing/README.md) accounts for every shared destination, distinguishes answer routes from independent discoveries, and requires fresh target instances with retained full context. Exact route/context mutations fail authoring acceptance. All 609 questions remain active. Historical fan-in limits remain diagnostic under the current policy; they do not choose destinations. The prior AI review is verified against archived inputs and does not sign off this new repair. External review remains pending.

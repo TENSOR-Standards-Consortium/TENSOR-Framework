@@ -1,4 +1,4 @@
-"""Exact-current review coverage remains a reproducible CI requirement."""
+"""Historical review coverage remains a reproducible CI requirement."""
 import importlib.util
 from pathlib import Path
 import unittest
@@ -10,7 +10,7 @@ spec.loader.exec_module(module)
 
 
 class SemanticReviewReceiptTests(unittest.TestCase):
-    def test_each_current_item_has_a_pinned_independent_verdict(self):
+    def test_each_archived_item_has_a_pinned_independent_verdict(self):
         counts = module.verify()
         self.assertEqual(609, counts['nodes'])
         self.assertEqual(567, counts['qualifiedDefinitions'])

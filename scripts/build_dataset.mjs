@@ -12,6 +12,7 @@ const pairs = [
   ...['tensor.core.graph.json', 'entry-evidence-criteria.json', 'source/entry_nodes.json', 'coverage-inventory.json',
     ...['catalog.json','definitions.json','scenarios.json','validation.json'].map(n => `event-profiles/${n}`)
   ].map(name => [`drafts/core/${name}`, `/graphs/working/${name}`]),
+  ['drafts/core/reviews/2026-10-16-contextual-routing/review.json', '/graphs/working/reviews/2026-10-16-contextual-routing/review.json'],
 ];
 for (const [folder, prefix] of [
   ['examples/investigations/v1', '/investigations/v1'],

@@ -54,6 +54,12 @@ def build_acceptance(authoring_errors, reference, evidence_gates=None):
 
 
 def assess_evidence(graph, graph_sha256, criteria, suite):
+    if 'contextualRouting' in criteria:
+        from contextual_routing import assess
+        try:
+            return assess(graph, graph_sha256, criteria, suite)
+        except (ValueError, KeyError, TypeError, AttributeError, IndexError, OSError) as exc:
+            return [gate(gid,[f'Current contextual package cannot be evaluated: {exc}']) for gid in EVIDENCE_IDS]
     if "semanticReview" in criteria:
         from semantic_graph_review import assess as semantic_assess
         try:

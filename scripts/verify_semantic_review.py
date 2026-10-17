@@ -10,19 +10,21 @@ DIRECTORY = ROOT / 'drafts/core/reviews/2026-10-13-semantic'
 
 def verify():
     review = json.loads((DIRECTORY / 'review.json').read_text())
+    from contextual_routing import REVIEW as CONTEXT_REVIEW
+    archived = CONTEXT_REVIEW / 'baseline'
     if review['status'] != 'separate-ai-review-complete' or review['institutionalApproval'] is not False:
         raise ValueError('Review status must distinguish complete AI review from institutional approval')
     for path, digest in review['inputPins'].items():
-        if sha256((ROOT / path).read_bytes()).hexdigest() != digest:
-            raise ValueError(f'Current reviewed input differs: {path}')
+        if sha256((archived / path).read_bytes()).hexdigest() != digest:
+            raise ValueError(f'Historical reviewed input differs: {path}')
     for path, digest in review['ledgerPins'].items():
         if sha256((DIRECTORY / path).read_bytes()).hexdigest() != digest:
             raise ValueError(f'Review ledger or challenge receipt differs: {path}')
     for path, digest in review['preservedArtifacts'].items():
         if sha256((ROOT / path).read_bytes()).hexdigest() != digest:
             raise ValueError(f'Historical protected artifact differs: {path}')
-    graph = json.loads((ROOT / 'drafts/core/tensor.core.graph.json').read_text())
-    definitions = json.loads((ROOT / 'drafts/core/event-profiles/definitions.json').read_text())['profiles']
+    graph = json.loads((archived / 'drafts/core/tensor.core.graph.json').read_text())
+    definitions = json.loads((archived / 'drafts/core/event-profiles/definitions.json').read_text())['profiles']
     snapshot = DIRECTORY / 'reviewed-structure.json'
     if sha256(snapshot.read_bytes()).hexdigest() != review['reviewedStructureSha256']:
         raise ValueError('Reviewed structural snapshot differs')
