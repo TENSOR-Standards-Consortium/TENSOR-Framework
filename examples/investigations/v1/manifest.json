@@ -27,11 +27,11 @@
     },
     {
       "path": "parallel-followup.definition.json",
-      "sha256": "7d6f24bc2ce26b5e7d580ab93efb79fb447bd9b68a04f34d27263c43902a2310"
+      "sha256": "4ba233fe797fc39786e5ad4bd4cf43c2b2a92be9c7ab5bdd89ce9a92fb3b9c51"
     },
     {
       "path": "parallel-followup.bundle.json",
-      "sha256": "c9d84f173bd0968ae11168f5105cb7356f056d1d523cfcee4b6263fdad27bd0c"
+      "sha256": "9f3f487faae5ce273cc82509c302dd964c35ba1e13bb22c88560bc08f5e8fa1e"
     },
     {
       "path": "catalog.json",

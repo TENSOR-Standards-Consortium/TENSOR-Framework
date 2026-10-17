@@ -35,7 +35,7 @@ for (const scenario of scenarios) {
     applicabilityCriteria: 'Applies only to the declared subject and interval with resolved parameters and the named evidence and policy context.',
     assessmentCriteria: s.criteria,
     evidenceRequirements: ['Retained source provenance and interpretation basis; exact subject and interval; falsifiable discriminators and alternatives.', 'Negative findings require authoritative observation or register coverage. Unknowns and separate policy, intent, execution, and delivery propositions remain explicit.'],
-    metadata: { title: s.title, displayId: `S${i + 1}`, domain: s.domain, layerId: s.layer, layerVersion: version, archetype: i === 0 ? 'detect' : i === scenario.steps.length - 1 ? 'terminal' : s.policyBound ? 'classify' : 'correlate' },
+    metadata: { title: s.questionTitle||s.title, displayId: `S${i + 1}`, domain: s.domain, layerId: s.layer, layerVersion: version, archetype: i === 0 ? 'detect' : i === scenario.steps.length - 1 ? 'terminal' : s.policyBound ? 'classify' : 'correlate' },
   }));
   for (const [i,s] of scenario.steps.entries()) if(s.revisit) questions[i]=questions[s.revisit-1];
   const definition = {
