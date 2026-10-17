@@ -1,7 +1,7 @@
 {
   "format": "tensor-current-dataset",
   "manifestVersion": 1,
-  "id": "urn:tensor:dataset:sha256:277f00e04a84493396c86090fde2c7e0056f2ae7847e7a9ea7bb6a7445d79cda",
+  "id": "urn:tensor:dataset:sha256:ae1b56d7b19ab3c4f94229a5f816e375b216200314c53219c0dcbd0ecf6df536",
   "graphVersion": "0.20261016a",
   "graphSchemaVersion": "0.20260206e",
   "bindingVersion": "0.1.0-draft.1",
@@ -157,19 +157,19 @@
       "source": "examples/investigations/v1/manifest.json",
       "publicPath": "/investigations/v1/manifest.json",
       "bytes": 1328,
-      "sha256": "c4c85725d4e17f4bb941e0fabf534c46f160cae702196097eb92dbe07274710e"
+      "sha256": "00749553a4a0e96554bcf76ca86a2b8e083b9cd169e93bfdf20aa56f561758cd"
     },
     {
       "source": "examples/investigations/v1/parallel-followup.bundle.json",
       "publicPath": "/investigations/v1/parallel-followup.bundle.json",
-      "bytes": 90816,
-      "sha256": "c9d84f173bd0968ae11168f5105cb7356f056d1d523cfcee4b6263fdad27bd0c"
+      "bytes": 90859,
+      "sha256": "9f3f487faae5ce273cc82509c302dd964c35ba1e13bb22c88560bc08f5e8fa1e"
     },
     {
       "source": "examples/investigations/v1/parallel-followup.definition.json",
       "publicPath": "/investigations/v1/parallel-followup.definition.json",
-      "bytes": 29026,
-      "sha256": "7d6f24bc2ce26b5e7d580ab93efb79fb447bd9b68a04f34d27263c43902a2310"
+      "bytes": 29024,
+      "sha256": "4ba233fe797fc39786e5ad4bd4cf43c2b2a92be9c7ab5bdd89ce9a92fb3b9c51"
     },
     {
       "source": "examples/investigations/v1/soc-signin.bundle.json",

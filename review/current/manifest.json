@@ -2,9 +2,9 @@
   "format": "tensor-current-review-package",
   "manifestVersion": 1,
   "sourceRepository": "https://github.com/TENSOR-Standards-Consortium/TENSOR-Framework",
-  "sourceCommit": "7b3129101f66fd0f9d3d3aaa9a043eddbe0b5b4e",
+  "sourceCommit": "3990297f1120a61de65fc4f9e1d1e9da13cce681",
   "dataset": {
-    "id": "urn:tensor:dataset:sha256:277f00e04a84493396c86090fde2c7e0056f2ae7847e7a9ea7bb6a7445d79cda",
+    "id": "urn:tensor:dataset:sha256:ae1b56d7b19ab3c4f94229a5f816e375b216200314c53219c0dcbd0ecf6df536",
     "graphVersion": "0.20261016a",
     "counts": {
       "questions": 609,
@@ -19,8 +19,8 @@
   "scope": "The current public dataset, identical for implementers, visitors and reviewers. Generated review/current packaging is excluded from its own source archive.",
   "archive": {
     "path": "source.tar.gz",
-    "bytes": 3407715,
-    "sha256": "a37e391d83b1d0f078374d3a5b0ae5c43d5eace83666595c088960396c367ece"
+    "bytes": 3407810,
+    "sha256": "90662713be32d1e6dd823c1097a83084f49e9fe074df362f8bbf87a780404c56"
   },
   "files": [
     {
@@ -221,7 +221,7 @@
     {
       "path": "dataset/current.json",
       "bytes": 9464,
-      "sha256": "cba1eb96ac226449a56620138a4211ebafca124099368dc3590a5151f775380c"
+      "sha256": "c9970236aa616a60f96830fbaa5321a208e3feb11e8a25cbc853fd4c35d8d2de"
     },
     {
       "path": "docs/adoption-plan.md",
@@ -865,8 +865,8 @@
     },
     {
       "path": "examples/investigations/v1/build.mjs",
-      "bytes": 13666,
-      "sha256": "6dac31478d2df73df897329019f26c442ecc815b6f6a7c6b1085fc5090adf5aa"
+      "bytes": 13683,
+      "sha256": "d7c437b2e414e7fd7461be0c3fb8dd469af4904faabb1c70aa97d9372330fcf0"
     },
     {
       "path": "examples/investigations/v1/catalog.json",
@@ -876,17 +876,17 @@
     {
       "path": "examples/investigations/v1/manifest.json",
       "bytes": 1328,
-      "sha256": "c4c85725d4e17f4bb941e0fabf534c46f160cae702196097eb92dbe07274710e"
+      "sha256": "00749553a4a0e96554bcf76ca86a2b8e083b9cd169e93bfdf20aa56f561758cd"
     },
     {
       "path": "examples/investigations/v1/parallel-followup.bundle.json",
-      "bytes": 90816,
-      "sha256": "c9d84f173bd0968ae11168f5105cb7356f056d1d523cfcee4b6263fdad27bd0c"
+      "bytes": 90859,
+      "sha256": "9f3f487faae5ce273cc82509c302dd964c35ba1e13bb22c88560bc08f5e8fa1e"
     },
     {
       "path": "examples/investigations/v1/parallel-followup.definition.json",
-      "bytes": 29026,
-      "sha256": "7d6f24bc2ce26b5e7d580ab93efb79fb447bd9b68a04f34d27263c43902a2310"
+      "bytes": 29024,
+      "sha256": "4ba233fe797fc39786e5ad4bd4cf43c2b2a92be9c7ab5bdd89ce9a92fb3b9c51"
     },
     {
       "path": "examples/investigations/v1/routes.mjs",
@@ -895,8 +895,8 @@
     },
     {
       "path": "examples/investigations/v1/scenarios.mjs",
-      "bytes": 26913,
-      "sha256": "d9efd09e464cc2641f9face0b9b8266ffcd57205fc2667b36ff472467503fce2"
+      "bytes": 27086,
+      "sha256": "7810ae14a084b84e6db4c8a6d381a595660caf1e5e20f49d47efd50c5d181d6a"
     },
     {
       "path": "examples/investigations/v1/soc-signin.bundle.json",
